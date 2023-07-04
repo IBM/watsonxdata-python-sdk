@@ -1,3 +1,10 @@
+# [0.1.0](https://github.com/IBM/watsonxdata-python-sdk/compare/v0.0.2...v0.1.0) (2023-07-04)
+
+
+### Features
+
+* disable pypi ([f7631c2](https://github.com/IBM/watsonxdata-python-sdk/commit/f7631c2d1e788834df84c5568a5d4be533e4295b))
+
 ## [0.0.2](https://github.com/IBM/watsonxdata-python-sdk/compare/v0.0.1...v0.0.2) (2023-07-04)
 
 
