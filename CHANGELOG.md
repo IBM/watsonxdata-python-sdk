@@ -1,3 +1,10 @@
+## [0.1.2](https://github.com/IBM/watsonxdata-python-sdk/compare/v0.1.1...v0.1.2) (2023-07-04)
+
+
+### Bug Fixes
+
+* trigger pypi2 ([dd07359](https://github.com/IBM/watsonxdata-python-sdk/commit/dd073591f8b26d07769f364c9ada9fee777f0ca2))
+
 ## [0.1.1](https://github.com/IBM/watsonxdata-python-sdk/compare/v0.1.0...v0.1.1) (2023-07-04)
 
 
