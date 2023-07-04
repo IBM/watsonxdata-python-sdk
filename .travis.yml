@@ -25,7 +25,7 @@ script:
 
 # To enable semantic-release, uncomment these sections.
 before_deploy:
-- nvm install 18
+- nvm install 14.17
 - npm install
 - pip install bump2version
 
