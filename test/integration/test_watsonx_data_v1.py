@@ -40,7 +40,8 @@ class TestWatsonxDataV1:
             )
             assert cls.watsonx_data_service is not None
 
-            cls.config = read_external_sources(WatsonxDataV1.DEFAULT_SERVICE_NAME)
+            cls.config = read_external_sources(
+                WatsonxDataV1.DEFAULT_SERVICE_NAME)
             assert cls.config is not None
 
             cls.watsonx_data_service.enable_retries()

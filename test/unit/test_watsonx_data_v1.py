@@ -256,7 +256,8 @@ class TestCreateDbConnUsers:
             "database_id": database_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_db_conn_users(**req_copy)
 
@@ -318,8 +319,10 @@ class TestListDataPolicies:
         query_string = urllib.parse.unquote_plus(query_string)
         assert 'catalog_name={}'.format(catalog_name) in query_string
         assert 'status={}'.format(status) in query_string
-        assert 'include_metadata={}'.format('true' if include_metadata else 'false') in query_string
-        assert 'include_rules={}'.format('true' if include_rules else 'false') in query_string
+        assert 'include_metadata={}'.format(
+            'true' if include_metadata else 'false') in query_string
+        assert 'include_rules={}'.format(
+            'true' if include_rules else 'false') in query_string
 
     def test_list_data_policies_all_params_with_retries(self):
         # Enable retries and run test_list_data_policies_all_params.
@@ -552,7 +555,8 @@ class TestCreateDataPolicy:
             "rules": rules,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_data_policy(**req_copy)
 
@@ -761,7 +765,8 @@ class TestGetEngineUsers:
             "engine_id": engine_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.get_engine_users(**req_copy)
 
@@ -893,7 +898,8 @@ class TestDeleteEngineUsers:
             "engine_id": engine_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.delete_engine_users(**req_copy)
 
@@ -1064,7 +1070,8 @@ class TestUpdateEngineUsers:
             "engine_id": engine_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.update_engine_users(**req_copy)
 
@@ -1196,7 +1203,8 @@ class TestDeleteDbConnUsers:
             "database_id": database_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.delete_db_conn_users(**req_copy)
 
@@ -1367,7 +1375,8 @@ class TestUpdateDbConnUsers:
             "database_id": database_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.update_db_conn_users(**req_copy)
 
@@ -1490,7 +1499,8 @@ class TestGetDbConnUsers:
             "database_id": database_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.get_db_conn_users(**req_copy)
 
@@ -1663,7 +1673,8 @@ class TestCreateCatalogUsers:
             "catalog_name": catalog_name,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_catalog_users(**req_copy)
 
@@ -1786,7 +1797,8 @@ class TestGetCatalogUsers:
             "catalog_name": catalog_name,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.get_catalog_users(**req_copy)
 
@@ -1918,7 +1930,8 @@ class TestDeleteCatalogUsers:
             "catalog_name": catalog_name,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.delete_catalog_users(**req_copy)
 
@@ -2089,7 +2102,8 @@ class TestUpdateCatalogUsers:
             "catalog_name": catalog_name,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.update_catalog_users(**req_copy)
 
@@ -2255,8 +2269,10 @@ class TestGetPoliciesList:
         query_string = urllib.parse.unquote_plus(query_string)
         assert 'catalog_list={}'.format(','.join(catalog_list)) in query_string
         assert 'engine_list={}'.format(','.join(engine_list)) in query_string
-        assert 'data_policies_list={}'.format(','.join(data_policies_list)) in query_string
-        assert 'include_data_policies={}'.format('true' if include_data_policies else 'false') in query_string
+        assert 'data_policies_list={}'.format(
+            ','.join(data_policies_list)) in query_string
+        assert 'include_data_policies={}'.format(
+            'true' if include_data_policies else 'false') in query_string
 
     def test_get_policies_list_all_params_with_retries(self):
         # Enable retries and run test_get_policies_list_all_params.
@@ -2459,7 +2475,8 @@ class TestCreateMetastoreUsers:
             "metastore_name": metastore_name,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_metastore_users(**req_copy)
 
@@ -2582,7 +2599,8 @@ class TestGetMetastoreUsers:
             "metastore_name": metastore_name,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.get_metastore_users(**req_copy)
 
@@ -2714,7 +2732,8 @@ class TestDeleteMetastoreUsers:
             "metastore_name": metastore_name,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.delete_metastore_users(**req_copy)
 
@@ -2885,7 +2904,8 @@ class TestUpdateMetastoreUsers:
             "metastore_name": metastore_name,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.update_metastore_users(**req_copy)
 
@@ -3058,7 +3078,8 @@ class TestCreateBucketUsers:
             "bucket_id": bucket_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_bucket_users(**req_copy)
 
@@ -3337,7 +3358,8 @@ class TestGetDataPolicy:
             "policy_name": policy_name,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.get_data_policy(**req_copy)
 
@@ -3538,7 +3560,8 @@ class TestReplaceDataPolicy:
             "rules": rules,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.replace_data_policy(**req_copy)
 
@@ -3652,7 +3675,8 @@ class TestDeleteDataPolicy:
             "policy_name": policy_name,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.delete_data_policy(**req_copy)
 
@@ -3825,7 +3849,8 @@ class TestCreateEngineUsers:
             "engine_id": engine_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_engine_users(**req_copy)
 
@@ -3948,7 +3973,8 @@ class TestGetBucketUsers:
             "bucket_id": bucket_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.get_bucket_users(**req_copy)
 
@@ -4080,7 +4106,8 @@ class TestDeleteBucketUsers:
             "bucket_id": bucket_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.delete_bucket_users(**req_copy)
 
@@ -4251,7 +4278,8 @@ class TestUpdateBucketUsers:
             "bucket_id": bucket_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.update_bucket_users(**req_copy)
 
@@ -4495,7 +4523,8 @@ class TestGetBucketObjects:
             "bucket_id": bucket_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.get_bucket_objects(**req_copy)
 
@@ -4622,7 +4651,8 @@ class TestDeactivateBucket:
             "bucket_id": bucket_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.deactivate_bucket(**req_copy)
 
@@ -4705,7 +4735,8 @@ class TestRegisterBucket:
         assert req_body['catalog_name'] == 'sampleCatalog'
         assert req_body['managed_by'] == 'ibm'
         assert req_body['bucket_display_name'] == 'sample-bucket-displayname'
-        assert req_body['bucket_tags'] == ['read customer data', 'write customer data']
+        assert req_body['bucket_tags'] == [
+            'read customer data', 'write customer data']
         assert req_body['catalog_tags'] == ['catalog_tag_1', 'catalog_tag_2']
         assert req_body['thrift_uri'] == 'thrift://samplehost-metastore:4354'
 
@@ -4780,7 +4811,8 @@ class TestRegisterBucket:
         assert req_body['catalog_name'] == 'sampleCatalog'
         assert req_body['managed_by'] == 'ibm'
         assert req_body['bucket_display_name'] == 'sample-bucket-displayname'
-        assert req_body['bucket_tags'] == ['read customer data', 'write customer data']
+        assert req_body['bucket_tags'] == [
+            'read customer data', 'write customer data']
         assert req_body['catalog_tags'] == ['catalog_tag_1', 'catalog_tag_2']
         assert req_body['thrift_uri'] == 'thrift://samplehost-metastore:4354'
 
@@ -4838,7 +4870,8 @@ class TestRegisterBucket:
             "managed_by": managed_by,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.register_bucket(**req_copy)
 
@@ -4956,7 +4989,8 @@ class TestUnregisterBucket:
             "bucket_id": bucket_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.unregister_bucket(**req_copy)
 
@@ -5118,7 +5152,8 @@ class TestUpdateBucket:
             "bucket_id": bucket_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.update_bucket(**req_copy)
 
@@ -5245,7 +5280,8 @@ class TestActivateBucket:
             "bucket_id": bucket_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.activate_bucket(**req_copy)
 
@@ -5568,7 +5604,8 @@ class TestCreateDatabaseCatalog:
             "catalog_name": catalog_name,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_database_catalog(**req_copy)
 
@@ -5686,7 +5723,8 @@ class TestDeleteDatabaseCatalog:
             "database_id": database_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.delete_database_catalog(**req_copy)
 
@@ -5856,7 +5894,8 @@ class TestUpdateDatabase:
             "database_id": database_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.update_database(**req_copy)
 
@@ -6029,7 +6068,8 @@ class TestPauseEngine:
             "engine_id": engine_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.pause_engine(**req_copy)
 
@@ -6358,7 +6398,8 @@ class TestUpdateEngine:
             "engine_id": engine_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.update_engine(**req_copy)
 
@@ -6444,7 +6485,8 @@ class TestCreateEngine:
         assert req_body['engine_display_name'] == 'sampleEngine'
         assert req_body['first_time_use'] == True
         assert req_body['region'] == 'us-south'
-        assert req_body['associated_catalogs'] == ['new_catalog_1', 'new_catalog_2']
+        assert req_body['associated_catalogs'] == [
+            'new_catalog_1', 'new_catalog_2']
 
     def test_create_engine_all_params_with_retries(self):
         # Enable retries and run test_create_engine_all_params.
@@ -6520,7 +6562,8 @@ class TestCreateEngine:
         assert req_body['engine_display_name'] == 'sampleEngine'
         assert req_body['first_time_use'] == True
         assert req_body['region'] == 'us-south'
-        assert req_body['associated_catalogs'] == ['new_catalog_1', 'new_catalog_2']
+        assert req_body['associated_catalogs'] == [
+            'new_catalog_1', 'new_catalog_2']
 
     def test_create_engine_required_params_with_retries(self):
         # Enable retries and run test_create_engine_required_params.
@@ -6577,7 +6620,8 @@ class TestCreateEngine:
             "type": type,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_engine(**req_copy)
 
@@ -6702,7 +6746,8 @@ class TestDeleteEngine:
             "engine_id": engine_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.delete_engine(**req_copy)
 
@@ -6836,7 +6881,8 @@ class TestResumeEngine:
             "engine_id": engine_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.resume_engine(**req_copy)
 
@@ -7033,7 +7079,8 @@ class TestExplainAnalyzeStatement:
             "statement": statement,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.explain_analyze_statement(**req_copy)
 
@@ -7196,7 +7243,8 @@ class TestExplainStatement:
             "statement": statement,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.explain_statement(**req_copy)
 
@@ -7606,7 +7654,8 @@ class TestAddMetastoreToEngine:
             "engine_id": engine_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.add_metastore_to_engine(**req_copy)
 
@@ -7748,7 +7797,8 @@ class TestRemoveCatalogFromEngine:
             "engine_id": engine_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.remove_catalog_from_engine(**req_copy)
 
@@ -7950,7 +8000,8 @@ class TestSaveQuery:
             "query_string": query_string,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.save_query(**req_copy)
 
@@ -8062,7 +8113,8 @@ class TestDeleteQuery:
             "query_name": query_name,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.delete_query(**req_copy)
 
@@ -8211,7 +8263,8 @@ class TestUpdateQuery:
             "new_query_name": new_query_name,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.update_query(**req_copy)
 
@@ -8476,7 +8529,8 @@ class TestCreateSchema:
             "schema_name": schema_name,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_schema(**req_copy)
 
@@ -8610,7 +8664,8 @@ class TestDeleteSchema:
             "schema_name": schema_name,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.delete_schema(**req_copy)
 
@@ -8747,7 +8802,8 @@ class TestGetSchemas:
             "catalog_name": catalog_name,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.get_schemas(**req_copy)
 
@@ -8933,7 +8989,8 @@ class TestPostQuery:
             "sql_query": sql_query,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.post_query(**req_copy)
 
@@ -9028,7 +9085,8 @@ class TestDeleteTable:
         assert response.status_code == 204
         # Validate body params
         req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
-        assert req_body['delete_tables'] == [delete_table_body_delete_tables_items_model]
+        assert req_body['delete_tables'] == [
+            delete_table_body_delete_tables_items_model]
         assert req_body['engine_id'] == 'sampleEngine123'
 
     def test_delete_table_all_params_with_retries(self):
@@ -9075,7 +9133,8 @@ class TestDeleteTable:
         assert response.status_code == 204
         # Validate body params
         req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
-        assert req_body['delete_tables'] == [delete_table_body_delete_tables_items_model]
+        assert req_body['delete_tables'] == [
+            delete_table_body_delete_tables_items_model]
         assert req_body['engine_id'] == 'sampleEngine123'
 
     def test_delete_table_required_params_with_retries(self):
@@ -9116,7 +9175,8 @@ class TestDeleteTable:
             "engine_id": engine_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.delete_table(**req_copy)
 
@@ -9203,10 +9263,13 @@ class TestUpdateTable:
         assert 'table_name={}'.format(table_name) in query_string
         # Validate body params
         req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
-        assert req_body['add_columns'] == [update_table_body_add_columns_items_model]
-        assert req_body['drop_columns'] == [update_table_body_drop_columns_items_model]
+        assert req_body['add_columns'] == [
+            update_table_body_add_columns_items_model]
+        assert req_body['drop_columns'] == [
+            update_table_body_drop_columns_items_model]
         assert req_body['new_table_name'] == 'updated_table_name'
-        assert req_body['rename_columns'] == [update_table_body_rename_columns_items_model]
+        assert req_body['rename_columns'] == [
+            update_table_body_rename_columns_items_model]
 
     def test_update_table_all_params_with_retries(self):
         # Enable retries and run test_update_table_all_params.
@@ -9283,10 +9346,13 @@ class TestUpdateTable:
         assert 'table_name={}'.format(table_name) in query_string
         # Validate body params
         req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
-        assert req_body['add_columns'] == [update_table_body_add_columns_items_model]
-        assert req_body['drop_columns'] == [update_table_body_drop_columns_items_model]
+        assert req_body['add_columns'] == [
+            update_table_body_add_columns_items_model]
+        assert req_body['drop_columns'] == [
+            update_table_body_drop_columns_items_model]
         assert req_body['new_table_name'] == 'updated_table_name'
-        assert req_body['rename_columns'] == [update_table_body_rename_columns_items_model]
+        assert req_body['rename_columns'] == [
+            update_table_body_rename_columns_items_model]
 
     def test_update_table_required_params_with_retries(self):
         # Enable retries and run test_update_table_required_params.
@@ -9346,7 +9412,8 @@ class TestUpdateTable:
             "table_name": table_name,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.update_table(**req_copy)
 
@@ -9499,7 +9566,8 @@ class TestGetTableSnapshots:
             "table_name": table_name,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.get_table_snapshots(**req_copy)
 
@@ -9664,7 +9732,8 @@ class TestRollbackSnapshot:
             "table_name": table_name,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.rollback_snapshot(**req_copy)
 
@@ -9809,7 +9878,8 @@ class TestGetTables:
             "schema_name": schema_name,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.get_tables(**req_copy)
 
@@ -9950,7 +10020,8 @@ class TestParseCsv:
             "file_type": file_type,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.parse_csv(**req_copy)
 
@@ -10133,7 +10204,8 @@ class TestUplaodCsv:
             "csv": csv,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.uplaod_csv(**req_copy)
 
@@ -10178,7 +10250,8 @@ class TestModel_Bucket:
         bucket_model_json['managed_by'] = 'IBM'
         bucket_model_json['state'] = 'active'
         bucket_model_json['tags'] = ['testbucket', 'userbucket']
-        bucket_model_json['associated_catalogs'] = ['samplecatalog1', 'samplecatalog2']
+        bucket_model_json['associated_catalogs'] = [
+            'samplecatalog1', 'samplecatalog2']
         bucket_model_json['bucket_display_name'] = 'sample-bucket-displayname'
         bucket_model_json['bucket_id'] = 'samplebucket123'
         bucket_model_json['bucket_name'] = 'sample-bucket'
@@ -10217,12 +10290,15 @@ class TestModel_BucketDbConnGroupsMetadata:
         bucket_db_conn_groups_metadata_model_json['permission'] = 'can_administer'
 
         # Construct a model instance of BucketDbConnGroupsMetadata by calling from_dict on the json representation
-        bucket_db_conn_groups_metadata_model = BucketDbConnGroupsMetadata.from_dict(bucket_db_conn_groups_metadata_model_json)
+        bucket_db_conn_groups_metadata_model = BucketDbConnGroupsMetadata.from_dict(
+            bucket_db_conn_groups_metadata_model_json)
         assert bucket_db_conn_groups_metadata_model != False
 
         # Construct a model instance of BucketDbConnGroupsMetadata by calling from_dict on the json representation
-        bucket_db_conn_groups_metadata_model_dict = BucketDbConnGroupsMetadata.from_dict(bucket_db_conn_groups_metadata_model_json).__dict__
-        bucket_db_conn_groups_metadata_model2 = BucketDbConnGroupsMetadata(**bucket_db_conn_groups_metadata_model_dict)
+        bucket_db_conn_groups_metadata_model_dict = BucketDbConnGroupsMetadata.from_dict(
+            bucket_db_conn_groups_metadata_model_json).__dict__
+        bucket_db_conn_groups_metadata_model2 = BucketDbConnGroupsMetadata(
+            **bucket_db_conn_groups_metadata_model_dict)
 
         # Verify the model instances are equivalent
         assert bucket_db_conn_groups_metadata_model == bucket_db_conn_groups_metadata_model2
@@ -10248,12 +10324,15 @@ class TestModel_BucketDbConnUsersMetadata:
         bucket_db_conn_users_metadata_model_json['permission'] = 'can_administer'
 
         # Construct a model instance of BucketDbConnUsersMetadata by calling from_dict on the json representation
-        bucket_db_conn_users_metadata_model = BucketDbConnUsersMetadata.from_dict(bucket_db_conn_users_metadata_model_json)
+        bucket_db_conn_users_metadata_model = BucketDbConnUsersMetadata.from_dict(
+            bucket_db_conn_users_metadata_model_json)
         assert bucket_db_conn_users_metadata_model != False
 
         # Construct a model instance of BucketDbConnUsersMetadata by calling from_dict on the json representation
-        bucket_db_conn_users_metadata_model_dict = BucketDbConnUsersMetadata.from_dict(bucket_db_conn_users_metadata_model_json).__dict__
-        bucket_db_conn_users_metadata_model2 = BucketDbConnUsersMetadata(**bucket_db_conn_users_metadata_model_dict)
+        bucket_db_conn_users_metadata_model_dict = BucketDbConnUsersMetadata.from_dict(
+            bucket_db_conn_users_metadata_model_json).__dict__
+        bucket_db_conn_users_metadata_model2 = BucketDbConnUsersMetadata(
+            **bucket_db_conn_users_metadata_model_dict)
 
         # Verify the model instances are equivalent
         assert bucket_db_conn_users_metadata_model == bucket_db_conn_users_metadata_model2
@@ -10281,11 +10360,13 @@ class TestModel_BucketDetails:
         bucket_details_model_json['secret_key'] = '<secret_key>'
 
         # Construct a model instance of BucketDetails by calling from_dict on the json representation
-        bucket_details_model = BucketDetails.from_dict(bucket_details_model_json)
+        bucket_details_model = BucketDetails.from_dict(
+            bucket_details_model_json)
         assert bucket_details_model != False
 
         # Construct a model instance of BucketDetails by calling from_dict on the json representation
-        bucket_details_model_dict = BucketDetails.from_dict(bucket_details_model_json).__dict__
+        bucket_details_model_dict = BucketDetails.from_dict(
+            bucket_details_model_json).__dict__
         bucket_details_model2 = BucketDetails(**bucket_details_model_dict)
 
         # Verify the model instances are equivalent
@@ -10312,11 +10393,13 @@ class TestModel_BucketPolicies:
         bucket_policies_model_json['policy_name'] = 'testString'
 
         # Construct a model instance of BucketPolicies by calling from_dict on the json representation
-        bucket_policies_model = BucketPolicies.from_dict(bucket_policies_model_json)
+        bucket_policies_model = BucketPolicies.from_dict(
+            bucket_policies_model_json)
         assert bucket_policies_model != False
 
         # Construct a model instance of BucketPolicies by calling from_dict on the json representation
-        bucket_policies_model_dict = BucketPolicies.from_dict(bucket_policies_model_json).__dict__
+        bucket_policies_model_dict = BucketPolicies.from_dict(
+            bucket_policies_model_json).__dict__
         bucket_policies_model2 = BucketPolicies(**bucket_policies_model_dict)
 
         # Verify the model instances are equivalent
@@ -10343,12 +10426,15 @@ class TestModel_CatalogGroupsMetadata:
         catalog_groups_metadata_model_json['permission'] = 'can_administer'
 
         # Construct a model instance of CatalogGroupsMetadata by calling from_dict on the json representation
-        catalog_groups_metadata_model = CatalogGroupsMetadata.from_dict(catalog_groups_metadata_model_json)
+        catalog_groups_metadata_model = CatalogGroupsMetadata.from_dict(
+            catalog_groups_metadata_model_json)
         assert catalog_groups_metadata_model != False
 
         # Construct a model instance of CatalogGroupsMetadata by calling from_dict on the json representation
-        catalog_groups_metadata_model_dict = CatalogGroupsMetadata.from_dict(catalog_groups_metadata_model_json).__dict__
-        catalog_groups_metadata_model2 = CatalogGroupsMetadata(**catalog_groups_metadata_model_dict)
+        catalog_groups_metadata_model_dict = CatalogGroupsMetadata.from_dict(
+            catalog_groups_metadata_model_json).__dict__
+        catalog_groups_metadata_model2 = CatalogGroupsMetadata(
+            **catalog_groups_metadata_model_dict)
 
         # Verify the model instances are equivalent
         assert catalog_groups_metadata_model == catalog_groups_metadata_model2
@@ -10374,12 +10460,15 @@ class TestModel_CatalogPolicies:
         catalog_policies_model_json['policy_version'] = 'testString'
 
         # Construct a model instance of CatalogPolicies by calling from_dict on the json representation
-        catalog_policies_model = CatalogPolicies.from_dict(catalog_policies_model_json)
+        catalog_policies_model = CatalogPolicies.from_dict(
+            catalog_policies_model_json)
         assert catalog_policies_model != False
 
         # Construct a model instance of CatalogPolicies by calling from_dict on the json representation
-        catalog_policies_model_dict = CatalogPolicies.from_dict(catalog_policies_model_json).__dict__
-        catalog_policies_model2 = CatalogPolicies(**catalog_policies_model_dict)
+        catalog_policies_model_dict = CatalogPolicies.from_dict(
+            catalog_policies_model_json).__dict__
+        catalog_policies_model2 = CatalogPolicies(
+            **catalog_policies_model_dict)
 
         # Verify the model instances are equivalent
         assert catalog_policies_model == catalog_policies_model2
@@ -10405,12 +10494,15 @@ class TestModel_CatalogUsersMetadata:
         catalog_users_metadata_model_json['user_name'] = 'testString'
 
         # Construct a model instance of CatalogUsersMetadata by calling from_dict on the json representation
-        catalog_users_metadata_model = CatalogUsersMetadata.from_dict(catalog_users_metadata_model_json)
+        catalog_users_metadata_model = CatalogUsersMetadata.from_dict(
+            catalog_users_metadata_model_json)
         assert catalog_users_metadata_model != False
 
         # Construct a model instance of CatalogUsersMetadata by calling from_dict on the json representation
-        catalog_users_metadata_model_dict = CatalogUsersMetadata.from_dict(catalog_users_metadata_model_json).__dict__
-        catalog_users_metadata_model2 = CatalogUsersMetadata(**catalog_users_metadata_model_dict)
+        catalog_users_metadata_model_dict = CatalogUsersMetadata.from_dict(
+            catalog_users_metadata_model_json).__dict__
+        catalog_users_metadata_model2 = CatalogUsersMetadata(
+            **catalog_users_metadata_model_dict)
 
         # Verify the model instances are equivalent
         assert catalog_users_metadata_model == catalog_users_metadata_model2
@@ -10444,7 +10536,8 @@ class TestModel_CreateDataPolicyCreatedBody:
 
         create_data_policy_schema_model = {}  # CreateDataPolicySchema
         create_data_policy_schema_model['catalog_name'] = 'testString'
-        create_data_policy_schema_model['data_artifact'] = 'schema1/table1/(column1|column2)'
+        create_data_policy_schema_model[
+            'data_artifact'] = 'schema1/table1/(column1|column2)'
         create_data_policy_schema_model['description'] = 'testString'
         create_data_policy_schema_model['policy_name'] = 'testString'
         create_data_policy_schema_model['rules'] = [rule_model]
@@ -10471,12 +10564,15 @@ class TestModel_CreateDataPolicyCreatedBody:
         create_data_policy_created_body_model_json['response'] = success_response_model
 
         # Construct a model instance of CreateDataPolicyCreatedBody by calling from_dict on the json representation
-        create_data_policy_created_body_model = CreateDataPolicyCreatedBody.from_dict(create_data_policy_created_body_model_json)
+        create_data_policy_created_body_model = CreateDataPolicyCreatedBody.from_dict(
+            create_data_policy_created_body_model_json)
         assert create_data_policy_created_body_model != False
 
         # Construct a model instance of CreateDataPolicyCreatedBody by calling from_dict on the json representation
-        create_data_policy_created_body_model_dict = CreateDataPolicyCreatedBody.from_dict(create_data_policy_created_body_model_json).__dict__
-        create_data_policy_created_body_model2 = CreateDataPolicyCreatedBody(**create_data_policy_created_body_model_dict)
+        create_data_policy_created_body_model_dict = CreateDataPolicyCreatedBody.from_dict(
+            create_data_policy_created_body_model_json).__dict__
+        create_data_policy_created_body_model2 = CreateDataPolicyCreatedBody(
+            **create_data_policy_created_body_model_dict)
 
         # Verify the model instances are equivalent
         assert create_data_policy_created_body_model == create_data_policy_created_body_model2
@@ -10511,19 +10607,23 @@ class TestModel_CreateDataPolicySchema:
         # Construct a json representation of a CreateDataPolicySchema model
         create_data_policy_schema_model_json = {}
         create_data_policy_schema_model_json['catalog_name'] = 'testString'
-        create_data_policy_schema_model_json['data_artifact'] = 'schema1/table1/(column1|column2)'
+        create_data_policy_schema_model_json[
+            'data_artifact'] = 'schema1/table1/(column1|column2)'
         create_data_policy_schema_model_json['description'] = 'testString'
         create_data_policy_schema_model_json['policy_name'] = 'testString'
         create_data_policy_schema_model_json['rules'] = [rule_model]
         create_data_policy_schema_model_json['status'] = 'active'
 
         # Construct a model instance of CreateDataPolicySchema by calling from_dict on the json representation
-        create_data_policy_schema_model = CreateDataPolicySchema.from_dict(create_data_policy_schema_model_json)
+        create_data_policy_schema_model = CreateDataPolicySchema.from_dict(
+            create_data_policy_schema_model_json)
         assert create_data_policy_schema_model != False
 
         # Construct a model instance of CreateDataPolicySchema by calling from_dict on the json representation
-        create_data_policy_schema_model_dict = CreateDataPolicySchema.from_dict(create_data_policy_schema_model_json).__dict__
-        create_data_policy_schema_model2 = CreateDataPolicySchema(**create_data_policy_schema_model_dict)
+        create_data_policy_schema_model_dict = CreateDataPolicySchema.from_dict(
+            create_data_policy_schema_model_json).__dict__
+        create_data_policy_schema_model2 = CreateDataPolicySchema(
+            **create_data_policy_schema_model_dict)
 
         # Verify the model instances are equivalent
         assert create_data_policy_schema_model == create_data_policy_schema_model2
@@ -10554,7 +10654,8 @@ class TestModel_DataPolicies:
         assert data_policies_model != False
 
         # Construct a model instance of DataPolicies by calling from_dict on the json representation
-        data_policies_model_dict = DataPolicies.from_dict(data_policies_model_json).__dict__
+        data_policies_model_dict = DataPolicies.from_dict(
+            data_policies_model_json).__dict__
         data_policies_model2 = DataPolicies(**data_policies_model_dict)
 
         # Verify the model instances are equivalent
@@ -10587,12 +10688,15 @@ class TestModel_DataPolicyMetadata:
         data_policy_metadata_model_json['created_at'] = 'testString'
 
         # Construct a model instance of DataPolicyMetadata by calling from_dict on the json representation
-        data_policy_metadata_model = DataPolicyMetadata.from_dict(data_policy_metadata_model_json)
+        data_policy_metadata_model = DataPolicyMetadata.from_dict(
+            data_policy_metadata_model_json)
         assert data_policy_metadata_model != False
 
         # Construct a model instance of DataPolicyMetadata by calling from_dict on the json representation
-        data_policy_metadata_model_dict = DataPolicyMetadata.from_dict(data_policy_metadata_model_json).__dict__
-        data_policy_metadata_model2 = DataPolicyMetadata(**data_policy_metadata_model_dict)
+        data_policy_metadata_model_dict = DataPolicyMetadata.from_dict(
+            data_policy_metadata_model_json).__dict__
+        data_policy_metadata_model2 = DataPolicyMetadata(
+            **data_policy_metadata_model_dict)
 
         # Verify the model instances are equivalent
         assert data_policy_metadata_model == data_policy_metadata_model2
@@ -10618,11 +10722,13 @@ class TestModel_DbConnPolicies:
         db_conn_policies_model_json['policy_version'] = 'testString'
 
         # Construct a model instance of DbConnPolicies by calling from_dict on the json representation
-        db_conn_policies_model = DbConnPolicies.from_dict(db_conn_policies_model_json)
+        db_conn_policies_model = DbConnPolicies.from_dict(
+            db_conn_policies_model_json)
         assert db_conn_policies_model != False
 
         # Construct a model instance of DbConnPolicies by calling from_dict on the json representation
-        db_conn_policies_model_dict = DbConnPolicies.from_dict(db_conn_policies_model_json).__dict__
+        db_conn_policies_model_dict = DbConnPolicies.from_dict(
+            db_conn_policies_model_json).__dict__
         db_conn_policies_model2 = DbConnPolicies(**db_conn_policies_model_dict)
 
         # Verify the model instances are equivalent
@@ -10658,17 +10764,21 @@ class TestModel_DefaultPolicySchema:
 
         # Construct a json representation of a DefaultPolicySchema model
         default_policy_schema_model_json = {}
-        default_policy_schema_model_json['grouping_policies'] = [grouping_policy_metadata_model]
+        default_policy_schema_model_json['grouping_policies'] = [
+            grouping_policy_metadata_model]
         default_policy_schema_model_json['model'] = 'testString'
         default_policy_schema_model_json['policies'] = [policy_metadata_model]
 
         # Construct a model instance of DefaultPolicySchema by calling from_dict on the json representation
-        default_policy_schema_model = DefaultPolicySchema.from_dict(default_policy_schema_model_json)
+        default_policy_schema_model = DefaultPolicySchema.from_dict(
+            default_policy_schema_model_json)
         assert default_policy_schema_model != False
 
         # Construct a model instance of DefaultPolicySchema by calling from_dict on the json representation
-        default_policy_schema_model_dict = DefaultPolicySchema.from_dict(default_policy_schema_model_json).__dict__
-        default_policy_schema_model2 = DefaultPolicySchema(**default_policy_schema_model_dict)
+        default_policy_schema_model_dict = DefaultPolicySchema.from_dict(
+            default_policy_schema_model_json).__dict__
+        default_policy_schema_model2 = DefaultPolicySchema(
+            **default_policy_schema_model_dict)
 
         # Verify the model instances are equivalent
         assert default_policy_schema_model == default_policy_schema_model2
@@ -10695,12 +10805,15 @@ class TestModel_DeleteTableBodyDeleteTablesItems:
         delete_table_body_delete_tables_items_model_json['table_name'] = 'new_table'
 
         # Construct a model instance of DeleteTableBodyDeleteTablesItems by calling from_dict on the json representation
-        delete_table_body_delete_tables_items_model = DeleteTableBodyDeleteTablesItems.from_dict(delete_table_body_delete_tables_items_model_json)
+        delete_table_body_delete_tables_items_model = DeleteTableBodyDeleteTablesItems.from_dict(
+            delete_table_body_delete_tables_items_model_json)
         assert delete_table_body_delete_tables_items_model != False
 
         # Construct a model instance of DeleteTableBodyDeleteTablesItems by calling from_dict on the json representation
-        delete_table_body_delete_tables_items_model_dict = DeleteTableBodyDeleteTablesItems.from_dict(delete_table_body_delete_tables_items_model_json).__dict__
-        delete_table_body_delete_tables_items_model2 = DeleteTableBodyDeleteTablesItems(**delete_table_body_delete_tables_items_model_dict)
+        delete_table_body_delete_tables_items_model_dict = DeleteTableBodyDeleteTablesItems.from_dict(
+            delete_table_body_delete_tables_items_model_json).__dict__
+        delete_table_body_delete_tables_items_model2 = DeleteTableBodyDeleteTablesItems(
+            **delete_table_body_delete_tables_items_model_dict)
 
         # Verify the model instances are equivalent
         assert delete_table_body_delete_tables_items_model == delete_table_body_delete_tables_items_model2
@@ -10739,7 +10852,8 @@ class TestModel_EngineDetail:
         engine_detail_model_json['version'] = '1.2.0'
         engine_detail_model_json['worker'] = node_description_model
         engine_detail_model_json['actions'] = ['update', 'delete']
-        engine_detail_model_json['associated_catalogs'] = ['new_catalog_1', 'new_catalog_2']
+        engine_detail_model_json['associated_catalogs'] = [
+            'new_catalog_1', 'new_catalog_2']
         engine_detail_model_json['status'] = 'running'
         engine_detail_model_json['tags'] = ['tag1', 'tag2']
         engine_detail_model_json['coordinator'] = node_description_model
@@ -10754,7 +10868,8 @@ class TestModel_EngineDetail:
         assert engine_detail_model != False
 
         # Construct a model instance of EngineDetail by calling from_dict on the json representation
-        engine_detail_model_dict = EngineDetail.from_dict(engine_detail_model_json).__dict__
+        engine_detail_model_dict = EngineDetail.from_dict(
+            engine_detail_model_json).__dict__
         engine_detail_model2 = EngineDetail(**engine_detail_model_dict)
 
         # Verify the model instances are equivalent
@@ -10788,12 +10903,15 @@ class TestModel_EngineDetailsBody:
         engine_details_body_model_json['size_config'] = 'starter'
 
         # Construct a model instance of EngineDetailsBody by calling from_dict on the json representation
-        engine_details_body_model = EngineDetailsBody.from_dict(engine_details_body_model_json)
+        engine_details_body_model = EngineDetailsBody.from_dict(
+            engine_details_body_model_json)
         assert engine_details_body_model != False
 
         # Construct a model instance of EngineDetailsBody by calling from_dict on the json representation
-        engine_details_body_model_dict = EngineDetailsBody.from_dict(engine_details_body_model_json).__dict__
-        engine_details_body_model2 = EngineDetailsBody(**engine_details_body_model_dict)
+        engine_details_body_model_dict = EngineDetailsBody.from_dict(
+            engine_details_body_model_json).__dict__
+        engine_details_body_model2 = EngineDetailsBody(
+            **engine_details_body_model_dict)
 
         # Verify the model instances are equivalent
         assert engine_details_body_model == engine_details_body_model2
@@ -10819,12 +10937,15 @@ class TestModel_EngineGroupsMetadata:
         engine_groups_metadata_model_json['permission'] = 'can_administer'
 
         # Construct a model instance of EngineGroupsMetadata by calling from_dict on the json representation
-        engine_groups_metadata_model = EngineGroupsMetadata.from_dict(engine_groups_metadata_model_json)
+        engine_groups_metadata_model = EngineGroupsMetadata.from_dict(
+            engine_groups_metadata_model_json)
         assert engine_groups_metadata_model != False
 
         # Construct a model instance of EngineGroupsMetadata by calling from_dict on the json representation
-        engine_groups_metadata_model_dict = EngineGroupsMetadata.from_dict(engine_groups_metadata_model_json).__dict__
-        engine_groups_metadata_model2 = EngineGroupsMetadata(**engine_groups_metadata_model_dict)
+        engine_groups_metadata_model_dict = EngineGroupsMetadata.from_dict(
+            engine_groups_metadata_model_json).__dict__
+        engine_groups_metadata_model2 = EngineGroupsMetadata(
+            **engine_groups_metadata_model_dict)
 
         # Verify the model instances are equivalent
         assert engine_groups_metadata_model == engine_groups_metadata_model2
@@ -10850,11 +10971,13 @@ class TestModel_EnginePolicies:
         engine_policies_model_json['policy_version'] = 'testString'
 
         # Construct a model instance of EnginePolicies by calling from_dict on the json representation
-        engine_policies_model = EnginePolicies.from_dict(engine_policies_model_json)
+        engine_policies_model = EnginePolicies.from_dict(
+            engine_policies_model_json)
         assert engine_policies_model != False
 
         # Construct a model instance of EnginePolicies by calling from_dict on the json representation
-        engine_policies_model_dict = EnginePolicies.from_dict(engine_policies_model_json).__dict__
+        engine_policies_model_dict = EnginePolicies.from_dict(
+            engine_policies_model_json).__dict__
         engine_policies_model2 = EnginePolicies(**engine_policies_model_dict)
 
         # Verify the model instances are equivalent
@@ -10881,12 +11004,15 @@ class TestModel_EngineUsersMetadata:
         engine_users_metadata_model_json['user_name'] = 'testString'
 
         # Construct a model instance of EngineUsersMetadata by calling from_dict on the json representation
-        engine_users_metadata_model = EngineUsersMetadata.from_dict(engine_users_metadata_model_json)
+        engine_users_metadata_model = EngineUsersMetadata.from_dict(
+            engine_users_metadata_model_json)
         assert engine_users_metadata_model != False
 
         # Construct a model instance of EngineUsersMetadata by calling from_dict on the json representation
-        engine_users_metadata_model_dict = EngineUsersMetadata.from_dict(engine_users_metadata_model_json).__dict__
-        engine_users_metadata_model2 = EngineUsersMetadata(**engine_users_metadata_model_dict)
+        engine_users_metadata_model_dict = EngineUsersMetadata.from_dict(
+            engine_users_metadata_model_json).__dict__
+        engine_users_metadata_model2 = EngineUsersMetadata(
+            **engine_users_metadata_model_dict)
 
         # Verify the model instances are equivalent
         assert engine_users_metadata_model == engine_users_metadata_model2
@@ -10916,15 +11042,19 @@ class TestModel_EvaluationResultSchema:
 
         # Construct a json representation of a EvaluationResultSchema model
         evaluation_result_schema_model_json = {}
-        evaluation_result_schema_model_json['resources'] = [resource_with_result_model]
+        evaluation_result_schema_model_json['resources'] = [
+            resource_with_result_model]
 
         # Construct a model instance of EvaluationResultSchema by calling from_dict on the json representation
-        evaluation_result_schema_model = EvaluationResultSchema.from_dict(evaluation_result_schema_model_json)
+        evaluation_result_schema_model = EvaluationResultSchema.from_dict(
+            evaluation_result_schema_model_json)
         assert evaluation_result_schema_model != False
 
         # Construct a model instance of EvaluationResultSchema by calling from_dict on the json representation
-        evaluation_result_schema_model_dict = EvaluationResultSchema.from_dict(evaluation_result_schema_model_json).__dict__
-        evaluation_result_schema_model2 = EvaluationResultSchema(**evaluation_result_schema_model_dict)
+        evaluation_result_schema_model_dict = EvaluationResultSchema.from_dict(
+            evaluation_result_schema_model_json).__dict__
+        evaluation_result_schema_model2 = EvaluationResultSchema(
+            **evaluation_result_schema_model_dict)
 
         # Verify the model instances are equivalent
         assert evaluation_result_schema_model == evaluation_result_schema_model2
@@ -10956,12 +11086,15 @@ class TestModel_ExplainAnalyzeStatementCreatedBody:
         explain_analyze_statement_created_body_model_json['result'] = 'testString'
 
         # Construct a model instance of ExplainAnalyzeStatementCreatedBody by calling from_dict on the json representation
-        explain_analyze_statement_created_body_model = ExplainAnalyzeStatementCreatedBody.from_dict(explain_analyze_statement_created_body_model_json)
+        explain_analyze_statement_created_body_model = ExplainAnalyzeStatementCreatedBody.from_dict(
+            explain_analyze_statement_created_body_model_json)
         assert explain_analyze_statement_created_body_model != False
 
         # Construct a model instance of ExplainAnalyzeStatementCreatedBody by calling from_dict on the json representation
-        explain_analyze_statement_created_body_model_dict = ExplainAnalyzeStatementCreatedBody.from_dict(explain_analyze_statement_created_body_model_json).__dict__
-        explain_analyze_statement_created_body_model2 = ExplainAnalyzeStatementCreatedBody(**explain_analyze_statement_created_body_model_dict)
+        explain_analyze_statement_created_body_model_dict = ExplainAnalyzeStatementCreatedBody.from_dict(
+            explain_analyze_statement_created_body_model_json).__dict__
+        explain_analyze_statement_created_body_model2 = ExplainAnalyzeStatementCreatedBody(
+            **explain_analyze_statement_created_body_model_dict)
 
         # Verify the model instances are equivalent
         assert explain_analyze_statement_created_body_model == explain_analyze_statement_created_body_model2
@@ -10993,12 +11126,15 @@ class TestModel_ExplainStatementCreatedBody:
         explain_statement_created_body_model_json['result'] = 'testString'
 
         # Construct a model instance of ExplainStatementCreatedBody by calling from_dict on the json representation
-        explain_statement_created_body_model = ExplainStatementCreatedBody.from_dict(explain_statement_created_body_model_json)
+        explain_statement_created_body_model = ExplainStatementCreatedBody.from_dict(
+            explain_statement_created_body_model_json)
         assert explain_statement_created_body_model != False
 
         # Construct a model instance of ExplainStatementCreatedBody by calling from_dict on the json representation
-        explain_statement_created_body_model_dict = ExplainStatementCreatedBody.from_dict(explain_statement_created_body_model_json).__dict__
-        explain_statement_created_body_model2 = ExplainStatementCreatedBody(**explain_statement_created_body_model_dict)
+        explain_statement_created_body_model_dict = ExplainStatementCreatedBody.from_dict(
+            explain_statement_created_body_model_json).__dict__
+        explain_statement_created_body_model2 = ExplainStatementCreatedBody(
+            **explain_statement_created_body_model_dict)
 
         # Verify the model instances are equivalent
         assert explain_statement_created_body_model == explain_statement_created_body_model2
@@ -11030,12 +11166,15 @@ class TestModel_GetBucketObjectsOKBody:
         get_bucket_objects_ok_body_model_json['response'] = success_response_model
 
         # Construct a model instance of GetBucketObjectsOKBody by calling from_dict on the json representation
-        get_bucket_objects_ok_body_model = GetBucketObjectsOKBody.from_dict(get_bucket_objects_ok_body_model_json)
+        get_bucket_objects_ok_body_model = GetBucketObjectsOKBody.from_dict(
+            get_bucket_objects_ok_body_model_json)
         assert get_bucket_objects_ok_body_model != False
 
         # Construct a model instance of GetBucketObjectsOKBody by calling from_dict on the json representation
-        get_bucket_objects_ok_body_model_dict = GetBucketObjectsOKBody.from_dict(get_bucket_objects_ok_body_model_json).__dict__
-        get_bucket_objects_ok_body_model2 = GetBucketObjectsOKBody(**get_bucket_objects_ok_body_model_dict)
+        get_bucket_objects_ok_body_model_dict = GetBucketObjectsOKBody.from_dict(
+            get_bucket_objects_ok_body_model_json).__dict__
+        get_bucket_objects_ok_body_model2 = GetBucketObjectsOKBody(
+            **get_bucket_objects_ok_body_model_dict)
 
         # Verify the model instances are equivalent
         assert get_bucket_objects_ok_body_model == get_bucket_objects_ok_body_model2
@@ -11068,17 +11207,22 @@ class TestModel_GetBucketUsersSchema:
         # Construct a json representation of a GetBucketUsersSchema model
         get_bucket_users_schema_model_json = {}
         get_bucket_users_schema_model_json['bucket_id'] = 'testString'
-        get_bucket_users_schema_model_json['groups'] = [bucket_db_conn_groups_metadata_model]
+        get_bucket_users_schema_model_json['groups'] = [
+            bucket_db_conn_groups_metadata_model]
         get_bucket_users_schema_model_json['total_count'] = 38
-        get_bucket_users_schema_model_json['users'] = [bucket_db_conn_users_metadata_model]
+        get_bucket_users_schema_model_json['users'] = [
+            bucket_db_conn_users_metadata_model]
 
         # Construct a model instance of GetBucketUsersSchema by calling from_dict on the json representation
-        get_bucket_users_schema_model = GetBucketUsersSchema.from_dict(get_bucket_users_schema_model_json)
+        get_bucket_users_schema_model = GetBucketUsersSchema.from_dict(
+            get_bucket_users_schema_model_json)
         assert get_bucket_users_schema_model != False
 
         # Construct a model instance of GetBucketUsersSchema by calling from_dict on the json representation
-        get_bucket_users_schema_model_dict = GetBucketUsersSchema.from_dict(get_bucket_users_schema_model_json).__dict__
-        get_bucket_users_schema_model2 = GetBucketUsersSchema(**get_bucket_users_schema_model_dict)
+        get_bucket_users_schema_model_dict = GetBucketUsersSchema.from_dict(
+            get_bucket_users_schema_model_json).__dict__
+        get_bucket_users_schema_model2 = GetBucketUsersSchema(
+            **get_bucket_users_schema_model_dict)
 
         # Verify the model instances are equivalent
         assert get_bucket_users_schema_model == get_bucket_users_schema_model2
@@ -11108,7 +11252,8 @@ class TestModel_GetBucketsOKBody:
         bucket_model['managed_by'] = 'IBM'
         bucket_model['state'] = 'active'
         bucket_model['tags'] = ['testbucket', 'userbucket']
-        bucket_model['associated_catalogs'] = ['samplecatalog1', 'samplecatalog2']
+        bucket_model['associated_catalogs'] = [
+            'samplecatalog1', 'samplecatalog2']
         bucket_model['bucket_display_name'] = 'sample-bucket-displayname'
         bucket_model['bucket_id'] = 'samplebucket123'
         bucket_model['bucket_name'] = 'sample-bucket'
@@ -11125,12 +11270,15 @@ class TestModel_GetBucketsOKBody:
         get_buckets_ok_body_model_json['response'] = success_response_model
 
         # Construct a model instance of GetBucketsOKBody by calling from_dict on the json representation
-        get_buckets_ok_body_model = GetBucketsOKBody.from_dict(get_buckets_ok_body_model_json)
+        get_buckets_ok_body_model = GetBucketsOKBody.from_dict(
+            get_buckets_ok_body_model_json)
         assert get_buckets_ok_body_model != False
 
         # Construct a model instance of GetBucketsOKBody by calling from_dict on the json representation
-        get_buckets_ok_body_model_dict = GetBucketsOKBody.from_dict(get_buckets_ok_body_model_json).__dict__
-        get_buckets_ok_body_model2 = GetBucketsOKBody(**get_buckets_ok_body_model_dict)
+        get_buckets_ok_body_model_dict = GetBucketsOKBody.from_dict(
+            get_buckets_ok_body_model_json).__dict__
+        get_buckets_ok_body_model2 = GetBucketsOKBody(
+            **get_buckets_ok_body_model_dict)
 
         # Verify the model instances are equivalent
         assert get_buckets_ok_body_model == get_buckets_ok_body_model2
@@ -11163,17 +11311,22 @@ class TestModel_GetCatalogUsersSchema:
         # Construct a json representation of a GetCatalogUsersSchema model
         get_catalog_users_schema_model_json = {}
         get_catalog_users_schema_model_json['total_count'] = 38
-        get_catalog_users_schema_model_json['users'] = [catalog_users_metadata_model]
+        get_catalog_users_schema_model_json['users'] = [
+            catalog_users_metadata_model]
         get_catalog_users_schema_model_json['catalog_name'] = 'testString'
-        get_catalog_users_schema_model_json['groups'] = [catalog_groups_metadata_model]
+        get_catalog_users_schema_model_json['groups'] = [
+            catalog_groups_metadata_model]
 
         # Construct a model instance of GetCatalogUsersSchema by calling from_dict on the json representation
-        get_catalog_users_schema_model = GetCatalogUsersSchema.from_dict(get_catalog_users_schema_model_json)
+        get_catalog_users_schema_model = GetCatalogUsersSchema.from_dict(
+            get_catalog_users_schema_model_json)
         assert get_catalog_users_schema_model != False
 
         # Construct a model instance of GetCatalogUsersSchema by calling from_dict on the json representation
-        get_catalog_users_schema_model_dict = GetCatalogUsersSchema.from_dict(get_catalog_users_schema_model_json).__dict__
-        get_catalog_users_schema_model2 = GetCatalogUsersSchema(**get_catalog_users_schema_model_dict)
+        get_catalog_users_schema_model_dict = GetCatalogUsersSchema.from_dict(
+            get_catalog_users_schema_model_json).__dict__
+        get_catalog_users_schema_model2 = GetCatalogUsersSchema(
+            **get_catalog_users_schema_model_dict)
 
         # Verify the model instances are equivalent
         assert get_catalog_users_schema_model == get_catalog_users_schema_model2
@@ -11205,18 +11358,23 @@ class TestModel_GetDbConnUsersSchema:
 
         # Construct a json representation of a GetDbConnUsersSchema model
         get_db_conn_users_schema_model_json = {}
-        get_db_conn_users_schema_model_json['groups'] = [bucket_db_conn_groups_metadata_model]
+        get_db_conn_users_schema_model_json['groups'] = [
+            bucket_db_conn_groups_metadata_model]
         get_db_conn_users_schema_model_json['total_count'] = 38
-        get_db_conn_users_schema_model_json['users'] = [bucket_db_conn_users_metadata_model]
+        get_db_conn_users_schema_model_json['users'] = [
+            bucket_db_conn_users_metadata_model]
         get_db_conn_users_schema_model_json['database_id'] = 'testString'
 
         # Construct a model instance of GetDbConnUsersSchema by calling from_dict on the json representation
-        get_db_conn_users_schema_model = GetDbConnUsersSchema.from_dict(get_db_conn_users_schema_model_json)
+        get_db_conn_users_schema_model = GetDbConnUsersSchema.from_dict(
+            get_db_conn_users_schema_model_json)
         assert get_db_conn_users_schema_model != False
 
         # Construct a model instance of GetDbConnUsersSchema by calling from_dict on the json representation
-        get_db_conn_users_schema_model_dict = GetDbConnUsersSchema.from_dict(get_db_conn_users_schema_model_json).__dict__
-        get_db_conn_users_schema_model2 = GetDbConnUsersSchema(**get_db_conn_users_schema_model_dict)
+        get_db_conn_users_schema_model_dict = GetDbConnUsersSchema.from_dict(
+            get_db_conn_users_schema_model_json).__dict__
+        get_db_conn_users_schema_model2 = GetDbConnUsersSchema(
+            **get_db_conn_users_schema_model_dict)
 
         # Verify the model instances are equivalent
         assert get_db_conn_users_schema_model == get_db_conn_users_schema_model2
@@ -11249,17 +11407,22 @@ class TestModel_GetEngineUsersSchema:
         # Construct a json representation of a GetEngineUsersSchema model
         get_engine_users_schema_model_json = {}
         get_engine_users_schema_model_json['engine_id'] = 'testString'
-        get_engine_users_schema_model_json['groups'] = [engine_groups_metadata_model]
+        get_engine_users_schema_model_json['groups'] = [
+            engine_groups_metadata_model]
         get_engine_users_schema_model_json['total_count'] = 38
-        get_engine_users_schema_model_json['users'] = [engine_users_metadata_model]
+        get_engine_users_schema_model_json['users'] = [
+            engine_users_metadata_model]
 
         # Construct a model instance of GetEngineUsersSchema by calling from_dict on the json representation
-        get_engine_users_schema_model = GetEngineUsersSchema.from_dict(get_engine_users_schema_model_json)
+        get_engine_users_schema_model = GetEngineUsersSchema.from_dict(
+            get_engine_users_schema_model_json)
         assert get_engine_users_schema_model != False
 
         # Construct a model instance of GetEngineUsersSchema by calling from_dict on the json representation
-        get_engine_users_schema_model_dict = GetEngineUsersSchema.from_dict(get_engine_users_schema_model_json).__dict__
-        get_engine_users_schema_model2 = GetEngineUsersSchema(**get_engine_users_schema_model_dict)
+        get_engine_users_schema_model_dict = GetEngineUsersSchema.from_dict(
+            get_engine_users_schema_model_json).__dict__
+        get_engine_users_schema_model2 = GetEngineUsersSchema(
+            **get_engine_users_schema_model_dict)
 
         # Verify the model instances are equivalent
         assert get_engine_users_schema_model == get_engine_users_schema_model2
@@ -11297,7 +11460,8 @@ class TestModel_GetEnginesOKBody:
         engine_detail_model['version'] = '1.2.0'
         engine_detail_model['worker'] = node_description_model
         engine_detail_model['actions'] = ['update', 'delete']
-        engine_detail_model['associated_catalogs'] = ['new_catalog_1', 'new_catalog_2']
+        engine_detail_model['associated_catalogs'] = [
+            'new_catalog_1', 'new_catalog_2']
         engine_detail_model['status'] = 'running'
         engine_detail_model['tags'] = ['tag1', 'tag2']
         engine_detail_model['coordinator'] = node_description_model
@@ -11317,12 +11481,15 @@ class TestModel_GetEnginesOKBody:
         get_engines_ok_body_model_json['response'] = success_response_model
 
         # Construct a model instance of GetEnginesOKBody by calling from_dict on the json representation
-        get_engines_ok_body_model = GetEnginesOKBody.from_dict(get_engines_ok_body_model_json)
+        get_engines_ok_body_model = GetEnginesOKBody.from_dict(
+            get_engines_ok_body_model_json)
         assert get_engines_ok_body_model != False
 
         # Construct a model instance of GetEnginesOKBody by calling from_dict on the json representation
-        get_engines_ok_body_model_dict = GetEnginesOKBody.from_dict(get_engines_ok_body_model_json).__dict__
-        get_engines_ok_body_model2 = GetEnginesOKBody(**get_engines_ok_body_model_dict)
+        get_engines_ok_body_model_dict = GetEnginesOKBody.from_dict(
+            get_engines_ok_body_model_json).__dict__
+        get_engines_ok_body_model2 = GetEnginesOKBody(
+            **get_engines_ok_body_model_dict)
 
         # Verify the model instances are equivalent
         assert get_engines_ok_body_model == get_engines_ok_body_model2
@@ -11354,18 +11521,22 @@ class TestModel_GetMetastoreUsersSchema:
 
         # Construct a json representation of a GetMetastoreUsersSchema model
         get_metastore_users_schema_model_json = {}
-        get_metastore_users_schema_model_json['groups'] = [groups_metadata_model]
+        get_metastore_users_schema_model_json['groups'] = [
+            groups_metadata_model]
         get_metastore_users_schema_model_json['metastore_name'] = 'testString'
         get_metastore_users_schema_model_json['total_count'] = 38
         get_metastore_users_schema_model_json['users'] = [users_metadata_model]
 
         # Construct a model instance of GetMetastoreUsersSchema by calling from_dict on the json representation
-        get_metastore_users_schema_model = GetMetastoreUsersSchema.from_dict(get_metastore_users_schema_model_json)
+        get_metastore_users_schema_model = GetMetastoreUsersSchema.from_dict(
+            get_metastore_users_schema_model_json)
         assert get_metastore_users_schema_model != False
 
         # Construct a model instance of GetMetastoreUsersSchema by calling from_dict on the json representation
-        get_metastore_users_schema_model_dict = GetMetastoreUsersSchema.from_dict(get_metastore_users_schema_model_json).__dict__
-        get_metastore_users_schema_model2 = GetMetastoreUsersSchema(**get_metastore_users_schema_model_dict)
+        get_metastore_users_schema_model_dict = GetMetastoreUsersSchema.from_dict(
+            get_metastore_users_schema_model_json).__dict__
+        get_metastore_users_schema_model2 = GetMetastoreUsersSchema(
+            **get_metastore_users_schema_model_dict)
 
         # Verify the model instances are equivalent
         assert get_metastore_users_schema_model == get_metastore_users_schema_model2
@@ -11414,12 +11585,15 @@ class TestModel_GetMetastoresOKBody:
         get_metastores_ok_body_model_json['response'] = success_response_model
 
         # Construct a model instance of GetMetastoresOKBody by calling from_dict on the json representation
-        get_metastores_ok_body_model = GetMetastoresOKBody.from_dict(get_metastores_ok_body_model_json)
+        get_metastores_ok_body_model = GetMetastoresOKBody.from_dict(
+            get_metastores_ok_body_model_json)
         assert get_metastores_ok_body_model != False
 
         # Construct a model instance of GetMetastoresOKBody by calling from_dict on the json representation
-        get_metastores_ok_body_model_dict = GetMetastoresOKBody.from_dict(get_metastores_ok_body_model_json).__dict__
-        get_metastores_ok_body_model2 = GetMetastoresOKBody(**get_metastores_ok_body_model_dict)
+        get_metastores_ok_body_model_dict = GetMetastoresOKBody.from_dict(
+            get_metastores_ok_body_model_json).__dict__
+        get_metastores_ok_body_model2 = GetMetastoresOKBody(
+            **get_metastores_ok_body_model_dict)
 
         # Verify the model instances are equivalent
         assert get_metastores_ok_body_model == get_metastores_ok_body_model2
@@ -11459,12 +11633,15 @@ class TestModel_GetQueriesOKBody:
         get_queries_ok_body_model_json['response'] = success_response_model
 
         # Construct a model instance of GetQueriesOKBody by calling from_dict on the json representation
-        get_queries_ok_body_model = GetQueriesOKBody.from_dict(get_queries_ok_body_model_json)
+        get_queries_ok_body_model = GetQueriesOKBody.from_dict(
+            get_queries_ok_body_model_json)
         assert get_queries_ok_body_model != False
 
         # Construct a model instance of GetQueriesOKBody by calling from_dict on the json representation
-        get_queries_ok_body_model_dict = GetQueriesOKBody.from_dict(get_queries_ok_body_model_json).__dict__
-        get_queries_ok_body_model2 = GetQueriesOKBody(**get_queries_ok_body_model_dict)
+        get_queries_ok_body_model_dict = GetQueriesOKBody.from_dict(
+            get_queries_ok_body_model_json).__dict__
+        get_queries_ok_body_model2 = GetQueriesOKBody(
+            **get_queries_ok_body_model_dict)
 
         # Verify the model instances are equivalent
         assert get_queries_ok_body_model == get_queries_ok_body_model2
@@ -11496,12 +11673,15 @@ class TestModel_GetSchemasOKBody:
         get_schemas_ok_body_model_json['schemas'] = ['testString']
 
         # Construct a model instance of GetSchemasOKBody by calling from_dict on the json representation
-        get_schemas_ok_body_model = GetSchemasOKBody.from_dict(get_schemas_ok_body_model_json)
+        get_schemas_ok_body_model = GetSchemasOKBody.from_dict(
+            get_schemas_ok_body_model_json)
         assert get_schemas_ok_body_model != False
 
         # Construct a model instance of GetSchemasOKBody by calling from_dict on the json representation
-        get_schemas_ok_body_model_dict = GetSchemasOKBody.from_dict(get_schemas_ok_body_model_json).__dict__
-        get_schemas_ok_body_model2 = GetSchemasOKBody(**get_schemas_ok_body_model_dict)
+        get_schemas_ok_body_model_dict = GetSchemasOKBody.from_dict(
+            get_schemas_ok_body_model_json).__dict__
+        get_schemas_ok_body_model2 = GetSchemasOKBody(
+            **get_schemas_ok_body_model_dict)
 
         # Verify the model instances are equivalent
         assert get_schemas_ok_body_model == get_schemas_ok_body_model2
@@ -11536,15 +11716,19 @@ class TestModel_GetTableSnapshotsOKBody:
         # Construct a json representation of a GetTableSnapshotsOKBody model
         get_table_snapshots_ok_body_model_json = {}
         get_table_snapshots_ok_body_model_json['response'] = success_response_model
-        get_table_snapshots_ok_body_model_json['snapshots'] = [table_snapshot_model]
+        get_table_snapshots_ok_body_model_json['snapshots'] = [
+            table_snapshot_model]
 
         # Construct a model instance of GetTableSnapshotsOKBody by calling from_dict on the json representation
-        get_table_snapshots_ok_body_model = GetTableSnapshotsOKBody.from_dict(get_table_snapshots_ok_body_model_json)
+        get_table_snapshots_ok_body_model = GetTableSnapshotsOKBody.from_dict(
+            get_table_snapshots_ok_body_model_json)
         assert get_table_snapshots_ok_body_model != False
 
         # Construct a model instance of GetTableSnapshotsOKBody by calling from_dict on the json representation
-        get_table_snapshots_ok_body_model_dict = GetTableSnapshotsOKBody.from_dict(get_table_snapshots_ok_body_model_json).__dict__
-        get_table_snapshots_ok_body_model2 = GetTableSnapshotsOKBody(**get_table_snapshots_ok_body_model_dict)
+        get_table_snapshots_ok_body_model_dict = GetTableSnapshotsOKBody.from_dict(
+            get_table_snapshots_ok_body_model_json).__dict__
+        get_table_snapshots_ok_body_model2 = GetTableSnapshotsOKBody(
+            **get_table_snapshots_ok_body_model_dict)
 
         # Verify the model instances are equivalent
         assert get_table_snapshots_ok_body_model == get_table_snapshots_ok_body_model2
@@ -11576,12 +11760,15 @@ class TestModel_GetTablesOKBody:
         get_tables_ok_body_model_json['tables'] = ['table1', 'table2']
 
         # Construct a model instance of GetTablesOKBody by calling from_dict on the json representation
-        get_tables_ok_body_model = GetTablesOKBody.from_dict(get_tables_ok_body_model_json)
+        get_tables_ok_body_model = GetTablesOKBody.from_dict(
+            get_tables_ok_body_model_json)
         assert get_tables_ok_body_model != False
 
         # Construct a model instance of GetTablesOKBody by calling from_dict on the json representation
-        get_tables_ok_body_model_dict = GetTablesOKBody.from_dict(get_tables_ok_body_model_json).__dict__
-        get_tables_ok_body_model2 = GetTablesOKBody(**get_tables_ok_body_model_dict)
+        get_tables_ok_body_model_dict = GetTablesOKBody.from_dict(
+            get_tables_ok_body_model_json).__dict__
+        get_tables_ok_body_model2 = GetTablesOKBody(
+            **get_tables_ok_body_model_dict)
 
         # Verify the model instances are equivalent
         assert get_tables_ok_body_model == get_tables_ok_body_model2
@@ -11608,12 +11795,15 @@ class TestModel_GroupingPolicyMetadata:
         grouping_policy_metadata_model_json['role'] = 'testString'
 
         # Construct a model instance of GroupingPolicyMetadata by calling from_dict on the json representation
-        grouping_policy_metadata_model = GroupingPolicyMetadata.from_dict(grouping_policy_metadata_model_json)
+        grouping_policy_metadata_model = GroupingPolicyMetadata.from_dict(
+            grouping_policy_metadata_model_json)
         assert grouping_policy_metadata_model != False
 
         # Construct a model instance of GroupingPolicyMetadata by calling from_dict on the json representation
-        grouping_policy_metadata_model_dict = GroupingPolicyMetadata.from_dict(grouping_policy_metadata_model_json).__dict__
-        grouping_policy_metadata_model2 = GroupingPolicyMetadata(**grouping_policy_metadata_model_dict)
+        grouping_policy_metadata_model_dict = GroupingPolicyMetadata.from_dict(
+            grouping_policy_metadata_model_json).__dict__
+        grouping_policy_metadata_model2 = GroupingPolicyMetadata(
+            **grouping_policy_metadata_model_dict)
 
         # Verify the model instances are equivalent
         assert grouping_policy_metadata_model == grouping_policy_metadata_model2
@@ -11639,11 +11829,13 @@ class TestModel_GroupsMetadata:
         groups_metadata_model_json['permission'] = 'can_administer'
 
         # Construct a model instance of GroupsMetadata by calling from_dict on the json representation
-        groups_metadata_model = GroupsMetadata.from_dict(groups_metadata_model_json)
+        groups_metadata_model = GroupsMetadata.from_dict(
+            groups_metadata_model_json)
         assert groups_metadata_model != False
 
         # Construct a model instance of GroupsMetadata by calling from_dict on the json representation
-        groups_metadata_model_dict = GroupsMetadata.from_dict(groups_metadata_model_json).__dict__
+        groups_metadata_model_dict = GroupsMetadata.from_dict(
+            groups_metadata_model_json).__dict__
         groups_metadata_model2 = GroupsMetadata(**groups_metadata_model_dict)
 
         # Verify the model instances are equivalent
@@ -11677,7 +11869,8 @@ class TestModel_Metastore:
         metastore_model_json['thrift_uri'] = 'thrift://samplehost-metastore:4354'
         metastore_model_json['catalog_type'] = 'iceberg'
         metastore_model_json['description'] = 'Iceberg catalog description'
-        metastore_model_json['associated_databases'] = ['database_1', 'database_2']
+        metastore_model_json['associated_databases'] = [
+            'database_1', 'database_2']
         metastore_model_json['associated_engines'] = ['engine_1', 'engine_2']
         metastore_model_json['created_on'] = '1602839833'
         metastore_model_json['port'] = '3232'
@@ -11687,7 +11880,8 @@ class TestModel_Metastore:
         assert metastore_model != False
 
         # Construct a model instance of Metastore by calling from_dict on the json representation
-        metastore_model_dict = Metastore.from_dict(metastore_model_json).__dict__
+        metastore_model_dict = Metastore.from_dict(
+            metastore_model_json).__dict__
         metastore_model2 = Metastore(**metastore_model_dict)
 
         # Verify the model instances are equivalent
@@ -11714,12 +11908,15 @@ class TestModel_NodeDescription:
         node_description_model_json['quantity'] = 38
 
         # Construct a model instance of NodeDescription by calling from_dict on the json representation
-        node_description_model = NodeDescription.from_dict(node_description_model_json)
+        node_description_model = NodeDescription.from_dict(
+            node_description_model_json)
         assert node_description_model != False
 
         # Construct a model instance of NodeDescription by calling from_dict on the json representation
-        node_description_model_dict = NodeDescription.from_dict(node_description_model_json).__dict__
-        node_description_model2 = NodeDescription(**node_description_model_dict)
+        node_description_model_dict = NodeDescription.from_dict(
+            node_description_model_json).__dict__
+        node_description_model2 = NodeDescription(
+            **node_description_model_dict)
 
         # Verify the model instances are equivalent
         assert node_description_model == node_description_model2
@@ -11745,12 +11942,15 @@ class TestModel_NodeDescriptionBody:
         node_description_body_model_json['quantity'] = 38
 
         # Construct a model instance of NodeDescriptionBody by calling from_dict on the json representation
-        node_description_body_model = NodeDescriptionBody.from_dict(node_description_body_model_json)
+        node_description_body_model = NodeDescriptionBody.from_dict(
+            node_description_body_model_json)
         assert node_description_body_model != False
 
         # Construct a model instance of NodeDescriptionBody by calling from_dict on the json representation
-        node_description_body_model_dict = NodeDescriptionBody.from_dict(node_description_body_model_json).__dict__
-        node_description_body_model2 = NodeDescriptionBody(**node_description_body_model_dict)
+        node_description_body_model_dict = NodeDescriptionBody.from_dict(
+            node_description_body_model_json).__dict__
+        node_description_body_model2 = NodeDescriptionBody(
+            **node_description_body_model_dict)
 
         # Verify the model instances are equivalent
         assert node_description_body_model == node_description_body_model2
@@ -11781,12 +11981,15 @@ class TestModel_PauseEngineCreatedBody:
         pause_engine_created_body_model_json['response'] = success_response_model
 
         # Construct a model instance of PauseEngineCreatedBody by calling from_dict on the json representation
-        pause_engine_created_body_model = PauseEngineCreatedBody.from_dict(pause_engine_created_body_model_json)
+        pause_engine_created_body_model = PauseEngineCreatedBody.from_dict(
+            pause_engine_created_body_model_json)
         assert pause_engine_created_body_model != False
 
         # Construct a model instance of PauseEngineCreatedBody by calling from_dict on the json representation
-        pause_engine_created_body_model_dict = PauseEngineCreatedBody.from_dict(pause_engine_created_body_model_json).__dict__
-        pause_engine_created_body_model2 = PauseEngineCreatedBody(**pause_engine_created_body_model_dict)
+        pause_engine_created_body_model_dict = PauseEngineCreatedBody.from_dict(
+            pause_engine_created_body_model_json).__dict__
+        pause_engine_created_body_model2 = PauseEngineCreatedBody(
+            **pause_engine_created_body_model_dict)
 
         # Verify the model instances are equivalent
         assert pause_engine_created_body_model == pause_engine_created_body_model2
@@ -11843,12 +12046,15 @@ class TestModel_PolicyListSchema:
         policy_list_schema_model_json['total_count'] = 38
 
         # Construct a model instance of PolicyListSchema by calling from_dict on the json representation
-        policy_list_schema_model = PolicyListSchema.from_dict(policy_list_schema_model_json)
+        policy_list_schema_model = PolicyListSchema.from_dict(
+            policy_list_schema_model_json)
         assert policy_list_schema_model != False
 
         # Construct a model instance of PolicyListSchema by calling from_dict on the json representation
-        policy_list_schema_model_dict = PolicyListSchema.from_dict(policy_list_schema_model_json).__dict__
-        policy_list_schema_model2 = PolicyListSchema(**policy_list_schema_model_dict)
+        policy_list_schema_model_dict = PolicyListSchema.from_dict(
+            policy_list_schema_model_json).__dict__
+        policy_list_schema_model2 = PolicyListSchema(
+            **policy_list_schema_model_dict)
 
         # Verify the model instances are equivalent
         assert policy_list_schema_model == policy_list_schema_model2
@@ -11876,11 +12082,13 @@ class TestModel_PolicyMetadata:
         policy_metadata_model_json['object'] = 'testString'
 
         # Construct a model instance of PolicyMetadata by calling from_dict on the json representation
-        policy_metadata_model = PolicyMetadata.from_dict(policy_metadata_model_json)
+        policy_metadata_model = PolicyMetadata.from_dict(
+            policy_metadata_model_json)
         assert policy_metadata_model != False
 
         # Construct a model instance of PolicyMetadata by calling from_dict on the json representation
-        policy_metadata_model_dict = PolicyMetadata.from_dict(policy_metadata_model_json).__dict__
+        policy_metadata_model_dict = PolicyMetadata.from_dict(
+            policy_metadata_model_json).__dict__
         policy_metadata_model2 = PolicyMetadata(**policy_metadata_model_dict)
 
         # Verify the model instances are equivalent
@@ -11938,7 +12146,8 @@ class TestModel_PolicySchema:
         assert policy_schema_model != False
 
         # Construct a model instance of PolicySchema by calling from_dict on the json representation
-        policy_schema_model_dict = PolicySchema.from_dict(policy_schema_model_json).__dict__
+        policy_schema_model_dict = PolicySchema.from_dict(
+            policy_schema_model_json).__dict__
         policy_schema_model2 = PolicySchema(**policy_schema_model_dict)
 
         # Verify the model instances are equivalent
@@ -11971,9 +12180,11 @@ class TestModel_PolicySchemaList:
 
         get_catalog_users_schema_model = {}  # GetCatalogUsersSchema
         get_catalog_users_schema_model['total_count'] = 38
-        get_catalog_users_schema_model['users'] = [catalog_users_metadata_model]
+        get_catalog_users_schema_model['users'] = [
+            catalog_users_metadata_model]
         get_catalog_users_schema_model['catalog_name'] = 'testString'
-        get_catalog_users_schema_model['groups'] = [catalog_groups_metadata_model]
+        get_catalog_users_schema_model['groups'] = [
+            catalog_groups_metadata_model]
 
         rule_grantee_model = {}  # RuleGrantee
         rule_grantee_model['value'] = 'testString'
@@ -12014,23 +12225,29 @@ class TestModel_PolicySchemaList:
 
         get_engine_users_schema_model = {}  # GetEngineUsersSchema
         get_engine_users_schema_model['engine_id'] = 'testString'
-        get_engine_users_schema_model['groups'] = [engine_groups_metadata_model]
+        get_engine_users_schema_model['groups'] = [
+            engine_groups_metadata_model]
         get_engine_users_schema_model['total_count'] = 38
         get_engine_users_schema_model['users'] = [engine_users_metadata_model]
 
         # Construct a json representation of a PolicySchemaList model
         policy_schema_list_model_json = {}
-        policy_schema_list_model_json['catalog_policies'] = [get_catalog_users_schema_model]
+        policy_schema_list_model_json['catalog_policies'] = [
+            get_catalog_users_schema_model]
         policy_schema_list_model_json['data_policies'] = [policy_schema_model]
-        policy_schema_list_model_json['engine_policies'] = [get_engine_users_schema_model]
+        policy_schema_list_model_json['engine_policies'] = [
+            get_engine_users_schema_model]
 
         # Construct a model instance of PolicySchemaList by calling from_dict on the json representation
-        policy_schema_list_model = PolicySchemaList.from_dict(policy_schema_list_model_json)
+        policy_schema_list_model = PolicySchemaList.from_dict(
+            policy_schema_list_model_json)
         assert policy_schema_list_model != False
 
         # Construct a model instance of PolicySchemaList by calling from_dict on the json representation
-        policy_schema_list_model_dict = PolicySchemaList.from_dict(policy_schema_list_model_json).__dict__
-        policy_schema_list_model2 = PolicySchemaList(**policy_schema_list_model_dict)
+        policy_schema_list_model_dict = PolicySchemaList.from_dict(
+            policy_schema_list_model_json).__dict__
+        policy_schema_list_model2 = PolicySchemaList(
+            **policy_schema_list_model_dict)
 
         # Verify the model instances are equivalent
         assert policy_schema_list_model == policy_schema_list_model2
@@ -12075,19 +12292,27 @@ class TestModel_PolicyVersionResultSchema:
 
         # Construct a json representation of a PolicyVersionResultSchema model
         policy_version_result_schema_model_json = {}
-        policy_version_result_schema_model_json['catalog_policies'] = [catalog_policies_model]
-        policy_version_result_schema_model_json['data_policies'] = [data_policies_model]
-        policy_version_result_schema_model_json['database_policies'] = [db_conn_policies_model]
-        policy_version_result_schema_model_json['engine_policies'] = [engine_policies_model]
-        policy_version_result_schema_model_json['bucket_policies'] = [bucket_policies_model]
+        policy_version_result_schema_model_json['catalog_policies'] = [
+            catalog_policies_model]
+        policy_version_result_schema_model_json['data_policies'] = [
+            data_policies_model]
+        policy_version_result_schema_model_json['database_policies'] = [
+            db_conn_policies_model]
+        policy_version_result_schema_model_json['engine_policies'] = [
+            engine_policies_model]
+        policy_version_result_schema_model_json['bucket_policies'] = [
+            bucket_policies_model]
 
         # Construct a model instance of PolicyVersionResultSchema by calling from_dict on the json representation
-        policy_version_result_schema_model = PolicyVersionResultSchema.from_dict(policy_version_result_schema_model_json)
+        policy_version_result_schema_model = PolicyVersionResultSchema.from_dict(
+            policy_version_result_schema_model_json)
         assert policy_version_result_schema_model != False
 
         # Construct a model instance of PolicyVersionResultSchema by calling from_dict on the json representation
-        policy_version_result_schema_model_dict = PolicyVersionResultSchema.from_dict(policy_version_result_schema_model_json).__dict__
-        policy_version_result_schema_model2 = PolicyVersionResultSchema(**policy_version_result_schema_model_dict)
+        policy_version_result_schema_model_dict = PolicyVersionResultSchema.from_dict(
+            policy_version_result_schema_model_json).__dict__
+        policy_version_result_schema_model2 = PolicyVersionResultSchema(
+            **policy_version_result_schema_model_dict)
 
         # Verify the model instances are equivalent
         assert policy_version_result_schema_model == policy_version_result_schema_model2
@@ -12158,12 +12383,15 @@ class TestModel_RegisterBucketCreatedBody:
         register_bucket_created_body_model_json['response'] = success_response_model
 
         # Construct a model instance of RegisterBucketCreatedBody by calling from_dict on the json representation
-        register_bucket_created_body_model = RegisterBucketCreatedBody.from_dict(register_bucket_created_body_model_json)
+        register_bucket_created_body_model = RegisterBucketCreatedBody.from_dict(
+            register_bucket_created_body_model_json)
         assert register_bucket_created_body_model != False
 
         # Construct a model instance of RegisterBucketCreatedBody by calling from_dict on the json representation
-        register_bucket_created_body_model_dict = RegisterBucketCreatedBody.from_dict(register_bucket_created_body_model_json).__dict__
-        register_bucket_created_body_model2 = RegisterBucketCreatedBody(**register_bucket_created_body_model_dict)
+        register_bucket_created_body_model_dict = RegisterBucketCreatedBody.from_dict(
+            register_bucket_created_body_model_json).__dict__
+        register_bucket_created_body_model2 = RegisterBucketCreatedBody(
+            **register_bucket_created_body_model_dict)
 
         # Verify the model instances are equivalent
         assert register_bucket_created_body_model == register_bucket_created_body_model2
@@ -12189,12 +12417,15 @@ class TestModel_RegisterBucketCreatedBodyBucket:
         register_bucket_created_body_bucket_model_json['bucket_id'] = 'testString'
 
         # Construct a model instance of RegisterBucketCreatedBodyBucket by calling from_dict on the json representation
-        register_bucket_created_body_bucket_model = RegisterBucketCreatedBodyBucket.from_dict(register_bucket_created_body_bucket_model_json)
+        register_bucket_created_body_bucket_model = RegisterBucketCreatedBodyBucket.from_dict(
+            register_bucket_created_body_bucket_model_json)
         assert register_bucket_created_body_bucket_model != False
 
         # Construct a model instance of RegisterBucketCreatedBodyBucket by calling from_dict on the json representation
-        register_bucket_created_body_bucket_model_dict = RegisterBucketCreatedBodyBucket.from_dict(register_bucket_created_body_bucket_model_json).__dict__
-        register_bucket_created_body_bucket_model2 = RegisterBucketCreatedBodyBucket(**register_bucket_created_body_bucket_model_dict)
+        register_bucket_created_body_bucket_model_dict = RegisterBucketCreatedBodyBucket.from_dict(
+            register_bucket_created_body_bucket_model_json).__dict__
+        register_bucket_created_body_bucket_model2 = RegisterBucketCreatedBodyBucket(
+            **register_bucket_created_body_bucket_model_dict)
 
         # Verify the model instances are equivalent
         assert register_bucket_created_body_bucket_model == register_bucket_created_body_bucket_model2
@@ -12222,15 +12453,19 @@ class TestModel_RegisterDatabaseCatalogBodyDatabaseDetails:
         register_database_catalog_body_database_details_model_json['tables'] = 'kafka_table_name'
         register_database_catalog_body_database_details_model_json['username'] = 'sampleuser'
         register_database_catalog_body_database_details_model_json['database_name'] = 'new_database'
-        register_database_catalog_body_database_details_model_json['hostname'] = 'db2@<hostname>.com'
+        register_database_catalog_body_database_details_model_json[
+            'hostname'] = 'db2@<hostname>.com'
 
         # Construct a model instance of RegisterDatabaseCatalogBodyDatabaseDetails by calling from_dict on the json representation
-        register_database_catalog_body_database_details_model = RegisterDatabaseCatalogBodyDatabaseDetails.from_dict(register_database_catalog_body_database_details_model_json)
+        register_database_catalog_body_database_details_model = RegisterDatabaseCatalogBodyDatabaseDetails.from_dict(
+            register_database_catalog_body_database_details_model_json)
         assert register_database_catalog_body_database_details_model != False
 
         # Construct a model instance of RegisterDatabaseCatalogBodyDatabaseDetails by calling from_dict on the json representation
-        register_database_catalog_body_database_details_model_dict = RegisterDatabaseCatalogBodyDatabaseDetails.from_dict(register_database_catalog_body_database_details_model_json).__dict__
-        register_database_catalog_body_database_details_model2 = RegisterDatabaseCatalogBodyDatabaseDetails(**register_database_catalog_body_database_details_model_dict)
+        register_database_catalog_body_database_details_model_dict = RegisterDatabaseCatalogBodyDatabaseDetails.from_dict(
+            register_database_catalog_body_database_details_model_json).__dict__
+        register_database_catalog_body_database_details_model2 = RegisterDatabaseCatalogBodyDatabaseDetails(
+            **register_database_catalog_body_database_details_model_dict)
 
         # Verify the model instances are equivalent
         assert register_database_catalog_body_database_details_model == register_database_catalog_body_database_details_model2
@@ -12264,7 +12499,8 @@ class TestModel_ReplaceDataPolicyCreatedBody:
 
         replace_data_policy_schema_model = {}  # ReplaceDataPolicySchema
         replace_data_policy_schema_model['catalog_name'] = 'testString'
-        replace_data_policy_schema_model['data_artifact'] = 'schema1/table1/(column1|column2)'
+        replace_data_policy_schema_model[
+            'data_artifact'] = 'schema1/table1/(column1|column2)'
         replace_data_policy_schema_model['description'] = 'testString'
         replace_data_policy_schema_model['rules'] = [rule_model]
         replace_data_policy_schema_model['status'] = 'active'
@@ -12290,12 +12526,15 @@ class TestModel_ReplaceDataPolicyCreatedBody:
         replace_data_policy_created_body_model_json['response'] = success_response_model
 
         # Construct a model instance of ReplaceDataPolicyCreatedBody by calling from_dict on the json representation
-        replace_data_policy_created_body_model = ReplaceDataPolicyCreatedBody.from_dict(replace_data_policy_created_body_model_json)
+        replace_data_policy_created_body_model = ReplaceDataPolicyCreatedBody.from_dict(
+            replace_data_policy_created_body_model_json)
         assert replace_data_policy_created_body_model != False
 
         # Construct a model instance of ReplaceDataPolicyCreatedBody by calling from_dict on the json representation
-        replace_data_policy_created_body_model_dict = ReplaceDataPolicyCreatedBody.from_dict(replace_data_policy_created_body_model_json).__dict__
-        replace_data_policy_created_body_model2 = ReplaceDataPolicyCreatedBody(**replace_data_policy_created_body_model_dict)
+        replace_data_policy_created_body_model_dict = ReplaceDataPolicyCreatedBody.from_dict(
+            replace_data_policy_created_body_model_json).__dict__
+        replace_data_policy_created_body_model2 = ReplaceDataPolicyCreatedBody(
+            **replace_data_policy_created_body_model_dict)
 
         # Verify the model instances are equivalent
         assert replace_data_policy_created_body_model == replace_data_policy_created_body_model2
@@ -12330,18 +12569,22 @@ class TestModel_ReplaceDataPolicySchema:
         # Construct a json representation of a ReplaceDataPolicySchema model
         replace_data_policy_schema_model_json = {}
         replace_data_policy_schema_model_json['catalog_name'] = 'testString'
-        replace_data_policy_schema_model_json['data_artifact'] = 'schema1/table1/(column1|column2)'
+        replace_data_policy_schema_model_json[
+            'data_artifact'] = 'schema1/table1/(column1|column2)'
         replace_data_policy_schema_model_json['description'] = 'testString'
         replace_data_policy_schema_model_json['rules'] = [rule_model]
         replace_data_policy_schema_model_json['status'] = 'active'
 
         # Construct a model instance of ReplaceDataPolicySchema by calling from_dict on the json representation
-        replace_data_policy_schema_model = ReplaceDataPolicySchema.from_dict(replace_data_policy_schema_model_json)
+        replace_data_policy_schema_model = ReplaceDataPolicySchema.from_dict(
+            replace_data_policy_schema_model_json)
         assert replace_data_policy_schema_model != False
 
         # Construct a model instance of ReplaceDataPolicySchema by calling from_dict on the json representation
-        replace_data_policy_schema_model_dict = ReplaceDataPolicySchema.from_dict(replace_data_policy_schema_model_json).__dict__
-        replace_data_policy_schema_model2 = ReplaceDataPolicySchema(**replace_data_policy_schema_model_dict)
+        replace_data_policy_schema_model_dict = ReplaceDataPolicySchema.from_dict(
+            replace_data_policy_schema_model_json).__dict__
+        replace_data_policy_schema_model2 = ReplaceDataPolicySchema(
+            **replace_data_policy_schema_model_dict)
 
         # Verify the model instances are equivalent
         assert replace_data_policy_schema_model == replace_data_policy_schema_model2
@@ -12369,12 +12612,15 @@ class TestModel_ResourceWithResult:
         resource_with_result_model_json['result'] = True
 
         # Construct a model instance of ResourceWithResult by calling from_dict on the json representation
-        resource_with_result_model = ResourceWithResult.from_dict(resource_with_result_model_json)
+        resource_with_result_model = ResourceWithResult.from_dict(
+            resource_with_result_model_json)
         assert resource_with_result_model != False
 
         # Construct a model instance of ResourceWithResult by calling from_dict on the json representation
-        resource_with_result_model_dict = ResourceWithResult.from_dict(resource_with_result_model_json).__dict__
-        resource_with_result_model2 = ResourceWithResult(**resource_with_result_model_dict)
+        resource_with_result_model_dict = ResourceWithResult.from_dict(
+            resource_with_result_model_json).__dict__
+        resource_with_result_model2 = ResourceWithResult(
+            **resource_with_result_model_dict)
 
         # Verify the model instances are equivalent
         assert resource_with_result_model == resource_with_result_model2
@@ -12401,12 +12647,15 @@ class TestModel_ResourcesMetadata:
         resources_metadata_model_json['resource_type'] = 'engine'
 
         # Construct a model instance of ResourcesMetadata by calling from_dict on the json representation
-        resources_metadata_model = ResourcesMetadata.from_dict(resources_metadata_model_json)
+        resources_metadata_model = ResourcesMetadata.from_dict(
+            resources_metadata_model_json)
         assert resources_metadata_model != False
 
         # Construct a model instance of ResourcesMetadata by calling from_dict on the json representation
-        resources_metadata_model_dict = ResourcesMetadata.from_dict(resources_metadata_model_json).__dict__
-        resources_metadata_model2 = ResourcesMetadata(**resources_metadata_model_dict)
+        resources_metadata_model_dict = ResourcesMetadata.from_dict(
+            resources_metadata_model_json).__dict__
+        resources_metadata_model2 = ResourcesMetadata(
+            **resources_metadata_model_dict)
 
         # Verify the model instances are equivalent
         assert resources_metadata_model == resources_metadata_model2
@@ -12437,12 +12686,15 @@ class TestModel_ResumeEngineCreatedBody:
         resume_engine_created_body_model_json['response'] = success_response_model
 
         # Construct a model instance of ResumeEngineCreatedBody by calling from_dict on the json representation
-        resume_engine_created_body_model = ResumeEngineCreatedBody.from_dict(resume_engine_created_body_model_json)
+        resume_engine_created_body_model = ResumeEngineCreatedBody.from_dict(
+            resume_engine_created_body_model_json)
         assert resume_engine_created_body_model != False
 
         # Construct a model instance of ResumeEngineCreatedBody by calling from_dict on the json representation
-        resume_engine_created_body_model_dict = ResumeEngineCreatedBody.from_dict(resume_engine_created_body_model_json).__dict__
-        resume_engine_created_body_model2 = ResumeEngineCreatedBody(**resume_engine_created_body_model_dict)
+        resume_engine_created_body_model_dict = ResumeEngineCreatedBody.from_dict(
+            resume_engine_created_body_model_json).__dict__
+        resume_engine_created_body_model2 = ResumeEngineCreatedBody(
+            **resume_engine_created_body_model_dict)
 
         # Verify the model instances are equivalent
         assert resume_engine_created_body_model == resume_engine_created_body_model2
@@ -12512,7 +12764,8 @@ class TestModel_RuleGrantee:
         assert rule_grantee_model != False
 
         # Construct a model instance of RuleGrantee by calling from_dict on the json representation
-        rule_grantee_model_dict = RuleGrantee.from_dict(rule_grantee_model_json).__dict__
+        rule_grantee_model_dict = RuleGrantee.from_dict(
+            rule_grantee_model_json).__dict__
         rule_grantee_model2 = RuleGrantee(**rule_grantee_model_dict)
 
         # Verify the model instances are equivalent
@@ -12539,12 +12792,15 @@ class TestModel_SuccessResponse:
         success_response_model_json['message'] = 'Success'
 
         # Construct a model instance of SuccessResponse by calling from_dict on the json representation
-        success_response_model = SuccessResponse.from_dict(success_response_model_json)
+        success_response_model = SuccessResponse.from_dict(
+            success_response_model_json)
         assert success_response_model != False
 
         # Construct a model instance of SuccessResponse by calling from_dict on the json representation
-        success_response_model_dict = SuccessResponse.from_dict(success_response_model_json).__dict__
-        success_response_model2 = SuccessResponse(**success_response_model_dict)
+        success_response_model_dict = SuccessResponse.from_dict(
+            success_response_model_json).__dict__
+        success_response_model2 = SuccessResponse(
+            **success_response_model_dict)
 
         # Verify the model instances are equivalent
         assert success_response_model == success_response_model2
@@ -12572,11 +12828,13 @@ class TestModel_TableSnapshot:
         table_snapshot_model_json['committed_at'] = '1609379392'
 
         # Construct a model instance of TableSnapshot by calling from_dict on the json representation
-        table_snapshot_model = TableSnapshot.from_dict(table_snapshot_model_json)
+        table_snapshot_model = TableSnapshot.from_dict(
+            table_snapshot_model_json)
         assert table_snapshot_model != False
 
         # Construct a model instance of TableSnapshot by calling from_dict on the json representation
-        table_snapshot_model_dict = TableSnapshot.from_dict(table_snapshot_model_json).__dict__
+        table_snapshot_model_dict = TableSnapshot.from_dict(
+            table_snapshot_model_json).__dict__
         table_snapshot_model2 = TableSnapshot(**table_snapshot_model_dict)
 
         # Verify the model instances are equivalent
@@ -12603,12 +12861,15 @@ class TestModel_UpdateDatabaseBodyDatabaseDetails:
         update_database_body_database_details_model_json['username'] = 'sampleuser'
 
         # Construct a model instance of UpdateDatabaseBodyDatabaseDetails by calling from_dict on the json representation
-        update_database_body_database_details_model = UpdateDatabaseBodyDatabaseDetails.from_dict(update_database_body_database_details_model_json)
+        update_database_body_database_details_model = UpdateDatabaseBodyDatabaseDetails.from_dict(
+            update_database_body_database_details_model_json)
         assert update_database_body_database_details_model != False
 
         # Construct a model instance of UpdateDatabaseBodyDatabaseDetails by calling from_dict on the json representation
-        update_database_body_database_details_model_dict = UpdateDatabaseBodyDatabaseDetails.from_dict(update_database_body_database_details_model_json).__dict__
-        update_database_body_database_details_model2 = UpdateDatabaseBodyDatabaseDetails(**update_database_body_database_details_model_dict)
+        update_database_body_database_details_model_dict = UpdateDatabaseBodyDatabaseDetails.from_dict(
+            update_database_body_database_details_model_json).__dict__
+        update_database_body_database_details_model2 = UpdateDatabaseBodyDatabaseDetails(
+            **update_database_body_database_details_model_dict)
 
         # Verify the model instances are equivalent
         assert update_database_body_database_details_model == update_database_body_database_details_model2
@@ -12635,12 +12896,15 @@ class TestModel_UpdateTableBodyAddColumnsItems:
         update_table_body_add_columns_items_model_json['data_type'] = 'varchar'
 
         # Construct a model instance of UpdateTableBodyAddColumnsItems by calling from_dict on the json representation
-        update_table_body_add_columns_items_model = UpdateTableBodyAddColumnsItems.from_dict(update_table_body_add_columns_items_model_json)
+        update_table_body_add_columns_items_model = UpdateTableBodyAddColumnsItems.from_dict(
+            update_table_body_add_columns_items_model_json)
         assert update_table_body_add_columns_items_model != False
 
         # Construct a model instance of UpdateTableBodyAddColumnsItems by calling from_dict on the json representation
-        update_table_body_add_columns_items_model_dict = UpdateTableBodyAddColumnsItems.from_dict(update_table_body_add_columns_items_model_json).__dict__
-        update_table_body_add_columns_items_model2 = UpdateTableBodyAddColumnsItems(**update_table_body_add_columns_items_model_dict)
+        update_table_body_add_columns_items_model_dict = UpdateTableBodyAddColumnsItems.from_dict(
+            update_table_body_add_columns_items_model_json).__dict__
+        update_table_body_add_columns_items_model2 = UpdateTableBodyAddColumnsItems(
+            **update_table_body_add_columns_items_model_dict)
 
         # Verify the model instances are equivalent
         assert update_table_body_add_columns_items_model == update_table_body_add_columns_items_model2
@@ -12665,12 +12929,15 @@ class TestModel_UpdateTableBodyDropColumnsItems:
         update_table_body_drop_columns_items_model_json['column_name'] = 'expenditure'
 
         # Construct a model instance of UpdateTableBodyDropColumnsItems by calling from_dict on the json representation
-        update_table_body_drop_columns_items_model = UpdateTableBodyDropColumnsItems.from_dict(update_table_body_drop_columns_items_model_json)
+        update_table_body_drop_columns_items_model = UpdateTableBodyDropColumnsItems.from_dict(
+            update_table_body_drop_columns_items_model_json)
         assert update_table_body_drop_columns_items_model != False
 
         # Construct a model instance of UpdateTableBodyDropColumnsItems by calling from_dict on the json representation
-        update_table_body_drop_columns_items_model_dict = UpdateTableBodyDropColumnsItems.from_dict(update_table_body_drop_columns_items_model_json).__dict__
-        update_table_body_drop_columns_items_model2 = UpdateTableBodyDropColumnsItems(**update_table_body_drop_columns_items_model_dict)
+        update_table_body_drop_columns_items_model_dict = UpdateTableBodyDropColumnsItems.from_dict(
+            update_table_body_drop_columns_items_model_json).__dict__
+        update_table_body_drop_columns_items_model2 = UpdateTableBodyDropColumnsItems(
+            **update_table_body_drop_columns_items_model_dict)
 
         # Verify the model instances are equivalent
         assert update_table_body_drop_columns_items_model == update_table_body_drop_columns_items_model2
@@ -12696,12 +12963,15 @@ class TestModel_UpdateTableBodyRenameColumnsItems:
         update_table_body_rename_columns_items_model_json['new_column_name'] = 'expenses'
 
         # Construct a model instance of UpdateTableBodyRenameColumnsItems by calling from_dict on the json representation
-        update_table_body_rename_columns_items_model = UpdateTableBodyRenameColumnsItems.from_dict(update_table_body_rename_columns_items_model_json)
+        update_table_body_rename_columns_items_model = UpdateTableBodyRenameColumnsItems.from_dict(
+            update_table_body_rename_columns_items_model_json)
         assert update_table_body_rename_columns_items_model != False
 
         # Construct a model instance of UpdateTableBodyRenameColumnsItems by calling from_dict on the json representation
-        update_table_body_rename_columns_items_model_dict = UpdateTableBodyRenameColumnsItems.from_dict(update_table_body_rename_columns_items_model_json).__dict__
-        update_table_body_rename_columns_items_model2 = UpdateTableBodyRenameColumnsItems(**update_table_body_rename_columns_items_model_dict)
+        update_table_body_rename_columns_items_model_dict = UpdateTableBodyRenameColumnsItems.from_dict(
+            update_table_body_rename_columns_items_model_json).__dict__
+        update_table_body_rename_columns_items_model2 = UpdateTableBodyRenameColumnsItems(
+            **update_table_body_rename_columns_items_model_dict)
 
         # Verify the model instances are equivalent
         assert update_table_body_rename_columns_items_model == update_table_body_rename_columns_items_model2
@@ -12727,11 +12997,13 @@ class TestModel_UsersMetadata:
         users_metadata_model_json['user_name'] = 'testString'
 
         # Construct a model instance of UsersMetadata by calling from_dict on the json representation
-        users_metadata_model = UsersMetadata.from_dict(users_metadata_model_json)
+        users_metadata_model = UsersMetadata.from_dict(
+            users_metadata_model_json)
         assert users_metadata_model != False
 
         # Construct a model instance of UsersMetadata by calling from_dict on the json representation
-        users_metadata_model_dict = UsersMetadata.from_dict(users_metadata_model_json).__dict__
+        users_metadata_model_dict = UsersMetadata.from_dict(
+            users_metadata_model_json).__dict__
         users_metadata_model2 = UsersMetadata(**users_metadata_model_dict)
 
         # Verify the model instances are equivalent
