@@ -9,7 +9,6 @@ notifications:
 
 matrix:
   include:
-    - python: 3.7
     - python: 3.8
     - python: 3.9
     - python: 3.10
@@ -26,7 +25,7 @@ script:
 
 # To enable semantic-release, uncomment these sections.
 before_deploy:
-- nvm install 14
+- nvm install 18
 - npm install
 - pip install bump2version
 
@@ -35,7 +34,7 @@ deploy:
   script: npm run semantic-release
   skip_cleanup: true
   on:
-    python: '3.7'
+    python: '3.8'
     branch: main
 - provider: pypi
   user: __token__
@@ -43,5 +42,5 @@ deploy:
   repository: https://upload.pypi.org/legacy
   skip_cleanup: true
   on:
-    python: '3.7'
+    python: '3.8'
     tags: true
