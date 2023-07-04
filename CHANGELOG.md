@@ -1,3 +1,10 @@
+## [0.1.3](https://github.com/IBM/watsonxdata-python-sdk/compare/v0.1.2...v0.1.3) (2023-07-04)
+
+
+### Bug Fixes
+
+* try pypi3 ([cb5c6ff](https://github.com/IBM/watsonxdata-python-sdk/commit/cb5c6ffe1c4f2373499d02ccbc1d20e197d89774))
+
 ## [0.1.2](https://github.com/IBM/watsonxdata-python-sdk/compare/v0.1.1...v0.1.2) (2023-07-04)
 
 
