@@ -10,8 +10,6 @@ notifications:
 matrix:
   include:
     - python: 3.8
-    - python: 3.9
-    - python: 3.10
 
 install:
 - sudo apt-get update
