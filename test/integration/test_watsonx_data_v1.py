@@ -36,12 +36,10 @@ class TestWatsonxDataV1:
         if os.path.exists(config_file):
             os.environ['IBM_CREDENTIALS_FILE'] = config_file
 
-            cls.watsonx_data_service = WatsonxDataV1.new_instance(
-            )
+            cls.watsonx_data_service = WatsonxDataV1.new_instance()
             assert cls.watsonx_data_service is not None
 
-            cls.config = read_external_sources(
-                WatsonxDataV1.DEFAULT_SERVICE_NAME)
+            cls.config = read_external_sources(WatsonxDataV1.DEFAULT_SERVICE_NAME)
             assert cls.config is not None
 
             cls.watsonx_data_service.enable_retries()

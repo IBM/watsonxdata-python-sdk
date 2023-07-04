@@ -54,9 +54,7 @@ class WatsonxDataV1(BaseService):
                parameters and external configuration.
         """
         authenticator = get_authenticator_from_environment(service_name)
-        service = cls(
-            authenticator
-        )
+        service = cls(authenticator)
         service.configure_service(service_name)
         return service
 
@@ -71,8 +69,7 @@ class WatsonxDataV1(BaseService):
                Get up to date information from https://github.com/IBM/python-sdk-core/blob/main/README.md
                about initializing the authenticator of your choice.
         """
-        BaseService.__init__(
-            self, service_url=self.DEFAULT_SERVICE_URL, authenticator=authenticator)
+        BaseService.__init__(self, service_url=self.DEFAULT_SERVICE_URL, authenticator=authenticator)
 
     #########################
     # AccessManagement
@@ -4437,8 +4434,7 @@ class WatsonxDataV1(BaseService):
         form_data.append(('catalog', (None, catalog, 'text/plain')))
         form_data.append(('schema', (None, schema, 'text/plain')))
         form_data.append(('tableName', (None, table_name, 'text/plain')))
-        form_data.append(
-            ('ingestionJobName', (None, ingestion_job_name, 'text/plain')))
+        form_data.append(('ingestionJobName', (None, ingestion_job_name, 'text/plain')))
         form_data.append(('scheduled', (None, scheduled, 'text/plain')))
         form_data.append(('created_by', (None, created_by, 'text/plain')))
         form_data.append(('targetTable', (None, target_table, 'text/plain')))
@@ -4544,43 +4540,35 @@ class Bucket:
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         else:
-            raise ValueError(
-                'Required property \'created_by\' not present in Bucket JSON')
+            raise ValueError('Required property \'created_by\' not present in Bucket JSON')
         if 'created_on' in _dict:
             args['created_on'] = _dict.get('created_on')
         else:
-            raise ValueError(
-                'Required property \'created_on\' not present in Bucket JSON')
+            raise ValueError('Required property \'created_on\' not present in Bucket JSON')
         if 'description' in _dict:
             args['description'] = _dict.get('description')
         else:
-            raise ValueError(
-                'Required property \'description\' not present in Bucket JSON')
+            raise ValueError('Required property \'description\' not present in Bucket JSON')
         if 'endpoint' in _dict:
             args['endpoint'] = _dict.get('endpoint')
         else:
-            raise ValueError(
-                'Required property \'endpoint\' not present in Bucket JSON')
+            raise ValueError('Required property \'endpoint\' not present in Bucket JSON')
         if 'managed_by' in _dict:
             args['managed_by'] = _dict.get('managed_by')
         else:
-            raise ValueError(
-                'Required property \'managed_by\' not present in Bucket JSON')
+            raise ValueError('Required property \'managed_by\' not present in Bucket JSON')
         if 'state' in _dict:
             args['state'] = _dict.get('state')
         else:
-            raise ValueError(
-                'Required property \'state\' not present in Bucket JSON')
+            raise ValueError('Required property \'state\' not present in Bucket JSON')
         if 'tags' in _dict:
             args['tags'] = _dict.get('tags')
         else:
-            raise ValueError(
-                'Required property \'tags\' not present in Bucket JSON')
+            raise ValueError('Required property \'tags\' not present in Bucket JSON')
         if 'associated_catalogs' in _dict:
             args['associated_catalogs'] = _dict.get('associated_catalogs')
         else:
-            raise ValueError(
-                'Required property \'associated_catalogs\' not present in Bucket JSON')
+            raise ValueError('Required property \'associated_catalogs\' not present in Bucket JSON')
         if 'bucket_display_name' in _dict:
             args['bucket_display_name'] = _dict.get('bucket_display_name')
         if 'bucket_id' in _dict:
@@ -4588,13 +4576,11 @@ class Bucket:
         if 'bucket_name' in _dict:
             args['bucket_name'] = _dict.get('bucket_name')
         else:
-            raise ValueError(
-                'Required property \'bucket_name\' not present in Bucket JSON')
+            raise ValueError('Required property \'bucket_name\' not present in Bucket JSON')
         if 'bucket_type' in _dict:
             args['bucket_type'] = _dict.get('bucket_type')
         else:
-            raise ValueError(
-                'Required property \'bucket_type\' not present in Bucket JSON')
+            raise ValueError('Required property \'bucket_type\' not present in Bucket JSON')
         if 'actions' in _dict:
             args['actions'] = _dict.get('actions')
         return cls(**args)
@@ -4709,13 +4695,11 @@ class BucketDbConnGroupsMetadata:
         if 'group_id' in _dict:
             args['group_id'] = _dict.get('group_id')
         else:
-            raise ValueError(
-                'Required property \'group_id\' not present in BucketDbConnGroupsMetadata JSON')
+            raise ValueError('Required property \'group_id\' not present in BucketDbConnGroupsMetadata JSON')
         if 'permission' in _dict:
             args['permission'] = _dict.get('permission')
         else:
-            raise ValueError(
-                'Required property \'permission\' not present in BucketDbConnGroupsMetadata JSON')
+            raise ValueError('Required property \'permission\' not present in BucketDbConnGroupsMetadata JSON')
         return cls(**args)
 
     @classmethod
@@ -4789,13 +4773,11 @@ class BucketDbConnUsersMetadata:
         if 'user_name' in _dict:
             args['user_name'] = _dict.get('user_name')
         else:
-            raise ValueError(
-                'Required property \'user_name\' not present in BucketDbConnUsersMetadata JSON')
+            raise ValueError('Required property \'user_name\' not present in BucketDbConnUsersMetadata JSON')
         if 'permission' in _dict:
             args['permission'] = _dict.get('permission')
         else:
-            raise ValueError(
-                'Required property \'permission\' not present in BucketDbConnUsersMetadata JSON')
+            raise ValueError('Required property \'permission\' not present in BucketDbConnUsersMetadata JSON')
         return cls(**args)
 
     @classmethod
@@ -4884,8 +4866,7 @@ class BucketDetails:
         if 'bucket_name' in _dict:
             args['bucket_name'] = _dict.get('bucket_name')
         else:
-            raise ValueError(
-                'Required property \'bucket_name\' not present in BucketDetails JSON')
+            raise ValueError('Required property \'bucket_name\' not present in BucketDetails JSON')
         if 'endpoint' in _dict:
             args['endpoint'] = _dict.get('endpoint')
         if 'secret_key' in _dict:
@@ -5024,13 +5005,11 @@ class CatalogGroupsMetadata:
         if 'group_id' in _dict:
             args['group_id'] = _dict.get('group_id')
         else:
-            raise ValueError(
-                'Required property \'group_id\' not present in CatalogGroupsMetadata JSON')
+            raise ValueError('Required property \'group_id\' not present in CatalogGroupsMetadata JSON')
         if 'permission' in _dict:
             args['permission'] = _dict.get('permission')
         else:
-            raise ValueError(
-                'Required property \'permission\' not present in CatalogGroupsMetadata JSON')
+            raise ValueError('Required property \'permission\' not present in CatalogGroupsMetadata JSON')
         return cls(**args)
 
     @classmethod
@@ -5169,13 +5148,11 @@ class CatalogUsersMetadata:
         if 'permission' in _dict:
             args['permission'] = _dict.get('permission')
         else:
-            raise ValueError(
-                'Required property \'permission\' not present in CatalogUsersMetadata JSON')
+            raise ValueError('Required property \'permission\' not present in CatalogUsersMetadata JSON')
         if 'user_name' in _dict:
             args['user_name'] = _dict.get('user_name')
         else:
-            raise ValueError(
-                'Required property \'user_name\' not present in CatalogUsersMetadata JSON')
+            raise ValueError('Required property \'user_name\' not present in CatalogUsersMetadata JSON')
         return cls(**args)
 
     @classmethod
@@ -5250,22 +5227,17 @@ class CreateDataPolicyCreatedBody:
         """Initialize a CreateDataPolicyCreatedBody object from a json dictionary."""
         args = {}
         if 'data_policy' in _dict:
-            args['data_policy'] = CreateDataPolicySchema.from_dict(
-                _dict.get('data_policy'))
+            args['data_policy'] = CreateDataPolicySchema.from_dict(_dict.get('data_policy'))
         else:
-            raise ValueError(
-                'Required property \'data_policy\' not present in CreateDataPolicyCreatedBody JSON')
+            raise ValueError('Required property \'data_policy\' not present in CreateDataPolicyCreatedBody JSON')
         if 'metadata' in _dict:
-            args['metadata'] = DataPolicyMetadata.from_dict(
-                _dict.get('metadata'))
+            args['metadata'] = DataPolicyMetadata.from_dict(_dict.get('metadata'))
         else:
-            raise ValueError(
-                'Required property \'metadata\' not present in CreateDataPolicyCreatedBody JSON')
+            raise ValueError('Required property \'metadata\' not present in CreateDataPolicyCreatedBody JSON')
         if 'response' in _dict:
             args['response'] = SuccessResponse.from_dict(_dict.get('response'))
         else:
-            raise ValueError(
-                'Required property \'response\' not present in CreateDataPolicyCreatedBody JSON')
+            raise ValueError('Required property \'response\' not present in CreateDataPolicyCreatedBody JSON')
         return cls(**args)
 
     @classmethod
@@ -5359,25 +5331,21 @@ class CreateDataPolicySchema:
         if 'catalog_name' in _dict:
             args['catalog_name'] = _dict.get('catalog_name')
         else:
-            raise ValueError(
-                'Required property \'catalog_name\' not present in CreateDataPolicySchema JSON')
+            raise ValueError('Required property \'catalog_name\' not present in CreateDataPolicySchema JSON')
         if 'data_artifact' in _dict:
             args['data_artifact'] = _dict.get('data_artifact')
         else:
-            raise ValueError(
-                'Required property \'data_artifact\' not present in CreateDataPolicySchema JSON')
+            raise ValueError('Required property \'data_artifact\' not present in CreateDataPolicySchema JSON')
         if 'description' in _dict:
             args['description'] = _dict.get('description')
         if 'policy_name' in _dict:
             args['policy_name'] = _dict.get('policy_name')
         else:
-            raise ValueError(
-                'Required property \'policy_name\' not present in CreateDataPolicySchema JSON')
+            raise ValueError('Required property \'policy_name\' not present in CreateDataPolicySchema JSON')
         if 'rules' in _dict:
             args['rules'] = [Rule.from_dict(v) for v in _dict.get('rules')]
         else:
-            raise ValueError(
-                'Required property \'rules\' not present in CreateDataPolicySchema JSON')
+            raise ValueError('Required property \'rules\' not present in CreateDataPolicySchema JSON')
         if 'status' in _dict:
             args['status'] = _dict.get('status')
         return cls(**args)
@@ -5729,13 +5697,11 @@ class DefaultPolicySchema:
         """Initialize a DefaultPolicySchema object from a json dictionary."""
         args = {}
         if 'grouping_policies' in _dict:
-            args['grouping_policies'] = [GroupingPolicyMetadata.from_dict(
-                v) for v in _dict.get('grouping_policies')]
+            args['grouping_policies'] = [GroupingPolicyMetadata.from_dict(v) for v in _dict.get('grouping_policies')]
         if 'model' in _dict:
             args['model'] = _dict.get('model')
         if 'policies' in _dict:
-            args['policies'] = [PolicyMetadata.from_dict(
-                v) for v in _dict.get('policies')]
+            args['policies'] = [PolicyMetadata.from_dict(v) for v in _dict.get('policies')]
         return cls(**args)
 
     @classmethod
@@ -5987,8 +5953,7 @@ class EngineDetail:
         if 'tags' in _dict:
             args['tags'] = _dict.get('tags')
         if 'coordinator' in _dict:
-            args['coordinator'] = NodeDescription.from_dict(
-                _dict.get('coordinator'))
+            args['coordinator'] = NodeDescription.from_dict(_dict.get('coordinator'))
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         if 'host_name' in _dict:
@@ -5996,8 +5961,7 @@ class EngineDetail:
         if 'status_code' in _dict:
             args['status_code'] = _dict.get('status_code')
         else:
-            raise ValueError(
-                'Required property \'status_code\' not present in EngineDetail JSON')
+            raise ValueError('Required property \'status_code\' not present in EngineDetail JSON')
         if 'description' in _dict:
             args['description'] = _dict.get('description')
         if 'engine_id' in _dict:
@@ -6113,8 +6077,7 @@ class EngineDetailsBody:
         if 'worker' in _dict:
             args['worker'] = NodeDescriptionBody.from_dict(_dict.get('worker'))
         if 'coordinator' in _dict:
-            args['coordinator'] = NodeDescriptionBody.from_dict(
-                _dict.get('coordinator'))
+            args['coordinator'] = NodeDescriptionBody.from_dict(_dict.get('coordinator'))
         if 'size_config' in _dict:
             args['size_config'] = _dict.get('size_config')
         return cls(**args)
@@ -6202,13 +6165,11 @@ class EngineGroupsMetadata:
         if 'group_id' in _dict:
             args['group_id'] = _dict.get('group_id')
         else:
-            raise ValueError(
-                'Required property \'group_id\' not present in EngineGroupsMetadata JSON')
+            raise ValueError('Required property \'group_id\' not present in EngineGroupsMetadata JSON')
         if 'permission' in _dict:
             args['permission'] = _dict.get('permission')
         else:
-            raise ValueError(
-                'Required property \'permission\' not present in EngineGroupsMetadata JSON')
+            raise ValueError('Required property \'permission\' not present in EngineGroupsMetadata JSON')
         return cls(**args)
 
     @classmethod
@@ -6348,13 +6309,11 @@ class EngineUsersMetadata:
         if 'permission' in _dict:
             args['permission'] = _dict.get('permission')
         else:
-            raise ValueError(
-                'Required property \'permission\' not present in EngineUsersMetadata JSON')
+            raise ValueError('Required property \'permission\' not present in EngineUsersMetadata JSON')
         if 'user_name' in _dict:
             args['user_name'] = _dict.get('user_name')
         else:
-            raise ValueError(
-                'Required property \'user_name\' not present in EngineUsersMetadata JSON')
+            raise ValueError('Required property \'user_name\' not present in EngineUsersMetadata JSON')
         return cls(**args)
 
     @classmethod
@@ -6423,8 +6382,7 @@ class EvaluationResultSchema:
         """Initialize a EvaluationResultSchema object from a json dictionary."""
         args = {}
         if 'resources' in _dict:
-            args['resources'] = [ResourceWithResult.from_dict(
-                v) for v in _dict.get('resources')]
+            args['resources'] = [ResourceWithResult.from_dict(v) for v in _dict.get('resources')]
         return cls(**args)
 
     @classmethod
@@ -6493,13 +6451,11 @@ class ExplainAnalyzeStatementCreatedBody:
         if 'response' in _dict:
             args['response'] = SuccessResponse.from_dict(_dict.get('response'))
         else:
-            raise ValueError(
-                'Required property \'response\' not present in ExplainAnalyzeStatementCreatedBody JSON')
+            raise ValueError('Required property \'response\' not present in ExplainAnalyzeStatementCreatedBody JSON')
         if 'result' in _dict:
             args['result'] = _dict.get('result')
         else:
-            raise ValueError(
-                'Required property \'result\' not present in ExplainAnalyzeStatementCreatedBody JSON')
+            raise ValueError('Required property \'result\' not present in ExplainAnalyzeStatementCreatedBody JSON')
         return cls(**args)
 
     @classmethod
@@ -6567,13 +6523,11 @@ class ExplainStatementCreatedBody:
         if 'response' in _dict:
             args['response'] = SuccessResponse.from_dict(_dict.get('response'))
         else:
-            raise ValueError(
-                'Required property \'response\' not present in ExplainStatementCreatedBody JSON')
+            raise ValueError('Required property \'response\' not present in ExplainStatementCreatedBody JSON')
         if 'result' in _dict:
             args['result'] = _dict.get('result')
         else:
-            raise ValueError(
-                'Required property \'result\' not present in ExplainStatementCreatedBody JSON')
+            raise ValueError('Required property \'result\' not present in ExplainStatementCreatedBody JSON')
         return cls(**args)
 
     @classmethod
@@ -6641,13 +6595,11 @@ class GetBucketObjectsOKBody:
         if 'objects' in _dict:
             args['objects'] = _dict.get('objects')
         else:
-            raise ValueError(
-                'Required property \'objects\' not present in GetBucketObjectsOKBody JSON')
+            raise ValueError('Required property \'objects\' not present in GetBucketObjectsOKBody JSON')
         if 'response' in _dict:
             args['response'] = SuccessResponse.from_dict(_dict.get('response'))
         else:
-            raise ValueError(
-                'Required property \'response\' not present in GetBucketObjectsOKBody JSON')
+            raise ValueError('Required property \'response\' not present in GetBucketObjectsOKBody JSON')
         return cls(**args)
 
     @classmethod
@@ -6724,19 +6676,15 @@ class GetBucketUsersSchema:
         if 'bucket_id' in _dict:
             args['bucket_id'] = _dict.get('bucket_id')
         else:
-            raise ValueError(
-                'Required property \'bucket_id\' not present in GetBucketUsersSchema JSON')
+            raise ValueError('Required property \'bucket_id\' not present in GetBucketUsersSchema JSON')
         if 'groups' in _dict:
-            args['groups'] = [BucketDbConnGroupsMetadata.from_dict(
-                v) for v in _dict.get('groups')]
+            args['groups'] = [BucketDbConnGroupsMetadata.from_dict(v) for v in _dict.get('groups')]
         if 'total_count' in _dict:
             args['total_count'] = _dict.get('total_count')
         else:
-            raise ValueError(
-                'Required property \'total_count\' not present in GetBucketUsersSchema JSON')
+            raise ValueError('Required property \'total_count\' not present in GetBucketUsersSchema JSON')
         if 'users' in _dict:
-            args['users'] = [BucketDbConnUsersMetadata.from_dict(
-                v) for v in _dict.get('users')]
+            args['users'] = [BucketDbConnUsersMetadata.from_dict(v) for v in _dict.get('users')]
         return cls(**args)
 
     @classmethod
@@ -6815,16 +6763,13 @@ class GetBucketsOKBody:
         """Initialize a GetBucketsOKBody object from a json dictionary."""
         args = {}
         if 'buckets' in _dict:
-            args['buckets'] = [Bucket.from_dict(
-                v) for v in _dict.get('buckets')]
+            args['buckets'] = [Bucket.from_dict(v) for v in _dict.get('buckets')]
         else:
-            raise ValueError(
-                'Required property \'buckets\' not present in GetBucketsOKBody JSON')
+            raise ValueError('Required property \'buckets\' not present in GetBucketsOKBody JSON')
         if 'response' in _dict:
             args['response'] = SuccessResponse.from_dict(_dict.get('response'))
         else:
-            raise ValueError(
-                'Required property \'response\' not present in GetBucketsOKBody JSON')
+            raise ValueError('Required property \'response\' not present in GetBucketsOKBody JSON')
         return cls(**args)
 
     @classmethod
@@ -6907,19 +6852,15 @@ class GetCatalogUsersSchema:
         if 'total_count' in _dict:
             args['total_count'] = _dict.get('total_count')
         else:
-            raise ValueError(
-                'Required property \'total_count\' not present in GetCatalogUsersSchema JSON')
+            raise ValueError('Required property \'total_count\' not present in GetCatalogUsersSchema JSON')
         if 'users' in _dict:
-            args['users'] = [CatalogUsersMetadata.from_dict(
-                v) for v in _dict.get('users')]
+            args['users'] = [CatalogUsersMetadata.from_dict(v) for v in _dict.get('users')]
         if 'catalog_name' in _dict:
             args['catalog_name'] = _dict.get('catalog_name')
         else:
-            raise ValueError(
-                'Required property \'catalog_name\' not present in GetCatalogUsersSchema JSON')
+            raise ValueError('Required property \'catalog_name\' not present in GetCatalogUsersSchema JSON')
         if 'groups' in _dict:
-            args['groups'] = [CatalogGroupsMetadata.from_dict(
-                v) for v in _dict.get('groups')]
+            args['groups'] = [CatalogGroupsMetadata.from_dict(v) for v in _dict.get('groups')]
         return cls(**args)
 
     @classmethod
@@ -7007,21 +6948,17 @@ class GetDbConnUsersSchema:
         """Initialize a GetDbConnUsersSchema object from a json dictionary."""
         args = {}
         if 'groups' in _dict:
-            args['groups'] = [BucketDbConnGroupsMetadata.from_dict(
-                v) for v in _dict.get('groups')]
+            args['groups'] = [BucketDbConnGroupsMetadata.from_dict(v) for v in _dict.get('groups')]
         if 'total_count' in _dict:
             args['total_count'] = _dict.get('total_count')
         else:
-            raise ValueError(
-                'Required property \'total_count\' not present in GetDbConnUsersSchema JSON')
+            raise ValueError('Required property \'total_count\' not present in GetDbConnUsersSchema JSON')
         if 'users' in _dict:
-            args['users'] = [BucketDbConnUsersMetadata.from_dict(
-                v) for v in _dict.get('users')]
+            args['users'] = [BucketDbConnUsersMetadata.from_dict(v) for v in _dict.get('users')]
         if 'database_id' in _dict:
             args['database_id'] = _dict.get('database_id')
         else:
-            raise ValueError(
-                'Required property \'database_id\' not present in GetDbConnUsersSchema JSON')
+            raise ValueError('Required property \'database_id\' not present in GetDbConnUsersSchema JSON')
         return cls(**args)
 
     @classmethod
@@ -7111,19 +7048,15 @@ class GetEngineUsersSchema:
         if 'engine_id' in _dict:
             args['engine_id'] = _dict.get('engine_id')
         else:
-            raise ValueError(
-                'Required property \'engine_id\' not present in GetEngineUsersSchema JSON')
+            raise ValueError('Required property \'engine_id\' not present in GetEngineUsersSchema JSON')
         if 'groups' in _dict:
-            args['groups'] = [EngineGroupsMetadata.from_dict(
-                v) for v in _dict.get('groups')]
+            args['groups'] = [EngineGroupsMetadata.from_dict(v) for v in _dict.get('groups')]
         if 'total_count' in _dict:
             args['total_count'] = _dict.get('total_count')
         else:
-            raise ValueError(
-                'Required property \'total_count\' not present in GetEngineUsersSchema JSON')
+            raise ValueError('Required property \'total_count\' not present in GetEngineUsersSchema JSON')
         if 'users' in _dict:
-            args['users'] = [EngineUsersMetadata.from_dict(
-                v) for v in _dict.get('users')]
+            args['users'] = [EngineUsersMetadata.from_dict(v) for v in _dict.get('users')]
         return cls(**args)
 
     @classmethod
@@ -7202,16 +7135,13 @@ class GetEnginesOKBody:
         """Initialize a GetEnginesOKBody object from a json dictionary."""
         args = {}
         if 'engines' in _dict:
-            args['engines'] = [EngineDetail.from_dict(
-                v) for v in _dict.get('engines')]
+            args['engines'] = [EngineDetail.from_dict(v) for v in _dict.get('engines')]
         else:
-            raise ValueError(
-                'Required property \'engines\' not present in GetEnginesOKBody JSON')
+            raise ValueError('Required property \'engines\' not present in GetEnginesOKBody JSON')
         if 'response' in _dict:
             args['response'] = SuccessResponse.from_dict(_dict.get('response'))
         else:
-            raise ValueError(
-                'Required property \'response\' not present in GetEnginesOKBody JSON')
+            raise ValueError('Required property \'response\' not present in GetEnginesOKBody JSON')
         return cls(**args)
 
     @classmethod
@@ -7292,21 +7222,17 @@ class GetMetastoreUsersSchema:
         """Initialize a GetMetastoreUsersSchema object from a json dictionary."""
         args = {}
         if 'groups' in _dict:
-            args['groups'] = [GroupsMetadata.from_dict(
-                v) for v in _dict.get('groups')]
+            args['groups'] = [GroupsMetadata.from_dict(v) for v in _dict.get('groups')]
         if 'metastore_name' in _dict:
             args['metastore_name'] = _dict.get('metastore_name')
         else:
-            raise ValueError(
-                'Required property \'metastore_name\' not present in GetMetastoreUsersSchema JSON')
+            raise ValueError('Required property \'metastore_name\' not present in GetMetastoreUsersSchema JSON')
         if 'total_count' in _dict:
             args['total_count'] = _dict.get('total_count')
         else:
-            raise ValueError(
-                'Required property \'total_count\' not present in GetMetastoreUsersSchema JSON')
+            raise ValueError('Required property \'total_count\' not present in GetMetastoreUsersSchema JSON')
         if 'users' in _dict:
-            args['users'] = [UsersMetadata.from_dict(
-                v) for v in _dict.get('users')]
+            args['users'] = [UsersMetadata.from_dict(v) for v in _dict.get('users')]
         return cls(**args)
 
     @classmethod
@@ -7385,16 +7311,13 @@ class GetMetastoresOKBody:
         """Initialize a GetMetastoresOKBody object from a json dictionary."""
         args = {}
         if 'catalogs' in _dict:
-            args['catalogs'] = [Metastore.from_dict(
-                v) for v in _dict.get('catalogs')]
+            args['catalogs'] = [Metastore.from_dict(v) for v in _dict.get('catalogs')]
         else:
-            raise ValueError(
-                'Required property \'catalogs\' not present in GetMetastoresOKBody JSON')
+            raise ValueError('Required property \'catalogs\' not present in GetMetastoresOKBody JSON')
         if 'response' in _dict:
             args['response'] = SuccessResponse.from_dict(_dict.get('response'))
         else:
-            raise ValueError(
-                'Required property \'response\' not present in GetMetastoresOKBody JSON')
+            raise ValueError('Required property \'response\' not present in GetMetastoresOKBody JSON')
         return cls(**args)
 
     @classmethod
@@ -7466,16 +7389,13 @@ class GetQueriesOKBody:
         """Initialize a GetQueriesOKBody object from a json dictionary."""
         args = {}
         if 'queries' in _dict:
-            args['queries'] = [Query.from_dict(v)
-                               for v in _dict.get('queries')]
+            args['queries'] = [Query.from_dict(v) for v in _dict.get('queries')]
         else:
-            raise ValueError(
-                'Required property \'queries\' not present in GetQueriesOKBody JSON')
+            raise ValueError('Required property \'queries\' not present in GetQueriesOKBody JSON')
         if 'response' in _dict:
             args['response'] = SuccessResponse.from_dict(_dict.get('response'))
         else:
-            raise ValueError(
-                'Required property \'response\' not present in GetQueriesOKBody JSON')
+            raise ValueError('Required property \'response\' not present in GetQueriesOKBody JSON')
         return cls(**args)
 
     @classmethod
@@ -7549,13 +7469,11 @@ class GetSchemasOKBody:
         if 'response' in _dict:
             args['response'] = SuccessResponse.from_dict(_dict.get('response'))
         else:
-            raise ValueError(
-                'Required property \'response\' not present in GetSchemasOKBody JSON')
+            raise ValueError('Required property \'response\' not present in GetSchemasOKBody JSON')
         if 'schemas' in _dict:
             args['schemas'] = _dict.get('schemas')
         else:
-            raise ValueError(
-                'Required property \'schemas\' not present in GetSchemasOKBody JSON')
+            raise ValueError('Required property \'schemas\' not present in GetSchemasOKBody JSON')
         return cls(**args)
 
     @classmethod
@@ -7623,14 +7541,11 @@ class GetTableSnapshotsOKBody:
         if 'response' in _dict:
             args['response'] = SuccessResponse.from_dict(_dict.get('response'))
         else:
-            raise ValueError(
-                'Required property \'response\' not present in GetTableSnapshotsOKBody JSON')
+            raise ValueError('Required property \'response\' not present in GetTableSnapshotsOKBody JSON')
         if 'snapshots' in _dict:
-            args['snapshots'] = [TableSnapshot.from_dict(
-                v) for v in _dict.get('snapshots')]
+            args['snapshots'] = [TableSnapshot.from_dict(v) for v in _dict.get('snapshots')]
         else:
-            raise ValueError(
-                'Required property \'snapshots\' not present in GetTableSnapshotsOKBody JSON')
+            raise ValueError('Required property \'snapshots\' not present in GetTableSnapshotsOKBody JSON')
         return cls(**args)
 
     @classmethod
@@ -7704,13 +7619,11 @@ class GetTablesOKBody:
         if 'response' in _dict:
             args['response'] = SuccessResponse.from_dict(_dict.get('response'))
         else:
-            raise ValueError(
-                'Required property \'response\' not present in GetTablesOKBody JSON')
+            raise ValueError('Required property \'response\' not present in GetTablesOKBody JSON')
         if 'tables' in _dict:
             args['tables'] = _dict.get('tables')
         else:
-            raise ValueError(
-                'Required property \'tables\' not present in GetTablesOKBody JSON')
+            raise ValueError('Required property \'tables\' not present in GetTablesOKBody JSON')
         return cls(**args)
 
     @classmethod
@@ -7852,13 +7765,11 @@ class GroupsMetadata:
         if 'group_id' in _dict:
             args['group_id'] = _dict.get('group_id')
         else:
-            raise ValueError(
-                'Required property \'group_id\' not present in GroupsMetadata JSON')
+            raise ValueError('Required property \'group_id\' not present in GroupsMetadata JSON')
         if 'permission' in _dict:
             args['permission'] = _dict.get('permission')
         else:
-            raise ValueError(
-                'Required property \'permission\' not present in GroupsMetadata JSON')
+            raise ValueError('Required property \'permission\' not present in GroupsMetadata JSON')
         return cls(**args)
 
     @classmethod
@@ -8302,16 +8213,13 @@ class PolicyListSchema:
         """Initialize a PolicyListSchema object from a json dictionary."""
         args = {}
         if 'policies' in _dict:
-            args['policies'] = [PolicySchema.from_dict(
-                v) for v in _dict.get('policies')]
+            args['policies'] = [PolicySchema.from_dict(v) for v in _dict.get('policies')]
         else:
-            raise ValueError(
-                'Required property \'policies\' not present in PolicyListSchema JSON')
+            raise ValueError('Required property \'policies\' not present in PolicyListSchema JSON')
         if 'total_count' in _dict:
             args['total_count'] = _dict.get('total_count')
         else:
-            raise ValueError(
-                'Required property \'total_count\' not present in PolicyListSchema JSON')
+            raise ValueError('Required property \'total_count\' not present in PolicyListSchema JSON')
         return cls(**args)
 
     @classmethod
@@ -8493,8 +8401,7 @@ class PolicySchema:
         if 'data_artifact' in _dict:
             args['data_artifact'] = _dict.get('data_artifact')
         if 'metadata' in _dict:
-            args['metadata'] = DataPolicyMetadata.from_dict(
-                _dict.get('metadata'))
+            args['metadata'] = DataPolicyMetadata.from_dict(_dict.get('metadata'))
         if 'policy_name' in _dict:
             args['policy_name'] = _dict.get('policy_name')
         return cls(**args)
@@ -8596,14 +8503,11 @@ class PolicySchemaList:
         """Initialize a PolicySchemaList object from a json dictionary."""
         args = {}
         if 'catalog_policies' in _dict:
-            args['catalog_policies'] = [GetCatalogUsersSchema.from_dict(
-                v) for v in _dict.get('catalog_policies')]
+            args['catalog_policies'] = [GetCatalogUsersSchema.from_dict(v) for v in _dict.get('catalog_policies')]
         if 'data_policies' in _dict:
-            args['data_policies'] = [PolicySchema.from_dict(
-                v) for v in _dict.get('data_policies')]
+            args['data_policies'] = [PolicySchema.from_dict(v) for v in _dict.get('data_policies')]
         if 'engine_policies' in _dict:
-            args['engine_policies'] = [GetEngineUsersSchema.from_dict(
-                v) for v in _dict.get('engine_policies')]
+            args['engine_policies'] = [GetEngineUsersSchema.from_dict(v) for v in _dict.get('engine_policies')]
         return cls(**args)
 
     @classmethod
@@ -8708,20 +8612,15 @@ class PolicyVersionResultSchema:
         """Initialize a PolicyVersionResultSchema object from a json dictionary."""
         args = {}
         if 'catalog_policies' in _dict:
-            args['catalog_policies'] = [CatalogPolicies.from_dict(
-                v) for v in _dict.get('catalog_policies')]
+            args['catalog_policies'] = [CatalogPolicies.from_dict(v) for v in _dict.get('catalog_policies')]
         if 'data_policies' in _dict:
-            args['data_policies'] = [DataPolicies.from_dict(
-                v) for v in _dict.get('data_policies')]
+            args['data_policies'] = [DataPolicies.from_dict(v) for v in _dict.get('data_policies')]
         if 'database_policies' in _dict:
-            args['database_policies'] = [DbConnPolicies.from_dict(
-                v) for v in _dict.get('database_policies')]
+            args['database_policies'] = [DbConnPolicies.from_dict(v) for v in _dict.get('database_policies')]
         if 'engine_policies' in _dict:
-            args['engine_policies'] = [EnginePolicies.from_dict(
-                v) for v in _dict.get('engine_policies')]
+            args['engine_policies'] = [EnginePolicies.from_dict(v) for v in _dict.get('engine_policies')]
         if 'bucket_policies' in _dict:
-            args['bucket_policies'] = [BucketPolicies.from_dict(
-                v) for v in _dict.get('bucket_policies')]
+            args['bucket_policies'] = [BucketPolicies.from_dict(v) for v in _dict.get('bucket_policies')]
         return cls(**args)
 
     @classmethod
@@ -8838,33 +8737,27 @@ class Query:
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         else:
-            raise ValueError(
-                'Required property \'created_by\' not present in Query JSON')
+            raise ValueError('Required property \'created_by\' not present in Query JSON')
         if 'created_on' in _dict:
             args['created_on'] = _dict.get('created_on')
         else:
-            raise ValueError(
-                'Required property \'created_on\' not present in Query JSON')
+            raise ValueError('Required property \'created_on\' not present in Query JSON')
         if 'description' in _dict:
             args['description'] = _dict.get('description')
         else:
-            raise ValueError(
-                'Required property \'description\' not present in Query JSON')
+            raise ValueError('Required property \'description\' not present in Query JSON')
         if 'engine_id' in _dict:
             args['engine_id'] = _dict.get('engine_id')
         else:
-            raise ValueError(
-                'Required property \'engine_id\' not present in Query JSON')
+            raise ValueError('Required property \'engine_id\' not present in Query JSON')
         if 'query_name' in _dict:
             args['query_name'] = _dict.get('query_name')
         else:
-            raise ValueError(
-                'Required property \'query_name\' not present in Query JSON')
+            raise ValueError('Required property \'query_name\' not present in Query JSON')
         if 'query_string' in _dict:
             args['query_string'] = _dict.get('query_string')
         else:
-            raise ValueError(
-                'Required property \'query_string\' not present in Query JSON')
+            raise ValueError('Required property \'query_string\' not present in Query JSON')
         return cls(**args)
 
     @classmethod
@@ -8935,16 +8828,13 @@ class RegisterBucketCreatedBody:
         """Initialize a RegisterBucketCreatedBody object from a json dictionary."""
         args = {}
         if 'bucket' in _dict:
-            args['bucket'] = RegisterBucketCreatedBodyBucket.from_dict(
-                _dict.get('bucket'))
+            args['bucket'] = RegisterBucketCreatedBodyBucket.from_dict(_dict.get('bucket'))
         else:
-            raise ValueError(
-                'Required property \'bucket\' not present in RegisterBucketCreatedBody JSON')
+            raise ValueError('Required property \'bucket\' not present in RegisterBucketCreatedBody JSON')
         if 'response' in _dict:
             args['response'] = SuccessResponse.from_dict(_dict.get('response'))
         else:
-            raise ValueError(
-                'Required property \'response\' not present in RegisterBucketCreatedBody JSON')
+            raise ValueError('Required property \'response\' not present in RegisterBucketCreatedBody JSON')
         return cls(**args)
 
     @classmethod
@@ -9189,22 +9079,17 @@ class ReplaceDataPolicyCreatedBody:
         """Initialize a ReplaceDataPolicyCreatedBody object from a json dictionary."""
         args = {}
         if 'data_policy' in _dict:
-            args['data_policy'] = ReplaceDataPolicySchema.from_dict(
-                _dict.get('data_policy'))
+            args['data_policy'] = ReplaceDataPolicySchema.from_dict(_dict.get('data_policy'))
         else:
-            raise ValueError(
-                'Required property \'data_policy\' not present in ReplaceDataPolicyCreatedBody JSON')
+            raise ValueError('Required property \'data_policy\' not present in ReplaceDataPolicyCreatedBody JSON')
         if 'metadata' in _dict:
-            args['metadata'] = DataPolicyMetadata.from_dict(
-                _dict.get('metadata'))
+            args['metadata'] = DataPolicyMetadata.from_dict(_dict.get('metadata'))
         else:
-            raise ValueError(
-                'Required property \'metadata\' not present in ReplaceDataPolicyCreatedBody JSON')
+            raise ValueError('Required property \'metadata\' not present in ReplaceDataPolicyCreatedBody JSON')
         if 'response' in _dict:
             args['response'] = SuccessResponse.from_dict(_dict.get('response'))
         else:
-            raise ValueError(
-                'Required property \'response\' not present in ReplaceDataPolicyCreatedBody JSON')
+            raise ValueError('Required property \'response\' not present in ReplaceDataPolicyCreatedBody JSON')
         return cls(**args)
 
     @classmethod
@@ -9294,20 +9179,17 @@ class ReplaceDataPolicySchema:
         if 'catalog_name' in _dict:
             args['catalog_name'] = _dict.get('catalog_name')
         else:
-            raise ValueError(
-                'Required property \'catalog_name\' not present in ReplaceDataPolicySchema JSON')
+            raise ValueError('Required property \'catalog_name\' not present in ReplaceDataPolicySchema JSON')
         if 'data_artifact' in _dict:
             args['data_artifact'] = _dict.get('data_artifact')
         else:
-            raise ValueError(
-                'Required property \'data_artifact\' not present in ReplaceDataPolicySchema JSON')
+            raise ValueError('Required property \'data_artifact\' not present in ReplaceDataPolicySchema JSON')
         if 'description' in _dict:
             args['description'] = _dict.get('description')
         if 'rules' in _dict:
             args['rules'] = [Rule.from_dict(v) for v in _dict.get('rules')]
         else:
-            raise ValueError(
-                'Required property \'rules\' not present in ReplaceDataPolicySchema JSON')
+            raise ValueError('Required property \'rules\' not present in ReplaceDataPolicySchema JSON')
         if 'status' in _dict:
             args['status'] = _dict.get('status')
         return cls(**args)
@@ -9402,23 +9284,19 @@ class ResourceWithResult:
         if 'action' in _dict:
             args['action'] = _dict.get('action')
         else:
-            raise ValueError(
-                'Required property \'action\' not present in ResourceWithResult JSON')
+            raise ValueError('Required property \'action\' not present in ResourceWithResult JSON')
         if 'resource_name' in _dict:
             args['resource_name'] = _dict.get('resource_name')
         else:
-            raise ValueError(
-                'Required property \'resource_name\' not present in ResourceWithResult JSON')
+            raise ValueError('Required property \'resource_name\' not present in ResourceWithResult JSON')
         if 'resource_type' in _dict:
             args['resource_type'] = _dict.get('resource_type')
         else:
-            raise ValueError(
-                'Required property \'resource_type\' not present in ResourceWithResult JSON')
+            raise ValueError('Required property \'resource_type\' not present in ResourceWithResult JSON')
         if 'result' in _dict:
             args['result'] = _dict.get('result')
         else:
-            raise ValueError(
-                'Required property \'result\' not present in ResourceWithResult JSON')
+            raise ValueError('Required property \'result\' not present in ResourceWithResult JSON')
         return cls(**args)
 
     @classmethod
@@ -9491,18 +9369,15 @@ class ResourcesMetadata:
         if 'action' in _dict:
             args['action'] = _dict.get('action')
         else:
-            raise ValueError(
-                'Required property \'action\' not present in ResourcesMetadata JSON')
+            raise ValueError('Required property \'action\' not present in ResourcesMetadata JSON')
         if 'resource_name' in _dict:
             args['resource_name'] = _dict.get('resource_name')
         else:
-            raise ValueError(
-                'Required property \'resource_name\' not present in ResourcesMetadata JSON')
+            raise ValueError('Required property \'resource_name\' not present in ResourcesMetadata JSON')
         if 'resource_type' in _dict:
             args['resource_type'] = _dict.get('resource_type')
         else:
-            raise ValueError(
-                'Required property \'resource_type\' not present in ResourcesMetadata JSON')
+            raise ValueError('Required property \'resource_type\' not present in ResourcesMetadata JSON')
         return cls(**args)
 
     @classmethod
@@ -9646,15 +9521,13 @@ class Rule:
         if 'actions' in _dict:
             args['actions'] = _dict.get('actions')
         else:
-            raise ValueError(
-                'Required property \'actions\' not present in Rule JSON')
+            raise ValueError('Required property \'actions\' not present in Rule JSON')
         if 'effect' in _dict:
             args['effect'] = _dict.get('effect')
         if 'grantee' in _dict:
             args['grantee'] = RuleGrantee.from_dict(_dict.get('grantee'))
         else:
-            raise ValueError(
-                'Required property \'grantee\' not present in Rule JSON')
+            raise ValueError('Required property \'grantee\' not present in Rule JSON')
         return cls(**args)
 
     @classmethod
@@ -9755,18 +9628,15 @@ class RuleGrantee:
         if 'value' in _dict:
             args['value'] = _dict.get('value')
         else:
-            raise ValueError(
-                'Required property \'value\' not present in RuleGrantee JSON')
+            raise ValueError('Required property \'value\' not present in RuleGrantee JSON')
         if 'key' in _dict:
             args['key'] = _dict.get('key')
         else:
-            raise ValueError(
-                'Required property \'key\' not present in RuleGrantee JSON')
+            raise ValueError('Required property \'key\' not present in RuleGrantee JSON')
         if 'type' in _dict:
             args['type'] = _dict.get('type')
         else:
-            raise ValueError(
-                'Required property \'type\' not present in RuleGrantee JSON')
+            raise ValueError('Required property \'type\' not present in RuleGrantee JSON')
         return cls(**args)
 
     @classmethod
@@ -10262,13 +10132,11 @@ class UsersMetadata:
         if 'permission' in _dict:
             args['permission'] = _dict.get('permission')
         else:
-            raise ValueError(
-                'Required property \'permission\' not present in UsersMetadata JSON')
+            raise ValueError('Required property \'permission\' not present in UsersMetadata JSON')
         if 'user_name' in _dict:
             args['user_name'] = _dict.get('user_name')
         else:
-            raise ValueError(
-                'Required property \'user_name\' not present in UsersMetadata JSON')
+            raise ValueError('Required property \'user_name\' not present in UsersMetadata JSON')
         return cls(**args)
 
     @classmethod
