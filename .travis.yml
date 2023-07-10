@@ -21,7 +21,7 @@ install:
 script:
 - make ci
 
-#To enable semantic-release, uncomment these sections.
+# To enable semantic-release, uncomment these sections.
 before_deploy:
 - nvm install 14
 - npm install
@@ -41,4 +41,4 @@ deploy:
   skip_cleanup: true
   on:
     python: '3.8'
-    tags: true
+    tags: false
