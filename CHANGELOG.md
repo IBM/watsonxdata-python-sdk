@@ -1,3 +1,10 @@
+## [0.1.4](https://github.com/IBM/watsonxdata-python-sdk/compare/v0.1.3...v0.1.4) (2023-07-10)
+
+
+### Bug Fixes
+
+* retry pypi without fix rule ([1fe092a](https://github.com/IBM/watsonxdata-python-sdk/commit/1fe092a77510e13774a5d611738440d4c48a6a43))
+
 ## [0.1.3](https://github.com/IBM/watsonxdata-python-sdk/compare/v0.1.2...v0.1.3) (2023-07-04)
 
 
