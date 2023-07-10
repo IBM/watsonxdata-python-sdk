@@ -1,3 +1,10 @@
+## [0.1.5](https://github.com/IBM/watsonxdata-python-sdk/compare/v0.1.4...v0.1.5) (2023-07-10)
+
+
+### Bug Fixes
+
+* retry pypi without tags ([cb655a4](https://github.com/IBM/watsonxdata-python-sdk/commit/cb655a418d7001327de6c6ea4c19e8d069d50b98))
+
 ## [0.1.4](https://github.com/IBM/watsonxdata-python-sdk/compare/v0.1.3...v0.1.4) (2023-07-10)
 
 
