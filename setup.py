@@ -19,7 +19,7 @@ import os
 import sys
 import pkg_resources
 
-__version__ = '0.1.6'
+__version__ = '0.1.7'
 PACKAGE_NAME = 'ibm_watsonxdata'
 PACKAGE_DESC = 'IBM Cloud Watsonx.data Python SDK'
 
