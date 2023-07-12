@@ -1,3 +1,10 @@
+## [0.1.9](https://github.com/IBM/watsonxdata-python-sdk/compare/v0.1.8...v0.1.9) (2023-07-12)
+
+
+### Bug Fixes
+
+* update travis issue for user token ([31471ba](https://github.com/IBM/watsonxdata-python-sdk/commit/31471ba525d5ddaee0c641567b67187f577e4b6a))
+
 ## [0.1.8](https://github.com/IBM/watsonxdata-python-sdk/compare/v0.1.7...v0.1.8) (2023-07-12)
 
 
