@@ -32,7 +32,7 @@ class TestCommon(unittest.TestCase):
         Test the get_sdk_headers method
         """
         headers = common.get_sdk_headers(
-            service_name='ibm_watsonxdata', service_version='V1', operation_id='operation1'
+            service_name='ibm_watsonxdata', service_version='V2', operation_id='operation1'
         )
         self.assertIsNotNone(headers)
         self.assertIsNotNone(headers.get('User-Agent'))

@@ -19,4 +19,4 @@ from ibm_cloud_sdk_core import IAMTokenManager, DetailedResponse, BaseService, A
 
 from .common import get_sdk_headers
 from .version import __version__
-from .watsonx_data_v1 import WatsonxDataV1
+from .watsonx_data_v2 import WatsonxDataV2

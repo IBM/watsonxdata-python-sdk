@@ -40,7 +40,7 @@ IBM Cloud services:
 
 Service Name | Module Name | Imported Class Name
 --- | --- | ---
-[Watsonx.data](https://cloud.ibm.com/apidocs/watsonxdata) | watsonx_data_v1| ibm_watsonxdata
+[Watsonx.data](https://cloud.ibm.com/apidocs/watsonxdata) | watsonx_data_v2| ibm_watsonxdata
 
 ## Prerequisites
 
