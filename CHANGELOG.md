@@ -1,3 +1,12 @@
+# [0.2.0](https://github.com/IBM/watsonxdata-python-sdk/compare/v0.1.9...v0.2.0) (2023-12-07)
+
+
+### Features
+
+* add v2 sdk ([40f7469](https://github.com/IBM/watsonxdata-python-sdk/commit/40f74693e831f6e2c0ccb39c9aa11b135fe5c412))
+* add v2 sdk ([1ae568a](https://github.com/IBM/watsonxdata-python-sdk/commit/1ae568a150cae3a9e521aaee7d020f90dc0d9ab5))
+* **v2 sdk:** add v2 sdk Signed-off-by: emilyz@us.ibm.com ([53edd91](https://github.com/IBM/watsonxdata-python-sdk/commit/53edd9104b3fde75052533e551d70e9056ac12dd))
+
 ## [0.1.9](https://github.com/IBM/watsonxdata-python-sdk/compare/v0.1.8...v0.1.9) (2023-07-12)
 
 
