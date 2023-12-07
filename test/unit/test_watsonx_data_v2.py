@@ -31,9 +31,7 @@ import urllib
 from ibm_watsonxdata.watsonx_data_v2 import *
 
 
-_service = WatsonxDataV2(
-    authenticator=NoAuthAuthenticator()
-)
+_service = WatsonxDataV2(authenticator=NoAuthAuthenticator())
 
 _base_url = 'https://ibmcloud/lakehouse/api/v2'
 _service.set_service_url(_base_url)
@@ -1029,7 +1027,9 @@ class TestListBucketObjects:
         """
         # Set up mock
         url = preprocess_url('/bucket_registrations/testString/objects')
-        mock_response = '{"objects": ["object_1"], "response": {"message": "Successful message", "message_code": "successfulCode"}}'
+        mock_response = (
+            '{"objects": ["object_1"], "response": {"message": "Successful message", "message_code": "successfulCode"}}'
+        )
         responses.add(
             responses.GET,
             url,
@@ -1069,7 +1069,9 @@ class TestListBucketObjects:
         """
         # Set up mock
         url = preprocess_url('/bucket_registrations/testString/objects')
-        mock_response = '{"objects": ["object_1"], "response": {"message": "Successful message", "message_code": "successfulCode"}}'
+        mock_response = (
+            '{"objects": ["object_1"], "response": {"message": "Successful message", "message_code": "successfulCode"}}'
+        )
         responses.add(
             responses.GET,
             url,
@@ -1107,7 +1109,9 @@ class TestListBucketObjects:
         """
         # Set up mock
         url = preprocess_url('/bucket_registrations/testString/objects')
-        mock_response = '{"objects": ["object_1"], "response": {"message": "Successful message", "message_code": "successfulCode"}}'
+        mock_response = (
+            '{"objects": ["object_1"], "response": {"message": "Successful message", "message_code": "successfulCode"}}'
+        )
         responses.add(
             responses.GET,
             url,
@@ -5261,7 +5265,9 @@ class TestRunExplainStatement:
         """
         # Set up mock
         url = preprocess_url('/presto_engines/testString/query_explain')
-        mock_response = '{"response": {"message": "Successful message", "message_code": "successfulCode"}, "result": "result"}'
+        mock_response = (
+            '{"response": {"message": "Successful message", "message_code": "successfulCode"}, "result": "result"}'
+        )
         responses.add(
             responses.POST,
             url,
@@ -5312,7 +5318,9 @@ class TestRunExplainStatement:
         """
         # Set up mock
         url = preprocess_url('/presto_engines/testString/query_explain')
-        mock_response = '{"response": {"message": "Successful message", "message_code": "successfulCode"}, "result": "result"}'
+        mock_response = (
+            '{"response": {"message": "Successful message", "message_code": "successfulCode"}, "result": "result"}'
+        )
         responses.add(
             responses.POST,
             url,
@@ -5361,7 +5369,9 @@ class TestRunExplainStatement:
         """
         # Set up mock
         url = preprocess_url('/presto_engines/testString/query_explain')
-        mock_response = '{"response": {"message": "Successful message", "message_code": "successfulCode"}, "result": "result"}'
+        mock_response = (
+            '{"response": {"message": "Successful message", "message_code": "successfulCode"}, "result": "result"}'
+        )
         responses.add(
             responses.POST,
             url,
@@ -5408,7 +5418,9 @@ class TestRunExplainAnalyzeStatement:
         """
         # Set up mock
         url = preprocess_url('/presto_engines/testString/query_explain_analyze')
-        mock_response = '{"response": {"message": "Successful message", "message_code": "successfulCode"}, "result": "result"}'
+        mock_response = (
+            '{"response": {"message": "Successful message", "message_code": "successfulCode"}, "result": "result"}'
+        )
         responses.add(
             responses.POST,
             url,
@@ -5456,7 +5468,9 @@ class TestRunExplainAnalyzeStatement:
         """
         # Set up mock
         url = preprocess_url('/presto_engines/testString/query_explain_analyze')
-        mock_response = '{"response": {"message": "Successful message", "message_code": "successfulCode"}, "result": "result"}'
+        mock_response = (
+            '{"response": {"message": "Successful message", "message_code": "successfulCode"}, "result": "result"}'
+        )
         responses.add(
             responses.POST,
             url,
@@ -5502,7 +5516,9 @@ class TestRunExplainAnalyzeStatement:
         """
         # Set up mock
         url = preprocess_url('/presto_engines/testString/query_explain_analyze')
-        mock_response = '{"response": {"message": "Successful message", "message_code": "successfulCode"}, "result": "result"}'
+        mock_response = (
+            '{"response": {"message": "Successful message", "message_code": "successfulCode"}, "result": "result"}'
+        )
         responses.add(
             responses.POST,
             url,
@@ -6633,7 +6649,10 @@ class TestCreateSparkEngineApplication:
         # Validate body params
         req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
         assert req_body['application_details'] == spark_application_details_model
-        assert req_body['job_endpoint'] == '<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications'
+        assert (
+            req_body['job_endpoint']
+            == '<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications'
+        )
         assert req_body['service_instance_id'] == 'testString'
         assert req_body['type'] == 'iae'
 
@@ -6693,7 +6712,10 @@ class TestCreateSparkEngineApplication:
         # Validate body params
         req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
         assert req_body['application_details'] == spark_application_details_model
-        assert req_body['job_endpoint'] == '<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications'
+        assert (
+            req_body['job_endpoint']
+            == '<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications'
+        )
         assert req_body['service_instance_id'] == 'testString'
         assert req_body['type'] == 'iae'
 
@@ -7335,7 +7357,9 @@ class TestListSchemas:
         """
         # Set up mock
         url = preprocess_url('/catalogs/testString/schemas')
-        mock_response = '{"response": {"message": "Successful message", "message_code": "successfulCode"}, "schemas": ["schemas"]}'
+        mock_response = (
+            '{"response": {"message": "Successful message", "message_code": "successfulCode"}, "schemas": ["schemas"]}'
+        )
         responses.add(
             responses.GET,
             url,
@@ -7381,7 +7405,9 @@ class TestListSchemas:
         """
         # Set up mock
         url = preprocess_url('/catalogs/testString/schemas')
-        mock_response = '{"response": {"message": "Successful message", "message_code": "successfulCode"}, "schemas": ["schemas"]}'
+        mock_response = (
+            '{"response": {"message": "Successful message", "message_code": "successfulCode"}, "schemas": ["schemas"]}'
+        )
         responses.add(
             responses.GET,
             url,
@@ -7425,7 +7451,9 @@ class TestListSchemas:
         """
         # Set up mock
         url = preprocess_url('/catalogs/testString/schemas')
-        mock_response = '{"response": {"message": "Successful message", "message_code": "successfulCode"}, "schemas": ["schemas"]}'
+        mock_response = (
+            '{"response": {"message": "Successful message", "message_code": "successfulCode"}, "schemas": ["schemas"]}'
+        )
         responses.add(
             responses.GET,
             url,
@@ -7764,7 +7792,9 @@ class TestListTables:
         """
         # Set up mock
         url = preprocess_url('/catalogs/testString/schemas/testString/tables')
-        mock_response = '{"response": {"message": "Successful message", "message_code": "successfulCode"}, "tables": ["tables"]}'
+        mock_response = (
+            '{"response": {"message": "Successful message", "message_code": "successfulCode"}, "tables": ["tables"]}'
+        )
         responses.add(
             responses.GET,
             url,
@@ -7812,7 +7842,9 @@ class TestListTables:
         """
         # Set up mock
         url = preprocess_url('/catalogs/testString/schemas/testString/tables')
-        mock_response = '{"response": {"message": "Successful message", "message_code": "successfulCode"}, "tables": ["tables"]}'
+        mock_response = (
+            '{"response": {"message": "Successful message", "message_code": "successfulCode"}, "tables": ["tables"]}'
+        )
         responses.add(
             responses.GET,
             url,
@@ -7858,7 +7890,9 @@ class TestListTables:
         """
         # Set up mock
         url = preprocess_url('/catalogs/testString/schemas/testString/tables')
-        mock_response = '{"response": {"message": "Successful message", "message_code": "successfulCode"}, "tables": ["tables"]}'
+        mock_response = (
+            '{"response": {"message": "Successful message", "message_code": "successfulCode"}, "tables": ["tables"]}'
+        )
         responses.add(
             responses.GET,
             url,
@@ -8915,7 +8949,9 @@ class TestModel_BucketStatusResponse:
         # Construct a json representation of a BucketStatusResponse model
         bucket_status_response_model_json = {}
         bucket_status_response_model_json['state'] = True
-        bucket_status_response_model_json['state_message'] = 'bucket does not exist or the credentials provided are not valid.'
+        bucket_status_response_model_json[
+            'state_message'
+        ] = 'bucket does not exist or the credentials provided are not valid.'
 
         # Construct a model instance of BucketStatusResponse by calling from_dict on the json representation
         bucket_status_response_model = BucketStatusResponse.from_dict(bucket_status_response_model_json)
@@ -9067,12 +9103,18 @@ class TestModel_CreateActivateBucketCreatedBody:
         create_activate_bucket_created_body_model_json['response'] = success_response_model
 
         # Construct a model instance of CreateActivateBucketCreatedBody by calling from_dict on the json representation
-        create_activate_bucket_created_body_model = CreateActivateBucketCreatedBody.from_dict(create_activate_bucket_created_body_model_json)
+        create_activate_bucket_created_body_model = CreateActivateBucketCreatedBody.from_dict(
+            create_activate_bucket_created_body_model_json
+        )
         assert create_activate_bucket_created_body_model != False
 
         # Construct a model instance of CreateActivateBucketCreatedBody by calling from_dict on the json representation
-        create_activate_bucket_created_body_model_dict = CreateActivateBucketCreatedBody.from_dict(create_activate_bucket_created_body_model_json).__dict__
-        create_activate_bucket_created_body_model2 = CreateActivateBucketCreatedBody(**create_activate_bucket_created_body_model_dict)
+        create_activate_bucket_created_body_model_dict = CreateActivateBucketCreatedBody.from_dict(
+            create_activate_bucket_created_body_model_json
+        ).__dict__
+        create_activate_bucket_created_body_model2 = CreateActivateBucketCreatedBody(
+            **create_activate_bucket_created_body_model_dict
+        )
 
         # Verify the model instances are equivalent
         assert create_activate_bucket_created_body_model == create_activate_bucket_created_body_model2
@@ -9122,12 +9164,18 @@ class TestModel_CreateBucketRegistrationCreatedBody:
         create_bucket_registration_created_body_model_json['response'] = success_response_model
 
         # Construct a model instance of CreateBucketRegistrationCreatedBody by calling from_dict on the json representation
-        create_bucket_registration_created_body_model = CreateBucketRegistrationCreatedBody.from_dict(create_bucket_registration_created_body_model_json)
+        create_bucket_registration_created_body_model = CreateBucketRegistrationCreatedBody.from_dict(
+            create_bucket_registration_created_body_model_json
+        )
         assert create_bucket_registration_created_body_model != False
 
         # Construct a model instance of CreateBucketRegistrationCreatedBody by calling from_dict on the json representation
-        create_bucket_registration_created_body_model_dict = CreateBucketRegistrationCreatedBody.from_dict(create_bucket_registration_created_body_model_json).__dict__
-        create_bucket_registration_created_body_model2 = CreateBucketRegistrationCreatedBody(**create_bucket_registration_created_body_model_dict)
+        create_bucket_registration_created_body_model_dict = CreateBucketRegistrationCreatedBody.from_dict(
+            create_bucket_registration_created_body_model_json
+        ).__dict__
+        create_bucket_registration_created_body_model2 = CreateBucketRegistrationCreatedBody(
+            **create_bucket_registration_created_body_model_dict
+        )
 
         # Verify the model instances are equivalent
         assert create_bucket_registration_created_body_model == create_bucket_registration_created_body_model2
@@ -9182,19 +9230,30 @@ class TestModel_CreateDatabaseRegistrationCreatedBody:
         create_database_registration_created_body_model_json['response'] = success_response_model
 
         # Construct a model instance of CreateDatabaseRegistrationCreatedBody by calling from_dict on the json representation
-        create_database_registration_created_body_model = CreateDatabaseRegistrationCreatedBody.from_dict(create_database_registration_created_body_model_json)
+        create_database_registration_created_body_model = CreateDatabaseRegistrationCreatedBody.from_dict(
+            create_database_registration_created_body_model_json
+        )
         assert create_database_registration_created_body_model != False
 
         # Construct a model instance of CreateDatabaseRegistrationCreatedBody by calling from_dict on the json representation
-        create_database_registration_created_body_model_dict = CreateDatabaseRegistrationCreatedBody.from_dict(create_database_registration_created_body_model_json).__dict__
-        create_database_registration_created_body_model2 = CreateDatabaseRegistrationCreatedBody(**create_database_registration_created_body_model_dict)
+        create_database_registration_created_body_model_dict = CreateDatabaseRegistrationCreatedBody.from_dict(
+            create_database_registration_created_body_model_json
+        ).__dict__
+        create_database_registration_created_body_model2 = CreateDatabaseRegistrationCreatedBody(
+            **create_database_registration_created_body_model_dict
+        )
 
         # Verify the model instances are equivalent
         assert create_database_registration_created_body_model == create_database_registration_created_body_model2
 
         # Convert model instance back to dict and verify no loss of data
-        create_database_registration_created_body_model_json2 = create_database_registration_created_body_model.to_dict()
-        assert create_database_registration_created_body_model_json2 == create_database_registration_created_body_model_json
+        create_database_registration_created_body_model_json2 = (
+            create_database_registration_created_body_model.to_dict()
+        )
+        assert (
+            create_database_registration_created_body_model_json2
+            == create_database_registration_created_body_model_json
+        )
 
 
 class TestModel_CreateDb2EngineCreatedBody:
@@ -9239,11 +9298,15 @@ class TestModel_CreateDb2EngineCreatedBody:
         create_db2_engine_created_body_model_json['response'] = success_response_model
 
         # Construct a model instance of CreateDb2EngineCreatedBody by calling from_dict on the json representation
-        create_db2_engine_created_body_model = CreateDb2EngineCreatedBody.from_dict(create_db2_engine_created_body_model_json)
+        create_db2_engine_created_body_model = CreateDb2EngineCreatedBody.from_dict(
+            create_db2_engine_created_body_model_json
+        )
         assert create_db2_engine_created_body_model != False
 
         # Construct a model instance of CreateDb2EngineCreatedBody by calling from_dict on the json representation
-        create_db2_engine_created_body_model_dict = CreateDb2EngineCreatedBody.from_dict(create_db2_engine_created_body_model_json).__dict__
+        create_db2_engine_created_body_model_dict = CreateDb2EngineCreatedBody.from_dict(
+            create_db2_engine_created_body_model_json
+        ).__dict__
         create_db2_engine_created_body_model2 = CreateDb2EngineCreatedBody(**create_db2_engine_created_body_model_dict)
 
         # Verify the model instances are equivalent
@@ -9273,7 +9336,9 @@ class TestModel_CreateDb2EngineDetails:
         assert create_db2_engine_details_model != False
 
         # Construct a model instance of CreateDb2EngineDetails by calling from_dict on the json representation
-        create_db2_engine_details_model_dict = CreateDb2EngineDetails.from_dict(create_db2_engine_details_model_json).__dict__
+        create_db2_engine_details_model_dict = CreateDb2EngineDetails.from_dict(
+            create_db2_engine_details_model_json
+        ).__dict__
         create_db2_engine_details_model2 = CreateDb2EngineDetails(**create_db2_engine_details_model_dict)
 
         # Verify the model instances are equivalent
@@ -9296,7 +9361,9 @@ class TestModel_CreateDriverDatabaseCatalogCreatedBody:
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        create_driver_database_catalog_created_body_database_model = {}  # CreateDriverDatabaseCatalogCreatedBodyDatabase
+        create_driver_database_catalog_created_body_database_model = (
+            {}
+        )  # CreateDriverDatabaseCatalogCreatedBodyDatabase
         create_driver_database_catalog_created_body_database_model['database_display_name'] = 'sampledb'
         create_driver_database_catalog_created_body_database_model['database_id'] = 'db123'
 
@@ -9306,23 +9373,36 @@ class TestModel_CreateDriverDatabaseCatalogCreatedBody:
 
         # Construct a json representation of a CreateDriverDatabaseCatalogCreatedBody model
         create_driver_database_catalog_created_body_model_json = {}
-        create_driver_database_catalog_created_body_model_json['database'] = create_driver_database_catalog_created_body_database_model
+        create_driver_database_catalog_created_body_model_json[
+            'database'
+        ] = create_driver_database_catalog_created_body_database_model
         create_driver_database_catalog_created_body_model_json['response'] = success_response_model
 
         # Construct a model instance of CreateDriverDatabaseCatalogCreatedBody by calling from_dict on the json representation
-        create_driver_database_catalog_created_body_model = CreateDriverDatabaseCatalogCreatedBody.from_dict(create_driver_database_catalog_created_body_model_json)
+        create_driver_database_catalog_created_body_model = CreateDriverDatabaseCatalogCreatedBody.from_dict(
+            create_driver_database_catalog_created_body_model_json
+        )
         assert create_driver_database_catalog_created_body_model != False
 
         # Construct a model instance of CreateDriverDatabaseCatalogCreatedBody by calling from_dict on the json representation
-        create_driver_database_catalog_created_body_model_dict = CreateDriverDatabaseCatalogCreatedBody.from_dict(create_driver_database_catalog_created_body_model_json).__dict__
-        create_driver_database_catalog_created_body_model2 = CreateDriverDatabaseCatalogCreatedBody(**create_driver_database_catalog_created_body_model_dict)
+        create_driver_database_catalog_created_body_model_dict = CreateDriverDatabaseCatalogCreatedBody.from_dict(
+            create_driver_database_catalog_created_body_model_json
+        ).__dict__
+        create_driver_database_catalog_created_body_model2 = CreateDriverDatabaseCatalogCreatedBody(
+            **create_driver_database_catalog_created_body_model_dict
+        )
 
         # Verify the model instances are equivalent
         assert create_driver_database_catalog_created_body_model == create_driver_database_catalog_created_body_model2
 
         # Convert model instance back to dict and verify no loss of data
-        create_driver_database_catalog_created_body_model_json2 = create_driver_database_catalog_created_body_model.to_dict()
-        assert create_driver_database_catalog_created_body_model_json2 == create_driver_database_catalog_created_body_model_json
+        create_driver_database_catalog_created_body_model_json2 = (
+            create_driver_database_catalog_created_body_model.to_dict()
+        )
+        assert (
+            create_driver_database_catalog_created_body_model_json2
+            == create_driver_database_catalog_created_body_model_json
+        )
 
 
 class TestModel_CreateDriverDatabaseCatalogCreatedBodyDatabase:
@@ -9341,19 +9421,37 @@ class TestModel_CreateDriverDatabaseCatalogCreatedBodyDatabase:
         create_driver_database_catalog_created_body_database_model_json['database_id'] = 'testString'
 
         # Construct a model instance of CreateDriverDatabaseCatalogCreatedBodyDatabase by calling from_dict on the json representation
-        create_driver_database_catalog_created_body_database_model = CreateDriverDatabaseCatalogCreatedBodyDatabase.from_dict(create_driver_database_catalog_created_body_database_model_json)
+        create_driver_database_catalog_created_body_database_model = (
+            CreateDriverDatabaseCatalogCreatedBodyDatabase.from_dict(
+                create_driver_database_catalog_created_body_database_model_json
+            )
+        )
         assert create_driver_database_catalog_created_body_database_model != False
 
         # Construct a model instance of CreateDriverDatabaseCatalogCreatedBodyDatabase by calling from_dict on the json representation
-        create_driver_database_catalog_created_body_database_model_dict = CreateDriverDatabaseCatalogCreatedBodyDatabase.from_dict(create_driver_database_catalog_created_body_database_model_json).__dict__
-        create_driver_database_catalog_created_body_database_model2 = CreateDriverDatabaseCatalogCreatedBodyDatabase(**create_driver_database_catalog_created_body_database_model_dict)
+        create_driver_database_catalog_created_body_database_model_dict = (
+            CreateDriverDatabaseCatalogCreatedBodyDatabase.from_dict(
+                create_driver_database_catalog_created_body_database_model_json
+            ).__dict__
+        )
+        create_driver_database_catalog_created_body_database_model2 = CreateDriverDatabaseCatalogCreatedBodyDatabase(
+            **create_driver_database_catalog_created_body_database_model_dict
+        )
 
         # Verify the model instances are equivalent
-        assert create_driver_database_catalog_created_body_database_model == create_driver_database_catalog_created_body_database_model2
+        assert (
+            create_driver_database_catalog_created_body_database_model
+            == create_driver_database_catalog_created_body_database_model2
+        )
 
         # Convert model instance back to dict and verify no loss of data
-        create_driver_database_catalog_created_body_database_model_json2 = create_driver_database_catalog_created_body_database_model.to_dict()
-        assert create_driver_database_catalog_created_body_database_model_json2 == create_driver_database_catalog_created_body_database_model_json
+        create_driver_database_catalog_created_body_database_model_json2 = (
+            create_driver_database_catalog_created_body_database_model.to_dict()
+        )
+        assert (
+            create_driver_database_catalog_created_body_database_model_json2
+            == create_driver_database_catalog_created_body_database_model_json
+        )
 
 
 class TestModel_CreateEngineCreatedBody:
@@ -9373,11 +9471,19 @@ class TestModel_CreateEngineCreatedBody:
         node_description_model['quantity'] = 1
 
         endpoints_model = {}  # Endpoints
-        endpoints_model['applications_api'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
-        endpoints_model['history_server_endpoint'] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
+        endpoints_model[
+            'applications_api'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
+        endpoints_model[
+            'history_server_endpoint'
+        ] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
         endpoints_model['spark_access_endpoint'] = '$HOST/analytics-engine/details/spark-<instance_id>'
-        endpoints_model['spark_jobs_v4_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
-        endpoints_model['spark_kernel_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
+        endpoints_model[
+            'spark_jobs_v4_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
+        endpoints_model[
+            'spark_kernel_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
         endpoints_model['view_history_server'] = 'testString'
         endpoints_model['wxd_application_endpoint'] = '$HOST/v1/1698311655308796/engines/spark817/applications'
 
@@ -9425,7 +9531,9 @@ class TestModel_CreateEngineCreatedBody:
         assert create_engine_created_body_model != False
 
         # Construct a model instance of CreateEngineCreatedBody by calling from_dict on the json representation
-        create_engine_created_body_model_dict = CreateEngineCreatedBody.from_dict(create_engine_created_body_model_json).__dict__
+        create_engine_created_body_model_dict = CreateEngineCreatedBody.from_dict(
+            create_engine_created_body_model_json
+        ).__dict__
         create_engine_created_body_model2 = CreateEngineCreatedBody(**create_engine_created_body_model_dict)
 
         # Verify the model instances are equivalent
@@ -9457,12 +9565,18 @@ class TestModel_CreateEnginePauseCreatedBody:
         create_engine_pause_created_body_model_json['response'] = success_response_model
 
         # Construct a model instance of CreateEnginePauseCreatedBody by calling from_dict on the json representation
-        create_engine_pause_created_body_model = CreateEnginePauseCreatedBody.from_dict(create_engine_pause_created_body_model_json)
+        create_engine_pause_created_body_model = CreateEnginePauseCreatedBody.from_dict(
+            create_engine_pause_created_body_model_json
+        )
         assert create_engine_pause_created_body_model != False
 
         # Construct a model instance of CreateEnginePauseCreatedBody by calling from_dict on the json representation
-        create_engine_pause_created_body_model_dict = CreateEnginePauseCreatedBody.from_dict(create_engine_pause_created_body_model_json).__dict__
-        create_engine_pause_created_body_model2 = CreateEnginePauseCreatedBody(**create_engine_pause_created_body_model_dict)
+        create_engine_pause_created_body_model_dict = CreateEnginePauseCreatedBody.from_dict(
+            create_engine_pause_created_body_model_json
+        ).__dict__
+        create_engine_pause_created_body_model2 = CreateEnginePauseCreatedBody(
+            **create_engine_pause_created_body_model_dict
+        )
 
         # Verify the model instances are equivalent
         assert create_engine_pause_created_body_model == create_engine_pause_created_body_model2
@@ -9493,12 +9607,18 @@ class TestModel_CreateEngineRestartCreatedBody:
         create_engine_restart_created_body_model_json['response'] = success_response_model
 
         # Construct a model instance of CreateEngineRestartCreatedBody by calling from_dict on the json representation
-        create_engine_restart_created_body_model = CreateEngineRestartCreatedBody.from_dict(create_engine_restart_created_body_model_json)
+        create_engine_restart_created_body_model = CreateEngineRestartCreatedBody.from_dict(
+            create_engine_restart_created_body_model_json
+        )
         assert create_engine_restart_created_body_model != False
 
         # Construct a model instance of CreateEngineRestartCreatedBody by calling from_dict on the json representation
-        create_engine_restart_created_body_model_dict = CreateEngineRestartCreatedBody.from_dict(create_engine_restart_created_body_model_json).__dict__
-        create_engine_restart_created_body_model2 = CreateEngineRestartCreatedBody(**create_engine_restart_created_body_model_dict)
+        create_engine_restart_created_body_model_dict = CreateEngineRestartCreatedBody.from_dict(
+            create_engine_restart_created_body_model_json
+        ).__dict__
+        create_engine_restart_created_body_model2 = CreateEngineRestartCreatedBody(
+            **create_engine_restart_created_body_model_dict
+        )
 
         # Verify the model instances are equivalent
         assert create_engine_restart_created_body_model == create_engine_restart_created_body_model2
@@ -9529,12 +9649,18 @@ class TestModel_CreateEngineResumeCreatedBody:
         create_engine_resume_created_body_model_json['response'] = success_response_model
 
         # Construct a model instance of CreateEngineResumeCreatedBody by calling from_dict on the json representation
-        create_engine_resume_created_body_model = CreateEngineResumeCreatedBody.from_dict(create_engine_resume_created_body_model_json)
+        create_engine_resume_created_body_model = CreateEngineResumeCreatedBody.from_dict(
+            create_engine_resume_created_body_model_json
+        )
         assert create_engine_resume_created_body_model != False
 
         # Construct a model instance of CreateEngineResumeCreatedBody by calling from_dict on the json representation
-        create_engine_resume_created_body_model_dict = CreateEngineResumeCreatedBody.from_dict(create_engine_resume_created_body_model_json).__dict__
-        create_engine_resume_created_body_model2 = CreateEngineResumeCreatedBody(**create_engine_resume_created_body_model_dict)
+        create_engine_resume_created_body_model_dict = CreateEngineResumeCreatedBody.from_dict(
+            create_engine_resume_created_body_model_json
+        ).__dict__
+        create_engine_resume_created_body_model2 = CreateEngineResumeCreatedBody(
+            **create_engine_resume_created_body_model_dict
+        )
 
         # Verify the model instances are equivalent
         assert create_engine_resume_created_body_model == create_engine_resume_created_body_model2
@@ -9565,12 +9691,18 @@ class TestModel_CreateEngineScaleCreatedBody:
         create_engine_scale_created_body_model_json['response'] = success_response_model
 
         # Construct a model instance of CreateEngineScaleCreatedBody by calling from_dict on the json representation
-        create_engine_scale_created_body_model = CreateEngineScaleCreatedBody.from_dict(create_engine_scale_created_body_model_json)
+        create_engine_scale_created_body_model = CreateEngineScaleCreatedBody.from_dict(
+            create_engine_scale_created_body_model_json
+        )
         assert create_engine_scale_created_body_model != False
 
         # Construct a model instance of CreateEngineScaleCreatedBody by calling from_dict on the json representation
-        create_engine_scale_created_body_model_dict = CreateEngineScaleCreatedBody.from_dict(create_engine_scale_created_body_model_json).__dict__
-        create_engine_scale_created_body_model2 = CreateEngineScaleCreatedBody(**create_engine_scale_created_body_model_dict)
+        create_engine_scale_created_body_model_dict = CreateEngineScaleCreatedBody.from_dict(
+            create_engine_scale_created_body_model_json
+        ).__dict__
+        create_engine_scale_created_body_model2 = CreateEngineScaleCreatedBody(
+            **create_engine_scale_created_body_model_dict
+        )
 
         # Verify the model instances are equivalent
         assert create_engine_scale_created_body_model == create_engine_scale_created_body_model2
@@ -9622,12 +9754,18 @@ class TestModel_CreateNetezzaEngineCreatedBody:
         create_netezza_engine_created_body_model_json['response'] = success_response_model
 
         # Construct a model instance of CreateNetezzaEngineCreatedBody by calling from_dict on the json representation
-        create_netezza_engine_created_body_model = CreateNetezzaEngineCreatedBody.from_dict(create_netezza_engine_created_body_model_json)
+        create_netezza_engine_created_body_model = CreateNetezzaEngineCreatedBody.from_dict(
+            create_netezza_engine_created_body_model_json
+        )
         assert create_netezza_engine_created_body_model != False
 
         # Construct a model instance of CreateNetezzaEngineCreatedBody by calling from_dict on the json representation
-        create_netezza_engine_created_body_model_dict = CreateNetezzaEngineCreatedBody.from_dict(create_netezza_engine_created_body_model_json).__dict__
-        create_netezza_engine_created_body_model2 = CreateNetezzaEngineCreatedBody(**create_netezza_engine_created_body_model_dict)
+        create_netezza_engine_created_body_model_dict = CreateNetezzaEngineCreatedBody.from_dict(
+            create_netezza_engine_created_body_model_json
+        ).__dict__
+        create_netezza_engine_created_body_model2 = CreateNetezzaEngineCreatedBody(
+            **create_netezza_engine_created_body_model_dict
+        )
 
         # Verify the model instances are equivalent
         assert create_netezza_engine_created_body_model == create_netezza_engine_created_body_model2
@@ -9652,11 +9790,15 @@ class TestModel_CreateNetezzaEngineDetails:
         create_netezza_engine_details_model_json['connection_string'] = '1.2.3.4'
 
         # Construct a model instance of CreateNetezzaEngineDetails by calling from_dict on the json representation
-        create_netezza_engine_details_model = CreateNetezzaEngineDetails.from_dict(create_netezza_engine_details_model_json)
+        create_netezza_engine_details_model = CreateNetezzaEngineDetails.from_dict(
+            create_netezza_engine_details_model_json
+        )
         assert create_netezza_engine_details_model != False
 
         # Construct a model instance of CreateNetezzaEngineDetails by calling from_dict on the json representation
-        create_netezza_engine_details_model_dict = CreateNetezzaEngineDetails.from_dict(create_netezza_engine_details_model_json).__dict__
+        create_netezza_engine_details_model_dict = CreateNetezzaEngineDetails.from_dict(
+            create_netezza_engine_details_model_json
+        ).__dict__
         create_netezza_engine_details_model2 = CreateNetezzaEngineDetails(**create_netezza_engine_details_model_dict)
 
         # Verify the model instances are equivalent
@@ -9707,12 +9849,18 @@ class TestModel_CreateOtherEngineCreatedBody:
         create_other_engine_created_body_model_json['response'] = success_response_model
 
         # Construct a model instance of CreateOtherEngineCreatedBody by calling from_dict on the json representation
-        create_other_engine_created_body_model = CreateOtherEngineCreatedBody.from_dict(create_other_engine_created_body_model_json)
+        create_other_engine_created_body_model = CreateOtherEngineCreatedBody.from_dict(
+            create_other_engine_created_body_model_json
+        )
         assert create_other_engine_created_body_model != False
 
         # Construct a model instance of CreateOtherEngineCreatedBody by calling from_dict on the json representation
-        create_other_engine_created_body_model_dict = CreateOtherEngineCreatedBody.from_dict(create_other_engine_created_body_model_json).__dict__
-        create_other_engine_created_body_model2 = CreateOtherEngineCreatedBody(**create_other_engine_created_body_model_dict)
+        create_other_engine_created_body_model_dict = CreateOtherEngineCreatedBody.from_dict(
+            create_other_engine_created_body_model_json
+        ).__dict__
+        create_other_engine_created_body_model2 = CreateOtherEngineCreatedBody(
+            **create_other_engine_created_body_model_dict
+        )
 
         # Verify the model instances are equivalent
         assert create_other_engine_created_body_model == create_other_engine_created_body_model2
@@ -9747,7 +9895,9 @@ class TestModel_CreateSchemaCreatedBody:
         assert create_schema_created_body_model != False
 
         # Construct a model instance of CreateSchemaCreatedBody by calling from_dict on the json representation
-        create_schema_created_body_model_dict = CreateSchemaCreatedBody.from_dict(create_schema_created_body_model_json).__dict__
+        create_schema_created_body_model_dict = CreateSchemaCreatedBody.from_dict(
+            create_schema_created_body_model_json
+        ).__dict__
         create_schema_created_body_model2 = CreateSchemaCreatedBody(**create_schema_created_body_model_dict)
 
         # Verify the model instances are equivalent
@@ -9782,22 +9932,35 @@ class TestModel_CreateSparkEngineApplicationCreatedBody:
         # Construct a json representation of a CreateSparkEngineApplicationCreatedBody model
         create_spark_engine_application_created_body_model_json = {}
         create_spark_engine_application_created_body_model_json['response'] = success_response_model
-        create_spark_engine_application_created_body_model_json['spark_engine_application'] = spark_engine_application_model
+        create_spark_engine_application_created_body_model_json[
+            'spark_engine_application'
+        ] = spark_engine_application_model
 
         # Construct a model instance of CreateSparkEngineApplicationCreatedBody by calling from_dict on the json representation
-        create_spark_engine_application_created_body_model = CreateSparkEngineApplicationCreatedBody.from_dict(create_spark_engine_application_created_body_model_json)
+        create_spark_engine_application_created_body_model = CreateSparkEngineApplicationCreatedBody.from_dict(
+            create_spark_engine_application_created_body_model_json
+        )
         assert create_spark_engine_application_created_body_model != False
 
         # Construct a model instance of CreateSparkEngineApplicationCreatedBody by calling from_dict on the json representation
-        create_spark_engine_application_created_body_model_dict = CreateSparkEngineApplicationCreatedBody.from_dict(create_spark_engine_application_created_body_model_json).__dict__
-        create_spark_engine_application_created_body_model2 = CreateSparkEngineApplicationCreatedBody(**create_spark_engine_application_created_body_model_dict)
+        create_spark_engine_application_created_body_model_dict = CreateSparkEngineApplicationCreatedBody.from_dict(
+            create_spark_engine_application_created_body_model_json
+        ).__dict__
+        create_spark_engine_application_created_body_model2 = CreateSparkEngineApplicationCreatedBody(
+            **create_spark_engine_application_created_body_model_dict
+        )
 
         # Verify the model instances are equivalent
         assert create_spark_engine_application_created_body_model == create_spark_engine_application_created_body_model2
 
         # Convert model instance back to dict and verify no loss of data
-        create_spark_engine_application_created_body_model_json2 = create_spark_engine_application_created_body_model.to_dict()
-        assert create_spark_engine_application_created_body_model_json2 == create_spark_engine_application_created_body_model_json
+        create_spark_engine_application_created_body_model_json2 = (
+            create_spark_engine_application_created_body_model.to_dict()
+        )
+        assert (
+            create_spark_engine_application_created_body_model_json2
+            == create_spark_engine_application_created_body_model_json
+        )
 
 
 class TestModel_CreateSparkEngineCreatedBody:
@@ -9813,16 +9976,30 @@ class TestModel_CreateSparkEngineCreatedBody:
         # Construct dict forms of any model objects needed in order to build this model.
 
         spark_engine_details_endpoints_model = {}  # SparkEngineDetailsEndpoints
-        spark_engine_details_endpoints_model['applications_api'] = '$HOST/v4/analytics_engines/<spark_id>/spark_applications/<application_id>'
-        spark_engine_details_endpoints_model['history_server_endpoint'] = '$HOST/v2/spark/v3/instances/<spark_id>/spark_history_server'
-        spark_engine_details_endpoints_model['spark_access_endpoint'] = '$HOST/analytics-engine/details/spark-<instance_id>'
-        spark_engine_details_endpoints_model['spark_jobs_v4_endpoint'] = '$HOST/v4/analytics_engines/<spark_id>/spark_applications'
-        spark_engine_details_endpoints_model['spark_kernel_endpoint'] = '$HOST/v4/analytics_engines/<spark_id>/jkg/api/kernels'
+        spark_engine_details_endpoints_model[
+            'applications_api'
+        ] = '$HOST/v4/analytics_engines/<spark_id>/spark_applications/<application_id>'
+        spark_engine_details_endpoints_model[
+            'history_server_endpoint'
+        ] = '$HOST/v2/spark/v3/instances/<spark_id>/spark_history_server'
+        spark_engine_details_endpoints_model[
+            'spark_access_endpoint'
+        ] = '$HOST/analytics-engine/details/spark-<instance_id>'
+        spark_engine_details_endpoints_model[
+            'spark_jobs_v4_endpoint'
+        ] = '$HOST/v4/analytics_engines/<spark_id>/spark_applications'
+        spark_engine_details_endpoints_model[
+            'spark_kernel_endpoint'
+        ] = '$HOST/v4/analytics_engines/<spark_id>/jkg/api/kernels'
         spark_engine_details_endpoints_model['view_history_server'] = 'View history server'
-        spark_engine_details_endpoints_model['wxd_application_endpoint'] = '$HOST/v1/<wxd_instance_id>/engines/<engine_id>/applications'
+        spark_engine_details_endpoints_model[
+            'wxd_application_endpoint'
+        ] = '$HOST/v1/<wxd_instance_id>/engines/<engine_id>/applications'
 
         spark_engine_details_model = {}  # SparkEngineDetails
-        spark_engine_details_model['connection_string'] = 'https://xyz.<region>.ae.cloud.123.com/v3/analytics_engines/<spark_iae_id>'
+        spark_engine_details_model[
+            'connection_string'
+        ] = 'https://xyz.<region>.ae.cloud.123.com/v3/analytics_engines/<spark_iae_id>'
         spark_engine_details_model['endpoints'] = spark_engine_details_endpoints_model
 
         spark_engine_model = {}  # SparkEngine
@@ -9849,12 +10026,18 @@ class TestModel_CreateSparkEngineCreatedBody:
         create_spark_engine_created_body_model_json['response'] = success_response_model
 
         # Construct a model instance of CreateSparkEngineCreatedBody by calling from_dict on the json representation
-        create_spark_engine_created_body_model = CreateSparkEngineCreatedBody.from_dict(create_spark_engine_created_body_model_json)
+        create_spark_engine_created_body_model = CreateSparkEngineCreatedBody.from_dict(
+            create_spark_engine_created_body_model_json
+        )
         assert create_spark_engine_created_body_model != False
 
         # Construct a model instance of CreateSparkEngineCreatedBody by calling from_dict on the json representation
-        create_spark_engine_created_body_model_dict = CreateSparkEngineCreatedBody.from_dict(create_spark_engine_created_body_model_json).__dict__
-        create_spark_engine_created_body_model2 = CreateSparkEngineCreatedBody(**create_spark_engine_created_body_model_dict)
+        create_spark_engine_created_body_model_dict = CreateSparkEngineCreatedBody.from_dict(
+            create_spark_engine_created_body_model_json
+        ).__dict__
+        create_spark_engine_created_body_model2 = CreateSparkEngineCreatedBody(
+            **create_spark_engine_created_body_model_dict
+        )
 
         # Verify the model instances are equivalent
         assert create_spark_engine_created_body_model == create_spark_engine_created_body_model2
@@ -9938,12 +10121,18 @@ class TestModel_DatabaseRegistrationDatabaseDetails:
         database_registration_database_details_model_json['username'] = 'sampleuser'
 
         # Construct a model instance of DatabaseRegistrationDatabaseDetails by calling from_dict on the json representation
-        database_registration_database_details_model = DatabaseRegistrationDatabaseDetails.from_dict(database_registration_database_details_model_json)
+        database_registration_database_details_model = DatabaseRegistrationDatabaseDetails.from_dict(
+            database_registration_database_details_model_json
+        )
         assert database_registration_database_details_model != False
 
         # Construct a model instance of DatabaseRegistrationDatabaseDetails by calling from_dict on the json representation
-        database_registration_database_details_model_dict = DatabaseRegistrationDatabaseDetails.from_dict(database_registration_database_details_model_json).__dict__
-        database_registration_database_details_model2 = DatabaseRegistrationDatabaseDetails(**database_registration_database_details_model_dict)
+        database_registration_database_details_model_dict = DatabaseRegistrationDatabaseDetails.from_dict(
+            database_registration_database_details_model_json
+        ).__dict__
+        database_registration_database_details_model2 = DatabaseRegistrationDatabaseDetails(
+            **database_registration_database_details_model_dict
+        )
 
         # Verify the model instances are equivalent
         assert database_registration_database_details_model == database_registration_database_details_model2
@@ -10061,7 +10250,9 @@ class TestModel_Deployment:
         deployment_model_json['plan_id'] = 'new_plan_id'
         deployment_model_json['platform_options'] = deployment_platform_options_model
         deployment_model_json['region'] = 'us-south'
-        deployment_model_json['resource_group_crn'] = 'crn:v1:staging:public:resource-controller::a/hddrtnjjj27dh38xbw::resource-group:c02a6a94f16e4ca'
+        deployment_model_json[
+            'resource_group_crn'
+        ] = 'crn:v1:staging:public:resource-controller::a/hddrtnjjj27dh38xbw::resource-group:c02a6a94f16e4ca'
         deployment_model_json['type'] = 'deployment_type'
         deployment_model_json['version'] = '1.0.2'
 
@@ -10102,7 +10293,9 @@ class TestModel_DeploymentPlatformOptions:
         assert deployment_platform_options_model != False
 
         # Construct a model instance of DeploymentPlatformOptions by calling from_dict on the json representation
-        deployment_platform_options_model_dict = DeploymentPlatformOptions.from_dict(deployment_platform_options_model_json).__dict__
+        deployment_platform_options_model_dict = DeploymentPlatformOptions.from_dict(
+            deployment_platform_options_model_json
+        ).__dict__
         deployment_platform_options_model2 = DeploymentPlatformOptions(**deployment_platform_options_model_dict)
 
         # Verify the model instances are equivalent
@@ -10140,7 +10333,9 @@ class TestModel_DeploymentsResponse:
         deployment_model['plan_id'] = 'new_plan_id'
         deployment_model['platform_options'] = deployment_platform_options_model
         deployment_model['region'] = 'us-south'
-        deployment_model['resource_group_crn'] = 'crn:v1:staging:public:resource-controller::a/hddrtnjjj27dh38xbw::resource-group:c02a6a94f16e4ca'
+        deployment_model[
+            'resource_group_crn'
+        ] = 'crn:v1:staging:public:resource-controller::a/hddrtnjjj27dh38xbw::resource-group:c02a6a94f16e4ca'
         deployment_model['type'] = 'deployment_type'
         deployment_model['version'] = '1.0.2'
 
@@ -10176,11 +10371,19 @@ class TestModel_Endpoints:
 
         # Construct a json representation of a Endpoints model
         endpoints_model_json = {}
-        endpoints_model_json['applications_api'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
-        endpoints_model_json['history_server_endpoint'] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
+        endpoints_model_json[
+            'applications_api'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
+        endpoints_model_json[
+            'history_server_endpoint'
+        ] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
         endpoints_model_json['spark_access_endpoint'] = '$HOST/analytics-engine/details/spark-<instance_id>'
-        endpoints_model_json['spark_jobs_v4_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
-        endpoints_model_json['spark_kernel_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
+        endpoints_model_json[
+            'spark_jobs_v4_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
+        endpoints_model_json[
+            'spark_kernel_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
         endpoints_model_json['view_history_server'] = 'testString'
         endpoints_model_json['wxd_application_endpoint'] = '$HOST/v1/1698311655308796/engines/spark817/applications'
 
@@ -10273,13 +10476,23 @@ class TestModel_Engine:
         prestissimo_node_description_body_model['quantity'] = 38
 
         prestissimo_endpoints_model = {}  # PrestissimoEndpoints
-        prestissimo_endpoints_model['applications_api'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
-        prestissimo_endpoints_model['history_server_endpoint'] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
+        prestissimo_endpoints_model[
+            'applications_api'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
+        prestissimo_endpoints_model[
+            'history_server_endpoint'
+        ] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
         prestissimo_endpoints_model['spark_access_endpoint'] = '$HOST/analytics-engine/details/spark-<instance_id>'
-        prestissimo_endpoints_model['spark_jobs_v4_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
-        prestissimo_endpoints_model['spark_kernel_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
+        prestissimo_endpoints_model[
+            'spark_jobs_v4_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
+        prestissimo_endpoints_model[
+            'spark_kernel_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
         prestissimo_endpoints_model['view_history_server'] = 'testString'
-        prestissimo_endpoints_model['wxd_application_endpoint'] = '$HOST/v1/1698311655308796/engines/spark817/applications'
+        prestissimo_endpoints_model[
+            'wxd_application_endpoint'
+        ] = '$HOST/v1/1698311655308796/engines/spark817/applications'
 
         prestissimo_engine_details_model = {}  # PrestissimoEngineDetails
         prestissimo_engine_details_model['connection_string'] = '1.2.3.4'
@@ -10297,7 +10510,9 @@ class TestModel_Engine:
         prestissimo_engine_model['engine_details'] = prestissimo_engine_details_model
         prestissimo_engine_model['engine_display_name'] = 'sampleEngine'
         prestissimo_engine_model['engine_id'] = 'sampleEngine123'
-        prestissimo_engine_model['external_host_name'] = 'ibm-lh-lakehouse-prestissimo-01-prestissimo-svc-cpd-instance.apps.wkclhconnectortest.cp.fyre.ibm.com'
+        prestissimo_engine_model[
+            'external_host_name'
+        ] = 'ibm-lh-lakehouse-prestissimo-01-prestissimo-svc-cpd-instance.apps.wkclhconnectortest.cp.fyre.ibm.com'
         prestissimo_engine_model['group_id'] = 'new_group_id'
         prestissimo_engine_model['host_name'] = 'ibm-lh-lakehouse-prestissimo-01-prestissimo-svc'
         prestissimo_engine_model['origin'] = 'ibm'
@@ -10316,11 +10531,19 @@ class TestModel_Engine:
         node_description_model['quantity'] = 38
 
         endpoints_model = {}  # Endpoints
-        endpoints_model['applications_api'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
-        endpoints_model['history_server_endpoint'] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
+        endpoints_model[
+            'applications_api'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
+        endpoints_model[
+            'history_server_endpoint'
+        ] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
         endpoints_model['spark_access_endpoint'] = '$HOST/analytics-engine/details/spark-<instance_id>'
-        endpoints_model['spark_jobs_v4_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
-        endpoints_model['spark_kernel_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
+        endpoints_model[
+            'spark_jobs_v4_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
+        endpoints_model[
+            'spark_kernel_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
         endpoints_model['view_history_server'] = 'testString'
         endpoints_model['wxd_application_endpoint'] = '$HOST/v1/1698311655308796/engines/spark817/applications'
 
@@ -10355,16 +10578,30 @@ class TestModel_Engine:
         presto_engine_model['worker'] = node_description_model
 
         spark_engine_details_endpoints_model = {}  # SparkEngineDetailsEndpoints
-        spark_engine_details_endpoints_model['applications_api'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
-        spark_engine_details_endpoints_model['history_server_endpoint'] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
-        spark_engine_details_endpoints_model['spark_access_endpoint'] = '$HOST/analytics-engine/details/spark-<instance_id>'
-        spark_engine_details_endpoints_model['spark_jobs_v4_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
-        spark_engine_details_endpoints_model['spark_kernel_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
+        spark_engine_details_endpoints_model[
+            'applications_api'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
+        spark_engine_details_endpoints_model[
+            'history_server_endpoint'
+        ] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
+        spark_engine_details_endpoints_model[
+            'spark_access_endpoint'
+        ] = '$HOST/analytics-engine/details/spark-<instance_id>'
+        spark_engine_details_endpoints_model[
+            'spark_jobs_v4_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
+        spark_engine_details_endpoints_model[
+            'spark_kernel_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
         spark_engine_details_endpoints_model['view_history_server'] = 'testString'
-        spark_engine_details_endpoints_model['wxd_application_endpoint'] = '$HOST/v1/1698311655308796/engines/spark817/applications'
+        spark_engine_details_endpoints_model[
+            'wxd_application_endpoint'
+        ] = '$HOST/v1/1698311655308796/engines/spark817/applications'
 
         spark_engine_details_model = {}  # SparkEngineDetails
-        spark_engine_details_model['connection_string'] = 'https://xyz.<region>.ae.cloud.123.com/v3/analytics_engines/<spark_iae_id>'
+        spark_engine_details_model[
+            'connection_string'
+        ] = 'https://xyz.<region>.ae.cloud.123.com/v3/analytics_engines/<spark_iae_id>'
         spark_engine_details_model['endpoints'] = spark_engine_details_endpoints_model
 
         spark_engine_model = {}  # SparkEngine
@@ -10419,11 +10656,19 @@ class TestModel_EngineDetails:
         # Construct dict forms of any model objects needed in order to build this model.
 
         endpoints_model = {}  # Endpoints
-        endpoints_model['applications_api'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
-        endpoints_model['history_server_endpoint'] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
+        endpoints_model[
+            'applications_api'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
+        endpoints_model[
+            'history_server_endpoint'
+        ] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
         endpoints_model['spark_access_endpoint'] = '$HOST/analytics-engine/details/spark-<instance_id>'
-        endpoints_model['spark_jobs_v4_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
-        endpoints_model['spark_kernel_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
+        endpoints_model[
+            'spark_jobs_v4_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
+        endpoints_model[
+            'spark_kernel_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
         endpoints_model['view_history_server'] = 'testString'
         endpoints_model['wxd_application_endpoint'] = '$HOST/v1/1698311655308796/engines/spark817/applications'
 
@@ -10531,12 +10776,18 @@ class TestModel_GetBucketRegistrationOKBody:
         get_bucket_registration_ok_body_model_json['response'] = success_response_model
 
         # Construct a model instance of GetBucketRegistrationOKBody by calling from_dict on the json representation
-        get_bucket_registration_ok_body_model = GetBucketRegistrationOKBody.from_dict(get_bucket_registration_ok_body_model_json)
+        get_bucket_registration_ok_body_model = GetBucketRegistrationOKBody.from_dict(
+            get_bucket_registration_ok_body_model_json
+        )
         assert get_bucket_registration_ok_body_model != False
 
         # Construct a model instance of GetBucketRegistrationOKBody by calling from_dict on the json representation
-        get_bucket_registration_ok_body_model_dict = GetBucketRegistrationOKBody.from_dict(get_bucket_registration_ok_body_model_json).__dict__
-        get_bucket_registration_ok_body_model2 = GetBucketRegistrationOKBody(**get_bucket_registration_ok_body_model_dict)
+        get_bucket_registration_ok_body_model_dict = GetBucketRegistrationOKBody.from_dict(
+            get_bucket_registration_ok_body_model_json
+        ).__dict__
+        get_bucket_registration_ok_body_model2 = GetBucketRegistrationOKBody(
+            **get_bucket_registration_ok_body_model_dict
+        )
 
         # Verify the model instances are equivalent
         assert get_bucket_registration_ok_body_model == get_bucket_registration_ok_body_model2
@@ -10559,7 +10810,22 @@ class TestModel_GetCatalogOKBody:
         # Construct dict forms of any model objects needed in order to build this model.
 
         catalog_detail_model = {}  # CatalogDetail
-        catalog_detail_model['actions'] = ['select', 'use', 'show', 'view', 'create', 'drop', 'alter', 'insert', 'grant', 'revoke', 'delete', 'update', 'remove', 'register']
+        catalog_detail_model['actions'] = [
+            'select',
+            'use',
+            'show',
+            'view',
+            'create',
+            'drop',
+            'alter',
+            'insert',
+            'grant',
+            'revoke',
+            'delete',
+            'update',
+            'remove',
+            'register',
+        ]
         catalog_detail_model['associated_buckets'] = ['iceberg-bucket']
         catalog_detail_model['associated_databases'] = []
         catalog_detail_model['associated_engines'] = ['presto88']
@@ -10568,7 +10834,9 @@ class TestModel_GetCatalogOKBody:
         catalog_detail_model['created_by'] = 'example@ibm.com'
         catalog_detail_model['created_on'] = '1700549252'
         catalog_detail_model['description'] = 'get one catalog'
-        catalog_detail_model['hostname'] = '9c11c623-685a-444b-b3fa-989b2f7a3f8e.cfjag3sf0s5o87astjo0.databases.appdomain.cloud'
+        catalog_detail_model[
+            'hostname'
+        ] = '9c11c623-685a-444b-b3fa-989b2f7a3f8e.cfjag3sf0s5o87astjo0.databases.appdomain.cloud'
         catalog_detail_model['last_sync_at'] = '0'
         catalog_detail_model['managed_by'] = 'ibm'
         catalog_detail_model['metastore'] = 'glue'
@@ -10578,7 +10846,9 @@ class TestModel_GetCatalogOKBody:
         catalog_detail_model['sync_exception'] = []
         catalog_detail_model['sync_status'] = 'NOT_STARTED'
         catalog_detail_model['tags'] = ['tag1', 'tag2']
-        catalog_detail_model['thrift_uri'] = 'thrift://9c11c623-685a-444b-b3fa-989b2f7a3f8e.cfjag3sf0s5o87astjo0.databases.appdomain.cloud:32355'
+        catalog_detail_model[
+            'thrift_uri'
+        ] = 'thrift://9c11c623-685a-444b-b3fa-989b2f7a3f8e.cfjag3sf0s5o87astjo0.databases.appdomain.cloud:32355'
 
         success_response_model = {}  # SuccessResponse
         success_response_model['message'] = 'Get Catalog'
@@ -10692,7 +10962,9 @@ class TestModel_GetDeploymentsOKBody:
         deployment_model['plan_id'] = 'new_plan_id'
         deployment_model['platform_options'] = deployment_platform_options_model
         deployment_model['region'] = 'us-south'
-        deployment_model['resource_group_crn'] = 'crn:v1:staging:public:resource-controller::a/hddrtnjjj27dh38xbw::resource-group:c02a6a94f16e4ca'
+        deployment_model[
+            'resource_group_crn'
+        ] = 'crn:v1:staging:public:resource-controller::a/hddrtnjjj27dh38xbw::resource-group:c02a6a94f16e4ca'
         deployment_model['type'] = 'deployment_type'
         deployment_model['version'] = '1.0.2'
 
@@ -10768,12 +11040,18 @@ class TestModel_GetPrestoEngineCatalogOKBody:
         get_presto_engine_catalog_ok_body_model_json['response'] = success_response_model
 
         # Construct a model instance of GetPrestoEngineCatalogOKBody by calling from_dict on the json representation
-        get_presto_engine_catalog_ok_body_model = GetPrestoEngineCatalogOKBody.from_dict(get_presto_engine_catalog_ok_body_model_json)
+        get_presto_engine_catalog_ok_body_model = GetPrestoEngineCatalogOKBody.from_dict(
+            get_presto_engine_catalog_ok_body_model_json
+        )
         assert get_presto_engine_catalog_ok_body_model != False
 
         # Construct a model instance of GetPrestoEngineCatalogOKBody by calling from_dict on the json representation
-        get_presto_engine_catalog_ok_body_model_dict = GetPrestoEngineCatalogOKBody.from_dict(get_presto_engine_catalog_ok_body_model_json).__dict__
-        get_presto_engine_catalog_ok_body_model2 = GetPrestoEngineCatalogOKBody(**get_presto_engine_catalog_ok_body_model_dict)
+        get_presto_engine_catalog_ok_body_model_dict = GetPrestoEngineCatalogOKBody.from_dict(
+            get_presto_engine_catalog_ok_body_model_json
+        ).__dict__
+        get_presto_engine_catalog_ok_body_model2 = GetPrestoEngineCatalogOKBody(
+            **get_presto_engine_catalog_ok_body_model_dict
+        )
 
         # Verify the model instances are equivalent
         assert get_presto_engine_catalog_ok_body_model == get_presto_engine_catalog_ok_body_model2
@@ -10800,11 +11078,19 @@ class TestModel_GetPrestoEngineOKBody:
         node_description_model['quantity'] = 1
 
         endpoints_model = {}  # Endpoints
-        endpoints_model['applications_api'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
-        endpoints_model['history_server_endpoint'] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
+        endpoints_model[
+            'applications_api'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
+        endpoints_model[
+            'history_server_endpoint'
+        ] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
         endpoints_model['spark_access_endpoint'] = '$HOST/analytics-engine/details/spark-<instance_id>'
-        endpoints_model['spark_jobs_v4_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
-        endpoints_model['spark_kernel_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
+        endpoints_model[
+            'spark_jobs_v4_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
+        endpoints_model[
+            'spark_kernel_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
         endpoints_model['view_history_server'] = 'testString'
         endpoints_model['wxd_application_endpoint'] = '$HOST/v1/1698311655308796/engines/spark817/applications'
 
@@ -10852,7 +11138,9 @@ class TestModel_GetPrestoEngineOKBody:
         assert get_presto_engine_ok_body_model != False
 
         # Construct a model instance of GetPrestoEngineOKBody by calling from_dict on the json representation
-        get_presto_engine_ok_body_model_dict = GetPrestoEngineOKBody.from_dict(get_presto_engine_ok_body_model_json).__dict__
+        get_presto_engine_ok_body_model_dict = GetPrestoEngineOKBody.from_dict(
+            get_presto_engine_ok_body_model_json
+        ).__dict__
         get_presto_engine_ok_body_model2 = GetPrestoEngineOKBody(**get_presto_engine_ok_body_model_dict)
 
         # Verify the model instances are equivalent
@@ -10875,27 +11163,54 @@ class TestModel_GetSparkEngineApplicationStatusOKBody:
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        spark_engine_application_status_application_details_conf_model = {}  # SparkEngineApplicationStatusApplicationDetailsConf
+        spark_engine_application_status_application_details_conf_model = (
+            {}
+        )  # SparkEngineApplicationStatusApplicationDetailsConf
         spark_engine_application_status_application_details_conf_model['spark_app_name'] = 'MyJob'
-        spark_engine_application_status_application_details_conf_model['spark_hive_metastore_client_auth_mode'] = 'PLAIN'
-        spark_engine_application_status_application_details_conf_model['spark_hive_metastore_client_plain_password'] = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...'
-        spark_engine_application_status_application_details_conf_model['spark_hive_metastore_client_plain_username'] = 'ibm_lh_token_admin'
-        spark_engine_application_status_application_details_conf_model['spark_hive_metastore_truststore_password'] = 'changeit'
-        spark_engine_application_status_application_details_conf_model['spark_hive_metastore_truststore_path'] = 'file:///opt/ibm/jdk/lib/security/cacerts'
+        spark_engine_application_status_application_details_conf_model[
+            'spark_hive_metastore_client_auth_mode'
+        ] = 'PLAIN'
+        spark_engine_application_status_application_details_conf_model[
+            'spark_hive_metastore_client_plain_password'
+        ] = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...'
+        spark_engine_application_status_application_details_conf_model[
+            'spark_hive_metastore_client_plain_username'
+        ] = 'ibm_lh_token_admin'
+        spark_engine_application_status_application_details_conf_model[
+            'spark_hive_metastore_truststore_password'
+        ] = 'changeit'
+        spark_engine_application_status_application_details_conf_model[
+            'spark_hive_metastore_truststore_path'
+        ] = 'file:///opt/ibm/jdk/lib/security/cacerts'
         spark_engine_application_status_application_details_conf_model['spark_hive_metastore_truststore_type'] = 'JKS'
         spark_engine_application_status_application_details_conf_model['spark_hive_metastore_use_ssl'] = 'true'
         spark_engine_application_status_application_details_conf_model['spark_sql_catalog_implementation'] = 'hive'
-        spark_engine_application_status_application_details_conf_model['spark_sql_catalog_lakehouse'] = 'org.apache.iceberg.spark.SparkCatalog'
+        spark_engine_application_status_application_details_conf_model[
+            'spark_sql_catalog_lakehouse'
+        ] = 'org.apache.iceberg.spark.SparkCatalog'
         spark_engine_application_status_application_details_conf_model['spark_sql_catalog_lakehouse_type'] = 'hive'
         spark_engine_application_status_application_details_conf_model['spark_sql_catalog_lakehouse_uri'] = 'testString'
-        spark_engine_application_status_application_details_conf_model['spark_sql_extensions'] = 'org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions'
-        spark_engine_application_status_application_details_conf_model['spark_sql_iceberg_vectorization_enabled'] = 'false'
+        spark_engine_application_status_application_details_conf_model[
+            'spark_sql_extensions'
+        ] = 'org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions'
+        spark_engine_application_status_application_details_conf_model[
+            'spark_sql_iceberg_vectorization_enabled'
+        ] = 'false'
 
         spark_engine_application_status_application_details_model = {}  # SparkEngineApplicationStatusApplicationDetails
-        spark_engine_application_status_application_details_model['application'] = '/opt/xyz/spark/examples/src/main/python/wordcount.py'
-        spark_engine_application_status_application_details_model['arguments'] = ['/opt/xyz/spark/examples/src/main/python/people.txt']
-        spark_engine_application_status_application_details_model['conf'] = spark_engine_application_status_application_details_conf_model
-        spark_engine_application_status_application_details_model['env'] = {'sparkEnvPropKey1': 'sparkEnvPropvalue1', 'sparkEnvPropKey2': 'sparkEnvPropvalue2'}
+        spark_engine_application_status_application_details_model[
+            'application'
+        ] = '/opt/xyz/spark/examples/src/main/python/wordcount.py'
+        spark_engine_application_status_application_details_model['arguments'] = [
+            '/opt/xyz/spark/examples/src/main/python/people.txt'
+        ]
+        spark_engine_application_status_application_details_model[
+            'conf'
+        ] = spark_engine_application_status_application_details_conf_model
+        spark_engine_application_status_application_details_model['env'] = {
+            'sparkEnvPropKey1': 'sparkEnvPropvalue1',
+            'sparkEnvPropKey2': 'sparkEnvPropvalue2',
+        }
         spark_engine_application_status_application_details_model['name'] = 'SparkApplication1'
 
         spark_engine_application_status_state_details_items_model = {}  # SparkEngineApplicationStatusStateDetailsItems
@@ -10904,7 +11219,9 @@ class TestModel_GetSparkEngineApplicationStatusOKBody:
         spark_engine_application_status_state_details_items_model['type'] = 'testString'
 
         spark_engine_application_status_model = {}  # SparkEngineApplicationStatus
-        spark_engine_application_status_model['application_details'] = spark_engine_application_status_application_details_model
+        spark_engine_application_status_model[
+            'application_details'
+        ] = spark_engine_application_status_application_details_model
         spark_engine_application_status_model['application_id'] = '<application_id>'
         spark_engine_application_status_model['auto_termination_time'] = '2023-11-04T15:37:57.775Z'
         spark_engine_application_status_model['creation_time'] = 'Saturday 28 October 2023 07:17:06.856+0000'
@@ -10918,7 +11235,9 @@ class TestModel_GetSparkEngineApplicationStatusOKBody:
         spark_engine_application_status_model['spark_application_name'] = 'PythonWordCount'
         spark_engine_application_status_model['start_time'] = '2023-11-01T15:37:57.775Z'
         spark_engine_application_status_model['state'] = 'failed'
-        spark_engine_application_status_model['state_details'] = [spark_engine_application_status_state_details_items_model]
+        spark_engine_application_status_model['state_details'] = [
+            spark_engine_application_status_state_details_items_model
+        ]
         spark_engine_application_status_model['submission_time'] = '2023-11-01T15:37:30.982Z'
         spark_engine_application_status_model['template_id'] = 'spark-3.3-jaas-v2-cp4d-template'
 
@@ -10932,19 +11251,30 @@ class TestModel_GetSparkEngineApplicationStatusOKBody:
         get_spark_engine_application_status_ok_body_model_json['response'] = success_response_model
 
         # Construct a model instance of GetSparkEngineApplicationStatusOKBody by calling from_dict on the json representation
-        get_spark_engine_application_status_ok_body_model = GetSparkEngineApplicationStatusOKBody.from_dict(get_spark_engine_application_status_ok_body_model_json)
+        get_spark_engine_application_status_ok_body_model = GetSparkEngineApplicationStatusOKBody.from_dict(
+            get_spark_engine_application_status_ok_body_model_json
+        )
         assert get_spark_engine_application_status_ok_body_model != False
 
         # Construct a model instance of GetSparkEngineApplicationStatusOKBody by calling from_dict on the json representation
-        get_spark_engine_application_status_ok_body_model_dict = GetSparkEngineApplicationStatusOKBody.from_dict(get_spark_engine_application_status_ok_body_model_json).__dict__
-        get_spark_engine_application_status_ok_body_model2 = GetSparkEngineApplicationStatusOKBody(**get_spark_engine_application_status_ok_body_model_dict)
+        get_spark_engine_application_status_ok_body_model_dict = GetSparkEngineApplicationStatusOKBody.from_dict(
+            get_spark_engine_application_status_ok_body_model_json
+        ).__dict__
+        get_spark_engine_application_status_ok_body_model2 = GetSparkEngineApplicationStatusOKBody(
+            **get_spark_engine_application_status_ok_body_model_dict
+        )
 
         # Verify the model instances are equivalent
         assert get_spark_engine_application_status_ok_body_model == get_spark_engine_application_status_ok_body_model2
 
         # Convert model instance back to dict and verify no loss of data
-        get_spark_engine_application_status_ok_body_model_json2 = get_spark_engine_application_status_ok_body_model.to_dict()
-        assert get_spark_engine_application_status_ok_body_model_json2 == get_spark_engine_application_status_ok_body_model_json
+        get_spark_engine_application_status_ok_body_model_json2 = (
+            get_spark_engine_application_status_ok_body_model.to_dict()
+        )
+        assert (
+            get_spark_engine_application_status_ok_body_model_json2
+            == get_spark_engine_application_status_ok_body_model_json
+        )
 
 
 class TestModel_GetTableOKBody:
@@ -11049,7 +11379,9 @@ class TestModel_ListBucketObjectsOKBody:
         assert list_bucket_objects_ok_body_model != False
 
         # Construct a model instance of ListBucketObjectsOKBody by calling from_dict on the json representation
-        list_bucket_objects_ok_body_model_dict = ListBucketObjectsOKBody.from_dict(list_bucket_objects_ok_body_model_json).__dict__
+        list_bucket_objects_ok_body_model_dict = ListBucketObjectsOKBody.from_dict(
+            list_bucket_objects_ok_body_model_json
+        ).__dict__
         list_bucket_objects_ok_body_model2 = ListBucketObjectsOKBody(**list_bucket_objects_ok_body_model_dict)
 
         # Verify the model instances are equivalent
@@ -11074,7 +11406,18 @@ class TestModel_ListBucketRegistrationsOKBody:
 
         bucket_registration_model = {}  # BucketRegistration
         bucket_registration_model['access_key'] = '<access_key>'
-        bucket_registration_model['actions'] = ['browse', 'view', 'modify', 'create', 'grant', 'revoke', 'update', 'remove', 'activate', 'register']
+        bucket_registration_model['actions'] = [
+            'browse',
+            'view',
+            'modify',
+            'create',
+            'grant',
+            'revoke',
+            'update',
+            'remove',
+            'activate',
+            'register',
+        ]
         bucket_registration_model['associated_catalogs'] = ['iceberg_catalog']
         bucket_registration_model['bucket_display_name'] = 'iceberg-bucket'
         bucket_registration_model['bucket_id'] = 'iceberg-bucket'
@@ -11100,12 +11443,18 @@ class TestModel_ListBucketRegistrationsOKBody:
         list_bucket_registrations_ok_body_model_json['response'] = success_response_model
 
         # Construct a model instance of ListBucketRegistrationsOKBody by calling from_dict on the json representation
-        list_bucket_registrations_ok_body_model = ListBucketRegistrationsOKBody.from_dict(list_bucket_registrations_ok_body_model_json)
+        list_bucket_registrations_ok_body_model = ListBucketRegistrationsOKBody.from_dict(
+            list_bucket_registrations_ok_body_model_json
+        )
         assert list_bucket_registrations_ok_body_model != False
 
         # Construct a model instance of ListBucketRegistrationsOKBody by calling from_dict on the json representation
-        list_bucket_registrations_ok_body_model_dict = ListBucketRegistrationsOKBody.from_dict(list_bucket_registrations_ok_body_model_json).__dict__
-        list_bucket_registrations_ok_body_model2 = ListBucketRegistrationsOKBody(**list_bucket_registrations_ok_body_model_dict)
+        list_bucket_registrations_ok_body_model_dict = ListBucketRegistrationsOKBody.from_dict(
+            list_bucket_registrations_ok_body_model_json
+        ).__dict__
+        list_bucket_registrations_ok_body_model2 = ListBucketRegistrationsOKBody(
+            **list_bucket_registrations_ok_body_model_dict
+        )
 
         # Verify the model instances are equivalent
         assert list_bucket_registrations_ok_body_model == list_bucket_registrations_ok_body_model2
@@ -11128,7 +11477,22 @@ class TestModel_ListCatalogsOKBody:
         # Construct dict forms of any model objects needed in order to build this model.
 
         catalog_detail_model = {}  # CatalogDetail
-        catalog_detail_model['actions'] = ['select', 'use', 'show', 'view', 'create', 'drop', 'alter', 'insert', 'grant', 'revoke', 'delete', 'update', 'remove', 'register']
+        catalog_detail_model['actions'] = [
+            'select',
+            'use',
+            'show',
+            'view',
+            'create',
+            'drop',
+            'alter',
+            'insert',
+            'grant',
+            'revoke',
+            'delete',
+            'update',
+            'remove',
+            'register',
+        ]
         catalog_detail_model['associated_buckets'] = ['iceberg-bucket']
         catalog_detail_model['associated_databases'] = []
         catalog_detail_model['associated_engines'] = ['presto88']
@@ -11137,7 +11501,9 @@ class TestModel_ListCatalogsOKBody:
         catalog_detail_model['created_by'] = 'example@ibm.com'
         catalog_detail_model['created_on'] = '1700549252'
         catalog_detail_model['description'] = 'get catalogs'
-        catalog_detail_model['hostname'] = '9c11c623-685a-444b-b3fa-989b2f7a3f8e.cfjag3sf0s5o87astjo0.databases.appdomain.cloud'
+        catalog_detail_model[
+            'hostname'
+        ] = '9c11c623-685a-444b-b3fa-989b2f7a3f8e.cfjag3sf0s5o87astjo0.databases.appdomain.cloud'
         catalog_detail_model['last_sync_at'] = '0'
         catalog_detail_model['managed_by'] = 'ibm'
         catalog_detail_model['metastore'] = 'glue'
@@ -11147,7 +11513,9 @@ class TestModel_ListCatalogsOKBody:
         catalog_detail_model['sync_exception'] = []
         catalog_detail_model['sync_status'] = 'NOT_STARTED'
         catalog_detail_model['tags'] = ['tag1', 'tag2']
-        catalog_detail_model['thrift_uri'] = 'thrift://9c11c623-685a-444b-b3fa-989b2f7a3f8e.cfjag3sf0s5o87astjo0.databases.appdomain.cloud:32355'
+        catalog_detail_model[
+            'thrift_uri'
+        ] = 'thrift://9c11c623-685a-444b-b3fa-989b2f7a3f8e.cfjag3sf0s5o87astjo0.databases.appdomain.cloud:32355'
 
         success_response_model = {}  # SuccessResponse
         success_response_model['message'] = 'Get Catalogs'
@@ -11219,12 +11587,18 @@ class TestModel_ListDatabaseRegistrationsOKBody:
         list_database_registrations_ok_body_model_json['response'] = success_response_model
 
         # Construct a model instance of ListDatabaseRegistrationsOKBody by calling from_dict on the json representation
-        list_database_registrations_ok_body_model = ListDatabaseRegistrationsOKBody.from_dict(list_database_registrations_ok_body_model_json)
+        list_database_registrations_ok_body_model = ListDatabaseRegistrationsOKBody.from_dict(
+            list_database_registrations_ok_body_model_json
+        )
         assert list_database_registrations_ok_body_model != False
 
         # Construct a model instance of ListDatabaseRegistrationsOKBody by calling from_dict on the json representation
-        list_database_registrations_ok_body_model_dict = ListDatabaseRegistrationsOKBody.from_dict(list_database_registrations_ok_body_model_json).__dict__
-        list_database_registrations_ok_body_model2 = ListDatabaseRegistrationsOKBody(**list_database_registrations_ok_body_model_dict)
+        list_database_registrations_ok_body_model_dict = ListDatabaseRegistrationsOKBody.from_dict(
+            list_database_registrations_ok_body_model_json
+        ).__dict__
+        list_database_registrations_ok_body_model2 = ListDatabaseRegistrationsOKBody(
+            **list_database_registrations_ok_body_model_dict
+        )
 
         # Verify the model instances are equivalent
         assert list_database_registrations_ok_body_model == list_database_registrations_ok_body_model2
@@ -11280,7 +11654,9 @@ class TestModel_ListDb2EnginesOKBody:
         assert list_db2_engines_ok_body_model != False
 
         # Construct a model instance of ListDb2EnginesOKBody by calling from_dict on the json representation
-        list_db2_engines_ok_body_model_dict = ListDb2EnginesOKBody.from_dict(list_db2_engines_ok_body_model_json).__dict__
+        list_db2_engines_ok_body_model_dict = ListDb2EnginesOKBody.from_dict(
+            list_db2_engines_ok_body_model_json
+        ).__dict__
         list_db2_engines_ok_body_model2 = ListDb2EnginesOKBody(**list_db2_engines_ok_body_model_dict)
 
         # Verify the model instances are equivalent
@@ -11364,13 +11740,23 @@ class TestModel_ListEnginesOKBody:
         prestissimo_node_description_body_model['quantity'] = 38
 
         prestissimo_endpoints_model = {}  # PrestissimoEndpoints
-        prestissimo_endpoints_model['applications_api'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
-        prestissimo_endpoints_model['history_server_endpoint'] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
+        prestissimo_endpoints_model[
+            'applications_api'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
+        prestissimo_endpoints_model[
+            'history_server_endpoint'
+        ] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
         prestissimo_endpoints_model['spark_access_endpoint'] = '$HOST/analytics-engine/details/spark-<instance_id>'
-        prestissimo_endpoints_model['spark_jobs_v4_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
-        prestissimo_endpoints_model['spark_kernel_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
+        prestissimo_endpoints_model[
+            'spark_jobs_v4_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
+        prestissimo_endpoints_model[
+            'spark_kernel_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
         prestissimo_endpoints_model['view_history_server'] = 'testString'
-        prestissimo_endpoints_model['wxd_application_endpoint'] = '$HOST/v1/1698311655308796/engines/spark817/applications'
+        prestissimo_endpoints_model[
+            'wxd_application_endpoint'
+        ] = '$HOST/v1/1698311655308796/engines/spark817/applications'
 
         prestissimo_engine_details_model = {}  # PrestissimoEngineDetails
         prestissimo_engine_details_model['connection_string'] = '1.2.3.4'
@@ -11388,7 +11774,9 @@ class TestModel_ListEnginesOKBody:
         prestissimo_engine_model['engine_details'] = prestissimo_engine_details_model
         prestissimo_engine_model['engine_display_name'] = 'sampleEngine'
         prestissimo_engine_model['engine_id'] = 'sampleEngine123'
-        prestissimo_engine_model['external_host_name'] = 'ibm-lh-lakehouse-prestissimo-01-prestissimo-svc-cpd-instance.apps.wkclhconnectortest.cp.fyre.ibm.com'
+        prestissimo_engine_model[
+            'external_host_name'
+        ] = 'ibm-lh-lakehouse-prestissimo-01-prestissimo-svc-cpd-instance.apps.wkclhconnectortest.cp.fyre.ibm.com'
         prestissimo_engine_model['group_id'] = 'new_group_id'
         prestissimo_engine_model['host_name'] = 'ibm-lh-lakehouse-prestissimo-01-prestissimo-svc'
         prestissimo_engine_model['origin'] = 'ibm'
@@ -11407,11 +11795,19 @@ class TestModel_ListEnginesOKBody:
         node_description_model['quantity'] = 38
 
         endpoints_model = {}  # Endpoints
-        endpoints_model['applications_api'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
-        endpoints_model['history_server_endpoint'] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
+        endpoints_model[
+            'applications_api'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
+        endpoints_model[
+            'history_server_endpoint'
+        ] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
         endpoints_model['spark_access_endpoint'] = '$HOST/analytics-engine/details/spark-<instance_id>'
-        endpoints_model['spark_jobs_v4_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
-        endpoints_model['spark_kernel_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
+        endpoints_model[
+            'spark_jobs_v4_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
+        endpoints_model[
+            'spark_kernel_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
         endpoints_model['view_history_server'] = 'testString'
         endpoints_model['wxd_application_endpoint'] = '$HOST/v1/1698311655308796/engines/spark817/applications'
 
@@ -11446,16 +11842,30 @@ class TestModel_ListEnginesOKBody:
         presto_engine_model['worker'] = node_description_model
 
         spark_engine_details_endpoints_model = {}  # SparkEngineDetailsEndpoints
-        spark_engine_details_endpoints_model['applications_api'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
-        spark_engine_details_endpoints_model['history_server_endpoint'] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
-        spark_engine_details_endpoints_model['spark_access_endpoint'] = '$HOST/analytics-engine/details/spark-<instance_id>'
-        spark_engine_details_endpoints_model['spark_jobs_v4_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
-        spark_engine_details_endpoints_model['spark_kernel_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
+        spark_engine_details_endpoints_model[
+            'applications_api'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
+        spark_engine_details_endpoints_model[
+            'history_server_endpoint'
+        ] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
+        spark_engine_details_endpoints_model[
+            'spark_access_endpoint'
+        ] = '$HOST/analytics-engine/details/spark-<instance_id>'
+        spark_engine_details_endpoints_model[
+            'spark_jobs_v4_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
+        spark_engine_details_endpoints_model[
+            'spark_kernel_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
         spark_engine_details_endpoints_model['view_history_server'] = 'testString'
-        spark_engine_details_endpoints_model['wxd_application_endpoint'] = '$HOST/v1/1698311655308796/engines/spark817/applications'
+        spark_engine_details_endpoints_model[
+            'wxd_application_endpoint'
+        ] = '$HOST/v1/1698311655308796/engines/spark817/applications'
 
         spark_engine_details_model = {}  # SparkEngineDetails
-        spark_engine_details_model['connection_string'] = 'https://xyz.<region>.ae.cloud.123.com/v3/analytics_engines/<spark_iae_id>'
+        spark_engine_details_model[
+            'connection_string'
+        ] = 'https://xyz.<region>.ae.cloud.123.com/v3/analytics_engines/<spark_iae_id>'
         spark_engine_details_model['endpoints'] = spark_engine_details_endpoints_model
 
         spark_engine_model = {}  # SparkEngine
@@ -11551,7 +11961,9 @@ class TestModel_ListNetezzaEnginesOKBody:
         assert list_netezza_engines_ok_body_model != False
 
         # Construct a model instance of ListNetezzaEnginesOKBody by calling from_dict on the json representation
-        list_netezza_engines_ok_body_model_dict = ListNetezzaEnginesOKBody.from_dict(list_netezza_engines_ok_body_model_json).__dict__
+        list_netezza_engines_ok_body_model_dict = ListNetezzaEnginesOKBody.from_dict(
+            list_netezza_engines_ok_body_model_json
+        ).__dict__
         list_netezza_engines_ok_body_model2 = ListNetezzaEnginesOKBody(**list_netezza_engines_ok_body_model_dict)
 
         # Verify the model instances are equivalent
@@ -11606,7 +12018,9 @@ class TestModel_ListOtherEnginesOKBody:
         assert list_other_engines_ok_body_model != False
 
         # Construct a model instance of ListOtherEnginesOKBody by calling from_dict on the json representation
-        list_other_engines_ok_body_model_dict = ListOtherEnginesOKBody.from_dict(list_other_engines_ok_body_model_json).__dict__
+        list_other_engines_ok_body_model_dict = ListOtherEnginesOKBody.from_dict(
+            list_other_engines_ok_body_model_json
+        ).__dict__
         list_other_engines_ok_body_model2 = ListOtherEnginesOKBody(**list_other_engines_ok_body_model_dict)
 
         # Verify the model instances are equivalent
@@ -11643,12 +12057,18 @@ class TestModel_ListPrestoEngineCatalogsOKBody:
         list_presto_engine_catalogs_ok_body_model_json['response'] = success_response_model
 
         # Construct a model instance of ListPrestoEngineCatalogsOKBody by calling from_dict on the json representation
-        list_presto_engine_catalogs_ok_body_model = ListPrestoEngineCatalogsOKBody.from_dict(list_presto_engine_catalogs_ok_body_model_json)
+        list_presto_engine_catalogs_ok_body_model = ListPrestoEngineCatalogsOKBody.from_dict(
+            list_presto_engine_catalogs_ok_body_model_json
+        )
         assert list_presto_engine_catalogs_ok_body_model != False
 
         # Construct a model instance of ListPrestoEngineCatalogsOKBody by calling from_dict on the json representation
-        list_presto_engine_catalogs_ok_body_model_dict = ListPrestoEngineCatalogsOKBody.from_dict(list_presto_engine_catalogs_ok_body_model_json).__dict__
-        list_presto_engine_catalogs_ok_body_model2 = ListPrestoEngineCatalogsOKBody(**list_presto_engine_catalogs_ok_body_model_dict)
+        list_presto_engine_catalogs_ok_body_model_dict = ListPrestoEngineCatalogsOKBody.from_dict(
+            list_presto_engine_catalogs_ok_body_model_json
+        ).__dict__
+        list_presto_engine_catalogs_ok_body_model2 = ListPrestoEngineCatalogsOKBody(
+            **list_presto_engine_catalogs_ok_body_model_dict
+        )
 
         # Verify the model instances are equivalent
         assert list_presto_engine_catalogs_ok_body_model == list_presto_engine_catalogs_ok_body_model2
@@ -11675,11 +12095,19 @@ class TestModel_ListPrestoEnginesOKBody:
         node_description_model['quantity'] = 1
 
         endpoints_model = {}  # Endpoints
-        endpoints_model['applications_api'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
-        endpoints_model['history_server_endpoint'] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
+        endpoints_model[
+            'applications_api'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
+        endpoints_model[
+            'history_server_endpoint'
+        ] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
         endpoints_model['spark_access_endpoint'] = '$HOST/analytics-engine/details/spark-<instance_id>'
-        endpoints_model['spark_jobs_v4_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
-        endpoints_model['spark_kernel_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
+        endpoints_model[
+            'spark_jobs_v4_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
+        endpoints_model[
+            'spark_kernel_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
         endpoints_model['view_history_server'] = 'testString'
         endpoints_model['wxd_application_endpoint'] = '$HOST/v1/1698311655308796/engines/spark817/applications'
 
@@ -11689,7 +12117,23 @@ class TestModel_ListPrestoEnginesOKBody:
         engine_details_model['metastore_host'] = '1.2.3.4'
 
         presto_engine_model = {}  # PrestoEngine
-        presto_engine_model['actions'] = ['view', 'use', 'update', 'select', 'access_ui', 'associate', 'disassociate', 'restart', 'pause', 'resume', 'grant', 'revoke', 'delete', 'create', 'scale']
+        presto_engine_model['actions'] = [
+            'view',
+            'use',
+            'update',
+            'select',
+            'access_ui',
+            'associate',
+            'disassociate',
+            'restart',
+            'pause',
+            'resume',
+            'grant',
+            'revoke',
+            'delete',
+            'create',
+            'scale',
+        ]
         presto_engine_model['associated_catalogs'] = ['iceberg_data', 'hive_data']
         presto_engine_model['build_version'] = '1.1.0.0.0'
         presto_engine_model['coordinator'] = node_description_model
@@ -11727,7 +12171,9 @@ class TestModel_ListPrestoEnginesOKBody:
         assert list_presto_engines_ok_body_model != False
 
         # Construct a model instance of ListPrestoEnginesOKBody by calling from_dict on the json representation
-        list_presto_engines_ok_body_model_dict = ListPrestoEnginesOKBody.from_dict(list_presto_engines_ok_body_model_json).__dict__
+        list_presto_engines_ok_body_model_dict = ListPrestoEnginesOKBody.from_dict(
+            list_presto_engines_ok_body_model_json
+        ).__dict__
         list_presto_engines_ok_body_model2 = ListPrestoEnginesOKBody(**list_presto_engines_ok_body_model_dict)
 
         # Verify the model instances are equivalent
@@ -11808,11 +12254,15 @@ class TestModel_ListSparkEngineApplication:
         list_spark_engine_application_model_json['template_id'] = 'spark-3.3-jaas-v2-cp4d-template'
 
         # Construct a model instance of ListSparkEngineApplication by calling from_dict on the json representation
-        list_spark_engine_application_model = ListSparkEngineApplication.from_dict(list_spark_engine_application_model_json)
+        list_spark_engine_application_model = ListSparkEngineApplication.from_dict(
+            list_spark_engine_application_model_json
+        )
         assert list_spark_engine_application_model != False
 
         # Construct a model instance of ListSparkEngineApplication by calling from_dict on the json representation
-        list_spark_engine_application_model_dict = ListSparkEngineApplication.from_dict(list_spark_engine_application_model_json).__dict__
+        list_spark_engine_application_model_dict = ListSparkEngineApplication.from_dict(
+            list_spark_engine_application_model_json
+        ).__dict__
         list_spark_engine_application_model2 = ListSparkEngineApplication(**list_spark_engine_application_model_dict)
 
         # Verify the model instances are equivalent
@@ -11838,12 +12288,18 @@ class TestModel_ListSparkEngineApplicationRuntime:
         list_spark_engine_application_runtime_model_json['spark_version'] = '3.3'
 
         # Construct a model instance of ListSparkEngineApplicationRuntime by calling from_dict on the json representation
-        list_spark_engine_application_runtime_model = ListSparkEngineApplicationRuntime.from_dict(list_spark_engine_application_runtime_model_json)
+        list_spark_engine_application_runtime_model = ListSparkEngineApplicationRuntime.from_dict(
+            list_spark_engine_application_runtime_model_json
+        )
         assert list_spark_engine_application_runtime_model != False
 
         # Construct a model instance of ListSparkEngineApplicationRuntime by calling from_dict on the json representation
-        list_spark_engine_application_runtime_model_dict = ListSparkEngineApplicationRuntime.from_dict(list_spark_engine_application_runtime_model_json).__dict__
-        list_spark_engine_application_runtime_model2 = ListSparkEngineApplicationRuntime(**list_spark_engine_application_runtime_model_dict)
+        list_spark_engine_application_runtime_model_dict = ListSparkEngineApplicationRuntime.from_dict(
+            list_spark_engine_application_runtime_model_json
+        ).__dict__
+        list_spark_engine_application_runtime_model2 = ListSparkEngineApplicationRuntime(
+            **list_spark_engine_application_runtime_model_dict
+        )
 
         # Verify the model instances are equivalent
         assert list_spark_engine_application_runtime_model == list_spark_engine_application_runtime_model2
@@ -11894,12 +12350,18 @@ class TestModel_ListSparkEngineApplicationsOKBody:
         list_spark_engine_applications_ok_body_model_json['response'] = success_response_model
 
         # Construct a model instance of ListSparkEngineApplicationsOKBody by calling from_dict on the json representation
-        list_spark_engine_applications_ok_body_model = ListSparkEngineApplicationsOKBody.from_dict(list_spark_engine_applications_ok_body_model_json)
+        list_spark_engine_applications_ok_body_model = ListSparkEngineApplicationsOKBody.from_dict(
+            list_spark_engine_applications_ok_body_model_json
+        )
         assert list_spark_engine_applications_ok_body_model != False
 
         # Construct a model instance of ListSparkEngineApplicationsOKBody by calling from_dict on the json representation
-        list_spark_engine_applications_ok_body_model_dict = ListSparkEngineApplicationsOKBody.from_dict(list_spark_engine_applications_ok_body_model_json).__dict__
-        list_spark_engine_applications_ok_body_model2 = ListSparkEngineApplicationsOKBody(**list_spark_engine_applications_ok_body_model_dict)
+        list_spark_engine_applications_ok_body_model_dict = ListSparkEngineApplicationsOKBody.from_dict(
+            list_spark_engine_applications_ok_body_model_json
+        ).__dict__
+        list_spark_engine_applications_ok_body_model2 = ListSparkEngineApplicationsOKBody(
+            **list_spark_engine_applications_ok_body_model_dict
+        )
 
         # Verify the model instances are equivalent
         assert list_spark_engine_applications_ok_body_model == list_spark_engine_applications_ok_body_model2
@@ -11926,16 +12388,30 @@ class TestModel_ListSparkEnginesOKBody:
         success_response_model['message_code'] = 'success'
 
         spark_engine_details_endpoints_model = {}  # SparkEngineDetailsEndpoints
-        spark_engine_details_endpoints_model['applications_api'] = '$HOST/v4/analytics_engines/<spark_id>/spark_applications/<application_id>'
-        spark_engine_details_endpoints_model['history_server_endpoint'] = '$HOST/v2/spark/v3/instances/<spark_id>/spark_history_server'
-        spark_engine_details_endpoints_model['spark_access_endpoint'] = '$HOST/analytics-engine/details/spark-<instance_id>'
-        spark_engine_details_endpoints_model['spark_jobs_v4_endpoint'] = '$HOST/v4/analytics_engines/<spark_id>/spark_applications'
-        spark_engine_details_endpoints_model['spark_kernel_endpoint'] = '$HOST/v4/analytics_engines/<spark_id>/jkg/api/kernels'
+        spark_engine_details_endpoints_model[
+            'applications_api'
+        ] = '$HOST/v4/analytics_engines/<spark_id>/spark_applications/<application_id>'
+        spark_engine_details_endpoints_model[
+            'history_server_endpoint'
+        ] = '$HOST/v2/spark/v3/instances/<spark_id>/spark_history_server'
+        spark_engine_details_endpoints_model[
+            'spark_access_endpoint'
+        ] = '$HOST/analytics-engine/details/spark-<instance_id>'
+        spark_engine_details_endpoints_model[
+            'spark_jobs_v4_endpoint'
+        ] = '$HOST/v4/analytics_engines/<spark_id>/spark_applications'
+        spark_engine_details_endpoints_model[
+            'spark_kernel_endpoint'
+        ] = '$HOST/v4/analytics_engines/<spark_id>/jkg/api/kernels'
         spark_engine_details_endpoints_model['view_history_server'] = 'View history server'
-        spark_engine_details_endpoints_model['wxd_application_endpoint'] = '$HOST/v1/<wxd_instance_id>/engines/<engine_id>/applications'
+        spark_engine_details_endpoints_model[
+            'wxd_application_endpoint'
+        ] = '$HOST/v1/<wxd_instance_id>/engines/<engine_id>/applications'
 
         spark_engine_details_model = {}  # SparkEngineDetails
-        spark_engine_details_model['connection_string'] = 'https://xyz.<region>.ae.cloud.123.com/v3/analytics_engines/<spark_iae_id>'
+        spark_engine_details_model[
+            'connection_string'
+        ] = 'https://xyz.<region>.ae.cloud.123.com/v3/analytics_engines/<spark_iae_id>'
         spark_engine_details_model['endpoints'] = spark_engine_details_endpoints_model
 
         spark_engine_model = {}  # SparkEngine
@@ -11962,7 +12438,9 @@ class TestModel_ListSparkEnginesOKBody:
         assert list_spark_engines_ok_body_model != False
 
         # Construct a model instance of ListSparkEnginesOKBody by calling from_dict on the json representation
-        list_spark_engines_ok_body_model_dict = ListSparkEnginesOKBody.from_dict(list_spark_engines_ok_body_model_json).__dict__
+        list_spark_engines_ok_body_model_dict = ListSparkEnginesOKBody.from_dict(
+            list_spark_engines_ok_body_model_json
+        ).__dict__
         list_spark_engines_ok_body_model2 = ListSparkEnginesOKBody(**list_spark_engines_ok_body_model_dict)
 
         # Verify the model instances are equivalent
@@ -12005,7 +12483,9 @@ class TestModel_ListTableSnapshotsOKBody:
         assert list_table_snapshots_ok_body_model != False
 
         # Construct a model instance of ListTableSnapshotsOKBody by calling from_dict on the json representation
-        list_table_snapshots_ok_body_model_dict = ListTableSnapshotsOKBody.from_dict(list_table_snapshots_ok_body_model_json).__dict__
+        list_table_snapshots_ok_body_model_dict = ListTableSnapshotsOKBody.from_dict(
+            list_table_snapshots_ok_body_model_json
+        ).__dict__
         list_table_snapshots_ok_body_model2 = ListTableSnapshotsOKBody(**list_table_snapshots_ok_body_model_dict)
 
         # Verify the model instances are equivalent
@@ -12329,13 +12809,23 @@ class TestModel_PrestissimoEndpoints:
 
         # Construct a json representation of a PrestissimoEndpoints model
         prestissimo_endpoints_model_json = {}
-        prestissimo_endpoints_model_json['applications_api'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
-        prestissimo_endpoints_model_json['history_server_endpoint'] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
+        prestissimo_endpoints_model_json[
+            'applications_api'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
+        prestissimo_endpoints_model_json[
+            'history_server_endpoint'
+        ] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
         prestissimo_endpoints_model_json['spark_access_endpoint'] = '$HOST/analytics-engine/details/spark-<instance_id>'
-        prestissimo_endpoints_model_json['spark_jobs_v4_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
-        prestissimo_endpoints_model_json['spark_kernel_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
+        prestissimo_endpoints_model_json[
+            'spark_jobs_v4_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
+        prestissimo_endpoints_model_json[
+            'spark_kernel_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
         prestissimo_endpoints_model_json['view_history_server'] = 'testString'
-        prestissimo_endpoints_model_json['wxd_application_endpoint'] = '$HOST/v1/1698311655308796/engines/spark817/applications'
+        prestissimo_endpoints_model_json[
+            'wxd_application_endpoint'
+        ] = '$HOST/v1/1698311655308796/engines/spark817/applications'
 
         # Construct a model instance of PrestissimoEndpoints by calling from_dict on the json representation
         prestissimo_endpoints_model = PrestissimoEndpoints.from_dict(prestissimo_endpoints_model_json)
@@ -12370,13 +12860,23 @@ class TestModel_PrestissimoEngine:
         prestissimo_node_description_body_model['quantity'] = 38
 
         prestissimo_endpoints_model = {}  # PrestissimoEndpoints
-        prestissimo_endpoints_model['applications_api'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
-        prestissimo_endpoints_model['history_server_endpoint'] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
+        prestissimo_endpoints_model[
+            'applications_api'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
+        prestissimo_endpoints_model[
+            'history_server_endpoint'
+        ] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
         prestissimo_endpoints_model['spark_access_endpoint'] = '$HOST/analytics-engine/details/spark-<instance_id>'
-        prestissimo_endpoints_model['spark_jobs_v4_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
-        prestissimo_endpoints_model['spark_kernel_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
+        prestissimo_endpoints_model[
+            'spark_jobs_v4_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
+        prestissimo_endpoints_model[
+            'spark_kernel_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
         prestissimo_endpoints_model['view_history_server'] = 'testString'
-        prestissimo_endpoints_model['wxd_application_endpoint'] = '$HOST/v1/1698311655308796/engines/spark817/applications'
+        prestissimo_endpoints_model[
+            'wxd_application_endpoint'
+        ] = '$HOST/v1/1698311655308796/engines/spark817/applications'
 
         prestissimo_engine_details_model = {}  # PrestissimoEngineDetails
         prestissimo_engine_details_model['connection_string'] = '1.2.3.4'
@@ -12395,7 +12895,9 @@ class TestModel_PrestissimoEngine:
         prestissimo_engine_model_json['engine_details'] = prestissimo_engine_details_model
         prestissimo_engine_model_json['engine_display_name'] = 'sampleEngine'
         prestissimo_engine_model_json['engine_id'] = 'sampleEngine123'
-        prestissimo_engine_model_json['external_host_name'] = 'ibm-lh-lakehouse-prestissimo-01-prestissimo-svc-cpd-instance.apps.wkclhconnectortest.cp.fyre.ibm.com'
+        prestissimo_engine_model_json[
+            'external_host_name'
+        ] = 'ibm-lh-lakehouse-prestissimo-01-prestissimo-svc-cpd-instance.apps.wkclhconnectortest.cp.fyre.ibm.com'
         prestissimo_engine_model_json['group_id'] = 'new_group_id'
         prestissimo_engine_model_json['host_name'] = 'ibm-lh-lakehouse-prestissimo-01-prestissimo-svc'
         prestissimo_engine_model_json['origin'] = 'ibm'
@@ -12438,13 +12940,23 @@ class TestModel_PrestissimoEngineDetails:
         # Construct dict forms of any model objects needed in order to build this model.
 
         prestissimo_endpoints_model = {}  # PrestissimoEndpoints
-        prestissimo_endpoints_model['applications_api'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
-        prestissimo_endpoints_model['history_server_endpoint'] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
+        prestissimo_endpoints_model[
+            'applications_api'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
+        prestissimo_endpoints_model[
+            'history_server_endpoint'
+        ] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
         prestissimo_endpoints_model['spark_access_endpoint'] = '$HOST/analytics-engine/details/spark-<instance_id>'
-        prestissimo_endpoints_model['spark_jobs_v4_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
-        prestissimo_endpoints_model['spark_kernel_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
+        prestissimo_endpoints_model[
+            'spark_jobs_v4_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
+        prestissimo_endpoints_model[
+            'spark_kernel_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
         prestissimo_endpoints_model['view_history_server'] = 'testString'
-        prestissimo_endpoints_model['wxd_application_endpoint'] = '$HOST/v1/1698311655308796/engines/spark817/applications'
+        prestissimo_endpoints_model[
+            'wxd_application_endpoint'
+        ] = '$HOST/v1/1698311655308796/engines/spark817/applications'
 
         # Construct a json representation of a PrestissimoEngineDetails model
         prestissimo_engine_details_model_json = {}
@@ -12457,7 +12969,9 @@ class TestModel_PrestissimoEngineDetails:
         assert prestissimo_engine_details_model != False
 
         # Construct a model instance of PrestissimoEngineDetails by calling from_dict on the json representation
-        prestissimo_engine_details_model_dict = PrestissimoEngineDetails.from_dict(prestissimo_engine_details_model_json).__dict__
+        prestissimo_engine_details_model_dict = PrestissimoEngineDetails.from_dict(
+            prestissimo_engine_details_model_json
+        ).__dict__
         prestissimo_engine_details_model2 = PrestissimoEngineDetails(**prestissimo_engine_details_model_dict)
 
         # Verify the model instances are equivalent
@@ -12484,12 +12998,18 @@ class TestModel_PrestissimoNodeDescriptionBody:
         prestissimo_node_description_body_model_json['quantity'] = 38
 
         # Construct a model instance of PrestissimoNodeDescriptionBody by calling from_dict on the json representation
-        prestissimo_node_description_body_model = PrestissimoNodeDescriptionBody.from_dict(prestissimo_node_description_body_model_json)
+        prestissimo_node_description_body_model = PrestissimoNodeDescriptionBody.from_dict(
+            prestissimo_node_description_body_model_json
+        )
         assert prestissimo_node_description_body_model != False
 
         # Construct a model instance of PrestissimoNodeDescriptionBody by calling from_dict on the json representation
-        prestissimo_node_description_body_model_dict = PrestissimoNodeDescriptionBody.from_dict(prestissimo_node_description_body_model_json).__dict__
-        prestissimo_node_description_body_model2 = PrestissimoNodeDescriptionBody(**prestissimo_node_description_body_model_dict)
+        prestissimo_node_description_body_model_dict = PrestissimoNodeDescriptionBody.from_dict(
+            prestissimo_node_description_body_model_json
+        ).__dict__
+        prestissimo_node_description_body_model2 = PrestissimoNodeDescriptionBody(
+            **prestissimo_node_description_body_model_dict
+        )
 
         # Verify the model instances are equivalent
         assert prestissimo_node_description_body_model == prestissimo_node_description_body_model2
@@ -12516,11 +13036,19 @@ class TestModel_PrestoEngine:
         node_description_model['quantity'] = 38
 
         endpoints_model = {}  # Endpoints
-        endpoints_model['applications_api'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
-        endpoints_model['history_server_endpoint'] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
+        endpoints_model[
+            'applications_api'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
+        endpoints_model[
+            'history_server_endpoint'
+        ] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
         endpoints_model['spark_access_endpoint'] = '$HOST/analytics-engine/details/spark-<instance_id>'
-        endpoints_model['spark_jobs_v4_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
-        endpoints_model['spark_kernel_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
+        endpoints_model[
+            'spark_jobs_v4_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
+        endpoints_model[
+            'spark_kernel_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
         endpoints_model['view_history_server'] = 'testString'
         endpoints_model['wxd_application_endpoint'] = '$HOST/v1/1698311655308796/engines/spark817/applications'
 
@@ -12596,19 +13124,35 @@ class TestModel_RegisterDatabaseCatalogBodyDatabaseDetails:
         register_database_catalog_body_database_details_model_json['username'] = 'sampleuser'
 
         # Construct a model instance of RegisterDatabaseCatalogBodyDatabaseDetails by calling from_dict on the json representation
-        register_database_catalog_body_database_details_model = RegisterDatabaseCatalogBodyDatabaseDetails.from_dict(register_database_catalog_body_database_details_model_json)
+        register_database_catalog_body_database_details_model = RegisterDatabaseCatalogBodyDatabaseDetails.from_dict(
+            register_database_catalog_body_database_details_model_json
+        )
         assert register_database_catalog_body_database_details_model != False
 
         # Construct a model instance of RegisterDatabaseCatalogBodyDatabaseDetails by calling from_dict on the json representation
-        register_database_catalog_body_database_details_model_dict = RegisterDatabaseCatalogBodyDatabaseDetails.from_dict(register_database_catalog_body_database_details_model_json).__dict__
-        register_database_catalog_body_database_details_model2 = RegisterDatabaseCatalogBodyDatabaseDetails(**register_database_catalog_body_database_details_model_dict)
+        register_database_catalog_body_database_details_model_dict = (
+            RegisterDatabaseCatalogBodyDatabaseDetails.from_dict(
+                register_database_catalog_body_database_details_model_json
+            ).__dict__
+        )
+        register_database_catalog_body_database_details_model2 = RegisterDatabaseCatalogBodyDatabaseDetails(
+            **register_database_catalog_body_database_details_model_dict
+        )
 
         # Verify the model instances are equivalent
-        assert register_database_catalog_body_database_details_model == register_database_catalog_body_database_details_model2
+        assert (
+            register_database_catalog_body_database_details_model
+            == register_database_catalog_body_database_details_model2
+        )
 
         # Convert model instance back to dict and verify no loss of data
-        register_database_catalog_body_database_details_model_json2 = register_database_catalog_body_database_details_model.to_dict()
-        assert register_database_catalog_body_database_details_model_json2 == register_database_catalog_body_database_details_model_json
+        register_database_catalog_body_database_details_model_json2 = (
+            register_database_catalog_body_database_details_model.to_dict()
+        )
+        assert (
+            register_database_catalog_body_database_details_model_json2
+            == register_database_catalog_body_database_details_model_json
+        )
 
 
 class TestModel_RegisterDatabaseCatalogBodyDatabasePropertiesItems:
@@ -12628,19 +13172,39 @@ class TestModel_RegisterDatabaseCatalogBodyDatabasePropertiesItems:
         register_database_catalog_body_database_properties_items_model_json['value'] = 'glue'
 
         # Construct a model instance of RegisterDatabaseCatalogBodyDatabasePropertiesItems by calling from_dict on the json representation
-        register_database_catalog_body_database_properties_items_model = RegisterDatabaseCatalogBodyDatabasePropertiesItems.from_dict(register_database_catalog_body_database_properties_items_model_json)
+        register_database_catalog_body_database_properties_items_model = (
+            RegisterDatabaseCatalogBodyDatabasePropertiesItems.from_dict(
+                register_database_catalog_body_database_properties_items_model_json
+            )
+        )
         assert register_database_catalog_body_database_properties_items_model != False
 
         # Construct a model instance of RegisterDatabaseCatalogBodyDatabasePropertiesItems by calling from_dict on the json representation
-        register_database_catalog_body_database_properties_items_model_dict = RegisterDatabaseCatalogBodyDatabasePropertiesItems.from_dict(register_database_catalog_body_database_properties_items_model_json).__dict__
-        register_database_catalog_body_database_properties_items_model2 = RegisterDatabaseCatalogBodyDatabasePropertiesItems(**register_database_catalog_body_database_properties_items_model_dict)
+        register_database_catalog_body_database_properties_items_model_dict = (
+            RegisterDatabaseCatalogBodyDatabasePropertiesItems.from_dict(
+                register_database_catalog_body_database_properties_items_model_json
+            ).__dict__
+        )
+        register_database_catalog_body_database_properties_items_model2 = (
+            RegisterDatabaseCatalogBodyDatabasePropertiesItems(
+                **register_database_catalog_body_database_properties_items_model_dict
+            )
+        )
 
         # Verify the model instances are equivalent
-        assert register_database_catalog_body_database_properties_items_model == register_database_catalog_body_database_properties_items_model2
+        assert (
+            register_database_catalog_body_database_properties_items_model
+            == register_database_catalog_body_database_properties_items_model2
+        )
 
         # Convert model instance back to dict and verify no loss of data
-        register_database_catalog_body_database_properties_items_model_json2 = register_database_catalog_body_database_properties_items_model.to_dict()
-        assert register_database_catalog_body_database_properties_items_model_json2 == register_database_catalog_body_database_properties_items_model_json
+        register_database_catalog_body_database_properties_items_model_json2 = (
+            register_database_catalog_body_database_properties_items_model.to_dict()
+        )
+        assert (
+            register_database_catalog_body_database_properties_items_model_json2
+            == register_database_catalog_body_database_properties_items_model_json
+        )
 
 
 class TestModel_ReplacePrestoEngineCatalogsCreatedBody:
@@ -12669,19 +13233,30 @@ class TestModel_ReplacePrestoEngineCatalogsCreatedBody:
         replace_presto_engine_catalogs_created_body_model_json['response'] = success_response_model
 
         # Construct a model instance of ReplacePrestoEngineCatalogsCreatedBody by calling from_dict on the json representation
-        replace_presto_engine_catalogs_created_body_model = ReplacePrestoEngineCatalogsCreatedBody.from_dict(replace_presto_engine_catalogs_created_body_model_json)
+        replace_presto_engine_catalogs_created_body_model = ReplacePrestoEngineCatalogsCreatedBody.from_dict(
+            replace_presto_engine_catalogs_created_body_model_json
+        )
         assert replace_presto_engine_catalogs_created_body_model != False
 
         # Construct a model instance of ReplacePrestoEngineCatalogsCreatedBody by calling from_dict on the json representation
-        replace_presto_engine_catalogs_created_body_model_dict = ReplacePrestoEngineCatalogsCreatedBody.from_dict(replace_presto_engine_catalogs_created_body_model_json).__dict__
-        replace_presto_engine_catalogs_created_body_model2 = ReplacePrestoEngineCatalogsCreatedBody(**replace_presto_engine_catalogs_created_body_model_dict)
+        replace_presto_engine_catalogs_created_body_model_dict = ReplacePrestoEngineCatalogsCreatedBody.from_dict(
+            replace_presto_engine_catalogs_created_body_model_json
+        ).__dict__
+        replace_presto_engine_catalogs_created_body_model2 = ReplacePrestoEngineCatalogsCreatedBody(
+            **replace_presto_engine_catalogs_created_body_model_dict
+        )
 
         # Verify the model instances are equivalent
         assert replace_presto_engine_catalogs_created_body_model == replace_presto_engine_catalogs_created_body_model2
 
         # Convert model instance back to dict and verify no loss of data
-        replace_presto_engine_catalogs_created_body_model_json2 = replace_presto_engine_catalogs_created_body_model.to_dict()
-        assert replace_presto_engine_catalogs_created_body_model_json2 == replace_presto_engine_catalogs_created_body_model_json
+        replace_presto_engine_catalogs_created_body_model_json2 = (
+            replace_presto_engine_catalogs_created_body_model.to_dict()
+        )
+        assert (
+            replace_presto_engine_catalogs_created_body_model_json2
+            == replace_presto_engine_catalogs_created_body_model_json
+        )
 
 
 class TestModel_ReplaceSnapshotCreatedBody:
@@ -12705,11 +13280,15 @@ class TestModel_ReplaceSnapshotCreatedBody:
         replace_snapshot_created_body_model_json['response'] = success_response_model
 
         # Construct a model instance of ReplaceSnapshotCreatedBody by calling from_dict on the json representation
-        replace_snapshot_created_body_model = ReplaceSnapshotCreatedBody.from_dict(replace_snapshot_created_body_model_json)
+        replace_snapshot_created_body_model = ReplaceSnapshotCreatedBody.from_dict(
+            replace_snapshot_created_body_model_json
+        )
         assert replace_snapshot_created_body_model != False
 
         # Construct a model instance of ReplaceSnapshotCreatedBody by calling from_dict on the json representation
-        replace_snapshot_created_body_model_dict = ReplaceSnapshotCreatedBody.from_dict(replace_snapshot_created_body_model_json).__dict__
+        replace_snapshot_created_body_model_dict = ReplaceSnapshotCreatedBody.from_dict(
+            replace_snapshot_created_body_model_json
+        ).__dict__
         replace_snapshot_created_body_model2 = ReplaceSnapshotCreatedBody(**replace_snapshot_created_body_model_dict)
 
         # Verify the model instances are equivalent
@@ -12742,12 +13321,18 @@ class TestModel_RunExplainAnalyzeStatementOKBody:
         run_explain_analyze_statement_ok_body_model_json['result'] = 'testString'
 
         # Construct a model instance of RunExplainAnalyzeStatementOKBody by calling from_dict on the json representation
-        run_explain_analyze_statement_ok_body_model = RunExplainAnalyzeStatementOKBody.from_dict(run_explain_analyze_statement_ok_body_model_json)
+        run_explain_analyze_statement_ok_body_model = RunExplainAnalyzeStatementOKBody.from_dict(
+            run_explain_analyze_statement_ok_body_model_json
+        )
         assert run_explain_analyze_statement_ok_body_model != False
 
         # Construct a model instance of RunExplainAnalyzeStatementOKBody by calling from_dict on the json representation
-        run_explain_analyze_statement_ok_body_model_dict = RunExplainAnalyzeStatementOKBody.from_dict(run_explain_analyze_statement_ok_body_model_json).__dict__
-        run_explain_analyze_statement_ok_body_model2 = RunExplainAnalyzeStatementOKBody(**run_explain_analyze_statement_ok_body_model_dict)
+        run_explain_analyze_statement_ok_body_model_dict = RunExplainAnalyzeStatementOKBody.from_dict(
+            run_explain_analyze_statement_ok_body_model_json
+        ).__dict__
+        run_explain_analyze_statement_ok_body_model2 = RunExplainAnalyzeStatementOKBody(
+            **run_explain_analyze_statement_ok_body_model_dict
+        )
 
         # Verify the model instances are equivalent
         assert run_explain_analyze_statement_ok_body_model == run_explain_analyze_statement_ok_body_model2
@@ -12779,11 +13364,15 @@ class TestModel_RunExplainStatementOKBody:
         run_explain_statement_ok_body_model_json['result'] = 'testString'
 
         # Construct a model instance of RunExplainStatementOKBody by calling from_dict on the json representation
-        run_explain_statement_ok_body_model = RunExplainStatementOKBody.from_dict(run_explain_statement_ok_body_model_json)
+        run_explain_statement_ok_body_model = RunExplainStatementOKBody.from_dict(
+            run_explain_statement_ok_body_model_json
+        )
         assert run_explain_statement_ok_body_model != False
 
         # Construct a model instance of RunExplainStatementOKBody by calling from_dict on the json representation
-        run_explain_statement_ok_body_model_dict = RunExplainStatementOKBody.from_dict(run_explain_statement_ok_body_model_json).__dict__
+        run_explain_statement_ok_body_model_dict = RunExplainStatementOKBody.from_dict(
+            run_explain_statement_ok_body_model_json
+        ).__dict__
         run_explain_statement_ok_body_model2 = RunExplainStatementOKBody(**run_explain_statement_ok_body_model_dict)
 
         # Verify the model instances are equivalent
@@ -12817,7 +13406,9 @@ class TestModel_SparkApplicationDetails:
         assert spark_application_details_model != False
 
         # Construct a model instance of SparkApplicationDetails by calling from_dict on the json representation
-        spark_application_details_model_dict = SparkApplicationDetails.from_dict(spark_application_details_model_json).__dict__
+        spark_application_details_model_dict = SparkApplicationDetails.from_dict(
+            spark_application_details_model_json
+        ).__dict__
         spark_application_details_model2 = SparkApplicationDetails(**spark_application_details_model_dict)
 
         # Verify the model instances are equivalent
@@ -12841,16 +13432,30 @@ class TestModel_SparkEngine:
         # Construct dict forms of any model objects needed in order to build this model.
 
         spark_engine_details_endpoints_model = {}  # SparkEngineDetailsEndpoints
-        spark_engine_details_endpoints_model['applications_api'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
-        spark_engine_details_endpoints_model['history_server_endpoint'] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
-        spark_engine_details_endpoints_model['spark_access_endpoint'] = '$HOST/analytics-engine/details/spark-<instance_id>'
-        spark_engine_details_endpoints_model['spark_jobs_v4_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
-        spark_engine_details_endpoints_model['spark_kernel_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
+        spark_engine_details_endpoints_model[
+            'applications_api'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
+        spark_engine_details_endpoints_model[
+            'history_server_endpoint'
+        ] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
+        spark_engine_details_endpoints_model[
+            'spark_access_endpoint'
+        ] = '$HOST/analytics-engine/details/spark-<instance_id>'
+        spark_engine_details_endpoints_model[
+            'spark_jobs_v4_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
+        spark_engine_details_endpoints_model[
+            'spark_kernel_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
         spark_engine_details_endpoints_model['view_history_server'] = 'testString'
-        spark_engine_details_endpoints_model['wxd_application_endpoint'] = '$HOST/v1/1698311655308796/engines/spark817/applications'
+        spark_engine_details_endpoints_model[
+            'wxd_application_endpoint'
+        ] = '$HOST/v1/1698311655308796/engines/spark817/applications'
 
         spark_engine_details_model = {}  # SparkEngineDetails
-        spark_engine_details_model['connection_string'] = 'https://xyz.<region>.ae.cloud.123.com/v3/analytics_engines/<spark_iae_id>'
+        spark_engine_details_model[
+            'connection_string'
+        ] = 'https://xyz.<region>.ae.cloud.123.com/v3/analytics_engines/<spark_iae_id>'
         spark_engine_details_model['endpoints'] = spark_engine_details_endpoints_model
 
         # Construct a json representation of a SparkEngine model
@@ -12905,7 +13510,9 @@ class TestModel_SparkEngineApplication:
         assert spark_engine_application_model != False
 
         # Construct a model instance of SparkEngineApplication by calling from_dict on the json representation
-        spark_engine_application_model_dict = SparkEngineApplication.from_dict(spark_engine_application_model_json).__dict__
+        spark_engine_application_model_dict = SparkEngineApplication.from_dict(
+            spark_engine_application_model_json
+        ).__dict__
         spark_engine_application_model2 = SparkEngineApplication(**spark_engine_application_model_dict)
 
         # Verify the model instances are equivalent
@@ -12928,26 +13535,48 @@ class TestModel_SparkEngineApplicationStatus:
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        spark_engine_application_status_application_details_conf_model = {}  # SparkEngineApplicationStatusApplicationDetailsConf
+        spark_engine_application_status_application_details_conf_model = (
+            {}
+        )  # SparkEngineApplicationStatusApplicationDetailsConf
         spark_engine_application_status_application_details_conf_model['spark_app_name'] = 'MyJob'
-        spark_engine_application_status_application_details_conf_model['spark_hive_metastore_client_auth_mode'] = 'PLAIN'
-        spark_engine_application_status_application_details_conf_model['spark_hive_metastore_client_plain_password'] = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...'
-        spark_engine_application_status_application_details_conf_model['spark_hive_metastore_client_plain_username'] = 'ibm_lh_token_admin'
-        spark_engine_application_status_application_details_conf_model['spark_hive_metastore_truststore_password'] = 'changeit'
-        spark_engine_application_status_application_details_conf_model['spark_hive_metastore_truststore_path'] = 'file:///opt/ibm/jdk/lib/security/cacerts'
+        spark_engine_application_status_application_details_conf_model[
+            'spark_hive_metastore_client_auth_mode'
+        ] = 'PLAIN'
+        spark_engine_application_status_application_details_conf_model[
+            'spark_hive_metastore_client_plain_password'
+        ] = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...'
+        spark_engine_application_status_application_details_conf_model[
+            'spark_hive_metastore_client_plain_username'
+        ] = 'ibm_lh_token_admin'
+        spark_engine_application_status_application_details_conf_model[
+            'spark_hive_metastore_truststore_password'
+        ] = 'changeit'
+        spark_engine_application_status_application_details_conf_model[
+            'spark_hive_metastore_truststore_path'
+        ] = 'file:///opt/ibm/jdk/lib/security/cacerts'
         spark_engine_application_status_application_details_conf_model['spark_hive_metastore_truststore_type'] = 'JKS'
         spark_engine_application_status_application_details_conf_model['spark_hive_metastore_use_ssl'] = 'true'
         spark_engine_application_status_application_details_conf_model['spark_sql_catalog_implementation'] = 'hive'
-        spark_engine_application_status_application_details_conf_model['spark_sql_catalog_lakehouse'] = 'org.apache.iceberg.spark.SparkCatalog'
+        spark_engine_application_status_application_details_conf_model[
+            'spark_sql_catalog_lakehouse'
+        ] = 'org.apache.iceberg.spark.SparkCatalog'
         spark_engine_application_status_application_details_conf_model['spark_sql_catalog_lakehouse_type'] = 'hive'
         spark_engine_application_status_application_details_conf_model['spark_sql_catalog_lakehouse_uri'] = 'testString'
-        spark_engine_application_status_application_details_conf_model['spark_sql_extensions'] = 'org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions'
-        spark_engine_application_status_application_details_conf_model['spark_sql_iceberg_vectorization_enabled'] = 'false'
+        spark_engine_application_status_application_details_conf_model[
+            'spark_sql_extensions'
+        ] = 'org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions'
+        spark_engine_application_status_application_details_conf_model[
+            'spark_sql_iceberg_vectorization_enabled'
+        ] = 'false'
 
         spark_engine_application_status_application_details_model = {}  # SparkEngineApplicationStatusApplicationDetails
-        spark_engine_application_status_application_details_model['application'] = '/opt/ibm/spark/examples/src/main/python/wordcount.py'
+        spark_engine_application_status_application_details_model[
+            'application'
+        ] = '/opt/ibm/spark/examples/src/main/python/wordcount.py'
         spark_engine_application_status_application_details_model['arguments'] = ['testString']
-        spark_engine_application_status_application_details_model['conf'] = spark_engine_application_status_application_details_conf_model
+        spark_engine_application_status_application_details_model[
+            'conf'
+        ] = spark_engine_application_status_application_details_conf_model
         spark_engine_application_status_application_details_model['env'] = {'anyKey': 'anyValue'}
         spark_engine_application_status_application_details_model['name'] = 'SparkApplication1'
 
@@ -12958,7 +13587,9 @@ class TestModel_SparkEngineApplicationStatus:
 
         # Construct a json representation of a SparkEngineApplicationStatus model
         spark_engine_application_status_model_json = {}
-        spark_engine_application_status_model_json['application_details'] = spark_engine_application_status_application_details_model
+        spark_engine_application_status_model_json[
+            'application_details'
+        ] = spark_engine_application_status_application_details_model
         spark_engine_application_status_model_json['application_id'] = 'cd7cbf1f-8893-4c51-aa3d-d92729f05e99'
         spark_engine_application_status_model_json['auto_termination_time'] = '2020-12-08T10:00:00.000Z'
         spark_engine_application_status_model_json['creation_time'] = 'Saturday 28 October 2023 07:17:06.856+0000'
@@ -12972,17 +13603,25 @@ class TestModel_SparkEngineApplicationStatus:
         spark_engine_application_status_model_json['spark_application_name'] = 'PythonWordCount'
         spark_engine_application_status_model_json['start_time'] = 'Saturday 28 October 2023 07:17:26.649+0000'
         spark_engine_application_status_model_json['state'] = 'FINISHED'
-        spark_engine_application_status_model_json['state_details'] = [spark_engine_application_status_state_details_items_model]
+        spark_engine_application_status_model_json['state_details'] = [
+            spark_engine_application_status_state_details_items_model
+        ]
         spark_engine_application_status_model_json['submission_time'] = '2023-11-01T11:18:49.758Z'
         spark_engine_application_status_model_json['template_id'] = 'spark-3.3-jaas-v2-cp4d-template'
 
         # Construct a model instance of SparkEngineApplicationStatus by calling from_dict on the json representation
-        spark_engine_application_status_model = SparkEngineApplicationStatus.from_dict(spark_engine_application_status_model_json)
+        spark_engine_application_status_model = SparkEngineApplicationStatus.from_dict(
+            spark_engine_application_status_model_json
+        )
         assert spark_engine_application_status_model != False
 
         # Construct a model instance of SparkEngineApplicationStatus by calling from_dict on the json representation
-        spark_engine_application_status_model_dict = SparkEngineApplicationStatus.from_dict(spark_engine_application_status_model_json).__dict__
-        spark_engine_application_status_model2 = SparkEngineApplicationStatus(**spark_engine_application_status_model_dict)
+        spark_engine_application_status_model_dict = SparkEngineApplicationStatus.from_dict(
+            spark_engine_application_status_model_json
+        ).__dict__
+        spark_engine_application_status_model2 = SparkEngineApplicationStatus(
+            **spark_engine_application_status_model_dict
+        )
 
         # Verify the model instances are equivalent
         assert spark_engine_application_status_model == spark_engine_application_status_model2
@@ -13004,44 +13643,84 @@ class TestModel_SparkEngineApplicationStatusApplicationDetails:
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        spark_engine_application_status_application_details_conf_model = {}  # SparkEngineApplicationStatusApplicationDetailsConf
+        spark_engine_application_status_application_details_conf_model = (
+            {}
+        )  # SparkEngineApplicationStatusApplicationDetailsConf
         spark_engine_application_status_application_details_conf_model['spark_app_name'] = 'MyJob'
-        spark_engine_application_status_application_details_conf_model['spark_hive_metastore_client_auth_mode'] = 'PLAIN'
-        spark_engine_application_status_application_details_conf_model['spark_hive_metastore_client_plain_password'] = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...'
-        spark_engine_application_status_application_details_conf_model['spark_hive_metastore_client_plain_username'] = 'ibm_lh_token_admin'
-        spark_engine_application_status_application_details_conf_model['spark_hive_metastore_truststore_password'] = 'changeit'
-        spark_engine_application_status_application_details_conf_model['spark_hive_metastore_truststore_path'] = 'file:///opt/ibm/jdk/lib/security/cacerts'
+        spark_engine_application_status_application_details_conf_model[
+            'spark_hive_metastore_client_auth_mode'
+        ] = 'PLAIN'
+        spark_engine_application_status_application_details_conf_model[
+            'spark_hive_metastore_client_plain_password'
+        ] = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...'
+        spark_engine_application_status_application_details_conf_model[
+            'spark_hive_metastore_client_plain_username'
+        ] = 'ibm_lh_token_admin'
+        spark_engine_application_status_application_details_conf_model[
+            'spark_hive_metastore_truststore_password'
+        ] = 'changeit'
+        spark_engine_application_status_application_details_conf_model[
+            'spark_hive_metastore_truststore_path'
+        ] = 'file:///opt/ibm/jdk/lib/security/cacerts'
         spark_engine_application_status_application_details_conf_model['spark_hive_metastore_truststore_type'] = 'JKS'
         spark_engine_application_status_application_details_conf_model['spark_hive_metastore_use_ssl'] = 'true'
         spark_engine_application_status_application_details_conf_model['spark_sql_catalog_implementation'] = 'hive'
-        spark_engine_application_status_application_details_conf_model['spark_sql_catalog_lakehouse'] = 'org.apache.iceberg.spark.SparkCatalog'
+        spark_engine_application_status_application_details_conf_model[
+            'spark_sql_catalog_lakehouse'
+        ] = 'org.apache.iceberg.spark.SparkCatalog'
         spark_engine_application_status_application_details_conf_model['spark_sql_catalog_lakehouse_type'] = 'hive'
         spark_engine_application_status_application_details_conf_model['spark_sql_catalog_lakehouse_uri'] = 'testString'
-        spark_engine_application_status_application_details_conf_model['spark_sql_extensions'] = 'org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions'
-        spark_engine_application_status_application_details_conf_model['spark_sql_iceberg_vectorization_enabled'] = 'false'
+        spark_engine_application_status_application_details_conf_model[
+            'spark_sql_extensions'
+        ] = 'org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions'
+        spark_engine_application_status_application_details_conf_model[
+            'spark_sql_iceberg_vectorization_enabled'
+        ] = 'false'
 
         # Construct a json representation of a SparkEngineApplicationStatusApplicationDetails model
         spark_engine_application_status_application_details_model_json = {}
-        spark_engine_application_status_application_details_model_json['application'] = '/opt/ibm/spark/examples/src/main/python/wordcount.py'
+        spark_engine_application_status_application_details_model_json[
+            'application'
+        ] = '/opt/ibm/spark/examples/src/main/python/wordcount.py'
         spark_engine_application_status_application_details_model_json['arguments'] = ['testString']
-        spark_engine_application_status_application_details_model_json['conf'] = spark_engine_application_status_application_details_conf_model
+        spark_engine_application_status_application_details_model_json[
+            'conf'
+        ] = spark_engine_application_status_application_details_conf_model
         spark_engine_application_status_application_details_model_json['env'] = {'anyKey': 'anyValue'}
         spark_engine_application_status_application_details_model_json['name'] = 'SparkApplication1'
 
         # Construct a model instance of SparkEngineApplicationStatusApplicationDetails by calling from_dict on the json representation
-        spark_engine_application_status_application_details_model = SparkEngineApplicationStatusApplicationDetails.from_dict(spark_engine_application_status_application_details_model_json)
+        spark_engine_application_status_application_details_model = (
+            SparkEngineApplicationStatusApplicationDetails.from_dict(
+                spark_engine_application_status_application_details_model_json
+            )
+        )
         assert spark_engine_application_status_application_details_model != False
 
         # Construct a model instance of SparkEngineApplicationStatusApplicationDetails by calling from_dict on the json representation
-        spark_engine_application_status_application_details_model_dict = SparkEngineApplicationStatusApplicationDetails.from_dict(spark_engine_application_status_application_details_model_json).__dict__
-        spark_engine_application_status_application_details_model2 = SparkEngineApplicationStatusApplicationDetails(**spark_engine_application_status_application_details_model_dict)
+        spark_engine_application_status_application_details_model_dict = (
+            SparkEngineApplicationStatusApplicationDetails.from_dict(
+                spark_engine_application_status_application_details_model_json
+            ).__dict__
+        )
+        spark_engine_application_status_application_details_model2 = SparkEngineApplicationStatusApplicationDetails(
+            **spark_engine_application_status_application_details_model_dict
+        )
 
         # Verify the model instances are equivalent
-        assert spark_engine_application_status_application_details_model == spark_engine_application_status_application_details_model2
+        assert (
+            spark_engine_application_status_application_details_model
+            == spark_engine_application_status_application_details_model2
+        )
 
         # Convert model instance back to dict and verify no loss of data
-        spark_engine_application_status_application_details_model_json2 = spark_engine_application_status_application_details_model.to_dict()
-        assert spark_engine_application_status_application_details_model_json2 == spark_engine_application_status_application_details_model_json
+        spark_engine_application_status_application_details_model_json2 = (
+            spark_engine_application_status_application_details_model.to_dict()
+        )
+        assert (
+            spark_engine_application_status_application_details_model_json2
+            == spark_engine_application_status_application_details_model_json
+        )
 
 
 class TestModel_SparkEngineApplicationStatusApplicationDetailsConf:
@@ -13057,34 +13736,74 @@ class TestModel_SparkEngineApplicationStatusApplicationDetailsConf:
         # Construct a json representation of a SparkEngineApplicationStatusApplicationDetailsConf model
         spark_engine_application_status_application_details_conf_model_json = {}
         spark_engine_application_status_application_details_conf_model_json['spark_app_name'] = 'MyJob'
-        spark_engine_application_status_application_details_conf_model_json['spark_hive_metastore_client_auth_mode'] = 'PLAIN'
-        spark_engine_application_status_application_details_conf_model_json['spark_hive_metastore_client_plain_password'] = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...'
-        spark_engine_application_status_application_details_conf_model_json['spark_hive_metastore_client_plain_username'] = 'ibm_lh_token_admin'
-        spark_engine_application_status_application_details_conf_model_json['spark_hive_metastore_truststore_password'] = 'changeit'
-        spark_engine_application_status_application_details_conf_model_json['spark_hive_metastore_truststore_path'] = 'file:///opt/ibm/jdk/lib/security/cacerts'
-        spark_engine_application_status_application_details_conf_model_json['spark_hive_metastore_truststore_type'] = 'JKS'
+        spark_engine_application_status_application_details_conf_model_json[
+            'spark_hive_metastore_client_auth_mode'
+        ] = 'PLAIN'
+        spark_engine_application_status_application_details_conf_model_json[
+            'spark_hive_metastore_client_plain_password'
+        ] = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...'
+        spark_engine_application_status_application_details_conf_model_json[
+            'spark_hive_metastore_client_plain_username'
+        ] = 'ibm_lh_token_admin'
+        spark_engine_application_status_application_details_conf_model_json[
+            'spark_hive_metastore_truststore_password'
+        ] = 'changeit'
+        spark_engine_application_status_application_details_conf_model_json[
+            'spark_hive_metastore_truststore_path'
+        ] = 'file:///opt/ibm/jdk/lib/security/cacerts'
+        spark_engine_application_status_application_details_conf_model_json[
+            'spark_hive_metastore_truststore_type'
+        ] = 'JKS'
         spark_engine_application_status_application_details_conf_model_json['spark_hive_metastore_use_ssl'] = 'true'
         spark_engine_application_status_application_details_conf_model_json['spark_sql_catalog_implementation'] = 'hive'
-        spark_engine_application_status_application_details_conf_model_json['spark_sql_catalog_lakehouse'] = 'org.apache.iceberg.spark.SparkCatalog'
+        spark_engine_application_status_application_details_conf_model_json[
+            'spark_sql_catalog_lakehouse'
+        ] = 'org.apache.iceberg.spark.SparkCatalog'
         spark_engine_application_status_application_details_conf_model_json['spark_sql_catalog_lakehouse_type'] = 'hive'
-        spark_engine_application_status_application_details_conf_model_json['spark_sql_catalog_lakehouse_uri'] = 'testString'
-        spark_engine_application_status_application_details_conf_model_json['spark_sql_extensions'] = 'org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions'
-        spark_engine_application_status_application_details_conf_model_json['spark_sql_iceberg_vectorization_enabled'] = 'false'
+        spark_engine_application_status_application_details_conf_model_json[
+            'spark_sql_catalog_lakehouse_uri'
+        ] = 'testString'
+        spark_engine_application_status_application_details_conf_model_json[
+            'spark_sql_extensions'
+        ] = 'org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions'
+        spark_engine_application_status_application_details_conf_model_json[
+            'spark_sql_iceberg_vectorization_enabled'
+        ] = 'false'
 
         # Construct a model instance of SparkEngineApplicationStatusApplicationDetailsConf by calling from_dict on the json representation
-        spark_engine_application_status_application_details_conf_model = SparkEngineApplicationStatusApplicationDetailsConf.from_dict(spark_engine_application_status_application_details_conf_model_json)
+        spark_engine_application_status_application_details_conf_model = (
+            SparkEngineApplicationStatusApplicationDetailsConf.from_dict(
+                spark_engine_application_status_application_details_conf_model_json
+            )
+        )
         assert spark_engine_application_status_application_details_conf_model != False
 
         # Construct a model instance of SparkEngineApplicationStatusApplicationDetailsConf by calling from_dict on the json representation
-        spark_engine_application_status_application_details_conf_model_dict = SparkEngineApplicationStatusApplicationDetailsConf.from_dict(spark_engine_application_status_application_details_conf_model_json).__dict__
-        spark_engine_application_status_application_details_conf_model2 = SparkEngineApplicationStatusApplicationDetailsConf(**spark_engine_application_status_application_details_conf_model_dict)
+        spark_engine_application_status_application_details_conf_model_dict = (
+            SparkEngineApplicationStatusApplicationDetailsConf.from_dict(
+                spark_engine_application_status_application_details_conf_model_json
+            ).__dict__
+        )
+        spark_engine_application_status_application_details_conf_model2 = (
+            SparkEngineApplicationStatusApplicationDetailsConf(
+                **spark_engine_application_status_application_details_conf_model_dict
+            )
+        )
 
         # Verify the model instances are equivalent
-        assert spark_engine_application_status_application_details_conf_model == spark_engine_application_status_application_details_conf_model2
+        assert (
+            spark_engine_application_status_application_details_conf_model
+            == spark_engine_application_status_application_details_conf_model2
+        )
 
         # Convert model instance back to dict and verify no loss of data
-        spark_engine_application_status_application_details_conf_model_json2 = spark_engine_application_status_application_details_conf_model.to_dict()
-        assert spark_engine_application_status_application_details_conf_model_json2 == spark_engine_application_status_application_details_conf_model_json
+        spark_engine_application_status_application_details_conf_model_json2 = (
+            spark_engine_application_status_application_details_conf_model.to_dict()
+        )
+        assert (
+            spark_engine_application_status_application_details_conf_model_json2
+            == spark_engine_application_status_application_details_conf_model_json
+        )
 
 
 class TestModel_SparkEngineApplicationStatusStateDetailsItems:
@@ -13104,19 +13823,37 @@ class TestModel_SparkEngineApplicationStatusStateDetailsItems:
         spark_engine_application_status_state_details_items_model_json['type'] = 'testString'
 
         # Construct a model instance of SparkEngineApplicationStatusStateDetailsItems by calling from_dict on the json representation
-        spark_engine_application_status_state_details_items_model = SparkEngineApplicationStatusStateDetailsItems.from_dict(spark_engine_application_status_state_details_items_model_json)
+        spark_engine_application_status_state_details_items_model = (
+            SparkEngineApplicationStatusStateDetailsItems.from_dict(
+                spark_engine_application_status_state_details_items_model_json
+            )
+        )
         assert spark_engine_application_status_state_details_items_model != False
 
         # Construct a model instance of SparkEngineApplicationStatusStateDetailsItems by calling from_dict on the json representation
-        spark_engine_application_status_state_details_items_model_dict = SparkEngineApplicationStatusStateDetailsItems.from_dict(spark_engine_application_status_state_details_items_model_json).__dict__
-        spark_engine_application_status_state_details_items_model2 = SparkEngineApplicationStatusStateDetailsItems(**spark_engine_application_status_state_details_items_model_dict)
+        spark_engine_application_status_state_details_items_model_dict = (
+            SparkEngineApplicationStatusStateDetailsItems.from_dict(
+                spark_engine_application_status_state_details_items_model_json
+            ).__dict__
+        )
+        spark_engine_application_status_state_details_items_model2 = SparkEngineApplicationStatusStateDetailsItems(
+            **spark_engine_application_status_state_details_items_model_dict
+        )
 
         # Verify the model instances are equivalent
-        assert spark_engine_application_status_state_details_items_model == spark_engine_application_status_state_details_items_model2
+        assert (
+            spark_engine_application_status_state_details_items_model
+            == spark_engine_application_status_state_details_items_model2
+        )
 
         # Convert model instance back to dict and verify no loss of data
-        spark_engine_application_status_state_details_items_model_json2 = spark_engine_application_status_state_details_items_model.to_dict()
-        assert spark_engine_application_status_state_details_items_model_json2 == spark_engine_application_status_state_details_items_model_json
+        spark_engine_application_status_state_details_items_model_json2 = (
+            spark_engine_application_status_state_details_items_model.to_dict()
+        )
+        assert (
+            spark_engine_application_status_state_details_items_model_json2
+            == spark_engine_application_status_state_details_items_model_json
+        )
 
 
 class TestModel_SparkEngineDetails:
@@ -13132,17 +13869,31 @@ class TestModel_SparkEngineDetails:
         # Construct dict forms of any model objects needed in order to build this model.
 
         spark_engine_details_endpoints_model = {}  # SparkEngineDetailsEndpoints
-        spark_engine_details_endpoints_model['applications_api'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
-        spark_engine_details_endpoints_model['history_server_endpoint'] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
-        spark_engine_details_endpoints_model['spark_access_endpoint'] = '$HOST/analytics-engine/details/spark-<instance_id>'
-        spark_engine_details_endpoints_model['spark_jobs_v4_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
-        spark_engine_details_endpoints_model['spark_kernel_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
+        spark_engine_details_endpoints_model[
+            'applications_api'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
+        spark_engine_details_endpoints_model[
+            'history_server_endpoint'
+        ] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
+        spark_engine_details_endpoints_model[
+            'spark_access_endpoint'
+        ] = '$HOST/analytics-engine/details/spark-<instance_id>'
+        spark_engine_details_endpoints_model[
+            'spark_jobs_v4_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
+        spark_engine_details_endpoints_model[
+            'spark_kernel_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
         spark_engine_details_endpoints_model['view_history_server'] = 'testString'
-        spark_engine_details_endpoints_model['wxd_application_endpoint'] = '$HOST/v1/1698311655308796/engines/spark817/applications'
+        spark_engine_details_endpoints_model[
+            'wxd_application_endpoint'
+        ] = '$HOST/v1/1698311655308796/engines/spark817/applications'
 
         # Construct a json representation of a SparkEngineDetails model
         spark_engine_details_model_json = {}
-        spark_engine_details_model_json['connection_string'] = 'https://xyz.<region>.ae.cloud.123.com/v3/analytics_engines/<spark_iae_id>'
+        spark_engine_details_model_json[
+            'connection_string'
+        ] = 'https://xyz.<region>.ae.cloud.123.com/v3/analytics_engines/<spark_iae_id>'
         spark_engine_details_model_json['endpoints'] = spark_engine_details_endpoints_model
 
         # Construct a model instance of SparkEngineDetails by calling from_dict on the json representation
@@ -13173,20 +13924,36 @@ class TestModel_SparkEngineDetailsEndpoints:
 
         # Construct a json representation of a SparkEngineDetailsEndpoints model
         spark_engine_details_endpoints_model_json = {}
-        spark_engine_details_endpoints_model_json['applications_api'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
-        spark_engine_details_endpoints_model_json['history_server_endpoint'] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
-        spark_engine_details_endpoints_model_json['spark_access_endpoint'] = '$HOST/analytics-engine/details/spark-<instance_id>'
-        spark_engine_details_endpoints_model_json['spark_jobs_v4_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
-        spark_engine_details_endpoints_model_json['spark_kernel_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
+        spark_engine_details_endpoints_model_json[
+            'applications_api'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
+        spark_engine_details_endpoints_model_json[
+            'history_server_endpoint'
+        ] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
+        spark_engine_details_endpoints_model_json[
+            'spark_access_endpoint'
+        ] = '$HOST/analytics-engine/details/spark-<instance_id>'
+        spark_engine_details_endpoints_model_json[
+            'spark_jobs_v4_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
+        spark_engine_details_endpoints_model_json[
+            'spark_kernel_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
         spark_engine_details_endpoints_model_json['view_history_server'] = 'testString'
-        spark_engine_details_endpoints_model_json['wxd_application_endpoint'] = '$HOST/v1/1698311655308796/engines/spark817/applications'
+        spark_engine_details_endpoints_model_json[
+            'wxd_application_endpoint'
+        ] = '$HOST/v1/1698311655308796/engines/spark817/applications'
 
         # Construct a model instance of SparkEngineDetailsEndpoints by calling from_dict on the json representation
-        spark_engine_details_endpoints_model = SparkEngineDetailsEndpoints.from_dict(spark_engine_details_endpoints_model_json)
+        spark_engine_details_endpoints_model = SparkEngineDetailsEndpoints.from_dict(
+            spark_engine_details_endpoints_model_json
+        )
         assert spark_engine_details_endpoints_model != False
 
         # Construct a model instance of SparkEngineDetailsEndpoints by calling from_dict on the json representation
-        spark_engine_details_endpoints_model_dict = SparkEngineDetailsEndpoints.from_dict(spark_engine_details_endpoints_model_json).__dict__
+        spark_engine_details_endpoints_model_dict = SparkEngineDetailsEndpoints.from_dict(
+            spark_engine_details_endpoints_model_json
+        ).__dict__
         spark_engine_details_endpoints_model2 = SparkEngineDetailsEndpoints(**spark_engine_details_endpoints_model_dict)
 
         # Verify the model instances are equivalent
@@ -13215,11 +13982,15 @@ class TestModel_SparkEngineDetailsPrototype:
         spark_engine_details_prototype_model_json['managed_by'] = 'fully/self'
 
         # Construct a model instance of SparkEngineDetailsPrototype by calling from_dict on the json representation
-        spark_engine_details_prototype_model = SparkEngineDetailsPrototype.from_dict(spark_engine_details_prototype_model_json)
+        spark_engine_details_prototype_model = SparkEngineDetailsPrototype.from_dict(
+            spark_engine_details_prototype_model_json
+        )
         assert spark_engine_details_prototype_model != False
 
         # Construct a model instance of SparkEngineDetailsPrototype by calling from_dict on the json representation
-        spark_engine_details_prototype_model_dict = SparkEngineDetailsPrototype.from_dict(spark_engine_details_prototype_model_json).__dict__
+        spark_engine_details_prototype_model_dict = SparkEngineDetailsPrototype.from_dict(
+            spark_engine_details_prototype_model_json
+        ).__dict__
         spark_engine_details_prototype_model2 = SparkEngineDetailsPrototype(**spark_engine_details_prototype_model_dict)
 
         # Verify the model instances are equivalent
@@ -13320,11 +14091,15 @@ class TestModel_TestBucketConnectionOKBody:
         test_bucket_connection_ok_body_model_json['response'] = success_response_model
 
         # Construct a model instance of TestBucketConnectionOKBody by calling from_dict on the json representation
-        test_bucket_connection_ok_body_model = TestBucketConnectionOKBody.from_dict(test_bucket_connection_ok_body_model_json)
+        test_bucket_connection_ok_body_model = TestBucketConnectionOKBody.from_dict(
+            test_bucket_connection_ok_body_model_json
+        )
         assert test_bucket_connection_ok_body_model != False
 
         # Construct a model instance of TestBucketConnectionOKBody by calling from_dict on the json representation
-        test_bucket_connection_ok_body_model_dict = TestBucketConnectionOKBody.from_dict(test_bucket_connection_ok_body_model_json).__dict__
+        test_bucket_connection_ok_body_model_dict = TestBucketConnectionOKBody.from_dict(
+            test_bucket_connection_ok_body_model_json
+        ).__dict__
         test_bucket_connection_ok_body_model2 = TestBucketConnectionOKBody(**test_bucket_connection_ok_body_model_dict)
 
         # Verify the model instances are equivalent
@@ -13375,12 +14150,18 @@ class TestModel_UpdateBucketRegistrationOKBody:
         update_bucket_registration_ok_body_model_json['response'] = success_response_model
 
         # Construct a model instance of UpdateBucketRegistrationOKBody by calling from_dict on the json representation
-        update_bucket_registration_ok_body_model = UpdateBucketRegistrationOKBody.from_dict(update_bucket_registration_ok_body_model_json)
+        update_bucket_registration_ok_body_model = UpdateBucketRegistrationOKBody.from_dict(
+            update_bucket_registration_ok_body_model_json
+        )
         assert update_bucket_registration_ok_body_model != False
 
         # Construct a model instance of UpdateBucketRegistrationOKBody by calling from_dict on the json representation
-        update_bucket_registration_ok_body_model_dict = UpdateBucketRegistrationOKBody.from_dict(update_bucket_registration_ok_body_model_json).__dict__
-        update_bucket_registration_ok_body_model2 = UpdateBucketRegistrationOKBody(**update_bucket_registration_ok_body_model_dict)
+        update_bucket_registration_ok_body_model_dict = UpdateBucketRegistrationOKBody.from_dict(
+            update_bucket_registration_ok_body_model_json
+        ).__dict__
+        update_bucket_registration_ok_body_model2 = UpdateBucketRegistrationOKBody(
+            **update_bucket_registration_ok_body_model_dict
+        )
 
         # Verify the model instances are equivalent
         assert update_bucket_registration_ok_body_model == update_bucket_registration_ok_body_model2
@@ -13496,7 +14277,9 @@ class TestModel_UpdateDb2EngineOKBody:
         assert update_db2_engine_ok_body_model != False
 
         # Construct a model instance of UpdateDb2EngineOKBody by calling from_dict on the json representation
-        update_db2_engine_ok_body_model_dict = UpdateDb2EngineOKBody.from_dict(update_db2_engine_ok_body_model_json).__dict__
+        update_db2_engine_ok_body_model_dict = UpdateDb2EngineOKBody.from_dict(
+            update_db2_engine_ok_body_model_json
+        ).__dict__
         update_db2_engine_ok_body_model2 = UpdateDb2EngineOKBody(**update_db2_engine_ok_body_model_dict)
 
         # Verify the model instances are equivalent
@@ -13524,11 +14307,19 @@ class TestModel_UpdateEngineOKBody:
         node_description_model['quantity'] = 1
 
         endpoints_model = {}  # Endpoints
-        endpoints_model['applications_api'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
-        endpoints_model['history_server_endpoint'] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
+        endpoints_model[
+            'applications_api'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>'
+        endpoints_model[
+            'history_server_endpoint'
+        ] = '$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server'
         endpoints_model['spark_access_endpoint'] = '$HOST/analytics-engine/details/spark-<instance_id>'
-        endpoints_model['spark_jobs_v4_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
-        endpoints_model['spark_kernel_endpoint'] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
+        endpoints_model[
+            'spark_jobs_v4_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications'
+        endpoints_model[
+            'spark_kernel_endpoint'
+        ] = '$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels'
         endpoints_model['view_history_server'] = 'testString'
         endpoints_model['wxd_application_endpoint'] = '$HOST/v1/1698311655308796/engines/spark817/applications'
 
@@ -13629,11 +14420,15 @@ class TestModel_UpdateNetezzaEngineOKBody:
         update_netezza_engine_ok_body_model_json['response'] = success_response_model
 
         # Construct a model instance of UpdateNetezzaEngineOKBody by calling from_dict on the json representation
-        update_netezza_engine_ok_body_model = UpdateNetezzaEngineOKBody.from_dict(update_netezza_engine_ok_body_model_json)
+        update_netezza_engine_ok_body_model = UpdateNetezzaEngineOKBody.from_dict(
+            update_netezza_engine_ok_body_model_json
+        )
         assert update_netezza_engine_ok_body_model != False
 
         # Construct a model instance of UpdateNetezzaEngineOKBody by calling from_dict on the json representation
-        update_netezza_engine_ok_body_model_dict = UpdateNetezzaEngineOKBody.from_dict(update_netezza_engine_ok_body_model_json).__dict__
+        update_netezza_engine_ok_body_model_dict = UpdateNetezzaEngineOKBody.from_dict(
+            update_netezza_engine_ok_body_model_json
+        ).__dict__
         update_netezza_engine_ok_body_model2 = UpdateNetezzaEngineOKBody(**update_netezza_engine_ok_body_model_dict)
 
         # Verify the model instances are equivalent
@@ -13657,16 +14452,30 @@ class TestModel_UpdateSparkEngineOKBody:
         # Construct dict forms of any model objects needed in order to build this model.
 
         spark_engine_details_endpoints_model = {}  # SparkEngineDetailsEndpoints
-        spark_engine_details_endpoints_model['applications_api'] = '$HOST/v4/analytics_engines/<spark_id>/spark_applications/<application_id>'
-        spark_engine_details_endpoints_model['history_server_endpoint'] = '$HOST/v2/spark/v3/instances/<spark_id>/spark_history_server'
-        spark_engine_details_endpoints_model['spark_access_endpoint'] = '$HOST/analytics-engine/details/spark-<instance_id>'
-        spark_engine_details_endpoints_model['spark_jobs_v4_endpoint'] = '$HOST/v4/analytics_engines/<spark_id>/spark_applications'
-        spark_engine_details_endpoints_model['spark_kernel_endpoint'] = '$HOST/v4/analytics_engines/<spark_id>/jkg/api/kernels'
+        spark_engine_details_endpoints_model[
+            'applications_api'
+        ] = '$HOST/v4/analytics_engines/<spark_id>/spark_applications/<application_id>'
+        spark_engine_details_endpoints_model[
+            'history_server_endpoint'
+        ] = '$HOST/v2/spark/v3/instances/<spark_id>/spark_history_server'
+        spark_engine_details_endpoints_model[
+            'spark_access_endpoint'
+        ] = '$HOST/analytics-engine/details/spark-<instance_id>'
+        spark_engine_details_endpoints_model[
+            'spark_jobs_v4_endpoint'
+        ] = '$HOST/v4/analytics_engines/<spark_id>/spark_applications'
+        spark_engine_details_endpoints_model[
+            'spark_kernel_endpoint'
+        ] = '$HOST/v4/analytics_engines/<spark_id>/jkg/api/kernels'
         spark_engine_details_endpoints_model['view_history_server'] = 'View history server'
-        spark_engine_details_endpoints_model['wxd_application_endpoint'] = '$HOST/v1/<wxd_instance_id>/engines/<engine_id>/applications'
+        spark_engine_details_endpoints_model[
+            'wxd_application_endpoint'
+        ] = '$HOST/v1/<wxd_instance_id>/engines/<engine_id>/applications'
 
         spark_engine_details_model = {}  # SparkEngineDetails
-        spark_engine_details_model['connection_string'] = 'https://xyz.<region>.ae.cloud.123.com/v3/analytics_engines/<spark_iae_id>'
+        spark_engine_details_model[
+            'connection_string'
+        ] = 'https://xyz.<region>.ae.cloud.123.com/v3/analytics_engines/<spark_iae_id>'
         spark_engine_details_model['endpoints'] = spark_engine_details_endpoints_model
 
         spark_engine_model = {}  # SparkEngine
@@ -13697,7 +14506,9 @@ class TestModel_UpdateSparkEngineOKBody:
         assert update_spark_engine_ok_body_model != False
 
         # Construct a model instance of UpdateSparkEngineOKBody by calling from_dict on the json representation
-        update_spark_engine_ok_body_model_dict = UpdateSparkEngineOKBody.from_dict(update_spark_engine_ok_body_model_json).__dict__
+        update_spark_engine_ok_body_model_dict = UpdateSparkEngineOKBody.from_dict(
+            update_spark_engine_ok_body_model_json
+        ).__dict__
         update_spark_engine_ok_body_model2 = UpdateSparkEngineOKBody(**update_spark_engine_ok_body_model_dict)
 
         # Verify the model instances are equivalent
@@ -13733,7 +14544,9 @@ class TestModel_UpdateSyncCatalogOKBody:
         assert update_sync_catalog_ok_body_model != False
 
         # Construct a model instance of UpdateSyncCatalogOKBody by calling from_dict on the json representation
-        update_sync_catalog_ok_body_model_dict = UpdateSyncCatalogOKBody.from_dict(update_sync_catalog_ok_body_model_json).__dict__
+        update_sync_catalog_ok_body_model_dict = UpdateSyncCatalogOKBody.from_dict(
+            update_sync_catalog_ok_body_model_json
+        ).__dict__
         update_sync_catalog_ok_body_model2 = UpdateSyncCatalogOKBody(**update_sync_catalog_ok_body_model_dict)
 
         # Verify the model instances are equivalent
@@ -13802,12 +14615,18 @@ class TestModel_ValidateDatabaseBodyDatabaseDetails:
         validate_database_body_database_details_model_json['username'] = 'sampleuser'
 
         # Construct a model instance of ValidateDatabaseBodyDatabaseDetails by calling from_dict on the json representation
-        validate_database_body_database_details_model = ValidateDatabaseBodyDatabaseDetails.from_dict(validate_database_body_database_details_model_json)
+        validate_database_body_database_details_model = ValidateDatabaseBodyDatabaseDetails.from_dict(
+            validate_database_body_database_details_model_json
+        )
         assert validate_database_body_database_details_model != False
 
         # Construct a model instance of ValidateDatabaseBodyDatabaseDetails by calling from_dict on the json representation
-        validate_database_body_database_details_model_dict = ValidateDatabaseBodyDatabaseDetails.from_dict(validate_database_body_database_details_model_json).__dict__
-        validate_database_body_database_details_model2 = ValidateDatabaseBodyDatabaseDetails(**validate_database_body_database_details_model_dict)
+        validate_database_body_database_details_model_dict = ValidateDatabaseBodyDatabaseDetails.from_dict(
+            validate_database_body_database_details_model_json
+        ).__dict__
+        validate_database_body_database_details_model2 = ValidateDatabaseBodyDatabaseDetails(
+            **validate_database_body_database_details_model_dict
+        )
 
         # Verify the model instances are equivalent
         assert validate_database_body_database_details_model == validate_database_body_database_details_model2
@@ -13829,7 +14648,9 @@ class TestModel_ValidateDatabaseConnectionOKBody:
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        validate_database_connection_ok_body_connection_response_model = {}  # ValidateDatabaseConnectionOKBodyConnectionResponse
+        validate_database_connection_ok_body_connection_response_model = (
+            {}
+        )  # ValidateDatabaseConnectionOKBodyConnectionResponse
         validate_database_connection_ok_body_connection_response_model['state'] = True
         validate_database_connection_ok_body_connection_response_model['state_message'] = 'connection successful'
 
@@ -13839,16 +14660,24 @@ class TestModel_ValidateDatabaseConnectionOKBody:
 
         # Construct a json representation of a ValidateDatabaseConnectionOKBody model
         validate_database_connection_ok_body_model_json = {}
-        validate_database_connection_ok_body_model_json['connection_response'] = validate_database_connection_ok_body_connection_response_model
+        validate_database_connection_ok_body_model_json[
+            'connection_response'
+        ] = validate_database_connection_ok_body_connection_response_model
         validate_database_connection_ok_body_model_json['response'] = success_response_model
 
         # Construct a model instance of ValidateDatabaseConnectionOKBody by calling from_dict on the json representation
-        validate_database_connection_ok_body_model = ValidateDatabaseConnectionOKBody.from_dict(validate_database_connection_ok_body_model_json)
+        validate_database_connection_ok_body_model = ValidateDatabaseConnectionOKBody.from_dict(
+            validate_database_connection_ok_body_model_json
+        )
         assert validate_database_connection_ok_body_model != False
 
         # Construct a model instance of ValidateDatabaseConnectionOKBody by calling from_dict on the json representation
-        validate_database_connection_ok_body_model_dict = ValidateDatabaseConnectionOKBody.from_dict(validate_database_connection_ok_body_model_json).__dict__
-        validate_database_connection_ok_body_model2 = ValidateDatabaseConnectionOKBody(**validate_database_connection_ok_body_model_dict)
+        validate_database_connection_ok_body_model_dict = ValidateDatabaseConnectionOKBody.from_dict(
+            validate_database_connection_ok_body_model_json
+        ).__dict__
+        validate_database_connection_ok_body_model2 = ValidateDatabaseConnectionOKBody(
+            **validate_database_connection_ok_body_model_dict
+        )
 
         # Verify the model instances are equivalent
         assert validate_database_connection_ok_body_model == validate_database_connection_ok_body_model2
@@ -13874,19 +14703,39 @@ class TestModel_ValidateDatabaseConnectionOKBodyConnectionResponse:
         validate_database_connection_ok_body_connection_response_model_json['state_message'] = 'testString'
 
         # Construct a model instance of ValidateDatabaseConnectionOKBodyConnectionResponse by calling from_dict on the json representation
-        validate_database_connection_ok_body_connection_response_model = ValidateDatabaseConnectionOKBodyConnectionResponse.from_dict(validate_database_connection_ok_body_connection_response_model_json)
+        validate_database_connection_ok_body_connection_response_model = (
+            ValidateDatabaseConnectionOKBodyConnectionResponse.from_dict(
+                validate_database_connection_ok_body_connection_response_model_json
+            )
+        )
         assert validate_database_connection_ok_body_connection_response_model != False
 
         # Construct a model instance of ValidateDatabaseConnectionOKBodyConnectionResponse by calling from_dict on the json representation
-        validate_database_connection_ok_body_connection_response_model_dict = ValidateDatabaseConnectionOKBodyConnectionResponse.from_dict(validate_database_connection_ok_body_connection_response_model_json).__dict__
-        validate_database_connection_ok_body_connection_response_model2 = ValidateDatabaseConnectionOKBodyConnectionResponse(**validate_database_connection_ok_body_connection_response_model_dict)
+        validate_database_connection_ok_body_connection_response_model_dict = (
+            ValidateDatabaseConnectionOKBodyConnectionResponse.from_dict(
+                validate_database_connection_ok_body_connection_response_model_json
+            ).__dict__
+        )
+        validate_database_connection_ok_body_connection_response_model2 = (
+            ValidateDatabaseConnectionOKBodyConnectionResponse(
+                **validate_database_connection_ok_body_connection_response_model_dict
+            )
+        )
 
         # Verify the model instances are equivalent
-        assert validate_database_connection_ok_body_connection_response_model == validate_database_connection_ok_body_connection_response_model2
+        assert (
+            validate_database_connection_ok_body_connection_response_model
+            == validate_database_connection_ok_body_connection_response_model2
+        )
 
         # Convert model instance back to dict and verify no loss of data
-        validate_database_connection_ok_body_connection_response_model_json2 = validate_database_connection_ok_body_connection_response_model.to_dict()
-        assert validate_database_connection_ok_body_connection_response_model_json2 == validate_database_connection_ok_body_connection_response_model_json
+        validate_database_connection_ok_body_connection_response_model_json2 = (
+            validate_database_connection_ok_body_connection_response_model.to_dict()
+        )
+        assert (
+            validate_database_connection_ok_body_connection_response_model_json2
+            == validate_database_connection_ok_body_connection_response_model_json
+        )
 
 
 # endregion

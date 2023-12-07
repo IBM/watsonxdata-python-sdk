@@ -54,9 +54,7 @@ class WatsonxDataV2(BaseService):
                parameters and external configuration.
         """
         authenticator = get_authenticator_from_environment(service_name)
-        service = cls(
-            authenticator
-            )
+        service = cls(authenticator)
         service.configure_service(service_name)
         return service
 
@@ -3767,7 +3765,9 @@ class WatsonxDataV2(BaseService):
         path_param_keys = ['catalog_id', 'schema_id', 'table_id', 'snapshot_id']
         path_param_values = self.encode_path_vars(catalog_id, schema_id, table_id, snapshot_id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/catalogs/{catalog_id}/schemas/{schema_id}/tables/{table_id}/snapshots/{snapshot_id}'.format(**path_param_dict)
+        url = '/catalogs/{catalog_id}/schemas/{schema_id}/tables/{table_id}/snapshots/{snapshot_id}'.format(
+            **path_param_dict
+        )
         request = self.prepare_request(
             method='PUT',
             url=url,
@@ -4141,7 +4141,6 @@ class BucketRegistration:
         IBM_COS = 'ibm_cos'
         IBM_CEPH = 'ibm_ceph'
 
-
     class ManagedByEnum(str, Enum):
         """
         managed by.
@@ -4150,7 +4149,6 @@ class BucketRegistration:
         IBM = 'ibm'
         CUSTOMER = 'customer'
 
-
     class StateEnum(str, Enum):
         """
         mark bucket active or inactive.
@@ -4158,7 +4156,6 @@ class BucketRegistration:
 
         ACTIVE = 'active'
         INACTIVE = 'inactive'
-
 
 
 class BucketStatusResponse:
@@ -4518,7 +4515,6 @@ class CatalogDetail:
         CUSTOMER = 'customer'
 
 
-
 class Column:
     """
     Column.
@@ -4691,7 +4687,9 @@ class CreateBucketRegistrationCreatedBody:
         if 'bucket_registration' in _dict:
             args['bucket_registration'] = BucketRegistration.from_dict(_dict.get('bucket_registration'))
         else:
-            raise ValueError('Required property \'bucket_registration\' not present in CreateBucketRegistrationCreatedBody JSON')
+            raise ValueError(
+                'Required property \'bucket_registration\' not present in CreateBucketRegistrationCreatedBody JSON'
+            )
         if 'response' in _dict:
             args['response'] = SuccessResponse.from_dict(_dict.get('response'))
         else:
@@ -4767,7 +4765,9 @@ class CreateDatabaseRegistrationCreatedBody:
         if 'database_registration' in _dict:
             args['database_registration'] = DatabaseRegistration.from_dict(_dict.get('database_registration'))
         else:
-            raise ValueError('Required property \'database_registration\' not present in CreateDatabaseRegistrationCreatedBody JSON')
+            raise ValueError(
+                'Required property \'database_registration\' not present in CreateDatabaseRegistrationCreatedBody JSON'
+            )
         if 'response' in _dict:
             args['response'] = SuccessResponse.from_dict(_dict.get('response'))
         else:
@@ -4977,11 +4977,15 @@ class CreateDriverDatabaseCatalogCreatedBody:
         if 'database' in _dict:
             args['database'] = CreateDriverDatabaseCatalogCreatedBodyDatabase.from_dict(_dict.get('database'))
         else:
-            raise ValueError('Required property \'database\' not present in CreateDriverDatabaseCatalogCreatedBody JSON')
+            raise ValueError(
+                'Required property \'database\' not present in CreateDriverDatabaseCatalogCreatedBody JSON'
+            )
         if 'response' in _dict:
             args['response'] = SuccessResponse.from_dict(_dict.get('response'))
         else:
-            raise ValueError('Required property \'response\' not present in CreateDriverDatabaseCatalogCreatedBody JSON')
+            raise ValueError(
+                'Required property \'response\' not present in CreateDriverDatabaseCatalogCreatedBody JSON'
+            )
         return cls(**args)
 
     @classmethod
@@ -5708,11 +5712,15 @@ class CreateSparkEngineApplicationCreatedBody:
         if 'response' in _dict:
             args['response'] = SuccessResponse.from_dict(_dict.get('response'))
         else:
-            raise ValueError('Required property \'response\' not present in CreateSparkEngineApplicationCreatedBody JSON')
+            raise ValueError(
+                'Required property \'response\' not present in CreateSparkEngineApplicationCreatedBody JSON'
+            )
         if 'spark_engine_application' in _dict:
             args['spark_engine_application'] = SparkEngineApplication.from_dict(_dict.get('spark_engine_application'))
         else:
-            raise ValueError('Required property \'spark_engine_application\' not present in CreateSparkEngineApplicationCreatedBody JSON')
+            raise ValueError(
+                'Required property \'spark_engine_application\' not present in CreateSparkEngineApplicationCreatedBody JSON'
+            )
         return cls(**args)
 
     @classmethod
@@ -7067,7 +7075,6 @@ class EngineDetailsBody:
         CUSTOM = 'custom'
 
 
-
 class GetBucketRegistrationOKBody:
     """
     GetBucketRegistration OK.
@@ -7097,7 +7104,9 @@ class GetBucketRegistrationOKBody:
         if 'bucket_registration' in _dict:
             args['bucket_registration'] = BucketRegistration.from_dict(_dict.get('bucket_registration'))
         else:
-            raise ValueError('Required property \'bucket_registration\' not present in GetBucketRegistrationOKBody JSON')
+            raise ValueError(
+                'Required property \'bucket_registration\' not present in GetBucketRegistrationOKBody JSON'
+            )
         if 'response' in _dict:
             args['response'] = SuccessResponse.from_dict(_dict.get('response'))
         else:
@@ -7547,7 +7556,9 @@ class GetSparkEngineApplicationStatusOKBody:
         if 'application' in _dict:
             args['application'] = SparkEngineApplicationStatus.from_dict(_dict.get('application'))
         else:
-            raise ValueError('Required property \'application\' not present in GetSparkEngineApplicationStatusOKBody JSON')
+            raise ValueError(
+                'Required property \'application\' not present in GetSparkEngineApplicationStatusOKBody JSON'
+            )
         if 'response' in _dict:
             args['response'] = SuccessResponse.from_dict(_dict.get('response'))
         else:
@@ -7774,7 +7785,6 @@ class JsonPatchOperation:
         TEST = 'test'
 
 
-
 class ListBucketObjectsOKBody:
     """
     GetBucketObjects OK.
@@ -7876,7 +7886,9 @@ class ListBucketRegistrationsOKBody:
         if 'bucket_registrations' in _dict:
             args['bucket_registrations'] = [BucketRegistration.from_dict(v) for v in _dict.get('bucket_registrations')]
         else:
-            raise ValueError('Required property \'bucket_registrations\' not present in ListBucketRegistrationsOKBody JSON')
+            raise ValueError(
+                'Required property \'bucket_registrations\' not present in ListBucketRegistrationsOKBody JSON'
+            )
         if 'response' in _dict:
             args['response'] = SuccessResponse.from_dict(_dict.get('response'))
         else:
@@ -8030,9 +8042,13 @@ class ListDatabaseRegistrationsOKBody:
         """Initialize a ListDatabaseRegistrationsOKBody object from a json dictionary."""
         args = {}
         if 'database_registrations' in _dict:
-            args['database_registrations'] = [DatabaseRegistration.from_dict(v) for v in _dict.get('database_registrations')]
+            args['database_registrations'] = [
+                DatabaseRegistration.from_dict(v) for v in _dict.get('database_registrations')
+            ]
         else:
-            raise ValueError('Required property \'database_registrations\' not present in ListDatabaseRegistrationsOKBody JSON')
+            raise ValueError(
+                'Required property \'database_registrations\' not present in ListDatabaseRegistrationsOKBody JSON'
+            )
         if 'response' in _dict:
             args['response'] = SuccessResponse.from_dict(_dict.get('response'))
         else:
@@ -9322,7 +9338,6 @@ class MilvusService:
         STOPPED = 'stopped'
 
 
-
 class NetezzaEngine:
     """
     Netezza engine details.
@@ -10273,7 +10288,6 @@ class PrestissimoEngine:
         STOPPED = 'stopped'
 
 
-
 class PrestissimoEngineDetails:
     """
     External engine details.
@@ -10677,7 +10691,6 @@ class PrestoEngine:
         STOPPED = 'stopped'
 
 
-
 class RegisterDatabaseCatalogBodyDatabaseDetails:
     """
     database details.
@@ -10751,7 +10764,9 @@ class RegisterDatabaseCatalogBodyDatabaseDetails:
         if 'hostname' in _dict:
             args['hostname'] = _dict.get('hostname')
         else:
-            raise ValueError('Required property \'hostname\' not present in RegisterDatabaseCatalogBodyDatabaseDetails JSON')
+            raise ValueError(
+                'Required property \'hostname\' not present in RegisterDatabaseCatalogBodyDatabaseDetails JSON'
+            )
         if 'hosts' in _dict:
             args['hosts'] = _dict.get('hosts')
         if 'password' in _dict:
@@ -10759,7 +10774,9 @@ class RegisterDatabaseCatalogBodyDatabaseDetails:
         if 'port' in _dict:
             args['port'] = _dict.get('port')
         else:
-            raise ValueError('Required property \'port\' not present in RegisterDatabaseCatalogBodyDatabaseDetails JSON')
+            raise ValueError(
+                'Required property \'port\' not present in RegisterDatabaseCatalogBodyDatabaseDetails JSON'
+            )
         if 'sasl' in _dict:
             args['sasl'] = _dict.get('sasl')
         if 'ssl' in _dict:
@@ -10854,15 +10871,21 @@ class RegisterDatabaseCatalogBodyDatabasePropertiesItems:
         if 'encrypt' in _dict:
             args['encrypt'] = _dict.get('encrypt')
         else:
-            raise ValueError('Required property \'encrypt\' not present in RegisterDatabaseCatalogBodyDatabasePropertiesItems JSON')
+            raise ValueError(
+                'Required property \'encrypt\' not present in RegisterDatabaseCatalogBodyDatabasePropertiesItems JSON'
+            )
         if 'key' in _dict:
             args['key'] = _dict.get('key')
         else:
-            raise ValueError('Required property \'key\' not present in RegisterDatabaseCatalogBodyDatabasePropertiesItems JSON')
+            raise ValueError(
+                'Required property \'key\' not present in RegisterDatabaseCatalogBodyDatabasePropertiesItems JSON'
+            )
         if 'value' in _dict:
             args['value'] = _dict.get('value')
         else:
-            raise ValueError('Required property \'value\' not present in RegisterDatabaseCatalogBodyDatabasePropertiesItems JSON')
+            raise ValueError(
+                'Required property \'value\' not present in RegisterDatabaseCatalogBodyDatabasePropertiesItems JSON'
+            )
         return cls(**args)
 
     @classmethod
@@ -10929,11 +10952,15 @@ class ReplacePrestoEngineCatalogsCreatedBody:
         if 'catalogs' in _dict:
             args['catalogs'] = [Catalog.from_dict(v) for v in _dict.get('catalogs')]
         else:
-            raise ValueError('Required property \'catalogs\' not present in ReplacePrestoEngineCatalogsCreatedBody JSON')
+            raise ValueError(
+                'Required property \'catalogs\' not present in ReplacePrestoEngineCatalogsCreatedBody JSON'
+            )
         if 'response' in _dict:
             args['response'] = SuccessResponse.from_dict(_dict.get('response'))
         else:
-            raise ValueError('Required property \'response\' not present in ReplacePrestoEngineCatalogsCreatedBody JSON')
+            raise ValueError(
+                'Required property \'response\' not present in ReplacePrestoEngineCatalogsCreatedBody JSON'
+            )
         return cls(**args)
 
     @classmethod
@@ -11597,7 +11624,9 @@ class SparkEngineApplicationStatus:
         """Initialize a SparkEngineApplicationStatus object from a json dictionary."""
         args = {}
         if 'application_details' in _dict:
-            args['application_details'] = SparkEngineApplicationStatusApplicationDetails.from_dict(_dict.get('application_details'))
+            args['application_details'] = SparkEngineApplicationStatusApplicationDetails.from_dict(
+                _dict.get('application_details')
+            )
         if 'application_id' in _dict:
             args['application_id'] = _dict.get('application_id')
         if 'auto_termination_time' in _dict:
@@ -11625,7 +11654,9 @@ class SparkEngineApplicationStatus:
         if 'state' in _dict:
             args['state'] = _dict.get('state')
         if 'state_details' in _dict:
-            args['state_details'] = [SparkEngineApplicationStatusStateDetailsItems.from_dict(v) for v in _dict.get('state_details')]
+            args['state_details'] = [
+                SparkEngineApplicationStatusStateDetailsItems.from_dict(v) for v in _dict.get('state_details')
+            ]
         if 'submission_time' in _dict:
             args['submission_time'] = _dict.get('submission_time')
         if 'template_id' in _dict:
@@ -11932,17 +11963,35 @@ class SparkEngineApplicationStatusApplicationDetailsConf:
         _dict = {}
         if hasattr(self, 'spark_app_name') and self.spark_app_name is not None:
             _dict['spark_app_name'] = self.spark_app_name
-        if hasattr(self, 'spark_hive_metastore_client_auth_mode') and self.spark_hive_metastore_client_auth_mode is not None:
+        if (
+            hasattr(self, 'spark_hive_metastore_client_auth_mode')
+            and self.spark_hive_metastore_client_auth_mode is not None
+        ):
             _dict['spark_hive_metastore_client_auth_mode'] = self.spark_hive_metastore_client_auth_mode
-        if hasattr(self, 'spark_hive_metastore_client_plain_password') and self.spark_hive_metastore_client_plain_password is not None:
+        if (
+            hasattr(self, 'spark_hive_metastore_client_plain_password')
+            and self.spark_hive_metastore_client_plain_password is not None
+        ):
             _dict['spark_hive_metastore_client_plain_password'] = self.spark_hive_metastore_client_plain_password
-        if hasattr(self, 'spark_hive_metastore_client_plain_username') and self.spark_hive_metastore_client_plain_username is not None:
+        if (
+            hasattr(self, 'spark_hive_metastore_client_plain_username')
+            and self.spark_hive_metastore_client_plain_username is not None
+        ):
             _dict['spark_hive_metastore_client_plain_username'] = self.spark_hive_metastore_client_plain_username
-        if hasattr(self, 'spark_hive_metastore_truststore_password') and self.spark_hive_metastore_truststore_password is not None:
+        if (
+            hasattr(self, 'spark_hive_metastore_truststore_password')
+            and self.spark_hive_metastore_truststore_password is not None
+        ):
             _dict['spark_hive_metastore_truststore_password'] = self.spark_hive_metastore_truststore_password
-        if hasattr(self, 'spark_hive_metastore_truststore_path') and self.spark_hive_metastore_truststore_path is not None:
+        if (
+            hasattr(self, 'spark_hive_metastore_truststore_path')
+            and self.spark_hive_metastore_truststore_path is not None
+        ):
             _dict['spark_hive_metastore_truststore_path'] = self.spark_hive_metastore_truststore_path
-        if hasattr(self, 'spark_hive_metastore_truststore_type') and self.spark_hive_metastore_truststore_type is not None:
+        if (
+            hasattr(self, 'spark_hive_metastore_truststore_type')
+            and self.spark_hive_metastore_truststore_type is not None
+        ):
             _dict['spark_hive_metastore_truststore_type'] = self.spark_hive_metastore_truststore_type
         if hasattr(self, 'spark_hive_metastore_use_ssl') and self.spark_hive_metastore_use_ssl is not None:
             _dict['spark_hive_metastore_use_ssl'] = self.spark_hive_metastore_use_ssl
@@ -11956,7 +12005,10 @@ class SparkEngineApplicationStatusApplicationDetailsConf:
             _dict['spark_sql_catalog_lakehouse_uri'] = self.spark_sql_catalog_lakehouse_uri
         if hasattr(self, 'spark_sql_extensions') and self.spark_sql_extensions is not None:
             _dict['spark_sql_extensions'] = self.spark_sql_extensions
-        if hasattr(self, 'spark_sql_iceberg_vectorization_enabled') and self.spark_sql_iceberg_vectorization_enabled is not None:
+        if (
+            hasattr(self, 'spark_sql_iceberg_vectorization_enabled')
+            and self.spark_sql_iceberg_vectorization_enabled is not None
+        ):
             _dict['spark_sql_iceberg_vectorization_enabled'] = self.spark_sql_iceberg_vectorization_enabled
         return _dict
 
@@ -12565,7 +12617,9 @@ class UpdateBucketRegistrationOKBody:
         if 'bucket_registration' in _dict:
             args['bucket_registration'] = BucketRegistration.from_dict(_dict.get('bucket_registration'))
         else:
-            raise ValueError('Required property \'bucket_registration\' not present in UpdateBucketRegistrationOKBody JSON')
+            raise ValueError(
+                'Required property \'bucket_registration\' not present in UpdateBucketRegistrationOKBody JSON'
+            )
         if 'response' in _dict:
             args['response'] = SuccessResponse.from_dict(_dict.get('response'))
         else:
@@ -13255,9 +13309,13 @@ class ValidateDatabaseConnectionOKBody:
         """Initialize a ValidateDatabaseConnectionOKBody object from a json dictionary."""
         args = {}
         if 'connection_response' in _dict:
-            args['connection_response'] = ValidateDatabaseConnectionOKBodyConnectionResponse.from_dict(_dict.get('connection_response'))
+            args['connection_response'] = ValidateDatabaseConnectionOKBodyConnectionResponse.from_dict(
+                _dict.get('connection_response')
+            )
         else:
-            raise ValueError('Required property \'connection_response\' not present in ValidateDatabaseConnectionOKBody JSON')
+            raise ValueError(
+                'Required property \'connection_response\' not present in ValidateDatabaseConnectionOKBody JSON'
+            )
         if 'response' in _dict:
             args['response'] = SuccessResponse.from_dict(_dict.get('response'))
         else:
