@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# IBM OpenAPI SDK Code Generator Version: 3.82.1-2082d402-20231115-195014
+# IBM OpenAPI SDK Code Generator Version: 3.84.1-55f6d880-20240110-194020
 
 """
 This is the Public API for IBM watsonx.data
