@@ -1,6 +1,3 @@
-# [0.3.0](https://github.com/IBM/watsonxdata-python-sdk/compare/v0.2.0...v0.3.0) (2024-01-17)
-
-
 ### Features
 
 * update v2 lhapi sdk for python ([7973ae6](https://github.com/IBM/watsonxdata-python-sdk/commit/7973ae68a0b9ada0e9a3ff71849ffdfb7031f0d8))
