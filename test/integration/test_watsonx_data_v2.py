@@ -37,8 +37,7 @@ class TestWatsonxDataV2:
         if os.path.exists(config_file):
             os.environ['IBM_CREDENTIALS_FILE'] = config_file
 
-            cls.watsonx_data_service = WatsonxDataV2.new_instance(
-            )
+            cls.watsonx_data_service = WatsonxDataV2.new_instance()
             assert cls.watsonx_data_service is not None
 
             cls.config = read_external_sources(WatsonxDataV2.DEFAULT_SERVICE_NAME)
