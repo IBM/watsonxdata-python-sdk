@@ -2038,7 +2038,7 @@ class WatsonxDataV2(BaseService):
         :param str auth_instance_id: (optional) Instance ID.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
-        :rtype: DetailedResponse with `dict` result representing a `CatalogDetailsCollectionCollection` object
+        :rtype: DetailedResponse with `dict` result representing a `CatalogCollection` object
         """
 
         if not engine_id:
@@ -2089,7 +2089,7 @@ class WatsonxDataV2(BaseService):
         :param str auth_instance_id: (optional) Instance ID.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
-        :rtype: DetailedResponse with `dict` result representing a `CatalogDetailsCollectionCollection` object
+        :rtype: DetailedResponse with `dict` result representing a `CatalogCollection` object
         """
 
         if not engine_id:
@@ -2204,7 +2204,7 @@ class WatsonxDataV2(BaseService):
         :param str auth_instance_id: (optional) Instance ID.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
-        :rtype: DetailedResponse with `dict` result representing a `CatalogDetailsCollection` object
+        :rtype: DetailedResponse with `dict` result representing a `Catalog` object
         """
 
         if not engine_id:
@@ -2878,7 +2878,7 @@ class WatsonxDataV2(BaseService):
         :param str auth_instance_id: (optional) Instance ID.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
-        :rtype: DetailedResponse with `dict` result representing a `CatalogDetailCollection` object
+        :rtype: DetailedResponse with `dict` result representing a `CatalogCollection` object
         """
 
         if not engine_id:
@@ -2929,7 +2929,7 @@ class WatsonxDataV2(BaseService):
         :param str auth_instance_id: (optional) Instance ID.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
-        :rtype: DetailedResponse with `dict` result representing a `CatalogDetailCollection` object
+        :rtype: DetailedResponse with `dict` result representing a `Catalog` object
         """
 
         if not engine_id:
@@ -3044,7 +3044,7 @@ class WatsonxDataV2(BaseService):
         :param str auth_instance_id: (optional) Instance ID.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
-        :rtype: DetailedResponse with `dict` result representing a `CatalogDetailsCollection` object
+        :rtype: DetailedResponse with `dict` result representing a `Catalog` object
         """
 
         if not engine_id:
@@ -3934,7 +3934,7 @@ class WatsonxDataV2(BaseService):
         :param str auth_instance_id: (optional) Instance ID.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
-        :rtype: DetailedResponse with `dict` result representing a `ListCatalogsOKBody` object
+        :rtype: DetailedResponse with `dict` result representing a `CatalogCollection` object
         """
 
         headers = {
@@ -3978,7 +3978,7 @@ class WatsonxDataV2(BaseService):
         :param str auth_instance_id: (optional) Instance ID.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
-        :rtype: DetailedResponse with `dict` result representing a `GetCatalogOKBody` object
+        :rtype: DetailedResponse with `dict` result representing a `Catalog` object
         """
 
         if not catalog_id:
@@ -4229,7 +4229,7 @@ class WatsonxDataV2(BaseService):
         :param str auth_instance_id: (optional) Instance ID.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
-        :rtype: DetailedResponse with `dict` result representing a `CatalogSchemaTableCollection` object
+        :rtype: DetailedResponse with `dict` result representing a `GetTableOKBodyCollection` object
         """
 
         if not catalog_id:
@@ -4293,7 +4293,7 @@ class WatsonxDataV2(BaseService):
         :param str auth_instance_id: (optional) Instance ID.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
-        :rtype: DetailedResponse with `dict` result representing a `CatalogSchemaTableColumnCollection` object
+        :rtype: DetailedResponse with `dict` result representing a `GetTableOKBody` object
         """
 
         if not catalog_id:
@@ -5508,137 +5508,6 @@ class BucketStatusResponse:
 
 class Catalog:
     """
-    EngineCatalog.
-
-    :param str catalog_name: (optional) Name for the catalog.
-    :param str creation_date: (optional) Creation date.
-    """
-
-    def __init__(
-        self,
-        *,
-        catalog_name: Optional[str] = None,
-        creation_date: Optional[str] = None,
-    ) -> None:
-        """
-        Initialize a Catalog object.
-
-        :param str catalog_name: (optional) Name for the catalog.
-        :param str creation_date: (optional) Creation date.
-        """
-        self.catalog_name = catalog_name
-        self.creation_date = creation_date
-
-    @classmethod
-    def from_dict(cls, _dict: Dict) -> 'Catalog':
-        """Initialize a Catalog object from a json dictionary."""
-        args = {}
-        if 'catalog_name' in _dict:
-            args['catalog_name'] = _dict.get('catalog_name')
-        if 'creation_date' in _dict:
-            args['creation_date'] = _dict.get('creation_date')
-        return cls(**args)
-
-    @classmethod
-    def _from_dict(cls, _dict):
-        """Initialize a Catalog object from a json dictionary."""
-        return cls.from_dict(_dict)
-
-    def to_dict(self) -> Dict:
-        """Return a json dictionary representing this model."""
-        _dict = {}
-        if hasattr(self, 'catalog_name') and self.catalog_name is not None:
-            _dict['catalog_name'] = self.catalog_name
-        if hasattr(self, 'creation_date') and self.creation_date is not None:
-            _dict['creation_date'] = self.creation_date
-        return _dict
-
-    def _to_dict(self):
-        """Return a json dictionary representing this model."""
-        return self.to_dict()
-
-    def __str__(self) -> str:
-        """Return a `str` version of this Catalog object."""
-        return json.dumps(self.to_dict(), indent=2)
-
-    def __eq__(self, other: 'Catalog') -> bool:
-        """Return `true` when self and other are equal, false otherwise."""
-        if not isinstance(other, self.__class__):
-            return False
-        return self.__dict__ == other.__dict__
-
-    def __ne__(self, other: 'Catalog') -> bool:
-        """Return `true` when self and other are not equal, false otherwise."""
-        return not self == other
-
-
-class CatalogDetailCollection:
-    """
-    get engine catalogs.
-
-    :param List[Catalog] catalogs: Engine Catalogs.
-    """
-
-    def __init__(
-        self,
-        catalogs: List['Catalog'],
-    ) -> None:
-        """
-        Initialize a CatalogDetailCollection object.
-
-        :param List[Catalog] catalogs: Engine Catalogs.
-        """
-        self.catalogs = catalogs
-
-    @classmethod
-    def from_dict(cls, _dict: Dict) -> 'CatalogDetailCollection':
-        """Initialize a CatalogDetailCollection object from a json dictionary."""
-        args = {}
-        if 'catalogs' in _dict:
-            args['catalogs'] = [Catalog.from_dict(v) for v in _dict.get('catalogs')]
-        else:
-            raise ValueError('Required property \'catalogs\' not present in CatalogDetailCollection JSON')
-        return cls(**args)
-
-    @classmethod
-    def _from_dict(cls, _dict):
-        """Initialize a CatalogDetailCollection object from a json dictionary."""
-        return cls.from_dict(_dict)
-
-    def to_dict(self) -> Dict:
-        """Return a json dictionary representing this model."""
-        _dict = {}
-        if hasattr(self, 'catalogs') and self.catalogs is not None:
-            catalogs_list = []
-            for v in self.catalogs:
-                if isinstance(v, dict):
-                    catalogs_list.append(v)
-                else:
-                    catalogs_list.append(v.to_dict())
-            _dict['catalogs'] = catalogs_list
-        return _dict
-
-    def _to_dict(self):
-        """Return a json dictionary representing this model."""
-        return self.to_dict()
-
-    def __str__(self) -> str:
-        """Return a `str` version of this CatalogDetailCollection object."""
-        return json.dumps(self.to_dict(), indent=2)
-
-    def __eq__(self, other: 'CatalogDetailCollection') -> bool:
-        """Return `true` when self and other are equal, false otherwise."""
-        if not isinstance(other, self.__class__):
-            return False
-        return self.__dict__ == other.__dict__
-
-    def __ne__(self, other: 'CatalogDetailCollection') -> bool:
-        """Return `true` when self and other are not equal, false otherwise."""
-        return not self == other
-
-
-class CatalogDetailsCollection:
-    """
     Define the catalog details.
 
     :param List[str] actions: (optional) list of allowed actions.
@@ -5689,7 +5558,7 @@ class CatalogDetailsCollection:
         thrift_uri: Optional[str] = None,
     ) -> None:
         """
-        Initialize a CatalogDetailsCollection object.
+        Initialize a Catalog object.
 
         :param List[str] actions: (optional) list of allowed actions.
         :param List[str] associated_buckets: (optional) Associated buckets items.
@@ -5736,8 +5605,8 @@ class CatalogDetailsCollection:
         self.thrift_uri = thrift_uri
 
     @classmethod
-    def from_dict(cls, _dict: Dict) -> 'CatalogDetailsCollection':
-        """Initialize a CatalogDetailsCollection object from a json dictionary."""
+    def from_dict(cls, _dict: Dict) -> 'Catalog':
+        """Initialize a Catalog object from a json dictionary."""
         args = {}
         if 'actions' in _dict:
             args['actions'] = _dict.get('actions')
@@ -5783,7 +5652,7 @@ class CatalogDetailsCollection:
 
     @classmethod
     def _from_dict(cls, _dict):
-        """Initialize a CatalogDetailsCollection object from a json dictionary."""
+        """Initialize a Catalog object from a json dictionary."""
         return cls.from_dict(_dict)
 
     def to_dict(self) -> Dict:
@@ -5836,16 +5705,16 @@ class CatalogDetailsCollection:
         return self.to_dict()
 
     def __str__(self) -> str:
-        """Return a `str` version of this CatalogDetailsCollection object."""
+        """Return a `str` version of this Catalog object."""
         return json.dumps(self.to_dict(), indent=2)
 
-    def __eq__(self, other: 'CatalogDetailsCollection') -> bool:
+    def __eq__(self, other: 'Catalog') -> bool:
         """Return `true` when self and other are equal, false otherwise."""
         if not isinstance(other, self.__class__):
             return False
         return self.__dict__ == other.__dict__
 
-    def __ne__(self, other: 'CatalogDetailsCollection') -> bool:
+    def __ne__(self, other: 'Catalog') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
@@ -5858,11 +5727,11 @@ class CatalogDetailsCollection:
         CUSTOMER = 'customer'
 
 
-class CatalogDetailsCollectionCollection:
+class CatalogCollection:
     """
-    get engine catalogs.
+    GetCatalogs OK.
 
-    :param List[Catalog] catalogs: (optional) list prestissimo engines.
+    :param List[Catalog] catalogs: (optional) Catalogs.
     """
 
     def __init__(
@@ -5871,15 +5740,15 @@ class CatalogDetailsCollectionCollection:
         catalogs: Optional[List['Catalog']] = None,
     ) -> None:
         """
-        Initialize a CatalogDetailsCollectionCollection object.
+        Initialize a CatalogCollection object.
 
-        :param List[Catalog] catalogs: (optional) list prestissimo engines.
+        :param List[Catalog] catalogs: (optional) Catalogs.
         """
         self.catalogs = catalogs
 
     @classmethod
-    def from_dict(cls, _dict: Dict) -> 'CatalogDetailsCollectionCollection':
-        """Initialize a CatalogDetailsCollectionCollection object from a json dictionary."""
+    def from_dict(cls, _dict: Dict) -> 'CatalogCollection':
+        """Initialize a CatalogCollection object from a json dictionary."""
         args = {}
         if 'catalogs' in _dict:
             args['catalogs'] = [Catalog.from_dict(v) for v in _dict.get('catalogs')]
@@ -5887,7 +5756,7 @@ class CatalogDetailsCollectionCollection:
 
     @classmethod
     def _from_dict(cls, _dict):
-        """Initialize a CatalogDetailsCollectionCollection object from a json dictionary."""
+        """Initialize a CatalogCollection object from a json dictionary."""
         return cls.from_dict(_dict)
 
     def to_dict(self) -> Dict:
@@ -5908,139 +5777,16 @@ class CatalogDetailsCollectionCollection:
         return self.to_dict()
 
     def __str__(self) -> str:
-        """Return a `str` version of this CatalogDetailsCollectionCollection object."""
+        """Return a `str` version of this CatalogCollection object."""
         return json.dumps(self.to_dict(), indent=2)
 
-    def __eq__(self, other: 'CatalogDetailsCollectionCollection') -> bool:
+    def __eq__(self, other: 'CatalogCollection') -> bool:
         """Return `true` when self and other are equal, false otherwise."""
         if not isinstance(other, self.__class__):
             return False
         return self.__dict__ == other.__dict__
 
-    def __ne__(self, other: 'CatalogDetailsCollectionCollection') -> bool:
-        """Return `true` when self and other are not equal, false otherwise."""
-        return not self == other
-
-
-class CatalogSchemaTableCollection:
-    """
-    tables list.
-
-    :param List[str] tables: (optional) List of the tables present in the schema.
-    """
-
-    def __init__(
-        self,
-        *,
-        tables: Optional[List[str]] = None,
-    ) -> None:
-        """
-        Initialize a CatalogSchemaTableCollection object.
-
-        :param List[str] tables: (optional) List of the tables present in the
-               schema.
-        """
-        self.tables = tables
-
-    @classmethod
-    def from_dict(cls, _dict: Dict) -> 'CatalogSchemaTableCollection':
-        """Initialize a CatalogSchemaTableCollection object from a json dictionary."""
-        args = {}
-        if 'tables' in _dict:
-            args['tables'] = _dict.get('tables')
-        return cls(**args)
-
-    @classmethod
-    def _from_dict(cls, _dict):
-        """Initialize a CatalogSchemaTableCollection object from a json dictionary."""
-        return cls.from_dict(_dict)
-
-    def to_dict(self) -> Dict:
-        """Return a json dictionary representing this model."""
-        _dict = {}
-        if hasattr(self, 'tables') and self.tables is not None:
-            _dict['tables'] = self.tables
-        return _dict
-
-    def _to_dict(self):
-        """Return a json dictionary representing this model."""
-        return self.to_dict()
-
-    def __str__(self) -> str:
-        """Return a `str` version of this CatalogSchemaTableCollection object."""
-        return json.dumps(self.to_dict(), indent=2)
-
-    def __eq__(self, other: 'CatalogSchemaTableCollection') -> bool:
-        """Return `true` when self and other are equal, false otherwise."""
-        if not isinstance(other, self.__class__):
-            return False
-        return self.__dict__ == other.__dict__
-
-    def __ne__(self, other: 'CatalogSchemaTableCollection') -> bool:
-        """Return `true` when self and other are not equal, false otherwise."""
-        return not self == other
-
-
-class CatalogSchemaTableColumnCollection:
-    """
-    GetColumns OK.
-
-    :param List[Column] columns: (optional) Columns.
-    """
-
-    def __init__(
-        self,
-        *,
-        columns: Optional[List['Column']] = None,
-    ) -> None:
-        """
-        Initialize a CatalogSchemaTableColumnCollection object.
-
-        :param List[Column] columns: (optional) Columns.
-        """
-        self.columns = columns
-
-    @classmethod
-    def from_dict(cls, _dict: Dict) -> 'CatalogSchemaTableColumnCollection':
-        """Initialize a CatalogSchemaTableColumnCollection object from a json dictionary."""
-        args = {}
-        if 'columns' in _dict:
-            args['columns'] = [Column.from_dict(v) for v in _dict.get('columns')]
-        return cls(**args)
-
-    @classmethod
-    def _from_dict(cls, _dict):
-        """Initialize a CatalogSchemaTableColumnCollection object from a json dictionary."""
-        return cls.from_dict(_dict)
-
-    def to_dict(self) -> Dict:
-        """Return a json dictionary representing this model."""
-        _dict = {}
-        if hasattr(self, 'columns') and self.columns is not None:
-            columns_list = []
-            for v in self.columns:
-                if isinstance(v, dict):
-                    columns_list.append(v)
-                else:
-                    columns_list.append(v.to_dict())
-            _dict['columns'] = columns_list
-        return _dict
-
-    def _to_dict(self):
-        """Return a json dictionary representing this model."""
-        return self.to_dict()
-
-    def __str__(self) -> str:
-        """Return a `str` version of this CatalogSchemaTableColumnCollection object."""
-        return json.dumps(self.to_dict(), indent=2)
-
-    def __eq__(self, other: 'CatalogSchemaTableColumnCollection') -> bool:
-        """Return `true` when self and other are equal, false otherwise."""
-        if not isinstance(other, self.__class__):
-            return False
-        return self.__dict__ == other.__dict__
-
-    def __ne__(self, other: 'CatalogSchemaTableColumnCollection') -> bool:
+    def __ne__(self, other: 'CatalogCollection') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
@@ -8304,81 +8050,6 @@ class Engines:
         return not self == other
 
 
-class GetCatalogOKBody:
-    """
-    GetCatalog OK.
-
-    :param CatalogDetailsCollection catalog: Define the catalog details.
-    :param SuccessResponse response: Response of success.
-    """
-
-    def __init__(
-        self,
-        catalog: 'CatalogDetailsCollection',
-        response: 'SuccessResponse',
-    ) -> None:
-        """
-        Initialize a GetCatalogOKBody object.
-
-        :param CatalogDetailsCollection catalog: Define the catalog details.
-        :param SuccessResponse response: Response of success.
-        """
-        self.catalog = catalog
-        self.response = response
-
-    @classmethod
-    def from_dict(cls, _dict: Dict) -> 'GetCatalogOKBody':
-        """Initialize a GetCatalogOKBody object from a json dictionary."""
-        args = {}
-        if 'catalog' in _dict:
-            args['catalog'] = CatalogDetailsCollection.from_dict(_dict.get('catalog'))
-        else:
-            raise ValueError('Required property \'catalog\' not present in GetCatalogOKBody JSON')
-        if 'response' in _dict:
-            args['response'] = SuccessResponse.from_dict(_dict.get('response'))
-        else:
-            raise ValueError('Required property \'response\' not present in GetCatalogOKBody JSON')
-        return cls(**args)
-
-    @classmethod
-    def _from_dict(cls, _dict):
-        """Initialize a GetCatalogOKBody object from a json dictionary."""
-        return cls.from_dict(_dict)
-
-    def to_dict(self) -> Dict:
-        """Return a json dictionary representing this model."""
-        _dict = {}
-        if hasattr(self, 'catalog') and self.catalog is not None:
-            if isinstance(self.catalog, dict):
-                _dict['catalog'] = self.catalog
-            else:
-                _dict['catalog'] = self.catalog.to_dict()
-        if hasattr(self, 'response') and self.response is not None:
-            if isinstance(self.response, dict):
-                _dict['response'] = self.response
-            else:
-                _dict['response'] = self.response.to_dict()
-        return _dict
-
-    def _to_dict(self):
-        """Return a json dictionary representing this model."""
-        return self.to_dict()
-
-    def __str__(self) -> str:
-        """Return a `str` version of this GetCatalogOKBody object."""
-        return json.dumps(self.to_dict(), indent=2)
-
-    def __eq__(self, other: 'GetCatalogOKBody') -> bool:
-        """Return `true` when self and other are equal, false otherwise."""
-        if not isinstance(other, self.__class__):
-            return False
-        return self.__dict__ == other.__dict__
-
-    def __ne__(self, other: 'GetCatalogOKBody') -> bool:
-        """Return `true` when self and other are not equal, false otherwise."""
-        return not self == other
-
-
 class GetDeploymentsOKBody:
     """
     Response body structure for get deployments.
@@ -8450,6 +8121,129 @@ class GetDeploymentsOKBody:
         return self.__dict__ == other.__dict__
 
     def __ne__(self, other: 'GetDeploymentsOKBody') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
+class GetTableOKBody:
+    """
+    GetColumns OK.
+
+    :param List[Column] columns: (optional) Columns.
+    """
+
+    def __init__(
+        self,
+        *,
+        columns: Optional[List['Column']] = None,
+    ) -> None:
+        """
+        Initialize a GetTableOKBody object.
+
+        :param List[Column] columns: (optional) Columns.
+        """
+        self.columns = columns
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'GetTableOKBody':
+        """Initialize a GetTableOKBody object from a json dictionary."""
+        args = {}
+        if 'columns' in _dict:
+            args['columns'] = [Column.from_dict(v) for v in _dict.get('columns')]
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a GetTableOKBody object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'columns') and self.columns is not None:
+            columns_list = []
+            for v in self.columns:
+                if isinstance(v, dict):
+                    columns_list.append(v)
+                else:
+                    columns_list.append(v.to_dict())
+            _dict['columns'] = columns_list
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this GetTableOKBody object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'GetTableOKBody') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'GetTableOKBody') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
+class GetTableOKBodyCollection:
+    """
+    tables list.
+
+    :param List[str] tables: (optional) List of the tables present in the schema.
+    """
+
+    def __init__(
+        self,
+        *,
+        tables: Optional[List[str]] = None,
+    ) -> None:
+        """
+        Initialize a GetTableOKBodyCollection object.
+
+        :param List[str] tables: (optional) List of the tables present in the
+               schema.
+        """
+        self.tables = tables
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'GetTableOKBodyCollection':
+        """Initialize a GetTableOKBodyCollection object from a json dictionary."""
+        args = {}
+        if 'tables' in _dict:
+            args['tables'] = _dict.get('tables')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a GetTableOKBodyCollection object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'tables') and self.tables is not None:
+            _dict['tables'] = self.tables
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this GetTableOKBodyCollection object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'GetTableOKBodyCollection') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'GetTableOKBodyCollection') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
@@ -8555,84 +8349,6 @@ class JsonPatchOperation:
         MOVE = 'move'
         COPY = 'copy'
         TEST = 'test'
-
-
-class ListCatalogsOKBody:
-    """
-    GetCatalogs OK.
-
-    :param List[CatalogDetailsCollection] catalogs: Catalogs.
-    :param SuccessResponse response: Response of success.
-    """
-
-    def __init__(
-        self,
-        catalogs: List['CatalogDetailsCollection'],
-        response: 'SuccessResponse',
-    ) -> None:
-        """
-        Initialize a ListCatalogsOKBody object.
-
-        :param List[CatalogDetailsCollection] catalogs: Catalogs.
-        :param SuccessResponse response: Response of success.
-        """
-        self.catalogs = catalogs
-        self.response = response
-
-    @classmethod
-    def from_dict(cls, _dict: Dict) -> 'ListCatalogsOKBody':
-        """Initialize a ListCatalogsOKBody object from a json dictionary."""
-        args = {}
-        if 'catalogs' in _dict:
-            args['catalogs'] = [CatalogDetailsCollection.from_dict(v) for v in _dict.get('catalogs')]
-        else:
-            raise ValueError('Required property \'catalogs\' not present in ListCatalogsOKBody JSON')
-        if 'response' in _dict:
-            args['response'] = SuccessResponse.from_dict(_dict.get('response'))
-        else:
-            raise ValueError('Required property \'response\' not present in ListCatalogsOKBody JSON')
-        return cls(**args)
-
-    @classmethod
-    def _from_dict(cls, _dict):
-        """Initialize a ListCatalogsOKBody object from a json dictionary."""
-        return cls.from_dict(_dict)
-
-    def to_dict(self) -> Dict:
-        """Return a json dictionary representing this model."""
-        _dict = {}
-        if hasattr(self, 'catalogs') and self.catalogs is not None:
-            catalogs_list = []
-            for v in self.catalogs:
-                if isinstance(v, dict):
-                    catalogs_list.append(v)
-                else:
-                    catalogs_list.append(v.to_dict())
-            _dict['catalogs'] = catalogs_list
-        if hasattr(self, 'response') and self.response is not None:
-            if isinstance(self.response, dict):
-                _dict['response'] = self.response
-            else:
-                _dict['response'] = self.response.to_dict()
-        return _dict
-
-    def _to_dict(self):
-        """Return a json dictionary representing this model."""
-        return self.to_dict()
-
-    def __str__(self) -> str:
-        """Return a `str` version of this ListCatalogsOKBody object."""
-        return json.dumps(self.to_dict(), indent=2)
-
-    def __eq__(self, other: 'ListCatalogsOKBody') -> bool:
-        """Return `true` when self and other are equal, false otherwise."""
-        if not isinstance(other, self.__class__):
-            return False
-        return self.__dict__ == other.__dict__
-
-    def __ne__(self, other: 'ListCatalogsOKBody') -> bool:
-        """Return `true` when self and other are not equal, false otherwise."""
-        return not self == other
 
 
 class ListSchemasOKBody:
@@ -11132,7 +10848,7 @@ class SparkApplicationDetails:
 
     :param str application: Application.
     :param List[str] arguments: List of arguments.
-    :param dict conf: Application.
+    :param SparkApplicationDetailsConf conf: Application.
     :param dict env: Application.
     :param str name: (optional) Display name of the spark application.
     """
@@ -11141,7 +10857,7 @@ class SparkApplicationDetails:
         self,
         application: str,
         arguments: List[str],
-        conf: dict,
+        conf: 'SparkApplicationDetailsConf',
         env: dict,
         *,
         name: Optional[str] = None,
@@ -11151,7 +10867,7 @@ class SparkApplicationDetails:
 
         :param str application: Application.
         :param List[str] arguments: List of arguments.
-        :param dict conf: Application.
+        :param SparkApplicationDetailsConf conf: Application.
         :param dict env: Application.
         :param str name: (optional) Display name of the spark application.
         """
@@ -11174,7 +10890,7 @@ class SparkApplicationDetails:
         else:
             raise ValueError('Required property \'arguments\' not present in SparkApplicationDetails JSON')
         if 'conf' in _dict:
-            args['conf'] = _dict.get('conf')
+            args['conf'] = SparkApplicationDetailsConf.from_dict(_dict.get('conf'))
         else:
             raise ValueError('Required property \'conf\' not present in SparkApplicationDetails JSON')
         if 'env' in _dict:
@@ -11198,7 +10914,10 @@ class SparkApplicationDetails:
         if hasattr(self, 'arguments') and self.arguments is not None:
             _dict['arguments'] = self.arguments
         if hasattr(self, 'conf') and self.conf is not None:
-            _dict['conf'] = self.conf
+            if isinstance(self.conf, dict):
+                _dict['conf'] = self.conf
+            else:
+                _dict['conf'] = self.conf.to_dict()
         if hasattr(self, 'env') and self.env is not None:
             _dict['env'] = self.env
         if hasattr(self, 'name') and self.name is not None:
@@ -11220,6 +10939,207 @@ class SparkApplicationDetails:
         return self.__dict__ == other.__dict__
 
     def __ne__(self, other: 'SparkApplicationDetails') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
+class SparkApplicationDetailsConf:
+    """
+    Application.
+
+    :param str spark_app_name: (optional) Spark application name.
+    :param str spark_hive_metastore_client_auth_mode: (optional) Hive Metastore
+          authentication mode.
+    :param str spark_hive_metastore_client_plain_password: (optional) Hive Metastore
+          plain password.
+    :param str spark_hive_metastore_client_plain_username: (optional) Hive Metastore
+          plain username.
+    :param str spark_hive_metastore_truststore_password: (optional) Truststore
+          password.
+    :param str spark_hive_metastore_truststore_path: (optional) Truststore path.
+    :param str spark_hive_metastore_truststore_type: (optional) Truststore type.
+    :param str spark_hive_metastore_use_ssl: (optional) Enable or disable SSL for
+          Hive Metastore.
+    :param str spark_sql_catalog_implementation: (optional) SQL catalog
+          implementation.
+    :param str spark_sql_catalog_lakehouse: (optional) Lakehouse catalog name.
+    :param str spark_sql_catalog_lakehouse_type: (optional) Lakehouse catalog type.
+    :param str spark_sql_catalog_lakehouse_uri: (optional) Lakehouse catalog URI.
+    :param str spark_sql_extensions: (optional) SQL extensions.
+    :param str spark_sql_iceberg_vectorization_enabled: (optional) Enable or disable
+          Iceberg vectorization.
+    """
+
+    def __init__(
+        self,
+        *,
+        spark_app_name: Optional[str] = None,
+        spark_hive_metastore_client_auth_mode: Optional[str] = None,
+        spark_hive_metastore_client_plain_password: Optional[str] = None,
+        spark_hive_metastore_client_plain_username: Optional[str] = None,
+        spark_hive_metastore_truststore_password: Optional[str] = None,
+        spark_hive_metastore_truststore_path: Optional[str] = None,
+        spark_hive_metastore_truststore_type: Optional[str] = None,
+        spark_hive_metastore_use_ssl: Optional[str] = None,
+        spark_sql_catalog_implementation: Optional[str] = None,
+        spark_sql_catalog_lakehouse: Optional[str] = None,
+        spark_sql_catalog_lakehouse_type: Optional[str] = None,
+        spark_sql_catalog_lakehouse_uri: Optional[str] = None,
+        spark_sql_extensions: Optional[str] = None,
+        spark_sql_iceberg_vectorization_enabled: Optional[str] = None,
+    ) -> None:
+        """
+        Initialize a SparkApplicationDetailsConf object.
+
+        :param str spark_app_name: (optional) Spark application name.
+        :param str spark_hive_metastore_client_auth_mode: (optional) Hive Metastore
+               authentication mode.
+        :param str spark_hive_metastore_client_plain_password: (optional) Hive
+               Metastore plain password.
+        :param str spark_hive_metastore_client_plain_username: (optional) Hive
+               Metastore plain username.
+        :param str spark_hive_metastore_truststore_password: (optional) Truststore
+               password.
+        :param str spark_hive_metastore_truststore_path: (optional) Truststore
+               path.
+        :param str spark_hive_metastore_truststore_type: (optional) Truststore
+               type.
+        :param str spark_hive_metastore_use_ssl: (optional) Enable or disable SSL
+               for Hive Metastore.
+        :param str spark_sql_catalog_implementation: (optional) SQL catalog
+               implementation.
+        :param str spark_sql_catalog_lakehouse: (optional) Lakehouse catalog name.
+        :param str spark_sql_catalog_lakehouse_type: (optional) Lakehouse catalog
+               type.
+        :param str spark_sql_catalog_lakehouse_uri: (optional) Lakehouse catalog
+               URI.
+        :param str spark_sql_extensions: (optional) SQL extensions.
+        :param str spark_sql_iceberg_vectorization_enabled: (optional) Enable or
+               disable Iceberg vectorization.
+        """
+        self.spark_app_name = spark_app_name
+        self.spark_hive_metastore_client_auth_mode = spark_hive_metastore_client_auth_mode
+        self.spark_hive_metastore_client_plain_password = spark_hive_metastore_client_plain_password
+        self.spark_hive_metastore_client_plain_username = spark_hive_metastore_client_plain_username
+        self.spark_hive_metastore_truststore_password = spark_hive_metastore_truststore_password
+        self.spark_hive_metastore_truststore_path = spark_hive_metastore_truststore_path
+        self.spark_hive_metastore_truststore_type = spark_hive_metastore_truststore_type
+        self.spark_hive_metastore_use_ssl = spark_hive_metastore_use_ssl
+        self.spark_sql_catalog_implementation = spark_sql_catalog_implementation
+        self.spark_sql_catalog_lakehouse = spark_sql_catalog_lakehouse
+        self.spark_sql_catalog_lakehouse_type = spark_sql_catalog_lakehouse_type
+        self.spark_sql_catalog_lakehouse_uri = spark_sql_catalog_lakehouse_uri
+        self.spark_sql_extensions = spark_sql_extensions
+        self.spark_sql_iceberg_vectorization_enabled = spark_sql_iceberg_vectorization_enabled
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'SparkApplicationDetailsConf':
+        """Initialize a SparkApplicationDetailsConf object from a json dictionary."""
+        args = {}
+        if 'spark_app_name' in _dict:
+            args['spark_app_name'] = _dict.get('spark_app_name')
+        if 'spark_hive_metastore_client_auth_mode' in _dict:
+            args['spark_hive_metastore_client_auth_mode'] = _dict.get('spark_hive_metastore_client_auth_mode')
+        if 'spark_hive_metastore_client_plain_password' in _dict:
+            args['spark_hive_metastore_client_plain_password'] = _dict.get('spark_hive_metastore_client_plain_password')
+        if 'spark_hive_metastore_client_plain_username' in _dict:
+            args['spark_hive_metastore_client_plain_username'] = _dict.get('spark_hive_metastore_client_plain_username')
+        if 'spark_hive_metastore_truststore_password' in _dict:
+            args['spark_hive_metastore_truststore_password'] = _dict.get('spark_hive_metastore_truststore_password')
+        if 'spark_hive_metastore_truststore_path' in _dict:
+            args['spark_hive_metastore_truststore_path'] = _dict.get('spark_hive_metastore_truststore_path')
+        if 'spark_hive_metastore_truststore_type' in _dict:
+            args['spark_hive_metastore_truststore_type'] = _dict.get('spark_hive_metastore_truststore_type')
+        if 'spark_hive_metastore_use_ssl' in _dict:
+            args['spark_hive_metastore_use_ssl'] = _dict.get('spark_hive_metastore_use_ssl')
+        if 'spark_sql_catalog_implementation' in _dict:
+            args['spark_sql_catalog_implementation'] = _dict.get('spark_sql_catalog_implementation')
+        if 'spark_sql_catalog_lakehouse' in _dict:
+            args['spark_sql_catalog_lakehouse'] = _dict.get('spark_sql_catalog_lakehouse')
+        if 'spark_sql_catalog_lakehouse_type' in _dict:
+            args['spark_sql_catalog_lakehouse_type'] = _dict.get('spark_sql_catalog_lakehouse_type')
+        if 'spark_sql_catalog_lakehouse_uri' in _dict:
+            args['spark_sql_catalog_lakehouse_uri'] = _dict.get('spark_sql_catalog_lakehouse_uri')
+        if 'spark_sql_extensions' in _dict:
+            args['spark_sql_extensions'] = _dict.get('spark_sql_extensions')
+        if 'spark_sql_iceberg_vectorization_enabled' in _dict:
+            args['spark_sql_iceberg_vectorization_enabled'] = _dict.get('spark_sql_iceberg_vectorization_enabled')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a SparkApplicationDetailsConf object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'spark_app_name') and self.spark_app_name is not None:
+            _dict['spark_app_name'] = self.spark_app_name
+        if (
+            hasattr(self, 'spark_hive_metastore_client_auth_mode')
+            and self.spark_hive_metastore_client_auth_mode is not None
+        ):
+            _dict['spark_hive_metastore_client_auth_mode'] = self.spark_hive_metastore_client_auth_mode
+        if (
+            hasattr(self, 'spark_hive_metastore_client_plain_password')
+            and self.spark_hive_metastore_client_plain_password is not None
+        ):
+            _dict['spark_hive_metastore_client_plain_password'] = self.spark_hive_metastore_client_plain_password
+        if (
+            hasattr(self, 'spark_hive_metastore_client_plain_username')
+            and self.spark_hive_metastore_client_plain_username is not None
+        ):
+            _dict['spark_hive_metastore_client_plain_username'] = self.spark_hive_metastore_client_plain_username
+        if (
+            hasattr(self, 'spark_hive_metastore_truststore_password')
+            and self.spark_hive_metastore_truststore_password is not None
+        ):
+            _dict['spark_hive_metastore_truststore_password'] = self.spark_hive_metastore_truststore_password
+        if (
+            hasattr(self, 'spark_hive_metastore_truststore_path')
+            and self.spark_hive_metastore_truststore_path is not None
+        ):
+            _dict['spark_hive_metastore_truststore_path'] = self.spark_hive_metastore_truststore_path
+        if (
+            hasattr(self, 'spark_hive_metastore_truststore_type')
+            and self.spark_hive_metastore_truststore_type is not None
+        ):
+            _dict['spark_hive_metastore_truststore_type'] = self.spark_hive_metastore_truststore_type
+        if hasattr(self, 'spark_hive_metastore_use_ssl') and self.spark_hive_metastore_use_ssl is not None:
+            _dict['spark_hive_metastore_use_ssl'] = self.spark_hive_metastore_use_ssl
+        if hasattr(self, 'spark_sql_catalog_implementation') and self.spark_sql_catalog_implementation is not None:
+            _dict['spark_sql_catalog_implementation'] = self.spark_sql_catalog_implementation
+        if hasattr(self, 'spark_sql_catalog_lakehouse') and self.spark_sql_catalog_lakehouse is not None:
+            _dict['spark_sql_catalog_lakehouse'] = self.spark_sql_catalog_lakehouse
+        if hasattr(self, 'spark_sql_catalog_lakehouse_type') and self.spark_sql_catalog_lakehouse_type is not None:
+            _dict['spark_sql_catalog_lakehouse_type'] = self.spark_sql_catalog_lakehouse_type
+        if hasattr(self, 'spark_sql_catalog_lakehouse_uri') and self.spark_sql_catalog_lakehouse_uri is not None:
+            _dict['spark_sql_catalog_lakehouse_uri'] = self.spark_sql_catalog_lakehouse_uri
+        if hasattr(self, 'spark_sql_extensions') and self.spark_sql_extensions is not None:
+            _dict['spark_sql_extensions'] = self.spark_sql_extensions
+        if (
+            hasattr(self, 'spark_sql_iceberg_vectorization_enabled')
+            and self.spark_sql_iceberg_vectorization_enabled is not None
+        ):
+            _dict['spark_sql_iceberg_vectorization_enabled'] = self.spark_sql_iceberg_vectorization_enabled
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this SparkApplicationDetailsConf object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'SparkApplicationDetailsConf') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'SparkApplicationDetailsConf') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 

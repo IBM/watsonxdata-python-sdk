@@ -549,8 +549,8 @@ class TestWatsonxDataV2:
         )
 
         assert response.get_status_code() == 200
-        catalog_details_collection_collection = response.get_result()
-        assert catalog_details_collection_collection is not None
+        catalog_collection = response.get_result()
+        assert catalog_collection is not None
 
     @needscredentials
     def test_replace_prestissimo_engine_catalogs(self):
@@ -561,8 +561,8 @@ class TestWatsonxDataV2:
         )
 
         assert response.get_status_code() == 201
-        catalog_details_collection_collection = response.get_result()
-        assert catalog_details_collection_collection is not None
+        catalog_collection = response.get_result()
+        assert catalog_collection is not None
 
     @needscredentials
     def test_get_prestissimo_engine_catalog(self):
@@ -573,8 +573,8 @@ class TestWatsonxDataV2:
         )
 
         assert response.get_status_code() == 200
-        catalog_details_collection = response.get_result()
-        assert catalog_details_collection is not None
+        catalog = response.get_result()
+        assert catalog is not None
 
     @needscredentials
     def test_create_prestissimo_engine_pause(self):
@@ -739,8 +739,8 @@ class TestWatsonxDataV2:
         )
 
         assert response.get_status_code() == 200
-        catalog_detail_collection = response.get_result()
-        assert catalog_detail_collection is not None
+        catalog_collection = response.get_result()
+        assert catalog_collection is not None
 
     @needscredentials
     def test_replace_presto_engine_catalogs(self):
@@ -751,8 +751,8 @@ class TestWatsonxDataV2:
         )
 
         assert response.get_status_code() == 201
-        catalog_detail_collection = response.get_result()
-        assert catalog_detail_collection is not None
+        catalog = response.get_result()
+        assert catalog is not None
 
     @needscredentials
     def test_get_presto_engine_catalog(self):
@@ -763,8 +763,8 @@ class TestWatsonxDataV2:
         )
 
         assert response.get_status_code() == 200
-        catalog_details_collection = response.get_result()
-        assert catalog_details_collection is not None
+        catalog = response.get_result()
+        assert catalog is not None
 
     @needscredentials
     def test_create_engine_pause(self):
@@ -866,7 +866,7 @@ class TestWatsonxDataV2:
         }
 
         response = self.watsonx_data_service.create_spark_engine(
-            origin='external/discover',
+            origin='external',
             type='spark',
             description='spark engine description',
             engine_details=spark_engine_details_prototype_model,
@@ -912,12 +912,29 @@ class TestWatsonxDataV2:
 
     @needscredentials
     def test_create_spark_engine_application(self):
+        # Construct a dict representation of a SparkApplicationDetailsConf model
+        spark_application_details_conf_model = {
+            'spark_app_name': 'MyJob',
+            'spark_hive_metastore_client_auth_mode': 'PLAIN',
+            'spark_hive_metastore_client_plain_password': 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...',
+            'spark_hive_metastore_client_plain_username': 'ibm_lh_token_admin',
+            'spark_hive_metastore_truststore_password': 'changeit',
+            'spark_hive_metastore_truststore_path': 'file:///opt/ibm/jdk/lib/security/cacerts',
+            'spark_hive_metastore_truststore_type': 'JKS',
+            'spark_hive_metastore_use_ssl': 'true',
+            'spark_sql_catalog_implementation': 'Spark Catalog Implementation',
+            'spark_sql_catalog_lakehouse': 'org.apache.iceberg.spark.SparkCatalog',
+            'spark_sql_catalog_lakehouse_type': 'Spark Catalog Type',
+            'spark_sql_catalog_lakehouse_uri': 'Spark Catalog URI',
+            'spark_sql_extensions': 'org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions',
+            'spark_sql_iceberg_vectorization_enabled': 'false',
+        }
         # Construct a dict representation of a SparkApplicationDetails model
         spark_application_details_model = {
             'application': 's3://mybucket/wordcount.py',
             'arguments': ['people.txt'],
-            'conf': {'key1': 'key:value'},
-            'env': {'key1': 'key:value'},
+            'conf': spark_application_details_conf_model,
+            'env': {'anyKey': 'anyValue'},
             'name': 'SparkApplicaton1',
         }
 
@@ -961,8 +978,8 @@ class TestWatsonxDataV2:
         )
 
         assert response.get_status_code() == 200
-        list_catalogs_ok_body = response.get_result()
-        assert list_catalogs_ok_body is not None
+        catalog_collection = response.get_result()
+        assert catalog_collection is not None
 
     @needscredentials
     def test_get_catalog(self):
@@ -972,8 +989,8 @@ class TestWatsonxDataV2:
         )
 
         assert response.get_status_code() == 200
-        get_catalog_ok_body = response.get_result()
-        assert get_catalog_ok_body is not None
+        catalog = response.get_result()
+        assert catalog is not None
 
     @needscredentials
     def test_list_schemas(self):
@@ -1012,8 +1029,8 @@ class TestWatsonxDataV2:
         )
 
         assert response.get_status_code() == 200
-        catalog_schema_table_collection = response.get_result()
-        assert catalog_schema_table_collection is not None
+        get_table_ok_body_collection = response.get_result()
+        assert get_table_ok_body_collection is not None
 
     @needscredentials
     def test_get_table(self):
@@ -1026,8 +1043,8 @@ class TestWatsonxDataV2:
         )
 
         assert response.get_status_code() == 200
-        catalog_schema_table_column_collection = response.get_result()
-        assert catalog_schema_table_column_collection is not None
+        get_table_ok_body = response.get_result()
+        assert get_table_ok_body is not None
 
     @needscredentials
     def test_update_table(self):

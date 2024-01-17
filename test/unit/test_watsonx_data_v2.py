@@ -4777,7 +4777,7 @@ class TestListPrestissimoEngineCatalogs:
         """
         # Set up mock
         url = preprocess_url('/prestissimo_engines/testString/catalogs')
-        mock_response = '{"catalogs": [{"catalog_name": "sampleCatalog", "creation_date": "16073847388"}]}'
+        mock_response = '{"catalogs": [{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}]}'
         responses.add(
             responses.GET,
             url,
@@ -4817,7 +4817,7 @@ class TestListPrestissimoEngineCatalogs:
         """
         # Set up mock
         url = preprocess_url('/prestissimo_engines/testString/catalogs')
-        mock_response = '{"catalogs": [{"catalog_name": "sampleCatalog", "creation_date": "16073847388"}]}'
+        mock_response = '{"catalogs": [{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}]}'
         responses.add(
             responses.GET,
             url,
@@ -4855,7 +4855,7 @@ class TestListPrestissimoEngineCatalogs:
         """
         # Set up mock
         url = preprocess_url('/prestissimo_engines/testString/catalogs')
-        mock_response = '{"catalogs": [{"catalog_name": "sampleCatalog", "creation_date": "16073847388"}]}'
+        mock_response = '{"catalogs": [{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}]}'
         responses.add(
             responses.GET,
             url,
@@ -4898,7 +4898,7 @@ class TestReplacePrestissimoEngineCatalogs:
         """
         # Set up mock
         url = preprocess_url('/prestissimo_engines/testString/catalogs')
-        mock_response = '{"catalogs": [{"catalog_name": "sampleCatalog", "creation_date": "16073847388"}]}'
+        mock_response = '{"catalogs": [{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}]}'
         responses.add(
             responses.PUT,
             url,
@@ -4944,7 +4944,7 @@ class TestReplacePrestissimoEngineCatalogs:
         """
         # Set up mock
         url = preprocess_url('/prestissimo_engines/testString/catalogs')
-        mock_response = '{"catalogs": [{"catalog_name": "sampleCatalog", "creation_date": "16073847388"}]}'
+        mock_response = '{"catalogs": [{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}]}'
         responses.add(
             responses.PUT,
             url,
@@ -4988,7 +4988,7 @@ class TestReplacePrestissimoEngineCatalogs:
         """
         # Set up mock
         url = preprocess_url('/prestissimo_engines/testString/catalogs')
-        mock_response = '{"catalogs": [{"catalog_name": "sampleCatalog", "creation_date": "16073847388"}]}'
+        mock_response = '{"catalogs": [{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}]}'
         responses.add(
             responses.PUT,
             url,
@@ -6782,7 +6782,7 @@ class TestListPrestoEngineCatalogs:
         """
         # Set up mock
         url = preprocess_url('/presto_engines/testString/catalogs')
-        mock_response = '{"catalogs": [{"catalog_name": "sampleCatalog", "creation_date": "16073847388"}]}'
+        mock_response = '{"catalogs": [{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}]}'
         responses.add(
             responses.GET,
             url,
@@ -6822,7 +6822,7 @@ class TestListPrestoEngineCatalogs:
         """
         # Set up mock
         url = preprocess_url('/presto_engines/testString/catalogs')
-        mock_response = '{"catalogs": [{"catalog_name": "sampleCatalog", "creation_date": "16073847388"}]}'
+        mock_response = '{"catalogs": [{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}]}'
         responses.add(
             responses.GET,
             url,
@@ -6860,7 +6860,7 @@ class TestListPrestoEngineCatalogs:
         """
         # Set up mock
         url = preprocess_url('/presto_engines/testString/catalogs')
-        mock_response = '{"catalogs": [{"catalog_name": "sampleCatalog", "creation_date": "16073847388"}]}'
+        mock_response = '{"catalogs": [{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}]}'
         responses.add(
             responses.GET,
             url,
@@ -6903,7 +6903,7 @@ class TestReplacePrestoEngineCatalogs:
         """
         # Set up mock
         url = preprocess_url('/presto_engines/testString/catalogs')
-        mock_response = '{"catalogs": [{"catalog_name": "sampleCatalog", "creation_date": "16073847388"}]}'
+        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
         responses.add(
             responses.PUT,
             url,
@@ -6949,7 +6949,7 @@ class TestReplacePrestoEngineCatalogs:
         """
         # Set up mock
         url = preprocess_url('/presto_engines/testString/catalogs')
-        mock_response = '{"catalogs": [{"catalog_name": "sampleCatalog", "creation_date": "16073847388"}]}'
+        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
         responses.add(
             responses.PUT,
             url,
@@ -6993,7 +6993,7 @@ class TestReplacePrestoEngineCatalogs:
         """
         # Set up mock
         url = preprocess_url('/presto_engines/testString/catalogs')
-        mock_response = '{"catalogs": [{"catalog_name": "sampleCatalog", "creation_date": "16073847388"}]}'
+        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
         responses.add(
             responses.PUT,
             url,
@@ -8188,7 +8188,7 @@ class TestCreateSparkEngine:
         spark_engine_details_prototype_model['managed_by'] = 'fully/self'
 
         # Set up parameter values
-        origin = 'external/discover'
+        origin = 'external'
         type = 'spark'
         description = 'spark engine description'
         engine_details = spark_engine_details_prototype_model
@@ -8213,7 +8213,7 @@ class TestCreateSparkEngine:
         assert response.status_code == 201
         # Validate body params
         req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
-        assert req_body['origin'] == 'external/discover'
+        assert req_body['origin'] == 'external'
         assert req_body['type'] == 'spark'
         assert req_body['description'] == 'spark engine description'
         assert req_body['engine_details'] == spark_engine_details_prototype_model
@@ -8253,7 +8253,7 @@ class TestCreateSparkEngine:
         spark_engine_details_prototype_model['managed_by'] = 'fully/self'
 
         # Set up parameter values
-        origin = 'external/discover'
+        origin = 'external'
         type = 'spark'
         description = 'spark engine description'
         engine_details = spark_engine_details_prototype_model
@@ -8276,7 +8276,7 @@ class TestCreateSparkEngine:
         assert response.status_code == 201
         # Validate body params
         req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
-        assert req_body['origin'] == 'external/discover'
+        assert req_body['origin'] == 'external'
         assert req_body['type'] == 'spark'
         assert req_body['description'] == 'spark engine description'
         assert req_body['engine_details'] == spark_engine_details_prototype_model
@@ -8316,7 +8316,7 @@ class TestCreateSparkEngine:
         spark_engine_details_prototype_model['managed_by'] = 'fully/self'
 
         # Set up parameter values
-        origin = 'external/discover'
+        origin = 'external'
         type = 'spark'
         description = 'spark engine description'
         engine_details = spark_engine_details_prototype_model
@@ -8621,7 +8621,7 @@ class TestListSparkEngineApplications:
         """
         # Set up mock
         url = preprocess_url('/spark_engines/testString/applications')
-        mock_response = '{"applications": [{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "conf": {"spark_app_name": "MyJob", "spark_hive_metastore_client_auth_mode": "PLAIN", "spark_hive_metastore_client_plain_password": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...", "spark_hive_metastore_client_plain_username": "ibm_lh_token_admin", "spark_hive_metastore_truststore_password": "changeit", "spark_hive_metastore_truststore_path": "file:///opt/ibm/jdk/lib/security/cacerts", "spark_hive_metastore_truststore_type": "JKS", "spark_hive_metastore_use_ssl": "true", "spark_sql_catalog_implementation": "Spark Catalog Implementation", "spark_sql_catalog_lakehouse": "org.apache.iceberg.spark.SparkCatalog", "spark_sql_catalog_lakehouse_type": "Spark Catalog Type", "spark_sql_catalog_lakehouse_uri": "Spark Catalog URI", "spark_sql_extensions": "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions", "spark_sql_iceberg_vectorization_enabled": "false"}, "env": {"mapKey": "key:value"}, "name": "SparkApplicaton1"}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae"}]}'
+        mock_response = '{"applications": [{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "conf": {"spark_app_name": "MyJob", "spark_hive_metastore_client_auth_mode": "PLAIN", "spark_hive_metastore_client_plain_password": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...", "spark_hive_metastore_client_plain_username": "ibm_lh_token_admin", "spark_hive_metastore_truststore_password": "changeit", "spark_hive_metastore_truststore_path": "file:///opt/ibm/jdk/lib/security/cacerts", "spark_hive_metastore_truststore_type": "JKS", "spark_hive_metastore_use_ssl": "true", "spark_sql_catalog_implementation": "Spark Catalog Implementation", "spark_sql_catalog_lakehouse": "org.apache.iceberg.spark.SparkCatalog", "spark_sql_catalog_lakehouse_type": "Spark Catalog Type", "spark_sql_catalog_lakehouse_uri": "Spark Catalog URI", "spark_sql_extensions": "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions", "spark_sql_iceberg_vectorization_enabled": "false"}, "env": {"anyKey": "anyValue"}, "name": "SparkApplicaton1"}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae"}]}'
         responses.add(
             responses.GET,
             url,
@@ -8661,7 +8661,7 @@ class TestListSparkEngineApplications:
         """
         # Set up mock
         url = preprocess_url('/spark_engines/testString/applications')
-        mock_response = '{"applications": [{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "conf": {"spark_app_name": "MyJob", "spark_hive_metastore_client_auth_mode": "PLAIN", "spark_hive_metastore_client_plain_password": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...", "spark_hive_metastore_client_plain_username": "ibm_lh_token_admin", "spark_hive_metastore_truststore_password": "changeit", "spark_hive_metastore_truststore_path": "file:///opt/ibm/jdk/lib/security/cacerts", "spark_hive_metastore_truststore_type": "JKS", "spark_hive_metastore_use_ssl": "true", "spark_sql_catalog_implementation": "Spark Catalog Implementation", "spark_sql_catalog_lakehouse": "org.apache.iceberg.spark.SparkCatalog", "spark_sql_catalog_lakehouse_type": "Spark Catalog Type", "spark_sql_catalog_lakehouse_uri": "Spark Catalog URI", "spark_sql_extensions": "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions", "spark_sql_iceberg_vectorization_enabled": "false"}, "env": {"mapKey": "key:value"}, "name": "SparkApplicaton1"}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae"}]}'
+        mock_response = '{"applications": [{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "conf": {"spark_app_name": "MyJob", "spark_hive_metastore_client_auth_mode": "PLAIN", "spark_hive_metastore_client_plain_password": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...", "spark_hive_metastore_client_plain_username": "ibm_lh_token_admin", "spark_hive_metastore_truststore_password": "changeit", "spark_hive_metastore_truststore_path": "file:///opt/ibm/jdk/lib/security/cacerts", "spark_hive_metastore_truststore_type": "JKS", "spark_hive_metastore_use_ssl": "true", "spark_sql_catalog_implementation": "Spark Catalog Implementation", "spark_sql_catalog_lakehouse": "org.apache.iceberg.spark.SparkCatalog", "spark_sql_catalog_lakehouse_type": "Spark Catalog Type", "spark_sql_catalog_lakehouse_uri": "Spark Catalog URI", "spark_sql_extensions": "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions", "spark_sql_iceberg_vectorization_enabled": "false"}, "env": {"anyKey": "anyValue"}, "name": "SparkApplicaton1"}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae"}]}'
         responses.add(
             responses.GET,
             url,
@@ -8699,7 +8699,7 @@ class TestListSparkEngineApplications:
         """
         # Set up mock
         url = preprocess_url('/spark_engines/testString/applications')
-        mock_response = '{"applications": [{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "conf": {"spark_app_name": "MyJob", "spark_hive_metastore_client_auth_mode": "PLAIN", "spark_hive_metastore_client_plain_password": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...", "spark_hive_metastore_client_plain_username": "ibm_lh_token_admin", "spark_hive_metastore_truststore_password": "changeit", "spark_hive_metastore_truststore_path": "file:///opt/ibm/jdk/lib/security/cacerts", "spark_hive_metastore_truststore_type": "JKS", "spark_hive_metastore_use_ssl": "true", "spark_sql_catalog_implementation": "Spark Catalog Implementation", "spark_sql_catalog_lakehouse": "org.apache.iceberg.spark.SparkCatalog", "spark_sql_catalog_lakehouse_type": "Spark Catalog Type", "spark_sql_catalog_lakehouse_uri": "Spark Catalog URI", "spark_sql_extensions": "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions", "spark_sql_iceberg_vectorization_enabled": "false"}, "env": {"mapKey": "key:value"}, "name": "SparkApplicaton1"}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae"}]}'
+        mock_response = '{"applications": [{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "conf": {"spark_app_name": "MyJob", "spark_hive_metastore_client_auth_mode": "PLAIN", "spark_hive_metastore_client_plain_password": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...", "spark_hive_metastore_client_plain_username": "ibm_lh_token_admin", "spark_hive_metastore_truststore_password": "changeit", "spark_hive_metastore_truststore_path": "file:///opt/ibm/jdk/lib/security/cacerts", "spark_hive_metastore_truststore_type": "JKS", "spark_hive_metastore_use_ssl": "true", "spark_sql_catalog_implementation": "Spark Catalog Implementation", "spark_sql_catalog_lakehouse": "org.apache.iceberg.spark.SparkCatalog", "spark_sql_catalog_lakehouse_type": "Spark Catalog Type", "spark_sql_catalog_lakehouse_uri": "Spark Catalog URI", "spark_sql_extensions": "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions", "spark_sql_iceberg_vectorization_enabled": "false"}, "env": {"anyKey": "anyValue"}, "name": "SparkApplicaton1"}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae"}]}'
         responses.add(
             responses.GET,
             url,
@@ -8742,7 +8742,7 @@ class TestCreateSparkEngineApplication:
         """
         # Set up mock
         url = preprocess_url('/spark_engines/testString/applications')
-        mock_response = '{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "conf": {"spark_app_name": "MyJob", "spark_hive_metastore_client_auth_mode": "PLAIN", "spark_hive_metastore_client_plain_password": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...", "spark_hive_metastore_client_plain_username": "ibm_lh_token_admin", "spark_hive_metastore_truststore_password": "changeit", "spark_hive_metastore_truststore_path": "file:///opt/ibm/jdk/lib/security/cacerts", "spark_hive_metastore_truststore_type": "JKS", "spark_hive_metastore_use_ssl": "true", "spark_sql_catalog_implementation": "Spark Catalog Implementation", "spark_sql_catalog_lakehouse": "org.apache.iceberg.spark.SparkCatalog", "spark_sql_catalog_lakehouse_type": "Spark Catalog Type", "spark_sql_catalog_lakehouse_uri": "Spark Catalog URI", "spark_sql_extensions": "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions", "spark_sql_iceberg_vectorization_enabled": "false"}, "env": {"mapKey": "key:value"}, "name": "SparkApplicaton1"}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae"}'
+        mock_response = '{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "conf": {"spark_app_name": "MyJob", "spark_hive_metastore_client_auth_mode": "PLAIN", "spark_hive_metastore_client_plain_password": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...", "spark_hive_metastore_client_plain_username": "ibm_lh_token_admin", "spark_hive_metastore_truststore_password": "changeit", "spark_hive_metastore_truststore_path": "file:///opt/ibm/jdk/lib/security/cacerts", "spark_hive_metastore_truststore_type": "JKS", "spark_hive_metastore_use_ssl": "true", "spark_sql_catalog_implementation": "Spark Catalog Implementation", "spark_sql_catalog_lakehouse": "org.apache.iceberg.spark.SparkCatalog", "spark_sql_catalog_lakehouse_type": "Spark Catalog Type", "spark_sql_catalog_lakehouse_uri": "Spark Catalog URI", "spark_sql_extensions": "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions", "spark_sql_iceberg_vectorization_enabled": "false"}, "env": {"anyKey": "anyValue"}, "name": "SparkApplicaton1"}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae"}'
         responses.add(
             responses.POST,
             url,
@@ -8751,12 +8751,35 @@ class TestCreateSparkEngineApplication:
             status=201,
         )
 
+        # Construct a dict representation of a SparkApplicationDetailsConf model
+        spark_application_details_conf_model = {}
+        spark_application_details_conf_model['spark_app_name'] = 'MyJob'
+        spark_application_details_conf_model['spark_hive_metastore_client_auth_mode'] = 'PLAIN'
+        spark_application_details_conf_model[
+            'spark_hive_metastore_client_plain_password'
+        ] = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...'
+        spark_application_details_conf_model['spark_hive_metastore_client_plain_username'] = 'ibm_lh_token_admin'
+        spark_application_details_conf_model['spark_hive_metastore_truststore_password'] = 'changeit'
+        spark_application_details_conf_model[
+            'spark_hive_metastore_truststore_path'
+        ] = 'file:///opt/ibm/jdk/lib/security/cacerts'
+        spark_application_details_conf_model['spark_hive_metastore_truststore_type'] = 'JKS'
+        spark_application_details_conf_model['spark_hive_metastore_use_ssl'] = 'true'
+        spark_application_details_conf_model['spark_sql_catalog_implementation'] = 'Spark Catalog Implementation'
+        spark_application_details_conf_model['spark_sql_catalog_lakehouse'] = 'org.apache.iceberg.spark.SparkCatalog'
+        spark_application_details_conf_model['spark_sql_catalog_lakehouse_type'] = 'Spark Catalog Type'
+        spark_application_details_conf_model['spark_sql_catalog_lakehouse_uri'] = 'Spark Catalog URI'
+        spark_application_details_conf_model[
+            'spark_sql_extensions'
+        ] = 'org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions'
+        spark_application_details_conf_model['spark_sql_iceberg_vectorization_enabled'] = 'false'
+
         # Construct a dict representation of a SparkApplicationDetails model
         spark_application_details_model = {}
         spark_application_details_model['application'] = 's3://mybucket/wordcount.py'
         spark_application_details_model['arguments'] = ['people.txt']
-        spark_application_details_model['conf'] = {'key1': 'key:value'}
-        spark_application_details_model['env'] = {'key1': 'key:value'}
+        spark_application_details_model['conf'] = spark_application_details_conf_model
+        spark_application_details_model['env'] = {'anyKey': 'anyValue'}
         spark_application_details_model['name'] = 'SparkApplicaton1'
 
         # Set up parameter values
@@ -8807,7 +8830,7 @@ class TestCreateSparkEngineApplication:
         """
         # Set up mock
         url = preprocess_url('/spark_engines/testString/applications')
-        mock_response = '{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "conf": {"spark_app_name": "MyJob", "spark_hive_metastore_client_auth_mode": "PLAIN", "spark_hive_metastore_client_plain_password": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...", "spark_hive_metastore_client_plain_username": "ibm_lh_token_admin", "spark_hive_metastore_truststore_password": "changeit", "spark_hive_metastore_truststore_path": "file:///opt/ibm/jdk/lib/security/cacerts", "spark_hive_metastore_truststore_type": "JKS", "spark_hive_metastore_use_ssl": "true", "spark_sql_catalog_implementation": "Spark Catalog Implementation", "spark_sql_catalog_lakehouse": "org.apache.iceberg.spark.SparkCatalog", "spark_sql_catalog_lakehouse_type": "Spark Catalog Type", "spark_sql_catalog_lakehouse_uri": "Spark Catalog URI", "spark_sql_extensions": "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions", "spark_sql_iceberg_vectorization_enabled": "false"}, "env": {"mapKey": "key:value"}, "name": "SparkApplicaton1"}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae"}'
+        mock_response = '{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "conf": {"spark_app_name": "MyJob", "spark_hive_metastore_client_auth_mode": "PLAIN", "spark_hive_metastore_client_plain_password": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...", "spark_hive_metastore_client_plain_username": "ibm_lh_token_admin", "spark_hive_metastore_truststore_password": "changeit", "spark_hive_metastore_truststore_path": "file:///opt/ibm/jdk/lib/security/cacerts", "spark_hive_metastore_truststore_type": "JKS", "spark_hive_metastore_use_ssl": "true", "spark_sql_catalog_implementation": "Spark Catalog Implementation", "spark_sql_catalog_lakehouse": "org.apache.iceberg.spark.SparkCatalog", "spark_sql_catalog_lakehouse_type": "Spark Catalog Type", "spark_sql_catalog_lakehouse_uri": "Spark Catalog URI", "spark_sql_extensions": "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions", "spark_sql_iceberg_vectorization_enabled": "false"}, "env": {"anyKey": "anyValue"}, "name": "SparkApplicaton1"}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae"}'
         responses.add(
             responses.POST,
             url,
@@ -8816,12 +8839,35 @@ class TestCreateSparkEngineApplication:
             status=201,
         )
 
+        # Construct a dict representation of a SparkApplicationDetailsConf model
+        spark_application_details_conf_model = {}
+        spark_application_details_conf_model['spark_app_name'] = 'MyJob'
+        spark_application_details_conf_model['spark_hive_metastore_client_auth_mode'] = 'PLAIN'
+        spark_application_details_conf_model[
+            'spark_hive_metastore_client_plain_password'
+        ] = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...'
+        spark_application_details_conf_model['spark_hive_metastore_client_plain_username'] = 'ibm_lh_token_admin'
+        spark_application_details_conf_model['spark_hive_metastore_truststore_password'] = 'changeit'
+        spark_application_details_conf_model[
+            'spark_hive_metastore_truststore_path'
+        ] = 'file:///opt/ibm/jdk/lib/security/cacerts'
+        spark_application_details_conf_model['spark_hive_metastore_truststore_type'] = 'JKS'
+        spark_application_details_conf_model['spark_hive_metastore_use_ssl'] = 'true'
+        spark_application_details_conf_model['spark_sql_catalog_implementation'] = 'Spark Catalog Implementation'
+        spark_application_details_conf_model['spark_sql_catalog_lakehouse'] = 'org.apache.iceberg.spark.SparkCatalog'
+        spark_application_details_conf_model['spark_sql_catalog_lakehouse_type'] = 'Spark Catalog Type'
+        spark_application_details_conf_model['spark_sql_catalog_lakehouse_uri'] = 'Spark Catalog URI'
+        spark_application_details_conf_model[
+            'spark_sql_extensions'
+        ] = 'org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions'
+        spark_application_details_conf_model['spark_sql_iceberg_vectorization_enabled'] = 'false'
+
         # Construct a dict representation of a SparkApplicationDetails model
         spark_application_details_model = {}
         spark_application_details_model['application'] = 's3://mybucket/wordcount.py'
         spark_application_details_model['arguments'] = ['people.txt']
-        spark_application_details_model['conf'] = {'key1': 'key:value'}
-        spark_application_details_model['env'] = {'key1': 'key:value'}
+        spark_application_details_model['conf'] = spark_application_details_conf_model
+        spark_application_details_model['env'] = {'anyKey': 'anyValue'}
         spark_application_details_model['name'] = 'SparkApplicaton1'
 
         # Set up parameter values
@@ -8870,7 +8916,7 @@ class TestCreateSparkEngineApplication:
         """
         # Set up mock
         url = preprocess_url('/spark_engines/testString/applications')
-        mock_response = '{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "conf": {"spark_app_name": "MyJob", "spark_hive_metastore_client_auth_mode": "PLAIN", "spark_hive_metastore_client_plain_password": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...", "spark_hive_metastore_client_plain_username": "ibm_lh_token_admin", "spark_hive_metastore_truststore_password": "changeit", "spark_hive_metastore_truststore_path": "file:///opt/ibm/jdk/lib/security/cacerts", "spark_hive_metastore_truststore_type": "JKS", "spark_hive_metastore_use_ssl": "true", "spark_sql_catalog_implementation": "Spark Catalog Implementation", "spark_sql_catalog_lakehouse": "org.apache.iceberg.spark.SparkCatalog", "spark_sql_catalog_lakehouse_type": "Spark Catalog Type", "spark_sql_catalog_lakehouse_uri": "Spark Catalog URI", "spark_sql_extensions": "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions", "spark_sql_iceberg_vectorization_enabled": "false"}, "env": {"mapKey": "key:value"}, "name": "SparkApplicaton1"}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae"}'
+        mock_response = '{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "conf": {"spark_app_name": "MyJob", "spark_hive_metastore_client_auth_mode": "PLAIN", "spark_hive_metastore_client_plain_password": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...", "spark_hive_metastore_client_plain_username": "ibm_lh_token_admin", "spark_hive_metastore_truststore_password": "changeit", "spark_hive_metastore_truststore_path": "file:///opt/ibm/jdk/lib/security/cacerts", "spark_hive_metastore_truststore_type": "JKS", "spark_hive_metastore_use_ssl": "true", "spark_sql_catalog_implementation": "Spark Catalog Implementation", "spark_sql_catalog_lakehouse": "org.apache.iceberg.spark.SparkCatalog", "spark_sql_catalog_lakehouse_type": "Spark Catalog Type", "spark_sql_catalog_lakehouse_uri": "Spark Catalog URI", "spark_sql_extensions": "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions", "spark_sql_iceberg_vectorization_enabled": "false"}, "env": {"anyKey": "anyValue"}, "name": "SparkApplicaton1"}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae"}'
         responses.add(
             responses.POST,
             url,
@@ -8879,12 +8925,35 @@ class TestCreateSparkEngineApplication:
             status=201,
         )
 
+        # Construct a dict representation of a SparkApplicationDetailsConf model
+        spark_application_details_conf_model = {}
+        spark_application_details_conf_model['spark_app_name'] = 'MyJob'
+        spark_application_details_conf_model['spark_hive_metastore_client_auth_mode'] = 'PLAIN'
+        spark_application_details_conf_model[
+            'spark_hive_metastore_client_plain_password'
+        ] = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...'
+        spark_application_details_conf_model['spark_hive_metastore_client_plain_username'] = 'ibm_lh_token_admin'
+        spark_application_details_conf_model['spark_hive_metastore_truststore_password'] = 'changeit'
+        spark_application_details_conf_model[
+            'spark_hive_metastore_truststore_path'
+        ] = 'file:///opt/ibm/jdk/lib/security/cacerts'
+        spark_application_details_conf_model['spark_hive_metastore_truststore_type'] = 'JKS'
+        spark_application_details_conf_model['spark_hive_metastore_use_ssl'] = 'true'
+        spark_application_details_conf_model['spark_sql_catalog_implementation'] = 'Spark Catalog Implementation'
+        spark_application_details_conf_model['spark_sql_catalog_lakehouse'] = 'org.apache.iceberg.spark.SparkCatalog'
+        spark_application_details_conf_model['spark_sql_catalog_lakehouse_type'] = 'Spark Catalog Type'
+        spark_application_details_conf_model['spark_sql_catalog_lakehouse_uri'] = 'Spark Catalog URI'
+        spark_application_details_conf_model[
+            'spark_sql_extensions'
+        ] = 'org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions'
+        spark_application_details_conf_model['spark_sql_iceberg_vectorization_enabled'] = 'false'
+
         # Construct a dict representation of a SparkApplicationDetails model
         spark_application_details_model = {}
         spark_application_details_model['application'] = 's3://mybucket/wordcount.py'
         spark_application_details_model['arguments'] = ['people.txt']
-        spark_application_details_model['conf'] = {'key1': 'key:value'}
-        spark_application_details_model['env'] = {'key1': 'key:value'}
+        spark_application_details_model['conf'] = spark_application_details_conf_model
+        spark_application_details_model['env'] = {'anyKey': 'anyValue'}
         spark_application_details_model['name'] = 'SparkApplicaton1'
 
         # Set up parameter values
@@ -9052,7 +9121,7 @@ class TestGetSparkEngineApplicationStatus:
         """
         # Set up mock
         url = preprocess_url('/spark_engines/testString/applications/testString')
-        mock_response = '{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "conf": {"spark_app_name": "MyJob", "spark_hive_metastore_client_auth_mode": "PLAIN", "spark_hive_metastore_client_plain_password": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...", "spark_hive_metastore_client_plain_username": "ibm_lh_token_admin", "spark_hive_metastore_truststore_password": "changeit", "spark_hive_metastore_truststore_path": "file:///opt/ibm/jdk/lib/security/cacerts", "spark_hive_metastore_truststore_type": "JKS", "spark_hive_metastore_use_ssl": "true", "spark_sql_catalog_implementation": "Spark Catalog Implementation", "spark_sql_catalog_lakehouse": "org.apache.iceberg.spark.SparkCatalog", "spark_sql_catalog_lakehouse_type": "Spark Catalog Type", "spark_sql_catalog_lakehouse_uri": "Spark Catalog URI", "spark_sql_extensions": "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions", "spark_sql_iceberg_vectorization_enabled": "false"}, "env": {"mapKey": "key:value"}, "name": "SparkApplicaton1"}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae"}'
+        mock_response = '{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "conf": {"spark_app_name": "MyJob", "spark_hive_metastore_client_auth_mode": "PLAIN", "spark_hive_metastore_client_plain_password": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...", "spark_hive_metastore_client_plain_username": "ibm_lh_token_admin", "spark_hive_metastore_truststore_password": "changeit", "spark_hive_metastore_truststore_path": "file:///opt/ibm/jdk/lib/security/cacerts", "spark_hive_metastore_truststore_type": "JKS", "spark_hive_metastore_use_ssl": "true", "spark_sql_catalog_implementation": "Spark Catalog Implementation", "spark_sql_catalog_lakehouse": "org.apache.iceberg.spark.SparkCatalog", "spark_sql_catalog_lakehouse_type": "Spark Catalog Type", "spark_sql_catalog_lakehouse_uri": "Spark Catalog URI", "spark_sql_extensions": "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions", "spark_sql_iceberg_vectorization_enabled": "false"}, "env": {"anyKey": "anyValue"}, "name": "SparkApplicaton1"}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae"}'
         responses.add(
             responses.GET,
             url,
@@ -9094,7 +9163,7 @@ class TestGetSparkEngineApplicationStatus:
         """
         # Set up mock
         url = preprocess_url('/spark_engines/testString/applications/testString')
-        mock_response = '{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "conf": {"spark_app_name": "MyJob", "spark_hive_metastore_client_auth_mode": "PLAIN", "spark_hive_metastore_client_plain_password": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...", "spark_hive_metastore_client_plain_username": "ibm_lh_token_admin", "spark_hive_metastore_truststore_password": "changeit", "spark_hive_metastore_truststore_path": "file:///opt/ibm/jdk/lib/security/cacerts", "spark_hive_metastore_truststore_type": "JKS", "spark_hive_metastore_use_ssl": "true", "spark_sql_catalog_implementation": "Spark Catalog Implementation", "spark_sql_catalog_lakehouse": "org.apache.iceberg.spark.SparkCatalog", "spark_sql_catalog_lakehouse_type": "Spark Catalog Type", "spark_sql_catalog_lakehouse_uri": "Spark Catalog URI", "spark_sql_extensions": "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions", "spark_sql_iceberg_vectorization_enabled": "false"}, "env": {"mapKey": "key:value"}, "name": "SparkApplicaton1"}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae"}'
+        mock_response = '{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "conf": {"spark_app_name": "MyJob", "spark_hive_metastore_client_auth_mode": "PLAIN", "spark_hive_metastore_client_plain_password": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...", "spark_hive_metastore_client_plain_username": "ibm_lh_token_admin", "spark_hive_metastore_truststore_password": "changeit", "spark_hive_metastore_truststore_path": "file:///opt/ibm/jdk/lib/security/cacerts", "spark_hive_metastore_truststore_type": "JKS", "spark_hive_metastore_use_ssl": "true", "spark_sql_catalog_implementation": "Spark Catalog Implementation", "spark_sql_catalog_lakehouse": "org.apache.iceberg.spark.SparkCatalog", "spark_sql_catalog_lakehouse_type": "Spark Catalog Type", "spark_sql_catalog_lakehouse_uri": "Spark Catalog URI", "spark_sql_extensions": "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions", "spark_sql_iceberg_vectorization_enabled": "false"}, "env": {"anyKey": "anyValue"}, "name": "SparkApplicaton1"}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae"}'
         responses.add(
             responses.GET,
             url,
@@ -9134,7 +9203,7 @@ class TestGetSparkEngineApplicationStatus:
         """
         # Set up mock
         url = preprocess_url('/spark_engines/testString/applications/testString')
-        mock_response = '{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "conf": {"spark_app_name": "MyJob", "spark_hive_metastore_client_auth_mode": "PLAIN", "spark_hive_metastore_client_plain_password": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...", "spark_hive_metastore_client_plain_username": "ibm_lh_token_admin", "spark_hive_metastore_truststore_password": "changeit", "spark_hive_metastore_truststore_path": "file:///opt/ibm/jdk/lib/security/cacerts", "spark_hive_metastore_truststore_type": "JKS", "spark_hive_metastore_use_ssl": "true", "spark_sql_catalog_implementation": "Spark Catalog Implementation", "spark_sql_catalog_lakehouse": "org.apache.iceberg.spark.SparkCatalog", "spark_sql_catalog_lakehouse_type": "Spark Catalog Type", "spark_sql_catalog_lakehouse_uri": "Spark Catalog URI", "spark_sql_extensions": "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions", "spark_sql_iceberg_vectorization_enabled": "false"}, "env": {"mapKey": "key:value"}, "name": "SparkApplicaton1"}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae"}'
+        mock_response = '{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "conf": {"spark_app_name": "MyJob", "spark_hive_metastore_client_auth_mode": "PLAIN", "spark_hive_metastore_client_plain_password": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...", "spark_hive_metastore_client_plain_username": "ibm_lh_token_admin", "spark_hive_metastore_truststore_password": "changeit", "spark_hive_metastore_truststore_path": "file:///opt/ibm/jdk/lib/security/cacerts", "spark_hive_metastore_truststore_type": "JKS", "spark_hive_metastore_use_ssl": "true", "spark_sql_catalog_implementation": "Spark Catalog Implementation", "spark_sql_catalog_lakehouse": "org.apache.iceberg.spark.SparkCatalog", "spark_sql_catalog_lakehouse_type": "Spark Catalog Type", "spark_sql_catalog_lakehouse_uri": "Spark Catalog URI", "spark_sql_extensions": "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions", "spark_sql_iceberg_vectorization_enabled": "false"}, "env": {"anyKey": "anyValue"}, "name": "SparkApplicaton1"}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae"}'
         responses.add(
             responses.GET,
             url,
@@ -9295,7 +9364,7 @@ class TestListCatalogs:
         """
         # Set up mock
         url = preprocess_url('/catalogs')
-        mock_response = '{"catalogs": [{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}], "response": {"message": "message", "message_code": "message_code"}}'
+        mock_response = '{"catalogs": [{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}]}'
         responses.add(
             responses.GET,
             url,
@@ -9333,7 +9402,7 @@ class TestListCatalogs:
         """
         # Set up mock
         url = preprocess_url('/catalogs')
-        mock_response = '{"catalogs": [{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}], "response": {"message": "message", "message_code": "message_code"}}'
+        mock_response = '{"catalogs": [{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}]}'
         responses.add(
             responses.GET,
             url,
@@ -9371,7 +9440,7 @@ class TestGetCatalog:
         """
         # Set up mock
         url = preprocess_url('/catalogs/testString')
-        mock_response = '{"catalog": {"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}, "response": {"message": "message", "message_code": "message_code"}}'
+        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
         responses.add(
             responses.GET,
             url,
@@ -9411,7 +9480,7 @@ class TestGetCatalog:
         """
         # Set up mock
         url = preprocess_url('/catalogs/testString')
-        mock_response = '{"catalog": {"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}, "response": {"message": "message", "message_code": "message_code"}}'
+        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
         responses.add(
             responses.GET,
             url,
@@ -9449,7 +9518,7 @@ class TestGetCatalog:
         """
         # Set up mock
         url = preprocess_url('/catalogs/testString')
-        mock_response = '{"catalog": {"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}, "response": {"message": "message", "message_code": "message_code"}}'
+        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
         responses.add(
             responses.GET,
             url,
@@ -11915,8 +11984,26 @@ class TestModel_Catalog:
 
         # Construct a json representation of a Catalog model
         catalog_model_json = {}
+        catalog_model_json['actions'] = ['update', 'delete']
+        catalog_model_json['associated_buckets'] = ['bucket_1', 'bucket_2']
+        catalog_model_json['associated_databases'] = ['database_1', 'database_2']
+        catalog_model_json['associated_engines'] = ['engine_1', 'engine_2']
         catalog_model_json['catalog_name'] = 'sampleCatalog'
-        catalog_model_json['creation_date'] = '16073847388'
+        catalog_model_json['catalog_type'] = 'iceberg'
+        catalog_model_json['created_by'] = '<username>@<domain>.com'
+        catalog_model_json['created_on'] = '1602839833'
+        catalog_model_json['description'] = 'Iceberg catalog description'
+        catalog_model_json['hostname'] = 's3a://samplehost.com'
+        catalog_model_json['last_sync_at'] = '1602839833'
+        catalog_model_json['managed_by'] = 'ibm'
+        catalog_model_json['metastore'] = 'glue'
+        catalog_model_json['port'] = '3232'
+        catalog_model_json['status'] = 'running'
+        catalog_model_json['sync_description'] = 'Table registration was successful'
+        catalog_model_json['sync_exception'] = ['table is corrupted', 'table metadata not there']
+        catalog_model_json['sync_status'] = 'SUCCESS'
+        catalog_model_json['tags'] = ['tag1', 'tag2']
+        catalog_model_json['thrift_uri'] = 'thrift://samplehost-catalog:4354'
 
         # Construct a model instance of Catalog by calling from_dict on the json representation
         catalog_model = Catalog.from_dict(catalog_model_json)
@@ -11934,215 +12021,58 @@ class TestModel_Catalog:
         assert catalog_model_json2 == catalog_model_json
 
 
-class TestModel_CatalogDetailCollection:
+class TestModel_CatalogCollection:
     """
-    Test Class for CatalogDetailCollection
+    Test Class for CatalogCollection
     """
 
-    def test_catalog_detail_collection_serialization(self):
+    def test_catalog_collection_serialization(self):
         """
-        Test serialization/deserialization for CatalogDetailCollection
-        """
-
-        # Construct dict forms of any model objects needed in order to build this model.
-
-        catalog_model = {}  # Catalog
-        catalog_model['catalog_name'] = 'iceberg_data'
-        catalog_model['creation_date'] = '16073847388'
-
-        # Construct a json representation of a CatalogDetailCollection model
-        catalog_detail_collection_model_json = {}
-        catalog_detail_collection_model_json['catalogs'] = [catalog_model]
-
-        # Construct a model instance of CatalogDetailCollection by calling from_dict on the json representation
-        catalog_detail_collection_model = CatalogDetailCollection.from_dict(catalog_detail_collection_model_json)
-        assert catalog_detail_collection_model != False
-
-        # Construct a model instance of CatalogDetailCollection by calling from_dict on the json representation
-        catalog_detail_collection_model_dict = CatalogDetailCollection.from_dict(
-            catalog_detail_collection_model_json
-        ).__dict__
-        catalog_detail_collection_model2 = CatalogDetailCollection(**catalog_detail_collection_model_dict)
-
-        # Verify the model instances are equivalent
-        assert catalog_detail_collection_model == catalog_detail_collection_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        catalog_detail_collection_model_json2 = catalog_detail_collection_model.to_dict()
-        assert catalog_detail_collection_model_json2 == catalog_detail_collection_model_json
-
-
-class TestModel_CatalogDetailsCollection:
-    """
-    Test Class for CatalogDetailsCollection
-    """
-
-    def test_catalog_details_collection_serialization(self):
-        """
-        Test serialization/deserialization for CatalogDetailsCollection
-        """
-
-        # Construct a json representation of a CatalogDetailsCollection model
-        catalog_details_collection_model_json = {}
-        catalog_details_collection_model_json['actions'] = ['update', 'delete']
-        catalog_details_collection_model_json['associated_buckets'] = ['bucket_1', 'bucket_2']
-        catalog_details_collection_model_json['associated_databases'] = ['database_1', 'database_2']
-        catalog_details_collection_model_json['associated_engines'] = ['engine_1', 'engine_2']
-        catalog_details_collection_model_json['catalog_name'] = 'sampleCatalog'
-        catalog_details_collection_model_json['catalog_type'] = 'iceberg'
-        catalog_details_collection_model_json['created_by'] = '<username>@<domain>.com'
-        catalog_details_collection_model_json['created_on'] = '1602839833'
-        catalog_details_collection_model_json['description'] = 'Iceberg catalog description'
-        catalog_details_collection_model_json['hostname'] = 's3a://samplehost.com'
-        catalog_details_collection_model_json['last_sync_at'] = '1602839833'
-        catalog_details_collection_model_json['managed_by'] = 'ibm'
-        catalog_details_collection_model_json['metastore'] = 'glue'
-        catalog_details_collection_model_json['port'] = '3232'
-        catalog_details_collection_model_json['status'] = 'running'
-        catalog_details_collection_model_json['sync_description'] = 'Table registration was successful'
-        catalog_details_collection_model_json['sync_exception'] = ['table is corrupted', 'table metadata not there']
-        catalog_details_collection_model_json['sync_status'] = 'SUCCESS'
-        catalog_details_collection_model_json['tags'] = ['tag1', 'tag2']
-        catalog_details_collection_model_json['thrift_uri'] = 'thrift://samplehost-catalog:4354'
-
-        # Construct a model instance of CatalogDetailsCollection by calling from_dict on the json representation
-        catalog_details_collection_model = CatalogDetailsCollection.from_dict(catalog_details_collection_model_json)
-        assert catalog_details_collection_model != False
-
-        # Construct a model instance of CatalogDetailsCollection by calling from_dict on the json representation
-        catalog_details_collection_model_dict = CatalogDetailsCollection.from_dict(
-            catalog_details_collection_model_json
-        ).__dict__
-        catalog_details_collection_model2 = CatalogDetailsCollection(**catalog_details_collection_model_dict)
-
-        # Verify the model instances are equivalent
-        assert catalog_details_collection_model == catalog_details_collection_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        catalog_details_collection_model_json2 = catalog_details_collection_model.to_dict()
-        assert catalog_details_collection_model_json2 == catalog_details_collection_model_json
-
-
-class TestModel_CatalogDetailsCollectionCollection:
-    """
-    Test Class for CatalogDetailsCollectionCollection
-    """
-
-    def test_catalog_details_collection_collection_serialization(self):
-        """
-        Test serialization/deserialization for CatalogDetailsCollectionCollection
+        Test serialization/deserialization for CatalogCollection
         """
 
         # Construct dict forms of any model objects needed in order to build this model.
 
         catalog_model = {}  # Catalog
-        catalog_model['catalog_name'] = 'hive_data'
-        catalog_model['creation_date'] = '16073847388'
+        catalog_model['actions'] = ['update', 'delete']
+        catalog_model['associated_buckets'] = ['bucket_1', 'bucket_2']
+        catalog_model['associated_databases'] = ['database_1', 'database_2']
+        catalog_model['associated_engines'] = ['engine_1', 'engine_2']
+        catalog_model['catalog_name'] = 'sampleCatalog'
+        catalog_model['catalog_type'] = 'iceberg'
+        catalog_model['created_by'] = '<username>@<domain>.com'
+        catalog_model['created_on'] = '1602839833'
+        catalog_model['description'] = 'Iceberg catalog description'
+        catalog_model['hostname'] = 's3a://samplehost.com'
+        catalog_model['last_sync_at'] = '1602839833'
+        catalog_model['managed_by'] = 'ibm'
+        catalog_model['metastore'] = 'glue'
+        catalog_model['port'] = '3232'
+        catalog_model['status'] = 'running'
+        catalog_model['sync_description'] = 'Table registration was successful'
+        catalog_model['sync_exception'] = ['table is corrupted', 'table metadata not there']
+        catalog_model['sync_status'] = 'SUCCESS'
+        catalog_model['tags'] = ['tag1', 'tag2']
+        catalog_model['thrift_uri'] = 'thrift://samplehost-catalog:4354'
 
-        # Construct a json representation of a CatalogDetailsCollectionCollection model
-        catalog_details_collection_collection_model_json = {}
-        catalog_details_collection_collection_model_json['catalogs'] = [catalog_model]
+        # Construct a json representation of a CatalogCollection model
+        catalog_collection_model_json = {}
+        catalog_collection_model_json['catalogs'] = [catalog_model]
 
-        # Construct a model instance of CatalogDetailsCollectionCollection by calling from_dict on the json representation
-        catalog_details_collection_collection_model = CatalogDetailsCollectionCollection.from_dict(
-            catalog_details_collection_collection_model_json
-        )
-        assert catalog_details_collection_collection_model != False
+        # Construct a model instance of CatalogCollection by calling from_dict on the json representation
+        catalog_collection_model = CatalogCollection.from_dict(catalog_collection_model_json)
+        assert catalog_collection_model != False
 
-        # Construct a model instance of CatalogDetailsCollectionCollection by calling from_dict on the json representation
-        catalog_details_collection_collection_model_dict = CatalogDetailsCollectionCollection.from_dict(
-            catalog_details_collection_collection_model_json
-        ).__dict__
-        catalog_details_collection_collection_model2 = CatalogDetailsCollectionCollection(
-            **catalog_details_collection_collection_model_dict
-        )
-
-        # Verify the model instances are equivalent
-        assert catalog_details_collection_collection_model == catalog_details_collection_collection_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        catalog_details_collection_collection_model_json2 = catalog_details_collection_collection_model.to_dict()
-        assert catalog_details_collection_collection_model_json2 == catalog_details_collection_collection_model_json
-
-
-class TestModel_CatalogSchemaTableCollection:
-    """
-    Test Class for CatalogSchemaTableCollection
-    """
-
-    def test_catalog_schema_table_collection_serialization(self):
-        """
-        Test serialization/deserialization for CatalogSchemaTableCollection
-        """
-
-        # Construct a json representation of a CatalogSchemaTableCollection model
-        catalog_schema_table_collection_model_json = {}
-        catalog_schema_table_collection_model_json['tables'] = ['testString']
-
-        # Construct a model instance of CatalogSchemaTableCollection by calling from_dict on the json representation
-        catalog_schema_table_collection_model = CatalogSchemaTableCollection.from_dict(
-            catalog_schema_table_collection_model_json
-        )
-        assert catalog_schema_table_collection_model != False
-
-        # Construct a model instance of CatalogSchemaTableCollection by calling from_dict on the json representation
-        catalog_schema_table_collection_model_dict = CatalogSchemaTableCollection.from_dict(
-            catalog_schema_table_collection_model_json
-        ).__dict__
-        catalog_schema_table_collection_model2 = CatalogSchemaTableCollection(
-            **catalog_schema_table_collection_model_dict
-        )
+        # Construct a model instance of CatalogCollection by calling from_dict on the json representation
+        catalog_collection_model_dict = CatalogCollection.from_dict(catalog_collection_model_json).__dict__
+        catalog_collection_model2 = CatalogCollection(**catalog_collection_model_dict)
 
         # Verify the model instances are equivalent
-        assert catalog_schema_table_collection_model == catalog_schema_table_collection_model2
+        assert catalog_collection_model == catalog_collection_model2
 
         # Convert model instance back to dict and verify no loss of data
-        catalog_schema_table_collection_model_json2 = catalog_schema_table_collection_model.to_dict()
-        assert catalog_schema_table_collection_model_json2 == catalog_schema_table_collection_model_json
-
-
-class TestModel_CatalogSchemaTableColumnCollection:
-    """
-    Test Class for CatalogSchemaTableColumnCollection
-    """
-
-    def test_catalog_schema_table_column_collection_serialization(self):
-        """
-        Test serialization/deserialization for CatalogSchemaTableColumnCollection
-        """
-
-        # Construct dict forms of any model objects needed in order to build this model.
-
-        column_model = {}  # Column
-        column_model['column_name'] = 'expenses'
-        column_model['comment'] = 'expenses column'
-        column_model['extra'] = 'varchar'
-        column_model['type'] = 'varchar'
-
-        # Construct a json representation of a CatalogSchemaTableColumnCollection model
-        catalog_schema_table_column_collection_model_json = {}
-        catalog_schema_table_column_collection_model_json['columns'] = [column_model]
-
-        # Construct a model instance of CatalogSchemaTableColumnCollection by calling from_dict on the json representation
-        catalog_schema_table_column_collection_model = CatalogSchemaTableColumnCollection.from_dict(
-            catalog_schema_table_column_collection_model_json
-        )
-        assert catalog_schema_table_column_collection_model != False
-
-        # Construct a model instance of CatalogSchemaTableColumnCollection by calling from_dict on the json representation
-        catalog_schema_table_column_collection_model_dict = CatalogSchemaTableColumnCollection.from_dict(
-            catalog_schema_table_column_collection_model_json
-        ).__dict__
-        catalog_schema_table_column_collection_model2 = CatalogSchemaTableColumnCollection(
-            **catalog_schema_table_column_collection_model_dict
-        )
-
-        # Verify the model instances are equivalent
-        assert catalog_schema_table_column_collection_model == catalog_schema_table_column_collection_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        catalog_schema_table_column_collection_model_json2 = catalog_schema_table_column_collection_model.to_dict()
-        assert catalog_schema_table_column_collection_model_json2 == catalog_schema_table_column_collection_model_json
+        catalog_collection_model_json2 = catalog_collection_model.to_dict()
+        assert catalog_collection_model_json2 == catalog_collection_model_json
 
 
 class TestModel_Column:
@@ -13644,84 +13574,6 @@ class TestModel_Engines:
         assert engines_model_json2 == engines_model_json
 
 
-class TestModel_GetCatalogOKBody:
-    """
-    Test Class for GetCatalogOKBody
-    """
-
-    def test_get_catalog_ok_body_serialization(self):
-        """
-        Test serialization/deserialization for GetCatalogOKBody
-        """
-
-        # Construct dict forms of any model objects needed in order to build this model.
-
-        catalog_details_collection_model = {}  # CatalogDetailsCollection
-        catalog_details_collection_model['actions'] = [
-            'select',
-            'use',
-            'show',
-            'view',
-            'create',
-            'drop',
-            'alter',
-            'insert',
-            'grant',
-            'revoke',
-            'delete',
-            'update',
-            'remove',
-            'register',
-        ]
-        catalog_details_collection_model['associated_buckets'] = ['iceberg-bucket']
-        catalog_details_collection_model['associated_databases'] = []
-        catalog_details_collection_model['associated_engines'] = ['presto88']
-        catalog_details_collection_model['catalog_name'] = 'iceberg_data'
-        catalog_details_collection_model['catalog_type'] = 'iceberg'
-        catalog_details_collection_model['created_by'] = 'example@ibm.com'
-        catalog_details_collection_model['created_on'] = '1700549252'
-        catalog_details_collection_model['description'] = 'get one catalog'
-        catalog_details_collection_model[
-            'hostname'
-        ] = '9c11c623-685a-444b-b3fa-989b2f7a3f8e.cfjag3sf0s5o87astjo0.databases.appdomain.cloud'
-        catalog_details_collection_model['last_sync_at'] = '0'
-        catalog_details_collection_model['managed_by'] = 'ibm'
-        catalog_details_collection_model['metastore'] = 'glue'
-        catalog_details_collection_model['port'] = '32355'
-        catalog_details_collection_model['status'] = 'Running'
-        catalog_details_collection_model['sync_description'] = 'Registration has not started'
-        catalog_details_collection_model['sync_exception'] = []
-        catalog_details_collection_model['sync_status'] = 'NOT_STARTED'
-        catalog_details_collection_model['tags'] = ['tag1', 'tag2']
-        catalog_details_collection_model[
-            'thrift_uri'
-        ] = 'thrift://9c11c623-685a-444b-b3fa-989b2f7a3f8e.cfjag3sf0s5o87astjo0.databases.appdomain.cloud:32355'
-
-        success_response_model = {}  # SuccessResponse
-        success_response_model['message'] = 'Get Catalog'
-        success_response_model['message_code'] = 'success'
-
-        # Construct a json representation of a GetCatalogOKBody model
-        get_catalog_ok_body_model_json = {}
-        get_catalog_ok_body_model_json['catalog'] = catalog_details_collection_model
-        get_catalog_ok_body_model_json['response'] = success_response_model
-
-        # Construct a model instance of GetCatalogOKBody by calling from_dict on the json representation
-        get_catalog_ok_body_model = GetCatalogOKBody.from_dict(get_catalog_ok_body_model_json)
-        assert get_catalog_ok_body_model != False
-
-        # Construct a model instance of GetCatalogOKBody by calling from_dict on the json representation
-        get_catalog_ok_body_model_dict = GetCatalogOKBody.from_dict(get_catalog_ok_body_model_json).__dict__
-        get_catalog_ok_body_model2 = GetCatalogOKBody(**get_catalog_ok_body_model_dict)
-
-        # Verify the model instances are equivalent
-        assert get_catalog_ok_body_model == get_catalog_ok_body_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        get_catalog_ok_body_model_json2 = get_catalog_ok_body_model.to_dict()
-        assert get_catalog_ok_body_model_json2 == get_catalog_ok_body_model_json
-
-
 class TestModel_GetDeploymentsOKBody:
     """
     Test Class for GetDeploymentsOKBody
@@ -13783,6 +13635,76 @@ class TestModel_GetDeploymentsOKBody:
         assert get_deployments_ok_body_model_json2 == get_deployments_ok_body_model_json
 
 
+class TestModel_GetTableOKBody:
+    """
+    Test Class for GetTableOKBody
+    """
+
+    def test_get_table_ok_body_serialization(self):
+        """
+        Test serialization/deserialization for GetTableOKBody
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        column_model = {}  # Column
+        column_model['column_name'] = 'expenses'
+        column_model['comment'] = 'expenses column'
+        column_model['extra'] = 'varchar'
+        column_model['type'] = 'varchar'
+
+        # Construct a json representation of a GetTableOKBody model
+        get_table_ok_body_model_json = {}
+        get_table_ok_body_model_json['columns'] = [column_model]
+
+        # Construct a model instance of GetTableOKBody by calling from_dict on the json representation
+        get_table_ok_body_model = GetTableOKBody.from_dict(get_table_ok_body_model_json)
+        assert get_table_ok_body_model != False
+
+        # Construct a model instance of GetTableOKBody by calling from_dict on the json representation
+        get_table_ok_body_model_dict = GetTableOKBody.from_dict(get_table_ok_body_model_json).__dict__
+        get_table_ok_body_model2 = GetTableOKBody(**get_table_ok_body_model_dict)
+
+        # Verify the model instances are equivalent
+        assert get_table_ok_body_model == get_table_ok_body_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        get_table_ok_body_model_json2 = get_table_ok_body_model.to_dict()
+        assert get_table_ok_body_model_json2 == get_table_ok_body_model_json
+
+
+class TestModel_GetTableOKBodyCollection:
+    """
+    Test Class for GetTableOKBodyCollection
+    """
+
+    def test_get_table_ok_body_collection_serialization(self):
+        """
+        Test serialization/deserialization for GetTableOKBodyCollection
+        """
+
+        # Construct a json representation of a GetTableOKBodyCollection model
+        get_table_ok_body_collection_model_json = {}
+        get_table_ok_body_collection_model_json['tables'] = ['testString']
+
+        # Construct a model instance of GetTableOKBodyCollection by calling from_dict on the json representation
+        get_table_ok_body_collection_model = GetTableOKBodyCollection.from_dict(get_table_ok_body_collection_model_json)
+        assert get_table_ok_body_collection_model != False
+
+        # Construct a model instance of GetTableOKBodyCollection by calling from_dict on the json representation
+        get_table_ok_body_collection_model_dict = GetTableOKBodyCollection.from_dict(
+            get_table_ok_body_collection_model_json
+        ).__dict__
+        get_table_ok_body_collection_model2 = GetTableOKBodyCollection(**get_table_ok_body_collection_model_dict)
+
+        # Verify the model instances are equivalent
+        assert get_table_ok_body_collection_model == get_table_ok_body_collection_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        get_table_ok_body_collection_model_json2 = get_table_ok_body_collection_model.to_dict()
+        assert get_table_ok_body_collection_model_json2 == get_table_ok_body_collection_model_json
+
+
 class TestModel_JsonPatchOperation:
     """
     Test Class for JsonPatchOperation
@@ -13814,84 +13736,6 @@ class TestModel_JsonPatchOperation:
         # Convert model instance back to dict and verify no loss of data
         json_patch_operation_model_json2 = json_patch_operation_model.to_dict()
         assert json_patch_operation_model_json2 == json_patch_operation_model_json
-
-
-class TestModel_ListCatalogsOKBody:
-    """
-    Test Class for ListCatalogsOKBody
-    """
-
-    def test_list_catalogs_ok_body_serialization(self):
-        """
-        Test serialization/deserialization for ListCatalogsOKBody
-        """
-
-        # Construct dict forms of any model objects needed in order to build this model.
-
-        catalog_details_collection_model = {}  # CatalogDetailsCollection
-        catalog_details_collection_model['actions'] = [
-            'select',
-            'use',
-            'show',
-            'view',
-            'create',
-            'drop',
-            'alter',
-            'insert',
-            'grant',
-            'revoke',
-            'delete',
-            'update',
-            'remove',
-            'register',
-        ]
-        catalog_details_collection_model['associated_buckets'] = ['iceberg-bucket']
-        catalog_details_collection_model['associated_databases'] = []
-        catalog_details_collection_model['associated_engines'] = ['presto88']
-        catalog_details_collection_model['catalog_name'] = 'iceberg_data'
-        catalog_details_collection_model['catalog_type'] = 'iceberg'
-        catalog_details_collection_model['created_by'] = 'example@ibm.com'
-        catalog_details_collection_model['created_on'] = '1700549252'
-        catalog_details_collection_model['description'] = 'get catalogs'
-        catalog_details_collection_model[
-            'hostname'
-        ] = '9c11c623-685a-444b-b3fa-989b2f7a3f8e.cfjag3sf0s5o87astjo0.databases.appdomain.cloud'
-        catalog_details_collection_model['last_sync_at'] = '0'
-        catalog_details_collection_model['managed_by'] = 'ibm'
-        catalog_details_collection_model['metastore'] = 'glue'
-        catalog_details_collection_model['port'] = '32355'
-        catalog_details_collection_model['status'] = 'Running'
-        catalog_details_collection_model['sync_description'] = 'Registration has not started'
-        catalog_details_collection_model['sync_exception'] = []
-        catalog_details_collection_model['sync_status'] = 'NOT_STARTED'
-        catalog_details_collection_model['tags'] = ['tag1', 'tag2']
-        catalog_details_collection_model[
-            'thrift_uri'
-        ] = 'thrift://9c11c623-685a-444b-b3fa-989b2f7a3f8e.cfjag3sf0s5o87astjo0.databases.appdomain.cloud:32355'
-
-        success_response_model = {}  # SuccessResponse
-        success_response_model['message'] = 'Get Catalogs'
-        success_response_model['message_code'] = 'success'
-
-        # Construct a json representation of a ListCatalogsOKBody model
-        list_catalogs_ok_body_model_json = {}
-        list_catalogs_ok_body_model_json['catalogs'] = [catalog_details_collection_model]
-        list_catalogs_ok_body_model_json['response'] = success_response_model
-
-        # Construct a model instance of ListCatalogsOKBody by calling from_dict on the json representation
-        list_catalogs_ok_body_model = ListCatalogsOKBody.from_dict(list_catalogs_ok_body_model_json)
-        assert list_catalogs_ok_body_model != False
-
-        # Construct a model instance of ListCatalogsOKBody by calling from_dict on the json representation
-        list_catalogs_ok_body_model_dict = ListCatalogsOKBody.from_dict(list_catalogs_ok_body_model_json).__dict__
-        list_catalogs_ok_body_model2 = ListCatalogsOKBody(**list_catalogs_ok_body_model_dict)
-
-        # Verify the model instances are equivalent
-        assert list_catalogs_ok_body_model == list_catalogs_ok_body_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        list_catalogs_ok_body_model_json2 = list_catalogs_ok_body_model.to_dict()
-        assert list_catalogs_ok_body_model_json2 == list_catalogs_ok_body_model_json
 
 
 class TestModel_ListSchemasOKBody:
@@ -15150,12 +14994,36 @@ class TestModel_SparkApplicationDetails:
         Test serialization/deserialization for SparkApplicationDetails
         """
 
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        spark_application_details_conf_model = {}  # SparkApplicationDetailsConf
+        spark_application_details_conf_model['spark_app_name'] = 'MyJob'
+        spark_application_details_conf_model['spark_hive_metastore_client_auth_mode'] = 'PLAIN'
+        spark_application_details_conf_model[
+            'spark_hive_metastore_client_plain_password'
+        ] = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...'
+        spark_application_details_conf_model['spark_hive_metastore_client_plain_username'] = 'ibm_lh_token_admin'
+        spark_application_details_conf_model['spark_hive_metastore_truststore_password'] = 'changeit'
+        spark_application_details_conf_model[
+            'spark_hive_metastore_truststore_path'
+        ] = 'file:///opt/ibm/jdk/lib/security/cacerts'
+        spark_application_details_conf_model['spark_hive_metastore_truststore_type'] = 'JKS'
+        spark_application_details_conf_model['spark_hive_metastore_use_ssl'] = 'true'
+        spark_application_details_conf_model['spark_sql_catalog_implementation'] = 'Spark Catalog Implementation'
+        spark_application_details_conf_model['spark_sql_catalog_lakehouse'] = 'org.apache.iceberg.spark.SparkCatalog'
+        spark_application_details_conf_model['spark_sql_catalog_lakehouse_type'] = 'Spark Catalog Type'
+        spark_application_details_conf_model['spark_sql_catalog_lakehouse_uri'] = 'Spark Catalog URI'
+        spark_application_details_conf_model[
+            'spark_sql_extensions'
+        ] = 'org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions'
+        spark_application_details_conf_model['spark_sql_iceberg_vectorization_enabled'] = 'false'
+
         # Construct a json representation of a SparkApplicationDetails model
         spark_application_details_model_json = {}
         spark_application_details_model_json['application'] = 's3://mybucket/wordcount.py'
         spark_application_details_model_json['arguments'] = ['people.txt']
-        spark_application_details_model_json['conf'] = {'key1': 'key:value'}
-        spark_application_details_model_json['env'] = {'key1': 'key:value'}
+        spark_application_details_model_json['conf'] = spark_application_details_conf_model
+        spark_application_details_model_json['env'] = {'anyKey': 'anyValue'}
         spark_application_details_model_json['name'] = 'SparkApplicaton1'
 
         # Construct a model instance of SparkApplicationDetails by calling from_dict on the json representation
@@ -15174,6 +15042,61 @@ class TestModel_SparkApplicationDetails:
         # Convert model instance back to dict and verify no loss of data
         spark_application_details_model_json2 = spark_application_details_model.to_dict()
         assert spark_application_details_model_json2 == spark_application_details_model_json
+
+
+class TestModel_SparkApplicationDetailsConf:
+    """
+    Test Class for SparkApplicationDetailsConf
+    """
+
+    def test_spark_application_details_conf_serialization(self):
+        """
+        Test serialization/deserialization for SparkApplicationDetailsConf
+        """
+
+        # Construct a json representation of a SparkApplicationDetailsConf model
+        spark_application_details_conf_model_json = {}
+        spark_application_details_conf_model_json['spark_app_name'] = 'MyJob'
+        spark_application_details_conf_model_json['spark_hive_metastore_client_auth_mode'] = 'PLAIN'
+        spark_application_details_conf_model_json[
+            'spark_hive_metastore_client_plain_password'
+        ] = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...'
+        spark_application_details_conf_model_json['spark_hive_metastore_client_plain_username'] = 'ibm_lh_token_admin'
+        spark_application_details_conf_model_json['spark_hive_metastore_truststore_password'] = 'changeit'
+        spark_application_details_conf_model_json[
+            'spark_hive_metastore_truststore_path'
+        ] = 'file:///opt/ibm/jdk/lib/security/cacerts'
+        spark_application_details_conf_model_json['spark_hive_metastore_truststore_type'] = 'JKS'
+        spark_application_details_conf_model_json['spark_hive_metastore_use_ssl'] = 'true'
+        spark_application_details_conf_model_json['spark_sql_catalog_implementation'] = 'Spark Catalog Implementation'
+        spark_application_details_conf_model_json[
+            'spark_sql_catalog_lakehouse'
+        ] = 'org.apache.iceberg.spark.SparkCatalog'
+        spark_application_details_conf_model_json['spark_sql_catalog_lakehouse_type'] = 'Spark Catalog Type'
+        spark_application_details_conf_model_json['spark_sql_catalog_lakehouse_uri'] = 'Spark Catalog URI'
+        spark_application_details_conf_model_json[
+            'spark_sql_extensions'
+        ] = 'org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions'
+        spark_application_details_conf_model_json['spark_sql_iceberg_vectorization_enabled'] = 'false'
+
+        # Construct a model instance of SparkApplicationDetailsConf by calling from_dict on the json representation
+        spark_application_details_conf_model = SparkApplicationDetailsConf.from_dict(
+            spark_application_details_conf_model_json
+        )
+        assert spark_application_details_conf_model != False
+
+        # Construct a model instance of SparkApplicationDetailsConf by calling from_dict on the json representation
+        spark_application_details_conf_model_dict = SparkApplicationDetailsConf.from_dict(
+            spark_application_details_conf_model_json
+        ).__dict__
+        spark_application_details_conf_model2 = SparkApplicationDetailsConf(**spark_application_details_conf_model_dict)
+
+        # Verify the model instances are equivalent
+        assert spark_application_details_conf_model == spark_application_details_conf_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        spark_application_details_conf_model_json2 = spark_application_details_conf_model.to_dict()
+        assert spark_application_details_conf_model_json2 == spark_application_details_conf_model_json
 
 
 class TestModel_SparkEndpoints:
@@ -15346,7 +15269,7 @@ class TestModel_SparkEngineApplicationStatus:
         spark_engine_application_status_application_details_model[
             'conf'
         ] = spark_engine_application_status_application_details_conf_model
-        spark_engine_application_status_application_details_model['env'] = {'key1': 'key:value'}
+        spark_engine_application_status_application_details_model['env'] = {'anyKey': 'anyValue'}
         spark_engine_application_status_application_details_model['name'] = 'SparkApplicaton1'
 
         spark_engine_application_status_runtime_model = {}  # SparkEngineApplicationStatusRuntime
@@ -15468,7 +15391,7 @@ class TestModel_SparkEngineApplicationStatusApplicationDetails:
         spark_engine_application_status_application_details_model_json[
             'conf'
         ] = spark_engine_application_status_application_details_conf_model
-        spark_engine_application_status_application_details_model_json['env'] = {'key1': 'key:value'}
+        spark_engine_application_status_application_details_model_json['env'] = {'anyKey': 'anyValue'}
         spark_engine_application_status_application_details_model_json['name'] = 'SparkApplicaton1'
 
         # Construct a model instance of SparkEngineApplicationStatusApplicationDetails by calling from_dict on the json representation
@@ -15650,7 +15573,7 @@ class TestModel_SparkEngineApplicationStatusCollection:
         spark_engine_application_status_application_details_model[
             'conf'
         ] = spark_engine_application_status_application_details_conf_model
-        spark_engine_application_status_application_details_model['env'] = {'key1': 'key:value'}
+        spark_engine_application_status_application_details_model['env'] = {'anyKey': 'anyValue'}
         spark_engine_application_status_application_details_model['name'] = 'SparkApplicaton1'
 
         spark_engine_application_status_runtime_model = {}  # SparkEngineApplicationStatusRuntime
@@ -16043,7 +15966,7 @@ class TestModel_TableSnapshotCollection:
         table_snapshot_model['committed_at'] = '1609379392'
         table_snapshot_model['operation'] = 'alter'
         table_snapshot_model['snapshot_id'] = '2332342122211222'
-        table_snapshot_model['summary'] = {'anyKey': 'anyValue'}
+        table_snapshot_model['summary'] = {}
 
         # Construct a json representation of a TableSnapshotCollection model
         table_snapshot_collection_model_json = {}
