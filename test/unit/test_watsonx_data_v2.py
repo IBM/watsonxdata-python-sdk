@@ -203,7 +203,8 @@ class TestCreateBucketRegistration:
         # Construct a dict representation of a BucketCatalog model
         bucket_catalog_model = {}
         bucket_catalog_model['catalog_name'] = 'sampleCatalog'
-        bucket_catalog_model['catalog_tags'] = ['catalog_tag_1', 'catalog_tag_2']
+        bucket_catalog_model['catalog_tags'] = [
+            'catalog_tag_1', 'catalog_tag_2']
         bucket_catalog_model['catalog_type'] = 'iceberg'
 
         # Set up parameter values
@@ -280,7 +281,8 @@ class TestCreateBucketRegistration:
         # Construct a dict representation of a BucketCatalog model
         bucket_catalog_model = {}
         bucket_catalog_model['catalog_name'] = 'sampleCatalog'
-        bucket_catalog_model['catalog_tags'] = ['catalog_tag_1', 'catalog_tag_2']
+        bucket_catalog_model['catalog_tags'] = [
+            'catalog_tag_1', 'catalog_tag_2']
         bucket_catalog_model['catalog_type'] = 'iceberg'
 
         # Set up parameter values
@@ -355,7 +357,8 @@ class TestCreateBucketRegistration:
         # Construct a dict representation of a BucketCatalog model
         bucket_catalog_model = {}
         bucket_catalog_model['catalog_name'] = 'sampleCatalog'
-        bucket_catalog_model['catalog_tags'] = ['catalog_tag_1', 'catalog_tag_2']
+        bucket_catalog_model['catalog_tags'] = [
+            'catalog_tag_1', 'catalog_tag_2']
         bucket_catalog_model['catalog_type'] = 'iceberg'
 
         # Set up parameter values
@@ -376,7 +379,8 @@ class TestCreateBucketRegistration:
             "managed_by": managed_by,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_bucket_registration(**req_copy)
 
@@ -497,7 +501,8 @@ class TestGetBucketRegistration:
             "bucket_id": bucket_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.get_bucket_registration(**req_copy)
 
@@ -609,7 +614,8 @@ class TestDeleteBucketRegistration:
             "bucket_id": bucket_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.delete_bucket_registration(**req_copy)
 
@@ -763,7 +769,8 @@ class TestUpdateBucketRegistration:
             "body": body,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.update_bucket_registration(**req_copy)
 
@@ -884,7 +891,8 @@ class TestCreateActivateBucket:
             "bucket_id": bucket_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_activate_bucket(**req_copy)
 
@@ -996,7 +1004,8 @@ class TestDeleteDeactivateBucket:
             "bucket_id": bucket_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.delete_deactivate_bucket(**req_copy)
 
@@ -1117,7 +1126,8 @@ class TestListBucketObjects:
             "bucket_id": bucket_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.list_bucket_objects(**req_copy)
 
@@ -1284,7 +1294,8 @@ class TestTestBucketConnection:
             "secret_key": secret_key,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.test_bucket_connection(**req_copy)
 
@@ -1510,7 +1521,8 @@ class TestCreateDriverDatabaseCatalog:
             "database_name": database_name,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_driver_database_catalog(**req_copy)
 
@@ -1624,7 +1636,8 @@ class TestCreateDatabaseRegistration:
         # Construct a dict representation of a DatabaseCatalog model
         database_catalog_model = {}
         database_catalog_model['catalog_name'] = 'sampleCatalog'
-        database_catalog_model['catalog_tags'] = ['catalog_tag_1', 'catalog_tag_2']
+        database_catalog_model['catalog_tags'] = [
+            'catalog_tag_1', 'catalog_tag_2']
         database_catalog_model['catalog_type'] = 'iceberg'
 
         # Construct a dict representation of a DatabaseDetails model
@@ -1655,7 +1668,8 @@ class TestCreateDatabaseRegistration:
         associated_catalog = database_catalog_model
         created_on = '1686792721'
         database_details = database_details_model
-        database_properties = [database_registration_prototype_database_properties_items_model]
+        database_properties = [
+            database_registration_prototype_database_properties_items_model]
         description = 'db2 extenal database description'
         tags = ['testdatabase', 'userdatabase']
         auth_instance_id = 'testString'
@@ -1684,7 +1698,8 @@ class TestCreateDatabaseRegistration:
         assert req_body['associated_catalog'] == database_catalog_model
         assert req_body['created_on'] == '1686792721'
         assert req_body['database_details'] == database_details_model
-        assert req_body['database_properties'] == [database_registration_prototype_database_properties_items_model]
+        assert req_body['database_properties'] == [
+            database_registration_prototype_database_properties_items_model]
         assert req_body['description'] == 'db2 extenal database description'
         assert req_body['tags'] == ['testdatabase', 'userdatabase']
 
@@ -1716,7 +1731,8 @@ class TestCreateDatabaseRegistration:
         # Construct a dict representation of a DatabaseCatalog model
         database_catalog_model = {}
         database_catalog_model['catalog_name'] = 'sampleCatalog'
-        database_catalog_model['catalog_tags'] = ['catalog_tag_1', 'catalog_tag_2']
+        database_catalog_model['catalog_tags'] = [
+            'catalog_tag_1', 'catalog_tag_2']
         database_catalog_model['catalog_type'] = 'iceberg'
 
         # Construct a dict representation of a DatabaseDetails model
@@ -1747,7 +1763,8 @@ class TestCreateDatabaseRegistration:
         associated_catalog = database_catalog_model
         created_on = '1686792721'
         database_details = database_details_model
-        database_properties = [database_registration_prototype_database_properties_items_model]
+        database_properties = [
+            database_registration_prototype_database_properties_items_model]
         description = 'db2 extenal database description'
         tags = ['testdatabase', 'userdatabase']
 
@@ -1774,7 +1791,8 @@ class TestCreateDatabaseRegistration:
         assert req_body['associated_catalog'] == database_catalog_model
         assert req_body['created_on'] == '1686792721'
         assert req_body['database_details'] == database_details_model
-        assert req_body['database_properties'] == [database_registration_prototype_database_properties_items_model]
+        assert req_body['database_properties'] == [
+            database_registration_prototype_database_properties_items_model]
         assert req_body['description'] == 'db2 extenal database description'
         assert req_body['tags'] == ['testdatabase', 'userdatabase']
 
@@ -1806,7 +1824,8 @@ class TestCreateDatabaseRegistration:
         # Construct a dict representation of a DatabaseCatalog model
         database_catalog_model = {}
         database_catalog_model['catalog_name'] = 'sampleCatalog'
-        database_catalog_model['catalog_tags'] = ['catalog_tag_1', 'catalog_tag_2']
+        database_catalog_model['catalog_tags'] = [
+            'catalog_tag_1', 'catalog_tag_2']
         database_catalog_model['catalog_type'] = 'iceberg'
 
         # Construct a dict representation of a DatabaseDetails model
@@ -1837,7 +1856,8 @@ class TestCreateDatabaseRegistration:
         associated_catalog = database_catalog_model
         created_on = '1686792721'
         database_details = database_details_model
-        database_properties = [database_registration_prototype_database_properties_items_model]
+        database_properties = [
+            database_registration_prototype_database_properties_items_model]
         description = 'db2 extenal database description'
         tags = ['testdatabase', 'userdatabase']
 
@@ -1847,7 +1867,8 @@ class TestCreateDatabaseRegistration:
             "database_type": database_type,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_database_registration(**req_copy)
 
@@ -1968,7 +1989,8 @@ class TestGetDatabase:
             "database_id": database_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.get_database(**req_copy)
 
@@ -2080,7 +2102,8 @@ class TestDeleteDatabaseCatalog:
             "database_id": database_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.delete_database_catalog(**req_copy)
 
@@ -2234,7 +2257,8 @@ class TestUpdateDatabase:
             "body": body,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.update_database(**req_copy)
 
@@ -2412,7 +2436,8 @@ class TestValidateDatabaseConnection:
             "database_type": database_type,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.validate_database_connection(**req_copy)
 
@@ -2702,7 +2727,8 @@ class TestCreateDb2Engine:
             "type": type,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_db2_engine(**req_copy)
 
@@ -2814,7 +2840,8 @@ class TestDeleteDb2Engine:
             "engine_id": engine_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.delete_db2_engine(**req_copy)
 
@@ -2968,7 +2995,8 @@ class TestUpdateDb2Engine:
             "body": body,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.update_db2_engine(**req_copy)
 
@@ -3371,7 +3399,8 @@ class TestCreateNetezzaEngine:
             "type": type,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_netezza_engine(**req_copy)
 
@@ -3483,7 +3512,8 @@ class TestDeleteNetezzaEngine:
             "engine_id": engine_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.delete_netezza_engine(**req_copy)
 
@@ -3637,7 +3667,8 @@ class TestUpdateNetezzaEngine:
             "body": body,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.update_netezza_engine(**req_copy)
 
@@ -3891,7 +3922,8 @@ class TestCreateOtherEngine:
             "engine_display_name": engine_display_name,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_other_engine(**req_copy)
 
@@ -4003,7 +4035,8 @@ class TestDeleteOtherEngine:
             "engine_id": engine_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.delete_other_engine(**req_copy)
 
@@ -4374,7 +4407,8 @@ class TestCreatePrestissimoEngine:
             "type": type,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_prestissimo_engine(**req_copy)
 
@@ -4495,7 +4529,8 @@ class TestGetPrestissimoEngine:
             "engine_id": engine_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.get_prestissimo_engine(**req_copy)
 
@@ -4607,7 +4642,8 @@ class TestDeletePrestissimoEngine:
             "engine_id": engine_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.delete_prestissimo_engine(**req_copy)
 
@@ -4761,7 +4797,8 @@ class TestUpdatePrestissimoEngine:
             "body": body,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.update_prestissimo_engine(**req_copy)
 
@@ -4882,7 +4919,8 @@ class TestListPrestissimoEngineCatalogs:
             "engine_id": engine_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.list_prestissimo_engine_catalogs(**req_copy)
 
@@ -5017,7 +5055,8 @@ class TestReplacePrestissimoEngineCatalogs:
             "catalog_names": catalog_names,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.replace_prestissimo_engine_catalogs(**req_copy)
 
@@ -5143,7 +5182,8 @@ class TestDeletePrestissimoEngineCatalogs:
             "catalog_names": catalog_names,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.delete_prestissimo_engine_catalogs(**req_copy)
 
@@ -5168,7 +5208,8 @@ class TestGetPrestissimoEngineCatalog:
         get_prestissimo_engine_catalog()
         """
         # Set up mock
-        url = preprocess_url('/prestissimo_engines/testString/catalogs/testString')
+        url = preprocess_url(
+            '/prestissimo_engines/testString/catalogs/testString')
         mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
         responses.add(
             responses.GET,
@@ -5210,7 +5251,8 @@ class TestGetPrestissimoEngineCatalog:
         test_get_prestissimo_engine_catalog_required_params()
         """
         # Set up mock
-        url = preprocess_url('/prestissimo_engines/testString/catalogs/testString')
+        url = preprocess_url(
+            '/prestissimo_engines/testString/catalogs/testString')
         mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
         responses.add(
             responses.GET,
@@ -5250,7 +5292,8 @@ class TestGetPrestissimoEngineCatalog:
         test_get_prestissimo_engine_catalog_value_error()
         """
         # Set up mock
-        url = preprocess_url('/prestissimo_engines/testString/catalogs/testString')
+        url = preprocess_url(
+            '/prestissimo_engines/testString/catalogs/testString')
         mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
         responses.add(
             responses.GET,
@@ -5270,7 +5313,8 @@ class TestGetPrestissimoEngineCatalog:
             "catalog_id": catalog_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.get_prestissimo_engine_catalog(**req_copy)
 
@@ -5391,7 +5435,8 @@ class TestCreatePrestissimoEnginePause:
             "engine_id": engine_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_prestissimo_engine_pause(**req_copy)
 
@@ -5538,7 +5583,8 @@ class TestRunPrestissimoExplainStatement:
             "statement": statement,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.run_prestissimo_explain_statement(**req_copy)
 
@@ -5563,7 +5609,8 @@ class TestRunPrestissimoExplainAnalyzeStatement:
         run_prestissimo_explain_analyze_statement()
         """
         # Set up mock
-        url = preprocess_url('/prestissimo_engines/testString/query_explain_analyze')
+        url = preprocess_url(
+            '/prestissimo_engines/testString/query_explain_analyze')
         mock_response = '{"result": "result"}'
         responses.add(
             responses.POST,
@@ -5611,7 +5658,8 @@ class TestRunPrestissimoExplainAnalyzeStatement:
         test_run_prestissimo_explain_analyze_statement_required_params()
         """
         # Set up mock
-        url = preprocess_url('/prestissimo_engines/testString/query_explain_analyze')
+        url = preprocess_url(
+            '/prestissimo_engines/testString/query_explain_analyze')
         mock_response = '{"result": "result"}'
         responses.add(
             responses.POST,
@@ -5657,7 +5705,8 @@ class TestRunPrestissimoExplainAnalyzeStatement:
         test_run_prestissimo_explain_analyze_statement_value_error()
         """
         # Set up mock
-        url = preprocess_url('/prestissimo_engines/testString/query_explain_analyze')
+        url = preprocess_url(
+            '/prestissimo_engines/testString/query_explain_analyze')
         mock_response = '{"result": "result"}'
         responses.add(
             responses.POST,
@@ -5678,7 +5727,8 @@ class TestRunPrestissimoExplainAnalyzeStatement:
             "statement": statement,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.run_prestissimo_explain_analyze_statement(**req_copy)
 
@@ -5799,7 +5849,8 @@ class TestCreatePrestissimoEngineRestart:
             "engine_id": engine_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_prestissimo_engine_restart(**req_copy)
 
@@ -5920,7 +5971,8 @@ class TestCreatePrestissimoEngineResume:
             "engine_id": engine_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_prestissimo_engine_resume(**req_copy)
 
@@ -6074,7 +6126,8 @@ class TestCreatePrestissimoEngineScale:
             "engine_id": engine_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_prestissimo_engine_scale(**req_copy)
 
@@ -6379,7 +6432,8 @@ class TestCreatePrestoEngine:
             "type": type,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_presto_engine(**req_copy)
 
@@ -6500,7 +6554,8 @@ class TestGetPrestoEngine:
             "engine_id": engine_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.get_presto_engine(**req_copy)
 
@@ -6612,7 +6667,8 @@ class TestDeleteEngine:
             "engine_id": engine_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.delete_engine(**req_copy)
 
@@ -6766,7 +6822,8 @@ class TestUpdatePrestoEngine:
             "body": body,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.update_presto_engine(**req_copy)
 
@@ -6887,7 +6944,8 @@ class TestListPrestoEngineCatalogs:
             "engine_id": engine_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.list_presto_engine_catalogs(**req_copy)
 
@@ -7022,7 +7080,8 @@ class TestReplacePrestoEngineCatalogs:
             "catalog_names": catalog_names,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.replace_presto_engine_catalogs(**req_copy)
 
@@ -7148,7 +7207,8 @@ class TestDeletePrestoEngineCatalogs:
             "catalog_names": catalog_names,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.delete_presto_engine_catalogs(**req_copy)
 
@@ -7275,7 +7335,8 @@ class TestGetPrestoEngineCatalog:
             "catalog_id": catalog_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.get_presto_engine_catalog(**req_copy)
 
@@ -7396,7 +7457,8 @@ class TestCreateEnginePause:
             "engine_id": engine_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_engine_pause(**req_copy)
 
@@ -7543,7 +7605,8 @@ class TestRunExplainStatement:
             "statement": statement,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.run_explain_statement(**req_copy)
 
@@ -7568,7 +7631,8 @@ class TestRunExplainAnalyzeStatement:
         run_explain_analyze_statement()
         """
         # Set up mock
-        url = preprocess_url('/presto_engines/testString/query_explain_analyze')
+        url = preprocess_url(
+            '/presto_engines/testString/query_explain_analyze')
         mock_response = '{"response": {"message": "message", "message_code": "message_code"}, "result": "result"}'
         responses.add(
             responses.POST,
@@ -7616,7 +7680,8 @@ class TestRunExplainAnalyzeStatement:
         test_run_explain_analyze_statement_required_params()
         """
         # Set up mock
-        url = preprocess_url('/presto_engines/testString/query_explain_analyze')
+        url = preprocess_url(
+            '/presto_engines/testString/query_explain_analyze')
         mock_response = '{"response": {"message": "message", "message_code": "message_code"}, "result": "result"}'
         responses.add(
             responses.POST,
@@ -7662,7 +7727,8 @@ class TestRunExplainAnalyzeStatement:
         test_run_explain_analyze_statement_value_error()
         """
         # Set up mock
-        url = preprocess_url('/presto_engines/testString/query_explain_analyze')
+        url = preprocess_url(
+            '/presto_engines/testString/query_explain_analyze')
         mock_response = '{"response": {"message": "message", "message_code": "message_code"}, "result": "result"}'
         responses.add(
             responses.POST,
@@ -7683,7 +7749,8 @@ class TestRunExplainAnalyzeStatement:
             "statement": statement,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.run_explain_analyze_statement(**req_copy)
 
@@ -7804,7 +7871,8 @@ class TestCreateEngineRestart:
             "engine_id": engine_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_engine_restart(**req_copy)
 
@@ -7925,7 +7993,8 @@ class TestCreateEngineResume:
             "engine_id": engine_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_engine_resume(**req_copy)
 
@@ -8079,7 +8148,8 @@ class TestCreateEngineScale:
             "engine_id": engine_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_engine_scale(**req_copy)
 
@@ -8339,7 +8409,8 @@ class TestCreateSparkEngine:
             "type": type,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_spark_engine(**req_copy)
 
@@ -8451,7 +8522,8 @@ class TestDeleteSparkEngine:
             "engine_id": engine_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.delete_spark_engine(**req_copy)
 
@@ -8605,7 +8677,8 @@ class TestUpdateSparkEngine:
             "body": body,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.update_spark_engine(**req_copy)
 
@@ -8726,7 +8799,8 @@ class TestListSparkEngineApplications:
             "engine_id": engine_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.list_spark_engine_applications(**req_copy)
 
@@ -8979,7 +9053,8 @@ class TestCreateSparkEngineApplication:
             "application_details": application_details,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_spark_engine_application(**req_copy)
 
@@ -9105,7 +9180,8 @@ class TestDeleteSparkEngineApplications:
             "application_id": application_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.delete_spark_engine_applications(**req_copy)
 
@@ -9130,7 +9206,8 @@ class TestGetSparkEngineApplicationStatus:
         get_spark_engine_application_status()
         """
         # Set up mock
-        url = preprocess_url('/spark_engines/testString/applications/testString')
+        url = preprocess_url(
+            '/spark_engines/testString/applications/testString')
         mock_response = '{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "conf": {"spark_app_name": "MyJob", "spark_hive_metastore_client_auth_mode": "PLAIN", "spark_hive_metastore_client_plain_password": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...", "spark_hive_metastore_client_plain_username": "ibm_lh_token_admin", "spark_hive_metastore_truststore_password": "changeit", "spark_hive_metastore_truststore_path": "file:///opt/ibm/jdk/lib/security/cacerts", "spark_hive_metastore_truststore_type": "JKS", "spark_hive_metastore_use_ssl": "true", "spark_sql_catalog_implementation": "Spark Catalog Implementation", "spark_sql_catalog_lakehouse": "org.apache.iceberg.spark.SparkCatalog", "spark_sql_catalog_lakehouse_type": "Spark Catalog Type", "spark_sql_catalog_lakehouse_uri": "Spark Catalog URI", "spark_sql_extensions": "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions", "spark_sql_iceberg_vectorization_enabled": "false"}, "env": {"anyKey": "anyValue"}, "name": "SparkApplicaton1"}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae"}'
         responses.add(
             responses.GET,
@@ -9172,7 +9249,8 @@ class TestGetSparkEngineApplicationStatus:
         test_get_spark_engine_application_status_required_params()
         """
         # Set up mock
-        url = preprocess_url('/spark_engines/testString/applications/testString')
+        url = preprocess_url(
+            '/spark_engines/testString/applications/testString')
         mock_response = '{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "conf": {"spark_app_name": "MyJob", "spark_hive_metastore_client_auth_mode": "PLAIN", "spark_hive_metastore_client_plain_password": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...", "spark_hive_metastore_client_plain_username": "ibm_lh_token_admin", "spark_hive_metastore_truststore_password": "changeit", "spark_hive_metastore_truststore_path": "file:///opt/ibm/jdk/lib/security/cacerts", "spark_hive_metastore_truststore_type": "JKS", "spark_hive_metastore_use_ssl": "true", "spark_sql_catalog_implementation": "Spark Catalog Implementation", "spark_sql_catalog_lakehouse": "org.apache.iceberg.spark.SparkCatalog", "spark_sql_catalog_lakehouse_type": "Spark Catalog Type", "spark_sql_catalog_lakehouse_uri": "Spark Catalog URI", "spark_sql_extensions": "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions", "spark_sql_iceberg_vectorization_enabled": "false"}, "env": {"anyKey": "anyValue"}, "name": "SparkApplicaton1"}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae"}'
         responses.add(
             responses.GET,
@@ -9212,7 +9290,8 @@ class TestGetSparkEngineApplicationStatus:
         test_get_spark_engine_application_status_value_error()
         """
         # Set up mock
-        url = preprocess_url('/spark_engines/testString/applications/testString')
+        url = preprocess_url(
+            '/spark_engines/testString/applications/testString')
         mock_response = '{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "conf": {"spark_app_name": "MyJob", "spark_hive_metastore_client_auth_mode": "PLAIN", "spark_hive_metastore_client_plain_password": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...", "spark_hive_metastore_client_plain_username": "ibm_lh_token_admin", "spark_hive_metastore_truststore_password": "changeit", "spark_hive_metastore_truststore_path": "file:///opt/ibm/jdk/lib/security/cacerts", "spark_hive_metastore_truststore_type": "JKS", "spark_hive_metastore_use_ssl": "true", "spark_sql_catalog_implementation": "Spark Catalog Implementation", "spark_sql_catalog_lakehouse": "org.apache.iceberg.spark.SparkCatalog", "spark_sql_catalog_lakehouse_type": "Spark Catalog Type", "spark_sql_catalog_lakehouse_uri": "Spark Catalog URI", "spark_sql_extensions": "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions", "spark_sql_iceberg_vectorization_enabled": "false"}, "env": {"anyKey": "anyValue"}, "name": "SparkApplicaton1"}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae"}'
         responses.add(
             responses.GET,
@@ -9232,7 +9311,8 @@ class TestGetSparkEngineApplicationStatus:
             "application_id": application_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.get_spark_engine_application_status(**req_copy)
 
@@ -9545,7 +9625,8 @@ class TestGetCatalog:
             "catalog_id": catalog_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.get_catalog(**req_copy)
 
@@ -9680,7 +9761,8 @@ class TestListSchemas:
             "catalog_id": catalog_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.list_schemas(**req_copy)
 
@@ -9842,7 +9924,8 @@ class TestCreateSchema:
             "schema_name": schema_name,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_schema(**req_copy)
 
@@ -9974,7 +10057,8 @@ class TestDeleteSchema:
             "schema_id": schema_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.delete_schema(**req_copy)
 
@@ -10115,7 +10199,8 @@ class TestListTables:
             "engine_id": engine_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.list_tables(**req_copy)
 
@@ -10140,7 +10225,8 @@ class TestGetTable:
         get_table()
         """
         # Set up mock
-        url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString')
+        url = preprocess_url(
+            '/catalogs/testString/schemas/testString/tables/testString')
         mock_response = '{"columns": [{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "scale": "2", "type": "varchar"}], "table_name": "table_name"}'
         responses.add(
             responses.GET,
@@ -10190,7 +10276,8 @@ class TestGetTable:
         test_get_table_required_params()
         """
         # Set up mock
-        url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString')
+        url = preprocess_url(
+            '/catalogs/testString/schemas/testString/tables/testString')
         mock_response = '{"columns": [{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "scale": "2", "type": "varchar"}], "table_name": "table_name"}'
         responses.add(
             responses.GET,
@@ -10238,7 +10325,8 @@ class TestGetTable:
         test_get_table_value_error()
         """
         # Set up mock
-        url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString')
+        url = preprocess_url(
+            '/catalogs/testString/schemas/testString/tables/testString')
         mock_response = '{"columns": [{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "scale": "2", "type": "varchar"}], "table_name": "table_name"}'
         responses.add(
             responses.GET,
@@ -10262,7 +10350,8 @@ class TestGetTable:
             "engine_id": engine_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.get_table(**req_copy)
 
@@ -10287,7 +10376,8 @@ class TestDeleteTable:
         delete_table()
         """
         # Set up mock
-        url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString')
+        url = preprocess_url(
+            '/catalogs/testString/schemas/testString/tables/testString')
         responses.add(
             responses.DELETE,
             url,
@@ -10334,7 +10424,8 @@ class TestDeleteTable:
         test_delete_table_required_params()
         """
         # Set up mock
-        url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString')
+        url = preprocess_url(
+            '/catalogs/testString/schemas/testString/tables/testString')
         responses.add(
             responses.DELETE,
             url,
@@ -10379,7 +10470,8 @@ class TestDeleteTable:
         test_delete_table_value_error()
         """
         # Set up mock
-        url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString')
+        url = preprocess_url(
+            '/catalogs/testString/schemas/testString/tables/testString')
         responses.add(
             responses.DELETE,
             url,
@@ -10400,7 +10492,8 @@ class TestDeleteTable:
             "engine_id": engine_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.delete_table(**req_copy)
 
@@ -10425,7 +10518,8 @@ class TestUpdateTable:
         update_table()
         """
         # Set up mock
-        url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString')
+        url = preprocess_url(
+            '/catalogs/testString/schemas/testString/tables/testString')
         mock_response = '{"columns": [{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "scale": "2", "type": "varchar"}], "table_name": "table_name"}'
         responses.add(
             responses.PATCH,
@@ -10487,7 +10581,8 @@ class TestUpdateTable:
         test_update_table_required_params()
         """
         # Set up mock
-        url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString')
+        url = preprocess_url(
+            '/catalogs/testString/schemas/testString/tables/testString')
         mock_response = '{"columns": [{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "scale": "2", "type": "varchar"}], "table_name": "table_name"}'
         responses.add(
             responses.PATCH,
@@ -10547,7 +10642,8 @@ class TestUpdateTable:
         test_update_table_value_error()
         """
         # Set up mock
-        url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString')
+        url = preprocess_url(
+            '/catalogs/testString/schemas/testString/tables/testString')
         mock_response = '{"columns": [{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "scale": "2", "type": "varchar"}], "table_name": "table_name"}'
         responses.add(
             responses.PATCH,
@@ -10580,7 +10676,8 @@ class TestUpdateTable:
             "body": body,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.update_table(**req_copy)
 
@@ -10605,7 +10702,8 @@ class TestListColumns:
         list_columns()
         """
         # Set up mock
-        url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString/columns')
+        url = preprocess_url(
+            '/catalogs/testString/schemas/testString/tables/testString/columns')
         mock_response = '{"columns": [{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "scale": "2", "type": "varchar"}]}'
         responses.add(
             responses.GET,
@@ -10655,7 +10753,8 @@ class TestListColumns:
         test_list_columns_required_params()
         """
         # Set up mock
-        url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString/columns')
+        url = preprocess_url(
+            '/catalogs/testString/schemas/testString/tables/testString/columns')
         mock_response = '{"columns": [{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "scale": "2", "type": "varchar"}]}'
         responses.add(
             responses.GET,
@@ -10703,7 +10802,8 @@ class TestListColumns:
         test_list_columns_value_error()
         """
         # Set up mock
-        url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString/columns')
+        url = preprocess_url(
+            '/catalogs/testString/schemas/testString/tables/testString/columns')
         mock_response = '{"columns": [{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "scale": "2", "type": "varchar"}]}'
         responses.add(
             responses.GET,
@@ -10727,7 +10827,8 @@ class TestListColumns:
             "table_id": table_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.list_columns(**req_copy)
 
@@ -10752,7 +10853,8 @@ class TestCreateColumns:
         create_columns()
         """
         # Set up mock
-        url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString/columns')
+        url = preprocess_url(
+            '/catalogs/testString/schemas/testString/tables/testString/columns')
         mock_response = '{"columns": [{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "scale": "2", "type": "varchar"}]}'
         responses.add(
             responses.POST,
@@ -10816,7 +10918,8 @@ class TestCreateColumns:
         test_create_columns_required_params()
         """
         # Set up mock
-        url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString/columns')
+        url = preprocess_url(
+            '/catalogs/testString/schemas/testString/tables/testString/columns')
         mock_response = '{"columns": [{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "scale": "2", "type": "varchar"}]}'
         responses.add(
             responses.POST,
@@ -10878,7 +10981,8 @@ class TestCreateColumns:
         test_create_columns_value_error()
         """
         # Set up mock
-        url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString/columns')
+        url = preprocess_url(
+            '/catalogs/testString/schemas/testString/tables/testString/columns')
         mock_response = '{"columns": [{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "scale": "2", "type": "varchar"}]}'
         responses.add(
             responses.POST,
@@ -10912,7 +11016,8 @@ class TestCreateColumns:
             "table_id": table_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_columns(**req_copy)
 
@@ -10937,7 +11042,8 @@ class TestDeleteColumn:
         delete_column()
         """
         # Set up mock
-        url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString/columns/testString')
+        url = preprocess_url(
+            '/catalogs/testString/schemas/testString/tables/testString/columns/testString')
         responses.add(
             responses.DELETE,
             url,
@@ -10986,7 +11092,8 @@ class TestDeleteColumn:
         test_delete_column_required_params()
         """
         # Set up mock
-        url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString/columns/testString')
+        url = preprocess_url(
+            '/catalogs/testString/schemas/testString/tables/testString/columns/testString')
         responses.add(
             responses.DELETE,
             url,
@@ -11033,7 +11140,8 @@ class TestDeleteColumn:
         test_delete_column_value_error()
         """
         # Set up mock
-        url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString/columns/testString')
+        url = preprocess_url(
+            '/catalogs/testString/schemas/testString/tables/testString/columns/testString')
         responses.add(
             responses.DELETE,
             url,
@@ -11056,7 +11164,8 @@ class TestDeleteColumn:
             "column_id": column_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.delete_column(**req_copy)
 
@@ -11081,7 +11190,8 @@ class TestUpdateColumn:
         update_column()
         """
         # Set up mock
-        url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString/columns/testString')
+        url = preprocess_url(
+            '/catalogs/testString/schemas/testString/tables/testString/columns/testString')
         mock_response = '{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "scale": "2", "type": "varchar"}'
         responses.add(
             responses.PATCH,
@@ -11145,7 +11255,8 @@ class TestUpdateColumn:
         test_update_column_required_params()
         """
         # Set up mock
-        url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString/columns/testString')
+        url = preprocess_url(
+            '/catalogs/testString/schemas/testString/tables/testString/columns/testString')
         mock_response = '{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "scale": "2", "type": "varchar"}'
         responses.add(
             responses.PATCH,
@@ -11207,7 +11318,8 @@ class TestUpdateColumn:
         test_update_column_value_error()
         """
         # Set up mock
-        url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString/columns/testString')
+        url = preprocess_url(
+            '/catalogs/testString/schemas/testString/tables/testString/columns/testString')
         mock_response = '{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "scale": "2", "type": "varchar"}'
         responses.add(
             responses.PATCH,
@@ -11242,7 +11354,8 @@ class TestUpdateColumn:
             "body": body,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.update_column(**req_copy)
 
@@ -11267,7 +11380,8 @@ class TestListTableSnapshots:
         list_table_snapshots()
         """
         # Set up mock
-        url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString/snapshots')
+        url = preprocess_url(
+            '/catalogs/testString/schemas/testString/tables/testString/snapshots')
         mock_response = '{"snapshots": [{"committed_at": "1609379392", "operation": "alter", "snapshot_id": "2332342122211222", "summary": {"anyKey": "anyValue"}}]}'
         responses.add(
             responses.GET,
@@ -11317,7 +11431,8 @@ class TestListTableSnapshots:
         test_list_table_snapshots_required_params()
         """
         # Set up mock
-        url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString/snapshots')
+        url = preprocess_url(
+            '/catalogs/testString/schemas/testString/tables/testString/snapshots')
         mock_response = '{"snapshots": [{"committed_at": "1609379392", "operation": "alter", "snapshot_id": "2332342122211222", "summary": {"anyKey": "anyValue"}}]}'
         responses.add(
             responses.GET,
@@ -11365,7 +11480,8 @@ class TestListTableSnapshots:
         test_list_table_snapshots_value_error()
         """
         # Set up mock
-        url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString/snapshots')
+        url = preprocess_url(
+            '/catalogs/testString/schemas/testString/tables/testString/snapshots')
         mock_response = '{"snapshots": [{"committed_at": "1609379392", "operation": "alter", "snapshot_id": "2332342122211222", "summary": {"anyKey": "anyValue"}}]}'
         responses.add(
             responses.GET,
@@ -11389,7 +11505,8 @@ class TestListTableSnapshots:
             "table_id": table_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.list_table_snapshots(**req_copy)
 
@@ -11414,7 +11531,8 @@ class TestReplaceSnapshot:
         replace_snapshot()
         """
         # Set up mock
-        url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString/snapshots/testString')
+        url = preprocess_url(
+            '/catalogs/testString/schemas/testString/tables/testString/snapshots/testString')
         mock_response = '{"response": {"message": "message", "message_code": "message_code"}}'
         responses.add(
             responses.PUT,
@@ -11466,7 +11584,8 @@ class TestReplaceSnapshot:
         test_replace_snapshot_required_params()
         """
         # Set up mock
-        url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString/snapshots/testString')
+        url = preprocess_url(
+            '/catalogs/testString/schemas/testString/tables/testString/snapshots/testString')
         mock_response = '{"response": {"message": "message", "message_code": "message_code"}}'
         responses.add(
             responses.PUT,
@@ -11516,7 +11635,8 @@ class TestReplaceSnapshot:
         test_replace_snapshot_value_error()
         """
         # Set up mock
-        url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString/snapshots/testString')
+        url = preprocess_url(
+            '/catalogs/testString/schemas/testString/tables/testString/snapshots/testString')
         mock_response = '{"response": {"message": "message", "message_code": "message_code"}}'
         responses.add(
             responses.PUT,
@@ -11542,7 +11662,8 @@ class TestReplaceSnapshot:
             "snapshot_id": snapshot_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.replace_snapshot(**req_copy)
 
@@ -11696,7 +11817,8 @@ class TestUpdateSyncCatalog:
             "body": body,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.update_sync_catalog(**req_copy)
 
@@ -11967,7 +12089,8 @@ class TestCreateMilvusService:
             "type": type,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_milvus_service(**req_copy)
 
@@ -12088,7 +12211,8 @@ class TestGetMilvusService:
             "service_id": service_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.get_milvus_service(**req_copy)
 
@@ -12200,7 +12324,8 @@ class TestDeleteMilvusService:
             "service_id": service_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.delete_milvus_service(**req_copy)
 
@@ -12354,7 +12479,8 @@ class TestUpdateMilvusService:
             "body": body,
         }
         for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (
+                key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.update_milvus_service(**req_copy)
 
@@ -12393,15 +12519,18 @@ class TestModel_BucketCatalog:
         # Construct a json representation of a BucketCatalog model
         bucket_catalog_model_json = {}
         bucket_catalog_model_json['catalog_name'] = 'sampleCatalog'
-        bucket_catalog_model_json['catalog_tags'] = ['catalog_tag_1', 'catalog_tag_2']
+        bucket_catalog_model_json['catalog_tags'] = [
+            'catalog_tag_1', 'catalog_tag_2']
         bucket_catalog_model_json['catalog_type'] = 'iceberg'
 
         # Construct a model instance of BucketCatalog by calling from_dict on the json representation
-        bucket_catalog_model = BucketCatalog.from_dict(bucket_catalog_model_json)
+        bucket_catalog_model = BucketCatalog.from_dict(
+            bucket_catalog_model_json)
         assert bucket_catalog_model != False
 
         # Construct a model instance of BucketCatalog by calling from_dict on the json representation
-        bucket_catalog_model_dict = BucketCatalog.from_dict(bucket_catalog_model_json).__dict__
+        bucket_catalog_model_dict = BucketCatalog.from_dict(
+            bucket_catalog_model_json).__dict__
         bucket_catalog_model2 = BucketCatalog(**bucket_catalog_model_dict)
 
         # Verify the model instances are equivalent
@@ -12430,11 +12559,13 @@ class TestModel_BucketDetails:
         bucket_details_model_json['secret_key'] = 'secret_key'
 
         # Construct a model instance of BucketDetails by calling from_dict on the json representation
-        bucket_details_model = BucketDetails.from_dict(bucket_details_model_json)
+        bucket_details_model = BucketDetails.from_dict(
+            bucket_details_model_json)
         assert bucket_details_model != False
 
         # Construct a model instance of BucketDetails by calling from_dict on the json representation
-        bucket_details_model_dict = BucketDetails.from_dict(bucket_details_model_json).__dict__
+        bucket_details_model_dict = BucketDetails.from_dict(
+            bucket_details_model_json).__dict__
         bucket_details_model2 = BucketDetails(**bucket_details_model_dict)
 
         # Verify the model instances are equivalent
@@ -12459,7 +12590,8 @@ class TestModel_BucketRegistration:
 
         bucket_catalog_model = {}  # BucketCatalog
         bucket_catalog_model['catalog_name'] = 'hive_data'
-        bucket_catalog_model['catalog_tags'] = ['catalog_tag_1', 'catalog_tag_2']
+        bucket_catalog_model['catalog_tags'] = [
+            'catalog_tag_1', 'catalog_tag_2']
         bucket_catalog_model['catalog_type'] = 'hive'
 
         bucket_details_model = {}  # BucketDetails
@@ -12482,15 +12614,19 @@ class TestModel_BucketRegistration:
         bucket_registration_model_json['managed_by'] = 'ibm'
         bucket_registration_model_json['region'] = 'us-south'
         bucket_registration_model_json['state'] = 'active'
-        bucket_registration_model_json['tags'] = ['testbucket', 'write customer data\'']
+        bucket_registration_model_json['tags'] = [
+            'testbucket', 'write customer data\'']
 
         # Construct a model instance of BucketRegistration by calling from_dict on the json representation
-        bucket_registration_model = BucketRegistration.from_dict(bucket_registration_model_json)
+        bucket_registration_model = BucketRegistration.from_dict(
+            bucket_registration_model_json)
         assert bucket_registration_model != False
 
         # Construct a model instance of BucketRegistration by calling from_dict on the json representation
-        bucket_registration_model_dict = BucketRegistration.from_dict(bucket_registration_model_json).__dict__
-        bucket_registration_model2 = BucketRegistration(**bucket_registration_model_dict)
+        bucket_registration_model_dict = BucketRegistration.from_dict(
+            bucket_registration_model_json).__dict__
+        bucket_registration_model2 = BucketRegistration(
+            **bucket_registration_model_dict)
 
         # Verify the model instances are equivalent
         assert bucket_registration_model == bucket_registration_model2
@@ -12551,7 +12687,8 @@ class TestModel_BucketRegistrationCollection:
 
         # Construct a json representation of a BucketRegistrationCollection model
         bucket_registration_collection_model_json = {}
-        bucket_registration_collection_model_json['bucket_registrations'] = [bucket_registration_model]
+        bucket_registration_collection_model_json['bucket_registrations'] = [
+            bucket_registration_model]
 
         # Construct a model instance of BucketRegistrationCollection by calling from_dict on the json representation
         bucket_registration_collection_model = BucketRegistrationCollection.from_dict(
@@ -12587,7 +12724,8 @@ class TestModel_BucketRegistrationObjectCollection:
 
         # Construct a json representation of a BucketRegistrationObjectCollection model
         bucket_registration_object_collection_model_json = {}
-        bucket_registration_object_collection_model_json['objects'] = ['testString']
+        bucket_registration_object_collection_model_json['objects'] = [
+            'testString']
 
         # Construct a model instance of BucketRegistrationObjectCollection by calling from_dict on the json representation
         bucket_registration_object_collection_model = BucketRegistrationObjectCollection.from_dict(
@@ -12629,12 +12767,15 @@ class TestModel_BucketStatusResponse:
         ] = 'bucket does not exist or the credentials provided are not valid.'
 
         # Construct a model instance of BucketStatusResponse by calling from_dict on the json representation
-        bucket_status_response_model = BucketStatusResponse.from_dict(bucket_status_response_model_json)
+        bucket_status_response_model = BucketStatusResponse.from_dict(
+            bucket_status_response_model_json)
         assert bucket_status_response_model != False
 
         # Construct a model instance of BucketStatusResponse by calling from_dict on the json representation
-        bucket_status_response_model_dict = BucketStatusResponse.from_dict(bucket_status_response_model_json).__dict__
-        bucket_status_response_model2 = BucketStatusResponse(**bucket_status_response_model_dict)
+        bucket_status_response_model_dict = BucketStatusResponse.from_dict(
+            bucket_status_response_model_json).__dict__
+        bucket_status_response_model2 = BucketStatusResponse(
+            **bucket_status_response_model_dict)
 
         # Verify the model instances are equivalent
         assert bucket_status_response_model == bucket_status_response_model2
@@ -12658,7 +12799,8 @@ class TestModel_Catalog:
         catalog_model_json = {}
         catalog_model_json['actions'] = ['update', 'delete']
         catalog_model_json['associated_buckets'] = ['bucket_1', 'bucket_2']
-        catalog_model_json['associated_databases'] = ['database_1', 'database_2']
+        catalog_model_json['associated_databases'] = [
+            'database_1', 'database_2']
         catalog_model_json['associated_engines'] = ['engine_1', 'engine_2']
         catalog_model_json['catalog_name'] = 'sampleCatalog'
         catalog_model_json['catalog_type'] = 'iceberg'
@@ -12672,7 +12814,8 @@ class TestModel_Catalog:
         catalog_model_json['port'] = '3232'
         catalog_model_json['status'] = 'running'
         catalog_model_json['sync_description'] = 'Table registration was successful'
-        catalog_model_json['sync_exception'] = ['table is corrupted', 'table metadata not there']
+        catalog_model_json['sync_exception'] = [
+            'table is corrupted', 'table metadata not there']
         catalog_model_json['sync_status'] = 'SUCCESS'
         catalog_model_json['tags'] = ['tag1', 'tag2']
         catalog_model_json['thrift_uri'] = 'thrift://samplehost-catalog:4354'
@@ -12722,7 +12865,8 @@ class TestModel_CatalogCollection:
         catalog_model['port'] = '3232'
         catalog_model['status'] = 'running'
         catalog_model['sync_description'] = 'Table registration was successful'
-        catalog_model['sync_exception'] = ['table is corrupted', 'table metadata not there']
+        catalog_model['sync_exception'] = [
+            'table is corrupted', 'table metadata not there']
         catalog_model['sync_status'] = 'SUCCESS'
         catalog_model['tags'] = ['tag1', 'tag2']
         catalog_model['thrift_uri'] = 'thrift://samplehost-catalog:4354'
@@ -12732,12 +12876,15 @@ class TestModel_CatalogCollection:
         catalog_collection_model_json['catalogs'] = [catalog_model]
 
         # Construct a model instance of CatalogCollection by calling from_dict on the json representation
-        catalog_collection_model = CatalogCollection.from_dict(catalog_collection_model_json)
+        catalog_collection_model = CatalogCollection.from_dict(
+            catalog_collection_model_json)
         assert catalog_collection_model != False
 
         # Construct a model instance of CatalogCollection by calling from_dict on the json representation
-        catalog_collection_model_dict = CatalogCollection.from_dict(catalog_collection_model_json).__dict__
-        catalog_collection_model2 = CatalogCollection(**catalog_collection_model_dict)
+        catalog_collection_model_dict = CatalogCollection.from_dict(
+            catalog_collection_model_json).__dict__
+        catalog_collection_model2 = CatalogCollection(
+            **catalog_collection_model_dict)
 
         # Verify the model instances are equivalent
         assert catalog_collection_model == catalog_collection_model2
@@ -12807,12 +12954,15 @@ class TestModel_ColumnCollection:
         column_collection_model_json['columns'] = [column_model]
 
         # Construct a model instance of ColumnCollection by calling from_dict on the json representation
-        column_collection_model = ColumnCollection.from_dict(column_collection_model_json)
+        column_collection_model = ColumnCollection.from_dict(
+            column_collection_model_json)
         assert column_collection_model != False
 
         # Construct a model instance of ColumnCollection by calling from_dict on the json representation
-        column_collection_model_dict = ColumnCollection.from_dict(column_collection_model_json).__dict__
-        column_collection_model2 = ColumnCollection(**column_collection_model_dict)
+        column_collection_model_dict = ColumnCollection.from_dict(
+            column_collection_model_json).__dict__
+        column_collection_model2 = ColumnCollection(
+            **column_collection_model_dict)
 
         # Verify the model instances are equivalent
         assert column_collection_model == column_collection_model2
@@ -12838,12 +12988,15 @@ class TestModel_ConnectionResponse:
         connection_response_model_json['state_message'] = 'testString'
 
         # Construct a model instance of ConnectionResponse by calling from_dict on the json representation
-        connection_response_model = ConnectionResponse.from_dict(connection_response_model_json)
+        connection_response_model = ConnectionResponse.from_dict(
+            connection_response_model_json)
         assert connection_response_model != False
 
         # Construct a model instance of ConnectionResponse by calling from_dict on the json representation
-        connection_response_model_dict = ConnectionResponse.from_dict(connection_response_model_json).__dict__
-        connection_response_model2 = ConnectionResponse(**connection_response_model_dict)
+        connection_response_model_dict = ConnectionResponse.from_dict(
+            connection_response_model_json).__dict__
+        connection_response_model2 = ConnectionResponse(
+            **connection_response_model_dict)
 
         # Verify the model instances are equivalent
         assert connection_response_model == connection_response_model2
@@ -13084,14 +13237,16 @@ class TestModel_CreateSchemaCreatedBody:
         create_schema_created_body_model_json['response'] = success_response_model
 
         # Construct a model instance of CreateSchemaCreatedBody by calling from_dict on the json representation
-        create_schema_created_body_model = CreateSchemaCreatedBody.from_dict(create_schema_created_body_model_json)
+        create_schema_created_body_model = CreateSchemaCreatedBody.from_dict(
+            create_schema_created_body_model_json)
         assert create_schema_created_body_model != False
 
         # Construct a model instance of CreateSchemaCreatedBody by calling from_dict on the json representation
         create_schema_created_body_model_dict = CreateSchemaCreatedBody.from_dict(
             create_schema_created_body_model_json
         ).__dict__
-        create_schema_created_body_model2 = CreateSchemaCreatedBody(**create_schema_created_body_model_dict)
+        create_schema_created_body_model2 = CreateSchemaCreatedBody(
+            **create_schema_created_body_model_dict)
 
         # Verify the model instances are equivalent
         assert create_schema_created_body_model == create_schema_created_body_model2
@@ -13114,16 +13269,20 @@ class TestModel_DatabaseCatalog:
         # Construct a json representation of a DatabaseCatalog model
         database_catalog_model_json = {}
         database_catalog_model_json['catalog_name'] = 'sampleCatalog'
-        database_catalog_model_json['catalog_tags'] = ['catalog_tag_1', 'catalog_tag_2']
+        database_catalog_model_json['catalog_tags'] = [
+            'catalog_tag_1', 'catalog_tag_2']
         database_catalog_model_json['catalog_type'] = 'iceberg'
 
         # Construct a model instance of DatabaseCatalog by calling from_dict on the json representation
-        database_catalog_model = DatabaseCatalog.from_dict(database_catalog_model_json)
+        database_catalog_model = DatabaseCatalog.from_dict(
+            database_catalog_model_json)
         assert database_catalog_model != False
 
         # Construct a model instance of DatabaseCatalog by calling from_dict on the json representation
-        database_catalog_model_dict = DatabaseCatalog.from_dict(database_catalog_model_json).__dict__
-        database_catalog_model2 = DatabaseCatalog(**database_catalog_model_dict)
+        database_catalog_model_dict = DatabaseCatalog.from_dict(
+            database_catalog_model_json).__dict__
+        database_catalog_model2 = DatabaseCatalog(
+            **database_catalog_model_dict)
 
         # Verify the model instances are equivalent
         assert database_catalog_model == database_catalog_model2
@@ -13160,12 +13319,15 @@ class TestModel_DatabaseDetails:
         database_details_model_json['validate_server_certificate'] = True
 
         # Construct a model instance of DatabaseDetails by calling from_dict on the json representation
-        database_details_model = DatabaseDetails.from_dict(database_details_model_json)
+        database_details_model = DatabaseDetails.from_dict(
+            database_details_model_json)
         assert database_details_model != False
 
         # Construct a model instance of DatabaseDetails by calling from_dict on the json representation
-        database_details_model_dict = DatabaseDetails.from_dict(database_details_model_json).__dict__
-        database_details_model2 = DatabaseDetails(**database_details_model_dict)
+        database_details_model_dict = DatabaseDetails.from_dict(
+            database_details_model_json).__dict__
+        database_details_model2 = DatabaseDetails(
+            **database_details_model_dict)
 
         # Verify the model instances are equivalent
         assert database_details_model == database_details_model2
@@ -13189,7 +13351,8 @@ class TestModel_DatabaseRegistration:
 
         database_catalog_model = {}  # DatabaseCatalog
         database_catalog_model['catalog_name'] = 'iceberg_data'
-        database_catalog_model['catalog_tags'] = ['catalog_tag_1', 'catalog_tag_2']
+        database_catalog_model['catalog_tags'] = [
+            'catalog_tag_1', 'catalog_tag_2']
         database_catalog_model['catalog_type'] = 'iceberg'
 
         database_details_model = {}  # DatabaseDetails
@@ -13207,7 +13370,8 @@ class TestModel_DatabaseRegistration:
         database_details_model['username'] = 'sampleuser'
         database_details_model['validate_server_certificate'] = True
 
-        database_registration_database_properties_items_model = {}  # DatabaseRegistrationDatabasePropertiesItems
+        # DatabaseRegistrationDatabasePropertiesItems
+        database_registration_database_properties_items_model = {}
         database_registration_database_properties_items_model['encrypt'] = True
         database_registration_database_properties_items_model['key'] = 'abc'
         database_registration_database_properties_items_model['value'] = 'xyz'
@@ -13227,15 +13391,19 @@ class TestModel_DatabaseRegistration:
         ]
         database_registration_model_json['database_type'] = 'netezza'
         database_registration_model_json['description'] = 'Description of the external Database'
-        database_registration_model_json['tags'] = ['testdatabase', 'userdatabase']
+        database_registration_model_json['tags'] = [
+            'testdatabase', 'userdatabase']
 
         # Construct a model instance of DatabaseRegistration by calling from_dict on the json representation
-        database_registration_model = DatabaseRegistration.from_dict(database_registration_model_json)
+        database_registration_model = DatabaseRegistration.from_dict(
+            database_registration_model_json)
         assert database_registration_model != False
 
         # Construct a model instance of DatabaseRegistration by calling from_dict on the json representation
-        database_registration_model_dict = DatabaseRegistration.from_dict(database_registration_model_json).__dict__
-        database_registration_model2 = DatabaseRegistration(**database_registration_model_dict)
+        database_registration_model_dict = DatabaseRegistration.from_dict(
+            database_registration_model_json).__dict__
+        database_registration_model2 = DatabaseRegistration(
+            **database_registration_model_dict)
 
         # Verify the model instances are equivalent
         assert database_registration_model == database_registration_model2
@@ -13259,7 +13427,8 @@ class TestModel_DatabaseRegistrationCollection:
 
         database_catalog_model = {}  # DatabaseCatalog
         database_catalog_model['catalog_name'] = 'hive_data'
-        database_catalog_model['catalog_tags'] = ['catalog_tag_1', 'catalog_tag_2']
+        database_catalog_model['catalog_tags'] = [
+            'catalog_tag_1', 'catalog_tag_2']
         database_catalog_model['catalog_type'] = 'hive'
 
         database_details_model = {}  # DatabaseDetails
@@ -13277,7 +13446,8 @@ class TestModel_DatabaseRegistrationCollection:
         database_details_model['username'] = 'sampleuser'
         database_details_model['validate_server_certificate'] = True
 
-        database_registration_database_properties_items_model = {}  # DatabaseRegistrationDatabasePropertiesItems
+        # DatabaseRegistrationDatabasePropertiesItems
+        database_registration_database_properties_items_model = {}
         database_registration_database_properties_items_model['encrypt'] = True
         database_registration_database_properties_items_model['key'] = 'abc'
         database_registration_database_properties_items_model['value'] = 'xyz'
@@ -13291,14 +13461,16 @@ class TestModel_DatabaseRegistrationCollection:
         database_registration_model['database_details'] = database_details_model
         database_registration_model['database_display_name'] = 'new_database'
         database_registration_model['database_id'] = 'new_database_id'
-        database_registration_model['database_properties'] = [database_registration_database_properties_items_model]
+        database_registration_model['database_properties'] = [
+            database_registration_database_properties_items_model]
         database_registration_model['database_type'] = 'netezza'
         database_registration_model['description'] = 'Description of the external Database'
         database_registration_model['tags'] = ['testdatabase', 'userdatabase']
 
         # Construct a json representation of a DatabaseRegistrationCollection model
         database_registration_collection_model_json = {}
-        database_registration_collection_model_json['database_registrations'] = [database_registration_model]
+        database_registration_collection_model_json['database_registrations'] = [
+            database_registration_model]
 
         # Construct a model instance of DatabaseRegistrationCollection by calling from_dict on the json representation
         database_registration_collection_model = DatabaseRegistrationCollection.from_dict(
@@ -13383,7 +13555,8 @@ class TestModel_DatabaseRegistrationPrototypeDatabasePropertiesItems:
         # Construct a json representation of a DatabaseRegistrationPrototypeDatabasePropertiesItems model
         database_registration_prototype_database_properties_items_model_json = {}
         database_registration_prototype_database_properties_items_model_json['encrypt'] = True
-        database_registration_prototype_database_properties_items_model_json['key'] = 'hive.metastore'
+        database_registration_prototype_database_properties_items_model_json[
+            'key'] = 'hive.metastore'
         database_registration_prototype_database_properties_items_model_json['value'] = 'glue'
 
         # Construct a model instance of DatabaseRegistrationPrototypeDatabasePropertiesItems by calling from_dict on the json representation
@@ -13460,7 +13633,8 @@ class TestModel_Db2Engine:
         assert db2_engine_model != False
 
         # Construct a model instance of Db2Engine by calling from_dict on the json representation
-        db2_engine_model_dict = Db2Engine.from_dict(db2_engine_model_json).__dict__
+        db2_engine_model_dict = Db2Engine.from_dict(
+            db2_engine_model_json).__dict__
         db2_engine_model2 = Db2Engine(**db2_engine_model_dict)
 
         # Verify the model instances are equivalent
@@ -13508,12 +13682,15 @@ class TestModel_Db2EngineCollection:
         db2_engine_collection_model_json['db2_engines'] = [db2_engine_model]
 
         # Construct a model instance of Db2EngineCollection by calling from_dict on the json representation
-        db2_engine_collection_model = Db2EngineCollection.from_dict(db2_engine_collection_model_json)
+        db2_engine_collection_model = Db2EngineCollection.from_dict(
+            db2_engine_collection_model_json)
         assert db2_engine_collection_model != False
 
         # Construct a model instance of Db2EngineCollection by calling from_dict on the json representation
-        db2_engine_collection_model_dict = Db2EngineCollection.from_dict(db2_engine_collection_model_json).__dict__
-        db2_engine_collection_model2 = Db2EngineCollection(**db2_engine_collection_model_dict)
+        db2_engine_collection_model_dict = Db2EngineCollection.from_dict(
+            db2_engine_collection_model_json).__dict__
+        db2_engine_collection_model2 = Db2EngineCollection(
+            **db2_engine_collection_model_dict)
 
         # Verify the model instances are equivalent
         assert db2_engine_collection_model == db2_engine_collection_model2
@@ -13539,12 +13716,15 @@ class TestModel_Db2EngineDetails:
         db2_engine_details_model_json['metastore_host'] = '1.2.3.4'
 
         # Construct a model instance of Db2EngineDetails by calling from_dict on the json representation
-        db2_engine_details_model = Db2EngineDetails.from_dict(db2_engine_details_model_json)
+        db2_engine_details_model = Db2EngineDetails.from_dict(
+            db2_engine_details_model_json)
         assert db2_engine_details_model != False
 
         # Construct a model instance of Db2EngineDetails by calling from_dict on the json representation
-        db2_engine_details_model_dict = Db2EngineDetails.from_dict(db2_engine_details_model_json).__dict__
-        db2_engine_details_model2 = Db2EngineDetails(**db2_engine_details_model_dict)
+        db2_engine_details_model_dict = Db2EngineDetails.from_dict(
+            db2_engine_details_model_json).__dict__
+        db2_engine_details_model2 = Db2EngineDetails(
+            **db2_engine_details_model_dict)
 
         # Verify the model instances are equivalent
         assert db2_engine_details_model == db2_engine_details_model2
@@ -13569,12 +13749,15 @@ class TestModel_Db2EngineDetailsBody:
         db2_engine_details_body_model_json['connection_string'] = '1.2.3.4'
 
         # Construct a model instance of Db2EngineDetailsBody by calling from_dict on the json representation
-        db2_engine_details_body_model = Db2EngineDetailsBody.from_dict(db2_engine_details_body_model_json)
+        db2_engine_details_body_model = Db2EngineDetailsBody.from_dict(
+            db2_engine_details_body_model_json)
         assert db2_engine_details_body_model != False
 
         # Construct a model instance of Db2EngineDetailsBody by calling from_dict on the json representation
-        db2_engine_details_body_model_dict = Db2EngineDetailsBody.from_dict(db2_engine_details_body_model_json).__dict__
-        db2_engine_details_body_model2 = Db2EngineDetailsBody(**db2_engine_details_body_model_dict)
+        db2_engine_details_body_model_dict = Db2EngineDetailsBody.from_dict(
+            db2_engine_details_body_model_json).__dict__
+        db2_engine_details_body_model2 = Db2EngineDetailsBody(
+            **db2_engine_details_body_model_dict)
 
         # Verify the model instances are equivalent
         assert db2_engine_details_body_model == db2_engine_details_body_model2
@@ -13623,7 +13806,8 @@ class TestModel_Deployment:
         assert deployment_model != False
 
         # Construct a model instance of Deployment by calling from_dict on the json representation
-        deployment_model_dict = Deployment.from_dict(deployment_model_json).__dict__
+        deployment_model_dict = Deployment.from_dict(
+            deployment_model_json).__dict__
         deployment_model2 = Deployment(**deployment_model_dict)
 
         # Verify the model instances are equivalent
@@ -13651,14 +13835,16 @@ class TestModel_DeploymentPlatformOptions:
         deployment_platform_options_model_json['key_protect_key_id'] = '<key_protect_key_id>'
 
         # Construct a model instance of DeploymentPlatformOptions by calling from_dict on the json representation
-        deployment_platform_options_model = DeploymentPlatformOptions.from_dict(deployment_platform_options_model_json)
+        deployment_platform_options_model = DeploymentPlatformOptions.from_dict(
+            deployment_platform_options_model_json)
         assert deployment_platform_options_model != False
 
         # Construct a model instance of DeploymentPlatformOptions by calling from_dict on the json representation
         deployment_platform_options_model_dict = DeploymentPlatformOptions.from_dict(
             deployment_platform_options_model_json
         ).__dict__
-        deployment_platform_options_model2 = DeploymentPlatformOptions(**deployment_platform_options_model_dict)
+        deployment_platform_options_model2 = DeploymentPlatformOptions(
+            **deployment_platform_options_model_dict)
 
         # Verify the model instances are equivalent
         assert deployment_platform_options_model == deployment_platform_options_model2
@@ -13706,12 +13892,15 @@ class TestModel_DeploymentsResponse:
         deployments_response_model_json['deployment'] = deployment_model
 
         # Construct a model instance of DeploymentsResponse by calling from_dict on the json representation
-        deployments_response_model = DeploymentsResponse.from_dict(deployments_response_model_json)
+        deployments_response_model = DeploymentsResponse.from_dict(
+            deployments_response_model_json)
         assert deployments_response_model != False
 
         # Construct a model instance of DeploymentsResponse by calling from_dict on the json representation
-        deployments_response_model_dict = DeploymentsResponse.from_dict(deployments_response_model_json).__dict__
-        deployments_response_model2 = DeploymentsResponse(**deployments_response_model_dict)
+        deployments_response_model_dict = DeploymentsResponse.from_dict(
+            deployments_response_model_json).__dict__
+        deployments_response_model2 = DeploymentsResponse(
+            **deployments_response_model_dict)
 
         # Verify the model instances are equivalent
         assert deployments_response_model == deployments_response_model2
@@ -13869,7 +14058,8 @@ class TestModel_Engine:
 
         presto_engine_model = {}  # PrestoEngine
         presto_engine_model['actions'] = ['update', 'delete']
-        presto_engine_model['associated_catalogs'] = ['iceberg_data', 'hive_data']
+        presto_engine_model['associated_catalogs'] = [
+            'iceberg_data', 'hive_data']
         presto_engine_model['build_version'] = '1.0.3.0.0'
         presto_engine_model['coordinator'] = node_description_model
         presto_engine_model['created_by'] = '<username>@<domain>.com'
@@ -13981,12 +14171,15 @@ class TestModel_EngineDetailsBody:
         engine_details_body_model_json['worker'] = node_description_body_model
 
         # Construct a model instance of EngineDetailsBody by calling from_dict on the json representation
-        engine_details_body_model = EngineDetailsBody.from_dict(engine_details_body_model_json)
+        engine_details_body_model = EngineDetailsBody.from_dict(
+            engine_details_body_model_json)
         assert engine_details_body_model != False
 
         # Construct a model instance of EngineDetailsBody by calling from_dict on the json representation
-        engine_details_body_model_dict = EngineDetailsBody.from_dict(engine_details_body_model_json).__dict__
-        engine_details_body_model2 = EngineDetailsBody(**engine_details_body_model_dict)
+        engine_details_body_model_dict = EngineDetailsBody.from_dict(
+            engine_details_body_model_json).__dict__
+        engine_details_body_model2 = EngineDetailsBody(
+            **engine_details_body_model_dict)
 
         # Verify the model instances are equivalent
         assert engine_details_body_model == engine_details_body_model2
@@ -14144,7 +14337,8 @@ class TestModel_Engines:
 
         presto_engine_model = {}  # PrestoEngine
         presto_engine_model['actions'] = ['update', 'delete']
-        presto_engine_model['associated_catalogs'] = ['iceberg_data', 'hive_data']
+        presto_engine_model['associated_catalogs'] = [
+            'iceberg_data', 'hive_data']
         presto_engine_model['build_version'] = '1.0.3.0.0'
         presto_engine_model['coordinator'] = node_description_model
         presto_engine_model['created_by'] = '<username>@<domain>.com'
@@ -14278,12 +14472,15 @@ class TestModel_GetDeploymentsOKBody:
         get_deployments_ok_body_model_json['response'] = success_response_model
 
         # Construct a model instance of GetDeploymentsOKBody by calling from_dict on the json representation
-        get_deployments_ok_body_model = GetDeploymentsOKBody.from_dict(get_deployments_ok_body_model_json)
+        get_deployments_ok_body_model = GetDeploymentsOKBody.from_dict(
+            get_deployments_ok_body_model_json)
         assert get_deployments_ok_body_model != False
 
         # Construct a model instance of GetDeploymentsOKBody by calling from_dict on the json representation
-        get_deployments_ok_body_model_dict = GetDeploymentsOKBody.from_dict(get_deployments_ok_body_model_json).__dict__
-        get_deployments_ok_body_model2 = GetDeploymentsOKBody(**get_deployments_ok_body_model_dict)
+        get_deployments_ok_body_model_dict = GetDeploymentsOKBody.from_dict(
+            get_deployments_ok_body_model_json).__dict__
+        get_deployments_ok_body_model2 = GetDeploymentsOKBody(
+            **get_deployments_ok_body_model_dict)
 
         # Verify the model instances are equivalent
         assert get_deployments_ok_body_model == get_deployments_ok_body_model2
@@ -14311,12 +14508,15 @@ class TestModel_JsonPatchOperation:
         json_patch_operation_model_json['value'] = 'testString'
 
         # Construct a model instance of JsonPatchOperation by calling from_dict on the json representation
-        json_patch_operation_model = JsonPatchOperation.from_dict(json_patch_operation_model_json)
+        json_patch_operation_model = JsonPatchOperation.from_dict(
+            json_patch_operation_model_json)
         assert json_patch_operation_model != False
 
         # Construct a model instance of JsonPatchOperation by calling from_dict on the json representation
-        json_patch_operation_model_dict = JsonPatchOperation.from_dict(json_patch_operation_model_json).__dict__
-        json_patch_operation_model2 = JsonPatchOperation(**json_patch_operation_model_dict)
+        json_patch_operation_model_dict = JsonPatchOperation.from_dict(
+            json_patch_operation_model_json).__dict__
+        json_patch_operation_model2 = JsonPatchOperation(
+            **json_patch_operation_model_dict)
 
         # Verify the model instances are equivalent
         assert json_patch_operation_model == json_patch_operation_model2
@@ -14348,12 +14548,15 @@ class TestModel_ListSchemasOKBody:
         list_schemas_ok_body_model_json['schemas'] = ['testString']
 
         # Construct a model instance of ListSchemasOKBody by calling from_dict on the json representation
-        list_schemas_ok_body_model = ListSchemasOKBody.from_dict(list_schemas_ok_body_model_json)
+        list_schemas_ok_body_model = ListSchemasOKBody.from_dict(
+            list_schemas_ok_body_model_json)
         assert list_schemas_ok_body_model != False
 
         # Construct a model instance of ListSchemasOKBody by calling from_dict on the json representation
-        list_schemas_ok_body_model_dict = ListSchemasOKBody.from_dict(list_schemas_ok_body_model_json).__dict__
-        list_schemas_ok_body_model2 = ListSchemasOKBody(**list_schemas_ok_body_model_dict)
+        list_schemas_ok_body_model_dict = ListSchemasOKBody.from_dict(
+            list_schemas_ok_body_model_json).__dict__
+        list_schemas_ok_body_model2 = ListSchemasOKBody(
+            **list_schemas_ok_body_model_dict)
 
         # Verify the model instances are equivalent
         assert list_schemas_ok_body_model == list_schemas_ok_body_model2
@@ -14393,11 +14596,13 @@ class TestModel_MilvusService:
         milvus_service_model_json['type'] = 'milvus'
 
         # Construct a model instance of MilvusService by calling from_dict on the json representation
-        milvus_service_model = MilvusService.from_dict(milvus_service_model_json)
+        milvus_service_model = MilvusService.from_dict(
+            milvus_service_model_json)
         assert milvus_service_model != False
 
         # Construct a model instance of MilvusService by calling from_dict on the json representation
-        milvus_service_model_dict = MilvusService.from_dict(milvus_service_model_json).__dict__
+        milvus_service_model_dict = MilvusService.from_dict(
+            milvus_service_model_json).__dict__
         milvus_service_model2 = MilvusService(**milvus_service_model_dict)
 
         # Verify the model instances are equivalent
@@ -14440,17 +14645,20 @@ class TestModel_MilvusServiceCollection:
 
         # Construct a json representation of a MilvusServiceCollection model
         milvus_service_collection_model_json = {}
-        milvus_service_collection_model_json['milvus_services'] = [milvus_service_model]
+        milvus_service_collection_model_json['milvus_services'] = [
+            milvus_service_model]
 
         # Construct a model instance of MilvusServiceCollection by calling from_dict on the json representation
-        milvus_service_collection_model = MilvusServiceCollection.from_dict(milvus_service_collection_model_json)
+        milvus_service_collection_model = MilvusServiceCollection.from_dict(
+            milvus_service_collection_model_json)
         assert milvus_service_collection_model != False
 
         # Construct a model instance of MilvusServiceCollection by calling from_dict on the json representation
         milvus_service_collection_model_dict = MilvusServiceCollection.from_dict(
             milvus_service_collection_model_json
         ).__dict__
-        milvus_service_collection_model2 = MilvusServiceCollection(**milvus_service_collection_model_dict)
+        milvus_service_collection_model2 = MilvusServiceCollection(
+            **milvus_service_collection_model_dict)
 
         # Verify the model instances are equivalent
         assert milvus_service_collection_model == milvus_service_collection_model2
@@ -14494,11 +14702,13 @@ class TestModel_NetezzaEngine:
         netezza_engine_model_json['type'] = 'netezza'
 
         # Construct a model instance of NetezzaEngine by calling from_dict on the json representation
-        netezza_engine_model = NetezzaEngine.from_dict(netezza_engine_model_json)
+        netezza_engine_model = NetezzaEngine.from_dict(
+            netezza_engine_model_json)
         assert netezza_engine_model != False
 
         # Construct a model instance of NetezzaEngine by calling from_dict on the json representation
-        netezza_engine_model_dict = NetezzaEngine.from_dict(netezza_engine_model_json).__dict__
+        netezza_engine_model_dict = NetezzaEngine.from_dict(
+            netezza_engine_model_json).__dict__
         netezza_engine_model2 = NetezzaEngine(**netezza_engine_model_dict)
 
         # Verify the model instances are equivalent
@@ -14543,17 +14753,20 @@ class TestModel_NetezzaEngineCollection:
 
         # Construct a json representation of a NetezzaEngineCollection model
         netezza_engine_collection_model_json = {}
-        netezza_engine_collection_model_json['netezza_engines'] = [netezza_engine_model]
+        netezza_engine_collection_model_json['netezza_engines'] = [
+            netezza_engine_model]
 
         # Construct a model instance of NetezzaEngineCollection by calling from_dict on the json representation
-        netezza_engine_collection_model = NetezzaEngineCollection.from_dict(netezza_engine_collection_model_json)
+        netezza_engine_collection_model = NetezzaEngineCollection.from_dict(
+            netezza_engine_collection_model_json)
         assert netezza_engine_collection_model != False
 
         # Construct a model instance of NetezzaEngineCollection by calling from_dict on the json representation
         netezza_engine_collection_model_dict = NetezzaEngineCollection.from_dict(
             netezza_engine_collection_model_json
         ).__dict__
-        netezza_engine_collection_model2 = NetezzaEngineCollection(**netezza_engine_collection_model_dict)
+        netezza_engine_collection_model2 = NetezzaEngineCollection(
+            **netezza_engine_collection_model_dict)
 
         # Verify the model instances are equivalent
         assert netezza_engine_collection_model == netezza_engine_collection_model2
@@ -14579,12 +14792,15 @@ class TestModel_NetezzaEngineDetails:
         netezza_engine_details_model_json['metastore_host'] = '1.2.3.4'
 
         # Construct a model instance of NetezzaEngineDetails by calling from_dict on the json representation
-        netezza_engine_details_model = NetezzaEngineDetails.from_dict(netezza_engine_details_model_json)
+        netezza_engine_details_model = NetezzaEngineDetails.from_dict(
+            netezza_engine_details_model_json)
         assert netezza_engine_details_model != False
 
         # Construct a model instance of NetezzaEngineDetails by calling from_dict on the json representation
-        netezza_engine_details_model_dict = NetezzaEngineDetails.from_dict(netezza_engine_details_model_json).__dict__
-        netezza_engine_details_model2 = NetezzaEngineDetails(**netezza_engine_details_model_dict)
+        netezza_engine_details_model_dict = NetezzaEngineDetails.from_dict(
+            netezza_engine_details_model_json).__dict__
+        netezza_engine_details_model2 = NetezzaEngineDetails(
+            **netezza_engine_details_model_dict)
 
         # Verify the model instances are equivalent
         assert netezza_engine_details_model == netezza_engine_details_model2
@@ -14609,14 +14825,16 @@ class TestModel_NetezzaEngineDetailsBody:
         netezza_engine_details_body_model_json['connection_string'] = '1.2.3.4'
 
         # Construct a model instance of NetezzaEngineDetailsBody by calling from_dict on the json representation
-        netezza_engine_details_body_model = NetezzaEngineDetailsBody.from_dict(netezza_engine_details_body_model_json)
+        netezza_engine_details_body_model = NetezzaEngineDetailsBody.from_dict(
+            netezza_engine_details_body_model_json)
         assert netezza_engine_details_body_model != False
 
         # Construct a model instance of NetezzaEngineDetailsBody by calling from_dict on the json representation
         netezza_engine_details_body_model_dict = NetezzaEngineDetailsBody.from_dict(
             netezza_engine_details_body_model_json
         ).__dict__
-        netezza_engine_details_body_model2 = NetezzaEngineDetailsBody(**netezza_engine_details_body_model_dict)
+        netezza_engine_details_body_model2 = NetezzaEngineDetailsBody(
+            **netezza_engine_details_body_model_dict)
 
         # Verify the model instances are equivalent
         assert netezza_engine_details_body_model == netezza_engine_details_body_model2
@@ -14642,12 +14860,15 @@ class TestModel_NodeDescription:
         node_description_model_json['quantity'] = 38
 
         # Construct a model instance of NodeDescription by calling from_dict on the json representation
-        node_description_model = NodeDescription.from_dict(node_description_model_json)
+        node_description_model = NodeDescription.from_dict(
+            node_description_model_json)
         assert node_description_model != False
 
         # Construct a model instance of NodeDescription by calling from_dict on the json representation
-        node_description_model_dict = NodeDescription.from_dict(node_description_model_json).__dict__
-        node_description_model2 = NodeDescription(**node_description_model_dict)
+        node_description_model_dict = NodeDescription.from_dict(
+            node_description_model_json).__dict__
+        node_description_model2 = NodeDescription(
+            **node_description_model_dict)
 
         # Verify the model instances are equivalent
         assert node_description_model == node_description_model2
@@ -14673,12 +14894,15 @@ class TestModel_NodeDescriptionBody:
         node_description_body_model_json['quantity'] = 38
 
         # Construct a model instance of NodeDescriptionBody by calling from_dict on the json representation
-        node_description_body_model = NodeDescriptionBody.from_dict(node_description_body_model_json)
+        node_description_body_model = NodeDescriptionBody.from_dict(
+            node_description_body_model_json)
         assert node_description_body_model != False
 
         # Construct a model instance of NodeDescriptionBody by calling from_dict on the json representation
-        node_description_body_model_dict = NodeDescriptionBody.from_dict(node_description_body_model_json).__dict__
-        node_description_body_model2 = NodeDescriptionBody(**node_description_body_model_dict)
+        node_description_body_model_dict = NodeDescriptionBody.from_dict(
+            node_description_body_model_json).__dict__
+        node_description_body_model2 = NodeDescriptionBody(
+            **node_description_body_model_dict)
 
         # Verify the model instances are equivalent
         assert node_description_body_model == node_description_body_model2
@@ -14726,7 +14950,8 @@ class TestModel_OtherEngine:
         assert other_engine_model != False
 
         # Construct a model instance of OtherEngine by calling from_dict on the json representation
-        other_engine_model_dict = OtherEngine.from_dict(other_engine_model_json).__dict__
+        other_engine_model_dict = OtherEngine.from_dict(
+            other_engine_model_json).__dict__
         other_engine_model2 = OtherEngine(**other_engine_model_dict)
 
         # Verify the model instances are equivalent
@@ -14771,17 +14996,20 @@ class TestModel_OtherEngineCollection:
 
         # Construct a json representation of a OtherEngineCollection model
         other_engine_collection_model_json = {}
-        other_engine_collection_model_json['other_engines'] = [other_engine_model]
+        other_engine_collection_model_json['other_engines'] = [
+            other_engine_model]
 
         # Construct a model instance of OtherEngineCollection by calling from_dict on the json representation
-        other_engine_collection_model = OtherEngineCollection.from_dict(other_engine_collection_model_json)
+        other_engine_collection_model = OtherEngineCollection.from_dict(
+            other_engine_collection_model_json)
         assert other_engine_collection_model != False
 
         # Construct a model instance of OtherEngineCollection by calling from_dict on the json representation
         other_engine_collection_model_dict = OtherEngineCollection.from_dict(
             other_engine_collection_model_json
         ).__dict__
-        other_engine_collection_model2 = OtherEngineCollection(**other_engine_collection_model_dict)
+        other_engine_collection_model2 = OtherEngineCollection(
+            **other_engine_collection_model_dict)
 
         # Verify the model instances are equivalent
         assert other_engine_collection_model == other_engine_collection_model2
@@ -14808,12 +15036,15 @@ class TestModel_OtherEngineDetails:
         other_engine_details_model_json['metastore_host'] = '1.2.3.4'
 
         # Construct a model instance of OtherEngineDetails by calling from_dict on the json representation
-        other_engine_details_model = OtherEngineDetails.from_dict(other_engine_details_model_json)
+        other_engine_details_model = OtherEngineDetails.from_dict(
+            other_engine_details_model_json)
         assert other_engine_details_model != False
 
         # Construct a model instance of OtherEngineDetails by calling from_dict on the json representation
-        other_engine_details_model_dict = OtherEngineDetails.from_dict(other_engine_details_model_json).__dict__
-        other_engine_details_model2 = OtherEngineDetails(**other_engine_details_model_dict)
+        other_engine_details_model_dict = OtherEngineDetails.from_dict(
+            other_engine_details_model_json).__dict__
+        other_engine_details_model2 = OtherEngineDetails(
+            **other_engine_details_model_dict)
 
         # Verify the model instances are equivalent
         assert other_engine_details_model == other_engine_details_model2
@@ -14839,14 +15070,16 @@ class TestModel_OtherEngineDetailsBody:
         other_engine_details_body_model_json['engine_type'] = 'netezza'
 
         # Construct a model instance of OtherEngineDetailsBody by calling from_dict on the json representation
-        other_engine_details_body_model = OtherEngineDetailsBody.from_dict(other_engine_details_body_model_json)
+        other_engine_details_body_model = OtherEngineDetailsBody.from_dict(
+            other_engine_details_body_model_json)
         assert other_engine_details_body_model != False
 
         # Construct a model instance of OtherEngineDetailsBody by calling from_dict on the json representation
         other_engine_details_body_model_dict = OtherEngineDetailsBody.from_dict(
             other_engine_details_body_model_json
         ).__dict__
-        other_engine_details_body_model2 = OtherEngineDetailsBody(**other_engine_details_body_model_dict)
+        other_engine_details_body_model2 = OtherEngineDetailsBody(
+            **other_engine_details_body_model_dict)
 
         # Verify the model instances are equivalent
         assert other_engine_details_body_model == other_engine_details_body_model2
@@ -14887,12 +15120,15 @@ class TestModel_PrestissimoEndpoints:
         ] = '$HOST/v1/1698311655308796/engines/spark817/applications'
 
         # Construct a model instance of PrestissimoEndpoints by calling from_dict on the json representation
-        prestissimo_endpoints_model = PrestissimoEndpoints.from_dict(prestissimo_endpoints_model_json)
+        prestissimo_endpoints_model = PrestissimoEndpoints.from_dict(
+            prestissimo_endpoints_model_json)
         assert prestissimo_endpoints_model != False
 
         # Construct a model instance of PrestissimoEndpoints by calling from_dict on the json representation
-        prestissimo_endpoints_model_dict = PrestissimoEndpoints.from_dict(prestissimo_endpoints_model_json).__dict__
-        prestissimo_endpoints_model2 = PrestissimoEndpoints(**prestissimo_endpoints_model_dict)
+        prestissimo_endpoints_model_dict = PrestissimoEndpoints.from_dict(
+            prestissimo_endpoints_model_json).__dict__
+        prestissimo_endpoints_model2 = PrestissimoEndpoints(
+            **prestissimo_endpoints_model_dict)
 
         # Verify the model instances are equivalent
         assert prestissimo_endpoints_model == prestissimo_endpoints_model2
@@ -14975,12 +15211,15 @@ class TestModel_PrestissimoEngine:
         prestissimo_engine_model_json['worker'] = prestissimo_node_description_body_model
 
         # Construct a model instance of PrestissimoEngine by calling from_dict on the json representation
-        prestissimo_engine_model = PrestissimoEngine.from_dict(prestissimo_engine_model_json)
+        prestissimo_engine_model = PrestissimoEngine.from_dict(
+            prestissimo_engine_model_json)
         assert prestissimo_engine_model != False
 
         # Construct a model instance of PrestissimoEngine by calling from_dict on the json representation
-        prestissimo_engine_model_dict = PrestissimoEngine.from_dict(prestissimo_engine_model_json).__dict__
-        prestissimo_engine_model2 = PrestissimoEngine(**prestissimo_engine_model_dict)
+        prestissimo_engine_model_dict = PrestissimoEngine.from_dict(
+            prestissimo_engine_model_json).__dict__
+        prestissimo_engine_model2 = PrestissimoEngine(
+            **prestissimo_engine_model_dict)
 
         # Verify the model instances are equivalent
         assert prestissimo_engine_model == prestissimo_engine_model2
@@ -15079,7 +15318,8 @@ class TestModel_PrestissimoEngineCollection:
 
         # Construct a json representation of a PrestissimoEngineCollection model
         prestissimo_engine_collection_model_json = {}
-        prestissimo_engine_collection_model_json['prestissimo_engines'] = [prestissimo_engine_model]
+        prestissimo_engine_collection_model_json['prestissimo_engines'] = [
+            prestissimo_engine_model]
 
         # Construct a model instance of PrestissimoEngineCollection by calling from_dict on the json representation
         prestissimo_engine_collection_model = PrestissimoEngineCollection.from_dict(
@@ -15091,7 +15331,8 @@ class TestModel_PrestissimoEngineCollection:
         prestissimo_engine_collection_model_dict = PrestissimoEngineCollection.from_dict(
             prestissimo_engine_collection_model_json
         ).__dict__
-        prestissimo_engine_collection_model2 = PrestissimoEngineCollection(**prestissimo_engine_collection_model_dict)
+        prestissimo_engine_collection_model2 = PrestissimoEngineCollection(
+            **prestissimo_engine_collection_model_dict)
 
         # Verify the model instances are equivalent
         assert prestissimo_engine_collection_model == prestissimo_engine_collection_model2
@@ -15149,14 +15390,16 @@ class TestModel_PrestissimoEngineDetails:
         prestissimo_engine_details_model_json['worker'] = prestissimo_node_description_body_model
 
         # Construct a model instance of PrestissimoEngineDetails by calling from_dict on the json representation
-        prestissimo_engine_details_model = PrestissimoEngineDetails.from_dict(prestissimo_engine_details_model_json)
+        prestissimo_engine_details_model = PrestissimoEngineDetails.from_dict(
+            prestissimo_engine_details_model_json)
         assert prestissimo_engine_details_model != False
 
         # Construct a model instance of PrestissimoEngineDetails by calling from_dict on the json representation
         prestissimo_engine_details_model_dict = PrestissimoEngineDetails.from_dict(
             prestissimo_engine_details_model_json
         ).__dict__
-        prestissimo_engine_details_model2 = PrestissimoEngineDetails(**prestissimo_engine_details_model_dict)
+        prestissimo_engine_details_model2 = PrestissimoEngineDetails(
+            **prestissimo_engine_details_model_dict)
 
         # Verify the model instances are equivalent
         assert prestissimo_engine_details_model == prestissimo_engine_details_model2
@@ -15235,7 +15478,8 @@ class TestModel_PrestoEngine:
         # Construct a json representation of a PrestoEngine model
         presto_engine_model_json = {}
         presto_engine_model_json['actions'] = ['update', 'delete']
-        presto_engine_model_json['associated_catalogs'] = ['iceberg_data', 'hive_data']
+        presto_engine_model_json['associated_catalogs'] = [
+            'iceberg_data', 'hive_data']
         presto_engine_model_json['build_version'] = '1.0.3.0.0'
         presto_engine_model_json['coordinator'] = node_description_model
         presto_engine_model_json['created_by'] = '<username>@<domain>.com'
@@ -15263,7 +15507,8 @@ class TestModel_PrestoEngine:
         assert presto_engine_model != False
 
         # Construct a model instance of PrestoEngine by calling from_dict on the json representation
-        presto_engine_model_dict = PrestoEngine.from_dict(presto_engine_model_json).__dict__
+        presto_engine_model_dict = PrestoEngine.from_dict(
+            presto_engine_model_json).__dict__
         presto_engine_model2 = PrestoEngine(**presto_engine_model_dict)
 
         # Verify the model instances are equivalent
@@ -15321,7 +15566,8 @@ class TestModel_PrestoEngineCollection:
             'create',
             'scale',
         ]
-        presto_engine_model['associated_catalogs'] = ['iceberg_data', 'hive_data']
+        presto_engine_model['associated_catalogs'] = [
+            'iceberg_data', 'hive_data']
         presto_engine_model['build_version'] = '1.1.0.0.0'
         presto_engine_model['coordinator'] = node_description_model
         presto_engine_model['created_by'] = '<username>@<domain>.com'
@@ -15346,17 +15592,20 @@ class TestModel_PrestoEngineCollection:
 
         # Construct a json representation of a PrestoEngineCollection model
         presto_engine_collection_model_json = {}
-        presto_engine_collection_model_json['presto_engines'] = [presto_engine_model]
+        presto_engine_collection_model_json['presto_engines'] = [
+            presto_engine_model]
 
         # Construct a model instance of PrestoEngineCollection by calling from_dict on the json representation
-        presto_engine_collection_model = PrestoEngineCollection.from_dict(presto_engine_collection_model_json)
+        presto_engine_collection_model = PrestoEngineCollection.from_dict(
+            presto_engine_collection_model_json)
         assert presto_engine_collection_model != False
 
         # Construct a model instance of PrestoEngineCollection by calling from_dict on the json representation
         presto_engine_collection_model_dict = PrestoEngineCollection.from_dict(
             presto_engine_collection_model_json
         ).__dict__
-        presto_engine_collection_model2 = PrestoEngineCollection(**presto_engine_collection_model_dict)
+        presto_engine_collection_model2 = PrestoEngineCollection(
+            **presto_engine_collection_model_dict)
 
         # Verify the model instances are equivalent
         assert presto_engine_collection_model == presto_engine_collection_model2
@@ -15396,7 +15645,8 @@ class TestModel_ReplaceSnapshotCreatedBody:
         replace_snapshot_created_body_model_dict = ReplaceSnapshotCreatedBody.from_dict(
             replace_snapshot_created_body_model_json
         ).__dict__
-        replace_snapshot_created_body_model2 = ReplaceSnapshotCreatedBody(**replace_snapshot_created_body_model_dict)
+        replace_snapshot_created_body_model2 = ReplaceSnapshotCreatedBody(
+            **replace_snapshot_created_body_model_dict)
 
         # Verify the model instances are equivalent
         assert replace_snapshot_created_body_model == replace_snapshot_created_body_model2
@@ -15562,7 +15812,8 @@ class TestModel_RunExplainStatementOKBody:
         run_explain_statement_ok_body_model_dict = RunExplainStatementOKBody.from_dict(
             run_explain_statement_ok_body_model_json
         ).__dict__
-        run_explain_statement_ok_body_model2 = RunExplainStatementOKBody(**run_explain_statement_ok_body_model_dict)
+        run_explain_statement_ok_body_model2 = RunExplainStatementOKBody(
+            **run_explain_statement_ok_body_model_dict)
 
         # Verify the model instances are equivalent
         assert run_explain_statement_ok_body_model == run_explain_statement_ok_body_model2
@@ -15615,14 +15866,16 @@ class TestModel_SparkApplicationDetails:
         spark_application_details_model_json['name'] = 'SparkApplicaton1'
 
         # Construct a model instance of SparkApplicationDetails by calling from_dict on the json representation
-        spark_application_details_model = SparkApplicationDetails.from_dict(spark_application_details_model_json)
+        spark_application_details_model = SparkApplicationDetails.from_dict(
+            spark_application_details_model_json)
         assert spark_application_details_model != False
 
         # Construct a model instance of SparkApplicationDetails by calling from_dict on the json representation
         spark_application_details_model_dict = SparkApplicationDetails.from_dict(
             spark_application_details_model_json
         ).__dict__
-        spark_application_details_model2 = SparkApplicationDetails(**spark_application_details_model_dict)
+        spark_application_details_model2 = SparkApplicationDetails(
+            **spark_application_details_model_dict)
 
         # Verify the model instances are equivalent
         assert spark_application_details_model == spark_application_details_model2
@@ -15677,7 +15930,8 @@ class TestModel_SparkApplicationDetailsConf:
         spark_application_details_conf_model_dict = SparkApplicationDetailsConf.from_dict(
             spark_application_details_conf_model_json
         ).__dict__
-        spark_application_details_conf_model2 = SparkApplicationDetailsConf(**spark_application_details_conf_model_dict)
+        spark_application_details_conf_model2 = SparkApplicationDetailsConf(
+            **spark_application_details_conf_model_dict)
 
         # Verify the model instances are equivalent
         assert spark_application_details_conf_model == spark_application_details_conf_model2
@@ -15718,11 +15972,13 @@ class TestModel_SparkEndpoints:
         ] = '$HOST/v1/1698311655308796/engines/spark817/applications'
 
         # Construct a model instance of SparkEndpoints by calling from_dict on the json representation
-        spark_endpoints_model = SparkEndpoints.from_dict(spark_endpoints_model_json)
+        spark_endpoints_model = SparkEndpoints.from_dict(
+            spark_endpoints_model_json)
         assert spark_endpoints_model != False
 
         # Construct a model instance of SparkEndpoints by calling from_dict on the json representation
-        spark_endpoints_model_dict = SparkEndpoints.from_dict(spark_endpoints_model_json).__dict__
+        spark_endpoints_model_dict = SparkEndpoints.from_dict(
+            spark_endpoints_model_json).__dict__
         spark_endpoints_model2 = SparkEndpoints(**spark_endpoints_model_dict)
 
         # Verify the model instances are equivalent
@@ -15788,7 +16044,8 @@ class TestModel_SparkEngine:
         assert spark_engine_model != False
 
         # Construct a model instance of SparkEngine by calling from_dict on the json representation
-        spark_engine_model_dict = SparkEngine.from_dict(spark_engine_model_json).__dict__
+        spark_engine_model_dict = SparkEngine.from_dict(
+            spark_engine_model_json).__dict__
         spark_engine_model2 = SparkEngine(**spark_engine_model_dict)
 
         # Verify the model instances are equivalent
@@ -15830,8 +16087,10 @@ class TestModel_SparkEngineApplicationStatus:
         spark_engine_application_status_application_details_conf_model[
             'spark_hive_metastore_truststore_path'
         ] = 'file:///opt/ibm/jdk/lib/security/cacerts'
-        spark_engine_application_status_application_details_conf_model['spark_hive_metastore_truststore_type'] = 'JKS'
-        spark_engine_application_status_application_details_conf_model['spark_hive_metastore_use_ssl'] = 'true'
+        spark_engine_application_status_application_details_conf_model[
+            'spark_hive_metastore_truststore_type'] = 'JKS'
+        spark_engine_application_status_application_details_conf_model[
+            'spark_hive_metastore_use_ssl'] = 'true'
         spark_engine_application_status_application_details_conf_model[
             'spark_sql_catalog_implementation'
         ] = 'Spark Catalog Implementation'
@@ -15851,19 +16110,25 @@ class TestModel_SparkEngineApplicationStatus:
             'spark_sql_iceberg_vectorization_enabled'
         ] = 'false'
 
-        spark_engine_application_status_application_details_model = {}  # SparkEngineApplicationStatusApplicationDetails
-        spark_engine_application_status_application_details_model['application'] = 's3://mybucket/wordcount.py'
-        spark_engine_application_status_application_details_model['arguments'] = ['people.txt']
+        # SparkEngineApplicationStatusApplicationDetails
+        spark_engine_application_status_application_details_model = {}
+        spark_engine_application_status_application_details_model[
+            'application'] = 's3://mybucket/wordcount.py'
+        spark_engine_application_status_application_details_model['arguments'] = [
+            'people.txt']
         spark_engine_application_status_application_details_model[
             'conf'
         ] = spark_engine_application_status_application_details_conf_model
-        spark_engine_application_status_application_details_model['env'] = {'anyKey': 'anyValue'}
+        spark_engine_application_status_application_details_model['env'] = {
+            'anyKey': 'anyValue'}
         spark_engine_application_status_application_details_model['name'] = 'SparkApplicaton1'
 
-        spark_engine_application_status_runtime_model = {}  # SparkEngineApplicationStatusRuntime
+        # SparkEngineApplicationStatusRuntime
+        spark_engine_application_status_runtime_model = {}
         spark_engine_application_status_runtime_model['spark_version'] = '3.3'
 
-        spark_engine_application_status_state_details_items_model = {}  # SparkEngineApplicationStatusStateDetailsItems
+        # SparkEngineApplicationStatusStateDetailsItems
+        spark_engine_application_status_state_details_items_model = {}
         spark_engine_application_status_state_details_items_model['code'] = 'testString'
         spark_engine_application_status_state_details_items_model['message'] = 'testString'
         spark_engine_application_status_state_details_items_model['type'] = 'testString'
@@ -15951,8 +16216,10 @@ class TestModel_SparkEngineApplicationStatusApplicationDetails:
         spark_engine_application_status_application_details_conf_model[
             'spark_hive_metastore_truststore_path'
         ] = 'file:///opt/ibm/jdk/lib/security/cacerts'
-        spark_engine_application_status_application_details_conf_model['spark_hive_metastore_truststore_type'] = 'JKS'
-        spark_engine_application_status_application_details_conf_model['spark_hive_metastore_use_ssl'] = 'true'
+        spark_engine_application_status_application_details_conf_model[
+            'spark_hive_metastore_truststore_type'] = 'JKS'
+        spark_engine_application_status_application_details_conf_model[
+            'spark_hive_metastore_use_ssl'] = 'true'
         spark_engine_application_status_application_details_conf_model[
             'spark_sql_catalog_implementation'
         ] = 'Spark Catalog Implementation'
@@ -15974,13 +16241,17 @@ class TestModel_SparkEngineApplicationStatusApplicationDetails:
 
         # Construct a json representation of a SparkEngineApplicationStatusApplicationDetails model
         spark_engine_application_status_application_details_model_json = {}
-        spark_engine_application_status_application_details_model_json['application'] = 's3://mybucket/wordcount.py'
-        spark_engine_application_status_application_details_model_json['arguments'] = ['people.txt']
+        spark_engine_application_status_application_details_model_json[
+            'application'] = 's3://mybucket/wordcount.py'
+        spark_engine_application_status_application_details_model_json['arguments'] = [
+            'people.txt']
         spark_engine_application_status_application_details_model_json[
             'conf'
         ] = spark_engine_application_status_application_details_conf_model
-        spark_engine_application_status_application_details_model_json['env'] = {'anyKey': 'anyValue'}
-        spark_engine_application_status_application_details_model_json['name'] = 'SparkApplicaton1'
+        spark_engine_application_status_application_details_model_json['env'] = {
+            'anyKey': 'anyValue'}
+        spark_engine_application_status_application_details_model_json[
+            'name'] = 'SparkApplicaton1'
 
         # Construct a model instance of SparkEngineApplicationStatusApplicationDetails by calling from_dict on the json representation
         spark_engine_application_status_application_details_model = (
@@ -16028,7 +16299,8 @@ class TestModel_SparkEngineApplicationStatusApplicationDetailsConf:
 
         # Construct a json representation of a SparkEngineApplicationStatusApplicationDetailsConf model
         spark_engine_application_status_application_details_conf_model_json = {}
-        spark_engine_application_status_application_details_conf_model_json['spark_app_name'] = 'MyJob'
+        spark_engine_application_status_application_details_conf_model_json[
+            'spark_app_name'] = 'MyJob'
         spark_engine_application_status_application_details_conf_model_json[
             'spark_hive_metastore_client_auth_mode'
         ] = 'PLAIN'
@@ -16047,7 +16319,8 @@ class TestModel_SparkEngineApplicationStatusApplicationDetailsConf:
         spark_engine_application_status_application_details_conf_model_json[
             'spark_hive_metastore_truststore_type'
         ] = 'JKS'
-        spark_engine_application_status_application_details_conf_model_json['spark_hive_metastore_use_ssl'] = 'true'
+        spark_engine_application_status_application_details_conf_model_json[
+            'spark_hive_metastore_use_ssl'] = 'true'
         spark_engine_application_status_application_details_conf_model_json[
             'spark_sql_catalog_implementation'
         ] = 'Spark Catalog Implementation'
@@ -16134,8 +16407,10 @@ class TestModel_SparkEngineApplicationStatusCollection:
         spark_engine_application_status_application_details_conf_model[
             'spark_hive_metastore_truststore_path'
         ] = 'file:///opt/ibm/jdk/lib/security/cacerts'
-        spark_engine_application_status_application_details_conf_model['spark_hive_metastore_truststore_type'] = 'JKS'
-        spark_engine_application_status_application_details_conf_model['spark_hive_metastore_use_ssl'] = 'true'
+        spark_engine_application_status_application_details_conf_model[
+            'spark_hive_metastore_truststore_type'] = 'JKS'
+        spark_engine_application_status_application_details_conf_model[
+            'spark_hive_metastore_use_ssl'] = 'true'
         spark_engine_application_status_application_details_conf_model[
             'spark_sql_catalog_implementation'
         ] = 'Spark Catalog Implementation'
@@ -16155,19 +16430,25 @@ class TestModel_SparkEngineApplicationStatusCollection:
             'spark_sql_iceberg_vectorization_enabled'
         ] = 'false'
 
-        spark_engine_application_status_application_details_model = {}  # SparkEngineApplicationStatusApplicationDetails
-        spark_engine_application_status_application_details_model['application'] = 's3://mybucket/wordcount.py'
-        spark_engine_application_status_application_details_model['arguments'] = ['people.txt']
+        # SparkEngineApplicationStatusApplicationDetails
+        spark_engine_application_status_application_details_model = {}
+        spark_engine_application_status_application_details_model[
+            'application'] = 's3://mybucket/wordcount.py'
+        spark_engine_application_status_application_details_model['arguments'] = [
+            'people.txt']
         spark_engine_application_status_application_details_model[
             'conf'
         ] = spark_engine_application_status_application_details_conf_model
-        spark_engine_application_status_application_details_model['env'] = {'anyKey': 'anyValue'}
+        spark_engine_application_status_application_details_model['env'] = {
+            'anyKey': 'anyValue'}
         spark_engine_application_status_application_details_model['name'] = 'SparkApplicaton1'
 
-        spark_engine_application_status_runtime_model = {}  # SparkEngineApplicationStatusRuntime
+        # SparkEngineApplicationStatusRuntime
+        spark_engine_application_status_runtime_model = {}
         spark_engine_application_status_runtime_model['spark_version'] = '3.3'
 
-        spark_engine_application_status_state_details_items_model = {}  # SparkEngineApplicationStatusStateDetailsItems
+        # SparkEngineApplicationStatusStateDetailsItems
+        spark_engine_application_status_state_details_items_model = {}
         spark_engine_application_status_state_details_items_model['code'] = 'testString'
         spark_engine_application_status_state_details_items_model['message'] = 'testString'
         spark_engine_application_status_state_details_items_model['type'] = 'testString'
@@ -16203,7 +16484,8 @@ class TestModel_SparkEngineApplicationStatusCollection:
 
         # Construct a json representation of a SparkEngineApplicationStatusCollection model
         spark_engine_application_status_collection_model_json = {}
-        spark_engine_application_status_collection_model_json['applications'] = [spark_engine_application_status_model]
+        spark_engine_application_status_collection_model_json['applications'] = [
+            spark_engine_application_status_model]
 
         # Construct a model instance of SparkEngineApplicationStatusCollection by calling from_dict on the json representation
         spark_engine_application_status_collection_model = SparkEngineApplicationStatusCollection.from_dict(
@@ -16365,17 +16647,20 @@ class TestModel_SparkEngineCollection:
 
         # Construct a json representation of a SparkEngineCollection model
         spark_engine_collection_model_json = {}
-        spark_engine_collection_model_json['spark_engines'] = [spark_engine_model]
+        spark_engine_collection_model_json['spark_engines'] = [
+            spark_engine_model]
 
         # Construct a model instance of SparkEngineCollection by calling from_dict on the json representation
-        spark_engine_collection_model = SparkEngineCollection.from_dict(spark_engine_collection_model_json)
+        spark_engine_collection_model = SparkEngineCollection.from_dict(
+            spark_engine_collection_model_json)
         assert spark_engine_collection_model != False
 
         # Construct a model instance of SparkEngineCollection by calling from_dict on the json representation
         spark_engine_collection_model_dict = SparkEngineCollection.from_dict(
             spark_engine_collection_model_json
         ).__dict__
-        spark_engine_collection_model2 = SparkEngineCollection(**spark_engine_collection_model_dict)
+        spark_engine_collection_model2 = SparkEngineCollection(
+            **spark_engine_collection_model_dict)
 
         # Verify the model instances are equivalent
         assert spark_engine_collection_model == spark_engine_collection_model2
@@ -16422,12 +16707,15 @@ class TestModel_SparkEngineDetails:
         spark_engine_details_model_json['endpoints'] = spark_endpoints_model
 
         # Construct a model instance of SparkEngineDetails by calling from_dict on the json representation
-        spark_engine_details_model = SparkEngineDetails.from_dict(spark_engine_details_model_json)
+        spark_engine_details_model = SparkEngineDetails.from_dict(
+            spark_engine_details_model_json)
         assert spark_engine_details_model != False
 
         # Construct a model instance of SparkEngineDetails by calling from_dict on the json representation
-        spark_engine_details_model_dict = SparkEngineDetails.from_dict(spark_engine_details_model_json).__dict__
-        spark_engine_details_model2 = SparkEngineDetails(**spark_engine_details_model_dict)
+        spark_engine_details_model_dict = SparkEngineDetails.from_dict(
+            spark_engine_details_model_json).__dict__
+        spark_engine_details_model2 = SparkEngineDetails(
+            **spark_engine_details_model_dict)
 
         # Verify the model instances are equivalent
         assert spark_engine_details_model == spark_engine_details_model2
@@ -16464,7 +16752,8 @@ class TestModel_SparkEngineDetailsPrototype:
         spark_engine_details_prototype_model_dict = SparkEngineDetailsPrototype.from_dict(
             spark_engine_details_prototype_model_json
         ).__dict__
-        spark_engine_details_prototype_model2 = SparkEngineDetailsPrototype(**spark_engine_details_prototype_model_dict)
+        spark_engine_details_prototype_model2 = SparkEngineDetailsPrototype(
+            **spark_engine_details_prototype_model_dict)
 
         # Verify the model instances are equivalent
         assert spark_engine_details_prototype_model == spark_engine_details_prototype_model2
@@ -16490,12 +16779,15 @@ class TestModel_SuccessResponse:
         success_response_model_json['message_code'] = 'testString'
 
         # Construct a model instance of SuccessResponse by calling from_dict on the json representation
-        success_response_model = SuccessResponse.from_dict(success_response_model_json)
+        success_response_model = SuccessResponse.from_dict(
+            success_response_model_json)
         assert success_response_model != False
 
         # Construct a model instance of SuccessResponse by calling from_dict on the json representation
-        success_response_model_dict = SuccessResponse.from_dict(success_response_model_json).__dict__
-        success_response_model2 = SuccessResponse(**success_response_model_dict)
+        success_response_model_dict = SuccessResponse.from_dict(
+            success_response_model_json).__dict__
+        success_response_model2 = SuccessResponse(
+            **success_response_model_dict)
 
         # Verify the model instances are equivalent
         assert success_response_model == success_response_model2
@@ -16561,12 +16853,15 @@ class TestModel_TableCollection:
         table_collection_model_json['tables'] = ['testString']
 
         # Construct a model instance of TableCollection by calling from_dict on the json representation
-        table_collection_model = TableCollection.from_dict(table_collection_model_json)
+        table_collection_model = TableCollection.from_dict(
+            table_collection_model_json)
         assert table_collection_model != False
 
         # Construct a model instance of TableCollection by calling from_dict on the json representation
-        table_collection_model_dict = TableCollection.from_dict(table_collection_model_json).__dict__
-        table_collection_model2 = TableCollection(**table_collection_model_dict)
+        table_collection_model_dict = TableCollection.from_dict(
+            table_collection_model_json).__dict__
+        table_collection_model2 = TableCollection(
+            **table_collection_model_dict)
 
         # Verify the model instances are equivalent
         assert table_collection_model == table_collection_model2
@@ -16594,11 +16889,13 @@ class TestModel_TableSnapshot:
         table_snapshot_model_json['summary'] = {'anyKey': 'anyValue'}
 
         # Construct a model instance of TableSnapshot by calling from_dict on the json representation
-        table_snapshot_model = TableSnapshot.from_dict(table_snapshot_model_json)
+        table_snapshot_model = TableSnapshot.from_dict(
+            table_snapshot_model_json)
         assert table_snapshot_model != False
 
         # Construct a model instance of TableSnapshot by calling from_dict on the json representation
-        table_snapshot_model_dict = TableSnapshot.from_dict(table_snapshot_model_json).__dict__
+        table_snapshot_model_dict = TableSnapshot.from_dict(
+            table_snapshot_model_json).__dict__
         table_snapshot_model2 = TableSnapshot(**table_snapshot_model_dict)
 
         # Verify the model instances are equivalent
@@ -16629,17 +16926,20 @@ class TestModel_TableSnapshotCollection:
 
         # Construct a json representation of a TableSnapshotCollection model
         table_snapshot_collection_model_json = {}
-        table_snapshot_collection_model_json['snapshots'] = [table_snapshot_model]
+        table_snapshot_collection_model_json['snapshots'] = [
+            table_snapshot_model]
 
         # Construct a model instance of TableSnapshotCollection by calling from_dict on the json representation
-        table_snapshot_collection_model = TableSnapshotCollection.from_dict(table_snapshot_collection_model_json)
+        table_snapshot_collection_model = TableSnapshotCollection.from_dict(
+            table_snapshot_collection_model_json)
         assert table_snapshot_collection_model != False
 
         # Construct a model instance of TableSnapshotCollection by calling from_dict on the json representation
         table_snapshot_collection_model_dict = TableSnapshotCollection.from_dict(
             table_snapshot_collection_model_json
         ).__dict__
-        table_snapshot_collection_model2 = TableSnapshotCollection(**table_snapshot_collection_model_dict)
+        table_snapshot_collection_model2 = TableSnapshotCollection(
+            **table_snapshot_collection_model_dict)
 
         # Verify the model instances are equivalent
         assert table_snapshot_collection_model == table_snapshot_collection_model2
@@ -16684,7 +16984,8 @@ class TestModel_TestBucketConnectionOKBody:
         test_bucket_connection_ok_body_model_dict = TestBucketConnectionOKBody.from_dict(
             test_bucket_connection_ok_body_model_json
         ).__dict__
-        test_bucket_connection_ok_body_model2 = TestBucketConnectionOKBody(**test_bucket_connection_ok_body_model_dict)
+        test_bucket_connection_ok_body_model2 = TestBucketConnectionOKBody(
+            **test_bucket_connection_ok_body_model_dict)
 
         # Verify the model instances are equivalent
         assert test_bucket_connection_ok_body_model == test_bucket_connection_ok_body_model2
@@ -16757,14 +17058,16 @@ class TestModel_UpdateSyncCatalogOKBody:
         update_sync_catalog_ok_body_model_json['response'] = success_response_model
 
         # Construct a model instance of UpdateSyncCatalogOKBody by calling from_dict on the json representation
-        update_sync_catalog_ok_body_model = UpdateSyncCatalogOKBody.from_dict(update_sync_catalog_ok_body_model_json)
+        update_sync_catalog_ok_body_model = UpdateSyncCatalogOKBody.from_dict(
+            update_sync_catalog_ok_body_model_json)
         assert update_sync_catalog_ok_body_model != False
 
         # Construct a model instance of UpdateSyncCatalogOKBody by calling from_dict on the json representation
         update_sync_catalog_ok_body_model_dict = UpdateSyncCatalogOKBody.from_dict(
             update_sync_catalog_ok_body_model_json
         ).__dict__
-        update_sync_catalog_ok_body_model2 = UpdateSyncCatalogOKBody(**update_sync_catalog_ok_body_model_dict)
+        update_sync_catalog_ok_body_model2 = UpdateSyncCatalogOKBody(
+            **update_sync_catalog_ok_body_model_dict)
 
         # Verify the model instances are equivalent
         assert update_sync_catalog_ok_body_model == update_sync_catalog_ok_body_model2
