@@ -54,9 +54,7 @@ class WatsonxDataV2(BaseService):
                parameters and external configuration.
         """
         authenticator = get_authenticator_from_environment(service_name)
-        service = cls(
-            authenticator
-            )
+        service = cls(authenticator)
         service.configure_service(service_name)
         return service
 
@@ -4683,7 +4681,9 @@ class WatsonxDataV2(BaseService):
         path_param_keys = ['catalog_id', 'schema_id', 'table_id', 'column_id']
         path_param_values = self.encode_path_vars(catalog_id, schema_id, table_id, column_id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/catalogs/{catalog_id}/schemas/{schema_id}/tables/{table_id}/columns/{column_id}'.format(**path_param_dict)
+        url = '/catalogs/{catalog_id}/schemas/{schema_id}/tables/{table_id}/columns/{column_id}'.format(
+            **path_param_dict
+        )
         request = self.prepare_request(
             method='DELETE',
             url=url,
@@ -4761,7 +4761,9 @@ class WatsonxDataV2(BaseService):
         path_param_keys = ['catalog_id', 'schema_id', 'table_id', 'column_id']
         path_param_values = self.encode_path_vars(catalog_id, schema_id, table_id, column_id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/catalogs/{catalog_id}/schemas/{schema_id}/tables/{table_id}/columns/{column_id}'.format(**path_param_dict)
+        url = '/catalogs/{catalog_id}/schemas/{schema_id}/tables/{table_id}/columns/{column_id}'.format(
+            **path_param_dict
+        )
         request = self.prepare_request(
             method='PATCH',
             url=url,
@@ -4898,7 +4900,9 @@ class WatsonxDataV2(BaseService):
         path_param_keys = ['catalog_id', 'schema_id', 'table_id', 'snapshot_id']
         path_param_values = self.encode_path_vars(catalog_id, schema_id, table_id, snapshot_id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/catalogs/{catalog_id}/schemas/{schema_id}/tables/{table_id}/snapshots/{snapshot_id}'.format(**path_param_dict)
+        url = '/catalogs/{catalog_id}/schemas/{schema_id}/tables/{table_id}/snapshots/{snapshot_id}'.format(
+            **path_param_dict
+        )
         request = self.prepare_request(
             method='PUT',
             url=url,
@@ -5591,7 +5595,6 @@ class BucketRegistration:
         IBM_COS = 'ibm_cos'
         IBM_CEPH = 'ibm_ceph'
 
-
     class ManagedByEnum(str, Enum):
         """
         managed by.
@@ -5600,7 +5603,6 @@ class BucketRegistration:
         IBM = 'ibm'
         CUSTOMER = 'customer'
 
-
     class StateEnum(str, Enum):
         """
         mark bucket active or inactive.
@@ -5608,7 +5610,6 @@ class BucketRegistration:
 
         ACTIVE = 'active'
         INACTIVE = 'inactive'
-
 
 
 class BucketRegistrationCollection:
@@ -6022,7 +6023,6 @@ class Catalog:
 
         IBM = 'ibm'
         CUSTOMER = 'customer'
-
 
 
 class CatalogCollection:
@@ -7012,7 +7012,9 @@ class DatabaseRegistration:
         if 'database_id' in _dict:
             args['database_id'] = _dict.get('database_id')
         if 'database_properties' in _dict:
-            args['database_properties'] = [DatabaseRegistrationDatabasePropertiesItems.from_dict(v) for v in _dict.get('database_properties')]
+            args['database_properties'] = [
+                DatabaseRegistrationDatabasePropertiesItems.from_dict(v) for v in _dict.get('database_properties')
+            ]
         if 'database_type' in _dict:
             args['database_type'] = _dict.get('database_type')
         else:
@@ -7114,7 +7116,9 @@ class DatabaseRegistrationCollection:
         """Initialize a DatabaseRegistrationCollection object from a json dictionary."""
         args = {}
         if 'database_registrations' in _dict:
-            args['database_registrations'] = [DatabaseRegistration.from_dict(v) for v in _dict.get('database_registrations')]
+            args['database_registrations'] = [
+                DatabaseRegistration.from_dict(v) for v in _dict.get('database_registrations')
+            ]
         return cls(**args)
 
     @classmethod
@@ -7187,15 +7191,21 @@ class DatabaseRegistrationDatabasePropertiesItems:
         if 'encrypt' in _dict:
             args['encrypt'] = _dict.get('encrypt')
         else:
-            raise ValueError('Required property \'encrypt\' not present in DatabaseRegistrationDatabasePropertiesItems JSON')
+            raise ValueError(
+                'Required property \'encrypt\' not present in DatabaseRegistrationDatabasePropertiesItems JSON'
+            )
         if 'key' in _dict:
             args['key'] = _dict.get('key')
         else:
-            raise ValueError('Required property \'key\' not present in DatabaseRegistrationDatabasePropertiesItems JSON')
+            raise ValueError(
+                'Required property \'key\' not present in DatabaseRegistrationDatabasePropertiesItems JSON'
+            )
         if 'value' in _dict:
             args['value'] = _dict.get('value')
         else:
-            raise ValueError('Required property \'value\' not present in DatabaseRegistrationDatabasePropertiesItems JSON')
+            raise ValueError(
+                'Required property \'value\' not present in DatabaseRegistrationDatabasePropertiesItems JSON'
+            )
         return cls(**args)
 
     @classmethod
@@ -7266,15 +7276,21 @@ class DatabaseRegistrationPrototypeDatabasePropertiesItems:
         if 'encrypt' in _dict:
             args['encrypt'] = _dict.get('encrypt')
         else:
-            raise ValueError('Required property \'encrypt\' not present in DatabaseRegistrationPrototypeDatabasePropertiesItems JSON')
+            raise ValueError(
+                'Required property \'encrypt\' not present in DatabaseRegistrationPrototypeDatabasePropertiesItems JSON'
+            )
         if 'key' in _dict:
             args['key'] = _dict.get('key')
         else:
-            raise ValueError('Required property \'key\' not present in DatabaseRegistrationPrototypeDatabasePropertiesItems JSON')
+            raise ValueError(
+                'Required property \'key\' not present in DatabaseRegistrationPrototypeDatabasePropertiesItems JSON'
+            )
         if 'value' in _dict:
             args['value'] = _dict.get('value')
         else:
-            raise ValueError('Required property \'value\' not present in DatabaseRegistrationPrototypeDatabasePropertiesItems JSON')
+            raise ValueError(
+                'Required property \'value\' not present in DatabaseRegistrationPrototypeDatabasePropertiesItems JSON'
+            )
         return cls(**args)
 
     @classmethod
@@ -8221,7 +8237,6 @@ class EngineDetailsBody:
         CUSTOM = 'custom'
 
 
-
 class Engines:
     """
     List all engines.
@@ -8459,7 +8474,6 @@ class JsonPatchOperation:
         MOVE = 'move'
         COPY = 'copy'
         TEST = 'test'
-
 
 
 class ListSchemasOKBody:
@@ -8721,7 +8735,6 @@ class MilvusService:
         RUNNING = 'running'
         PENDING = 'pending'
         STOPPED = 'stopped'
-
 
 
 class MilvusServiceCollection:
@@ -10017,7 +10030,6 @@ class PrestissimoEngine:
         EXTERNAL = 'external'
         DISCOVER = 'discover'
 
-
     class StatusEnum(str, Enum):
         """
         Engine status.
@@ -10026,7 +10038,6 @@ class PrestissimoEngine:
         RUNNING = 'running'
         PENDING = 'pending'
         STOPPED = 'stopped'
-
 
 
 class PrestissimoEngineCollection:
@@ -10237,7 +10248,6 @@ class PrestissimoEngineDetails:
         MEDIUM = 'medium'
         LARGE = 'large'
         CUSTOM = 'custom'
-
 
 
 class PrestissimoNodeDescriptionBody:
@@ -10565,7 +10575,6 @@ class PrestoEngine:
         EXTERNAL = 'external'
         DISCOVER = 'discover'
 
-
     class StatusEnum(str, Enum):
         """
         Engine status.
@@ -10574,7 +10583,6 @@ class PrestoEngine:
         RUNNING = 'running'
         PENDING = 'pending'
         STOPPED = 'stopped'
-
 
 
 class PrestoEngineCollection:
@@ -11196,17 +11204,35 @@ class SparkApplicationDetailsConf:
         _dict = {}
         if hasattr(self, 'spark_app_name') and self.spark_app_name is not None:
             _dict['spark_app_name'] = self.spark_app_name
-        if hasattr(self, 'spark_hive_metastore_client_auth_mode') and self.spark_hive_metastore_client_auth_mode is not None:
+        if (
+            hasattr(self, 'spark_hive_metastore_client_auth_mode')
+            and self.spark_hive_metastore_client_auth_mode is not None
+        ):
             _dict['spark_hive_metastore_client_auth_mode'] = self.spark_hive_metastore_client_auth_mode
-        if hasattr(self, 'spark_hive_metastore_client_plain_password') and self.spark_hive_metastore_client_plain_password is not None:
+        if (
+            hasattr(self, 'spark_hive_metastore_client_plain_password')
+            and self.spark_hive_metastore_client_plain_password is not None
+        ):
             _dict['spark_hive_metastore_client_plain_password'] = self.spark_hive_metastore_client_plain_password
-        if hasattr(self, 'spark_hive_metastore_client_plain_username') and self.spark_hive_metastore_client_plain_username is not None:
+        if (
+            hasattr(self, 'spark_hive_metastore_client_plain_username')
+            and self.spark_hive_metastore_client_plain_username is not None
+        ):
             _dict['spark_hive_metastore_client_plain_username'] = self.spark_hive_metastore_client_plain_username
-        if hasattr(self, 'spark_hive_metastore_truststore_password') and self.spark_hive_metastore_truststore_password is not None:
+        if (
+            hasattr(self, 'spark_hive_metastore_truststore_password')
+            and self.spark_hive_metastore_truststore_password is not None
+        ):
             _dict['spark_hive_metastore_truststore_password'] = self.spark_hive_metastore_truststore_password
-        if hasattr(self, 'spark_hive_metastore_truststore_path') and self.spark_hive_metastore_truststore_path is not None:
+        if (
+            hasattr(self, 'spark_hive_metastore_truststore_path')
+            and self.spark_hive_metastore_truststore_path is not None
+        ):
             _dict['spark_hive_metastore_truststore_path'] = self.spark_hive_metastore_truststore_path
-        if hasattr(self, 'spark_hive_metastore_truststore_type') and self.spark_hive_metastore_truststore_type is not None:
+        if (
+            hasattr(self, 'spark_hive_metastore_truststore_type')
+            and self.spark_hive_metastore_truststore_type is not None
+        ):
             _dict['spark_hive_metastore_truststore_type'] = self.spark_hive_metastore_truststore_type
         if hasattr(self, 'spark_hive_metastore_use_ssl') and self.spark_hive_metastore_use_ssl is not None:
             _dict['spark_hive_metastore_use_ssl'] = self.spark_hive_metastore_use_ssl
@@ -11220,7 +11246,10 @@ class SparkApplicationDetailsConf:
             _dict['spark_sql_catalog_lakehouse_uri'] = self.spark_sql_catalog_lakehouse_uri
         if hasattr(self, 'spark_sql_extensions') and self.spark_sql_extensions is not None:
             _dict['spark_sql_extensions'] = self.spark_sql_extensions
-        if hasattr(self, 'spark_sql_iceberg_vectorization_enabled') and self.spark_sql_iceberg_vectorization_enabled is not None:
+        if (
+            hasattr(self, 'spark_sql_iceberg_vectorization_enabled')
+            and self.spark_sql_iceberg_vectorization_enabled is not None
+        ):
             _dict['spark_sql_iceberg_vectorization_enabled'] = self.spark_sql_iceberg_vectorization_enabled
         return _dict
 
@@ -11609,7 +11638,9 @@ class SparkEngineApplicationStatus:
         """Initialize a SparkEngineApplicationStatus object from a json dictionary."""
         args = {}
         if 'application_details' in _dict:
-            args['application_details'] = SparkEngineApplicationStatusApplicationDetails.from_dict(_dict.get('application_details'))
+            args['application_details'] = SparkEngineApplicationStatusApplicationDetails.from_dict(
+                _dict.get('application_details')
+            )
         if 'application_id' in _dict:
             args['application_id'] = _dict.get('application_id')
         if 'auto_termination_time' in _dict:
@@ -11643,7 +11674,9 @@ class SparkEngineApplicationStatus:
         if 'state' in _dict:
             args['state'] = _dict.get('state')
         if 'state_details' in _dict:
-            args['state_details'] = [SparkEngineApplicationStatusStateDetailsItems.from_dict(v) for v in _dict.get('state_details')]
+            args['state_details'] = [
+                SparkEngineApplicationStatusStateDetailsItems.from_dict(v) for v in _dict.get('state_details')
+            ]
         if 'submission_time' in _dict:
             args['submission_time'] = _dict.get('submission_time')
         if 'template_id' in _dict:
@@ -11741,7 +11774,6 @@ class SparkEngineApplicationStatus:
 
         IAE = 'iae'
         EMR = 'emr'
-
 
 
 class SparkEngineApplicationStatusApplicationDetails:
@@ -11972,17 +12004,35 @@ class SparkEngineApplicationStatusApplicationDetailsConf:
         _dict = {}
         if hasattr(self, 'spark_app_name') and self.spark_app_name is not None:
             _dict['spark_app_name'] = self.spark_app_name
-        if hasattr(self, 'spark_hive_metastore_client_auth_mode') and self.spark_hive_metastore_client_auth_mode is not None:
+        if (
+            hasattr(self, 'spark_hive_metastore_client_auth_mode')
+            and self.spark_hive_metastore_client_auth_mode is not None
+        ):
             _dict['spark_hive_metastore_client_auth_mode'] = self.spark_hive_metastore_client_auth_mode
-        if hasattr(self, 'spark_hive_metastore_client_plain_password') and self.spark_hive_metastore_client_plain_password is not None:
+        if (
+            hasattr(self, 'spark_hive_metastore_client_plain_password')
+            and self.spark_hive_metastore_client_plain_password is not None
+        ):
             _dict['spark_hive_metastore_client_plain_password'] = self.spark_hive_metastore_client_plain_password
-        if hasattr(self, 'spark_hive_metastore_client_plain_username') and self.spark_hive_metastore_client_plain_username is not None:
+        if (
+            hasattr(self, 'spark_hive_metastore_client_plain_username')
+            and self.spark_hive_metastore_client_plain_username is not None
+        ):
             _dict['spark_hive_metastore_client_plain_username'] = self.spark_hive_metastore_client_plain_username
-        if hasattr(self, 'spark_hive_metastore_truststore_password') and self.spark_hive_metastore_truststore_password is not None:
+        if (
+            hasattr(self, 'spark_hive_metastore_truststore_password')
+            and self.spark_hive_metastore_truststore_password is not None
+        ):
             _dict['spark_hive_metastore_truststore_password'] = self.spark_hive_metastore_truststore_password
-        if hasattr(self, 'spark_hive_metastore_truststore_path') and self.spark_hive_metastore_truststore_path is not None:
+        if (
+            hasattr(self, 'spark_hive_metastore_truststore_path')
+            and self.spark_hive_metastore_truststore_path is not None
+        ):
             _dict['spark_hive_metastore_truststore_path'] = self.spark_hive_metastore_truststore_path
-        if hasattr(self, 'spark_hive_metastore_truststore_type') and self.spark_hive_metastore_truststore_type is not None:
+        if (
+            hasattr(self, 'spark_hive_metastore_truststore_type')
+            and self.spark_hive_metastore_truststore_type is not None
+        ):
             _dict['spark_hive_metastore_truststore_type'] = self.spark_hive_metastore_truststore_type
         if hasattr(self, 'spark_hive_metastore_use_ssl') and self.spark_hive_metastore_use_ssl is not None:
             _dict['spark_hive_metastore_use_ssl'] = self.spark_hive_metastore_use_ssl
@@ -11996,7 +12046,10 @@ class SparkEngineApplicationStatusApplicationDetailsConf:
             _dict['spark_sql_catalog_lakehouse_uri'] = self.spark_sql_catalog_lakehouse_uri
         if hasattr(self, 'spark_sql_extensions') and self.spark_sql_extensions is not None:
             _dict['spark_sql_extensions'] = self.spark_sql_extensions
-        if hasattr(self, 'spark_sql_iceberg_vectorization_enabled') and self.spark_sql_iceberg_vectorization_enabled is not None:
+        if (
+            hasattr(self, 'spark_sql_iceberg_vectorization_enabled')
+            and self.spark_sql_iceberg_vectorization_enabled is not None
+        ):
             _dict['spark_sql_iceberg_vectorization_enabled'] = self.spark_sql_iceberg_vectorization_enabled
         return _dict
 
