@@ -37,7 +37,8 @@ class TestWatsonxDataV2:
         if os.path.exists(config_file):
             os.environ['IBM_CREDENTIALS_FILE'] = config_file
 
-            cls.watsonx_data_service = WatsonxDataV2.new_instance()
+            cls.watsonx_data_service = WatsonxDataV2.new_instance(
+            )
             assert cls.watsonx_data_service is not None
 
             cls.config = read_external_sources(WatsonxDataV2.DEFAULT_SERVICE_NAME)
@@ -206,12 +207,13 @@ class TestWatsonxDataV2:
             'catalog_tags': ['catalog_tag_1', 'catalog_tag_2'],
             'catalog_type': 'iceberg',
         }
-        # Construct a dict representation of a DatabaseRegistrationPrototypeDatabaseDetails model
-        database_registration_prototype_database_details_model = {
+        # Construct a dict representation of a DatabaseDetails model
+        database_details_model = {
             'certificate': 'contents of a pem/crt file',
             'certificate_extension': 'pem/crt',
             'database_name': 'new_database',
             'hostname': 'db2@<hostname>.com',
+            'hostname_in_certificate': 'samplehostname',
             'hosts': 'abc.com:1234,xyz.com:4321',
             'password': 'samplepassword',
             'port': 4553,
@@ -219,6 +221,7 @@ class TestWatsonxDataV2:
             'ssl': True,
             'tables': 'kafka_table_name',
             'username': 'sampleuser',
+            'validate_server_certificate': True,
         }
         # Construct a dict representation of a DatabaseRegistrationPrototypeDatabasePropertiesItems model
         database_registration_prototype_database_properties_items_model = {
@@ -232,7 +235,7 @@ class TestWatsonxDataV2:
             database_type='db2',
             associated_catalog=database_catalog_model,
             created_on='1686792721',
-            database_details=database_registration_prototype_database_details_model,
+            database_details=database_details_model,
             database_properties=[database_registration_prototype_database_properties_items_model],
             description='db2 extenal database description',
             tags=['testdatabase', 'userdatabase'],
@@ -286,6 +289,7 @@ class TestWatsonxDataV2:
             'ssl': True,
             'tables': 'kafka_table_name',
             'username': 'sampleuser',
+            'validate_server_certificate': True,
         }
 
         response = self.watsonx_data_service.validate_database_connection(
@@ -441,8 +445,8 @@ class TestWatsonxDataV2:
 
         response = self.watsonx_data_service.create_other_engine(
             engine_details=other_engine_details_body_model,
-            description='external engine description',
             engine_display_name='sampleEngine01',
+            description='external engine description',
             origin='external',
             tags=['tag1', 'tag2'],
             type='netezza',
@@ -751,8 +755,8 @@ class TestWatsonxDataV2:
         )
 
         assert response.get_status_code() == 201
-        catalog = response.get_result()
-        assert catalog is not None
+        catalog_collection = response.get_result()
+        assert catalog_collection is not None
 
     @needscredentials
     def test_get_presto_engine_catalog(self):
@@ -1029,8 +1033,8 @@ class TestWatsonxDataV2:
         )
 
         assert response.get_status_code() == 200
-        get_table_ok_body_collection = response.get_result()
-        assert get_table_ok_body_collection is not None
+        table_collection = response.get_result()
+        assert table_collection is not None
 
     @needscredentials
     def test_get_table(self):
@@ -1043,8 +1047,8 @@ class TestWatsonxDataV2:
         )
 
         assert response.get_status_code() == 200
-        get_table_ok_body = response.get_result()
-        assert get_table_ok_body is not None
+        table = response.get_result()
+        assert table is not None
 
     @needscredentials
     def test_update_table(self):
@@ -1066,8 +1070,71 @@ class TestWatsonxDataV2:
         )
 
         assert response.get_status_code() == 200
-        update_table_ok_body = response.get_result()
-        assert update_table_ok_body is not None
+        table = response.get_result()
+        assert table is not None
+
+    @needscredentials
+    def test_list_columns(self):
+        response = self.watsonx_data_service.list_columns(
+            engine_id='testString',
+            catalog_id='testString',
+            schema_id='testString',
+            table_id='testString',
+            auth_instance_id='testString',
+        )
+
+        assert response.get_status_code() == 200
+        column_collection = response.get_result()
+        assert column_collection is not None
+
+    @needscredentials
+    def test_create_columns(self):
+        # Construct a dict representation of a Column model
+        column_model = {
+            'column_name': 'expenses',
+            'comment': 'expenses column',
+            'extra': 'varchar',
+            'length': '30',
+            'scale': '2',
+            'type': 'varchar',
+        }
+
+        response = self.watsonx_data_service.create_columns(
+            engine_id='testString',
+            catalog_id='testString',
+            schema_id='testString',
+            table_id='testString',
+            columns=[column_model],
+            auth_instance_id='testString',
+        )
+
+        assert response.get_status_code() == 201
+        column_collection = response.get_result()
+        assert column_collection is not None
+
+    @needscredentials
+    def test_update_column(self):
+        # Construct a dict representation of a JsonPatchOperation model
+        json_patch_operation_model = {
+            'op': 'add',
+            'path': 'testString',
+            'from': 'testString',
+            'value': 'testString',
+        }
+
+        response = self.watsonx_data_service.update_column(
+            engine_id='testString',
+            catalog_id='testString',
+            schema_id='testString',
+            table_id='testString',
+            column_id='testString',
+            body=[json_patch_operation_model],
+            auth_instance_id='testString',
+        )
+
+        assert response.get_status_code() == 200
+        column = response.get_result()
+        assert column is not None
 
     @needscredentials
     def test_list_table_snapshots(self):
@@ -1303,6 +1370,19 @@ class TestWatsonxDataV2:
             schema_id='testString',
             table_id='testString',
             engine_id='testString',
+            auth_instance_id='testString',
+        )
+
+        assert response.get_status_code() == 204
+
+    @needscredentials
+    def test_delete_column(self):
+        response = self.watsonx_data_service.delete_column(
+            engine_id='testString',
+            catalog_id='testString',
+            schema_id='testString',
+            table_id='testString',
+            column_id='testString',
             auth_instance_id='testString',
         )
 

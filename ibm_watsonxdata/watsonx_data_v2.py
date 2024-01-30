@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# IBM OpenAPI SDK Code Generator Version: 3.84.1-55f6d880-20240110-194020
+# IBM OpenAPI SDK Code Generator Version: 3.82.1-2082d402-20231115-195014
 
 """
 This is the Public API for IBM watsonx.data
@@ -54,7 +54,9 @@ class WatsonxDataV2(BaseService):
                parameters and external configuration.
         """
         authenticator = get_authenticator_from_environment(service_name)
-        service = cls(authenticator)
+        service = cls(
+            authenticator
+            )
         service.configure_service(service_name)
         return service
 
@@ -752,7 +754,7 @@ class WatsonxDataV2(BaseService):
         *,
         associated_catalog: Optional['DatabaseCatalog'] = None,
         created_on: Optional[str] = None,
-        database_details: Optional['DatabaseRegistrationPrototypeDatabaseDetails'] = None,
+        database_details: Optional['DatabaseDetails'] = None,
         database_properties: Optional[List['DatabaseRegistrationPrototypeDatabasePropertiesItems']] = None,
         description: Optional[str] = None,
         tags: Optional[List[str]] = None,
@@ -768,8 +770,7 @@ class WatsonxDataV2(BaseService):
         :param str database_type: Connector type.
         :param DatabaseCatalog associated_catalog: (optional) database catalog.
         :param str created_on: (optional) Created on.
-        :param DatabaseRegistrationPrototypeDatabaseDetails database_details:
-               (optional) database details.
+        :param DatabaseDetails database_details: (optional) database details.
         :param List[DatabaseRegistrationPrototypeDatabasePropertiesItems]
                database_properties: (optional) This will hold all the properties for a
                custom database.
@@ -1627,9 +1628,9 @@ class WatsonxDataV2(BaseService):
     def create_other_engine(
         self,
         engine_details: 'OtherEngineDetailsBody',
+        engine_display_name: str,
         *,
         description: Optional[str] = None,
-        engine_display_name: Optional[str] = None,
         origin: Optional[str] = None,
         tags: Optional[List[str]] = None,
         type: Optional[str] = None,
@@ -1642,8 +1643,8 @@ class WatsonxDataV2(BaseService):
         Create a new engine.
 
         :param OtherEngineDetailsBody engine_details: External engine details.
+        :param str engine_display_name: engine display name.
         :param str description: (optional) engine description.
-        :param str engine_display_name: (optional) engine display name.
         :param str origin: (optional) Origin - created or registered.
         :param List[str] tags: (optional) other engine tags.
         :param str type: (optional) Engine type.
@@ -1655,6 +1656,8 @@ class WatsonxDataV2(BaseService):
 
         if engine_details is None:
             raise ValueError('engine_details must be provided')
+        if engine_display_name is None:
+            raise ValueError('engine_display_name must be provided')
         engine_details = convert_model(engine_details)
         headers = {
             'AuthInstanceId': auth_instance_id,
@@ -1668,8 +1671,8 @@ class WatsonxDataV2(BaseService):
 
         data = {
             'engine_details': engine_details,
-            'description': description,
             'engine_display_name': engine_display_name,
+            'description': description,
             'origin': origin,
             'tags': tags,
             'type': type,
@@ -2929,7 +2932,7 @@ class WatsonxDataV2(BaseService):
         :param str auth_instance_id: (optional) Instance ID.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
-        :rtype: DetailedResponse with `dict` result representing a `Catalog` object
+        :rtype: DetailedResponse with `dict` result representing a `CatalogCollection` object
         """
 
         if not engine_id:
@@ -4229,7 +4232,7 @@ class WatsonxDataV2(BaseService):
         :param str auth_instance_id: (optional) Instance ID.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
-        :rtype: DetailedResponse with `dict` result representing a `GetTableOKBodyCollection` object
+        :rtype: DetailedResponse with `dict` result representing a `TableCollection` object
         """
 
         if not catalog_id:
@@ -4282,9 +4285,9 @@ class WatsonxDataV2(BaseService):
         **kwargs,
     ) -> DetailedResponse:
         """
-        List all columns.
+        Get table details.
 
-        List columns in given catalog/schema and table.
+        Get details of a given table in a catalog and schema.
 
         :param str catalog_id: catalog id.
         :param str schema_id: URL encoded schema name.
@@ -4293,7 +4296,7 @@ class WatsonxDataV2(BaseService):
         :param str auth_instance_id: (optional) Instance ID.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
-        :rtype: DetailedResponse with `dict` result representing a `GetTableOKBody` object
+        :rtype: DetailedResponse with `dict` result representing a `Table` object
         """
 
         if not catalog_id:
@@ -4350,7 +4353,7 @@ class WatsonxDataV2(BaseService):
         """
         Delete table.
 
-        Delete one or multiple tables for a given schema and catalog.
+        Delete table for a given schema and catalog.
 
         :param str catalog_id: catalog id.
         :param str schema_id: URL encoded schema name.
@@ -4416,7 +4419,7 @@ class WatsonxDataV2(BaseService):
         """
         Alter table.
 
-        Update the given table - rename table, add/drop/rename columns.
+        Rename table.
 
         :param str catalog_id: catalog id.
         :param str schema_id: URL encoded schema name.
@@ -4426,7 +4429,7 @@ class WatsonxDataV2(BaseService):
         :param str auth_instance_id: (optional) Instance ID.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
-        :rtype: DetailedResponse with `dict` result representing a `UpdateTableOKBody` object
+        :rtype: DetailedResponse with `dict` result representing a `Table` object
         """
 
         if not catalog_id:
@@ -4466,6 +4469,299 @@ class WatsonxDataV2(BaseService):
         path_param_values = self.encode_path_vars(catalog_id, schema_id, table_id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
         url = '/catalogs/{catalog_id}/schemas/{schema_id}/tables/{table_id}'.format(**path_param_dict)
+        request = self.prepare_request(
+            method='PATCH',
+            url=url,
+            headers=headers,
+            params=params,
+            data=data,
+        )
+
+        response = self.send(request, **kwargs)
+        return response
+
+    def list_columns(
+        self,
+        engine_id: str,
+        catalog_id: str,
+        schema_id: str,
+        table_id: str,
+        *,
+        auth_instance_id: Optional[str] = None,
+        **kwargs,
+    ) -> DetailedResponse:
+        """
+        List all columns of a table.
+
+        List all columns of a table in a given a schema for a given catalog.
+
+        :param str engine_id: engine id.
+        :param str catalog_id: catalog id.
+        :param str schema_id: URL encoded schema name.
+        :param str table_id: URL encoded schema name.
+        :param str auth_instance_id: (optional) Instance ID.
+        :param dict headers: A `dict` containing the request headers
+        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
+        :rtype: DetailedResponse with `dict` result representing a `ColumnCollection` object
+        """
+
+        if not engine_id:
+            raise ValueError('engine_id must be provided')
+        if not catalog_id:
+            raise ValueError('catalog_id must be provided')
+        if not schema_id:
+            raise ValueError('schema_id must be provided')
+        if not table_id:
+            raise ValueError('table_id must be provided')
+        headers = {
+            'AuthInstanceId': auth_instance_id,
+        }
+        sdk_headers = get_sdk_headers(
+            service_name=self.DEFAULT_SERVICE_NAME,
+            service_version='V2',
+            operation_id='list_columns',
+        )
+        headers.update(sdk_headers)
+
+        params = {
+            'engine_id': engine_id,
+        }
+
+        if 'headers' in kwargs:
+            headers.update(kwargs.get('headers'))
+            del kwargs['headers']
+        headers['Accept'] = 'application/json'
+
+        path_param_keys = ['catalog_id', 'schema_id', 'table_id']
+        path_param_values = self.encode_path_vars(catalog_id, schema_id, table_id)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/catalogs/{catalog_id}/schemas/{schema_id}/tables/{table_id}/columns'.format(**path_param_dict)
+        request = self.prepare_request(
+            method='GET',
+            url=url,
+            headers=headers,
+            params=params,
+        )
+
+        response = self.send(request, **kwargs)
+        return response
+
+    def create_columns(
+        self,
+        engine_id: str,
+        catalog_id: str,
+        schema_id: str,
+        table_id: str,
+        *,
+        columns: Optional[List['Column']] = None,
+        auth_instance_id: Optional[str] = None,
+        **kwargs,
+    ) -> DetailedResponse:
+        """
+        Add column(s).
+
+        Add one or multiple columns to a table in a schema for a given catalog.
+
+        :param str engine_id: engine id.
+        :param str catalog_id: catalog id.
+        :param str schema_id: URL encoded schema name.
+        :param str table_id: URL encoded schema name.
+        :param List[Column] columns: (optional) List of the tables present in the
+               schema.
+        :param str auth_instance_id: (optional) Instance ID.
+        :param dict headers: A `dict` containing the request headers
+        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
+        :rtype: DetailedResponse with `dict` result representing a `ColumnCollection` object
+        """
+
+        if not engine_id:
+            raise ValueError('engine_id must be provided')
+        if not catalog_id:
+            raise ValueError('catalog_id must be provided')
+        if not schema_id:
+            raise ValueError('schema_id must be provided')
+        if not table_id:
+            raise ValueError('table_id must be provided')
+        if columns is not None:
+            columns = [convert_model(x) for x in columns]
+        headers = {
+            'AuthInstanceId': auth_instance_id,
+        }
+        sdk_headers = get_sdk_headers(
+            service_name=self.DEFAULT_SERVICE_NAME,
+            service_version='V2',
+            operation_id='create_columns',
+        )
+        headers.update(sdk_headers)
+
+        params = {
+            'engine_id': engine_id,
+        }
+
+        data = {
+            'columns': columns,
+        }
+        data = {k: v for (k, v) in data.items() if v is not None}
+        data = json.dumps(data)
+        headers['content-type'] = 'application/json'
+
+        if 'headers' in kwargs:
+            headers.update(kwargs.get('headers'))
+            del kwargs['headers']
+        headers['Accept'] = 'application/json'
+
+        path_param_keys = ['catalog_id', 'schema_id', 'table_id']
+        path_param_values = self.encode_path_vars(catalog_id, schema_id, table_id)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/catalogs/{catalog_id}/schemas/{schema_id}/tables/{table_id}/columns'.format(**path_param_dict)
+        request = self.prepare_request(
+            method='POST',
+            url=url,
+            headers=headers,
+            params=params,
+            data=data,
+        )
+
+        response = self.send(request, **kwargs)
+        return response
+
+    def delete_column(
+        self,
+        engine_id: str,
+        catalog_id: str,
+        schema_id: str,
+        table_id: str,
+        column_id: str,
+        *,
+        auth_instance_id: Optional[str] = None,
+        **kwargs,
+    ) -> DetailedResponse:
+        """
+        Delete column.
+
+        Delete column in a table for a given schema and catalog.
+
+        :param str engine_id: engine id.
+        :param str catalog_id: catalog id.
+        :param str schema_id: URL encoded schema name.
+        :param str table_id: URL encoded schema name.
+        :param str column_id: URL encoded schema name.
+        :param str auth_instance_id: (optional) Instance ID.
+        :param dict headers: A `dict` containing the request headers
+        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
+        :rtype: DetailedResponse
+        """
+
+        if not engine_id:
+            raise ValueError('engine_id must be provided')
+        if not catalog_id:
+            raise ValueError('catalog_id must be provided')
+        if not schema_id:
+            raise ValueError('schema_id must be provided')
+        if not table_id:
+            raise ValueError('table_id must be provided')
+        if not column_id:
+            raise ValueError('column_id must be provided')
+        headers = {
+            'AuthInstanceId': auth_instance_id,
+        }
+        sdk_headers = get_sdk_headers(
+            service_name=self.DEFAULT_SERVICE_NAME,
+            service_version='V2',
+            operation_id='delete_column',
+        )
+        headers.update(sdk_headers)
+
+        params = {
+            'engine_id': engine_id,
+        }
+
+        if 'headers' in kwargs:
+            headers.update(kwargs.get('headers'))
+            del kwargs['headers']
+
+        path_param_keys = ['catalog_id', 'schema_id', 'table_id', 'column_id']
+        path_param_values = self.encode_path_vars(catalog_id, schema_id, table_id, column_id)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/catalogs/{catalog_id}/schemas/{schema_id}/tables/{table_id}/columns/{column_id}'.format(**path_param_dict)
+        request = self.prepare_request(
+            method='DELETE',
+            url=url,
+            headers=headers,
+            params=params,
+        )
+
+        response = self.send(request, **kwargs)
+        return response
+
+    def update_column(
+        self,
+        engine_id: str,
+        catalog_id: str,
+        schema_id: str,
+        table_id: str,
+        column_id: str,
+        body: List['JsonPatchOperation'],
+        *,
+        auth_instance_id: Optional[str] = None,
+        **kwargs,
+    ) -> DetailedResponse:
+        """
+        Alter column.
+
+        Update the given column - rename column.
+
+        :param str engine_id: engine id.
+        :param str catalog_id: catalog id.
+        :param str schema_id: URL encoded schema name.
+        :param str table_id: URL encoded schema name.
+        :param str column_id: URL encoded schema name.
+        :param List[JsonPatchOperation] body: Request body.
+        :param str auth_instance_id: (optional) Instance ID.
+        :param dict headers: A `dict` containing the request headers
+        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
+        :rtype: DetailedResponse with `dict` result representing a `Column` object
+        """
+
+        if not engine_id:
+            raise ValueError('engine_id must be provided')
+        if not catalog_id:
+            raise ValueError('catalog_id must be provided')
+        if not schema_id:
+            raise ValueError('schema_id must be provided')
+        if not table_id:
+            raise ValueError('table_id must be provided')
+        if not column_id:
+            raise ValueError('column_id must be provided')
+        if body is None:
+            raise ValueError('body must be provided')
+        body = [convert_model(x) for x in body]
+        headers = {
+            'AuthInstanceId': auth_instance_id,
+        }
+        sdk_headers = get_sdk_headers(
+            service_name=self.DEFAULT_SERVICE_NAME,
+            service_version='V2',
+            operation_id='update_column',
+        )
+        headers.update(sdk_headers)
+
+        params = {
+            'engine_id': engine_id,
+        }
+
+        data = json.dumps(body)
+        headers['content-type'] = 'application/json-patch+json'
+
+        if 'headers' in kwargs:
+            headers.update(kwargs.get('headers'))
+            del kwargs['headers']
+        headers['Accept'] = 'application/json'
+
+        path_param_keys = ['catalog_id', 'schema_id', 'table_id', 'column_id']
+        path_param_values = self.encode_path_vars(catalog_id, schema_id, table_id, column_id)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/catalogs/{catalog_id}/schemas/{schema_id}/tables/{table_id}/columns/{column_id}'.format(**path_param_dict)
         request = self.prepare_request(
             method='PATCH',
             url=url,
@@ -4602,9 +4898,7 @@ class WatsonxDataV2(BaseService):
         path_param_keys = ['catalog_id', 'schema_id', 'table_id', 'snapshot_id']
         path_param_values = self.encode_path_vars(catalog_id, schema_id, table_id, snapshot_id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/catalogs/{catalog_id}/schemas/{schema_id}/tables/{table_id}/snapshots/{snapshot_id}'.format(
-            **path_param_dict
-        )
+        url = '/catalogs/{catalog_id}/schemas/{schema_id}/tables/{table_id}/snapshots/{snapshot_id}'.format(**path_param_dict)
         request = self.prepare_request(
             method='PUT',
             url=url,
@@ -5297,6 +5591,7 @@ class BucketRegistration:
         IBM_COS = 'ibm_cos'
         IBM_CEPH = 'ibm_ceph'
 
+
     class ManagedByEnum(str, Enum):
         """
         managed by.
@@ -5305,6 +5600,7 @@ class BucketRegistration:
         IBM = 'ibm'
         CUSTOMER = 'customer'
 
+
     class StateEnum(str, Enum):
         """
         mark bucket active or inactive.
@@ -5312,6 +5608,7 @@ class BucketRegistration:
 
         ACTIVE = 'active'
         INACTIVE = 'inactive'
+
 
 
 class BucketRegistrationCollection:
@@ -5727,6 +6024,7 @@ class Catalog:
         CUSTOMER = 'customer'
 
 
+
 class CatalogCollection:
     """
     GetCatalogs OK.
@@ -5798,6 +6096,8 @@ class Column:
     :param str column_name: (optional) Column name.
     :param str comment: (optional) Comment.
     :param str extra: (optional) Extra.
+    :param str length: (optional) length.
+    :param str scale: (optional) scale.
     :param str type: (optional) Data type.
     """
 
@@ -5807,6 +6107,8 @@ class Column:
         column_name: Optional[str] = None,
         comment: Optional[str] = None,
         extra: Optional[str] = None,
+        length: Optional[str] = None,
+        scale: Optional[str] = None,
         type: Optional[str] = None,
     ) -> None:
         """
@@ -5815,11 +6117,15 @@ class Column:
         :param str column_name: (optional) Column name.
         :param str comment: (optional) Comment.
         :param str extra: (optional) Extra.
+        :param str length: (optional) length.
+        :param str scale: (optional) scale.
         :param str type: (optional) Data type.
         """
         self.column_name = column_name
         self.comment = comment
         self.extra = extra
+        self.length = length
+        self.scale = scale
         self.type = type
 
     @classmethod
@@ -5832,6 +6138,10 @@ class Column:
             args['comment'] = _dict.get('comment')
         if 'extra' in _dict:
             args['extra'] = _dict.get('extra')
+        if 'length' in _dict:
+            args['length'] = _dict.get('length')
+        if 'scale' in _dict:
+            args['scale'] = _dict.get('scale')
         if 'type' in _dict:
             args['type'] = _dict.get('type')
         return cls(**args)
@@ -5850,6 +6160,10 @@ class Column:
             _dict['comment'] = self.comment
         if hasattr(self, 'extra') and self.extra is not None:
             _dict['extra'] = self.extra
+        if hasattr(self, 'length') and self.length is not None:
+            _dict['length'] = self.length
+        if hasattr(self, 'scale') and self.scale is not None:
+            _dict['scale'] = self.scale
         if hasattr(self, 'type') and self.type is not None:
             _dict['type'] = self.type
         return _dict
@@ -5869,6 +6183,72 @@ class Column:
         return self.__dict__ == other.__dict__
 
     def __ne__(self, other: 'Column') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
+class ColumnCollection:
+    """
+    list of columns in a table.
+
+    :param List[Column] columns: (optional) List of the columns present in the
+          table.
+    """
+
+    def __init__(
+        self,
+        *,
+        columns: Optional[List['Column']] = None,
+    ) -> None:
+        """
+        Initialize a ColumnCollection object.
+
+        :param List[Column] columns: (optional) List of the columns present in the
+               table.
+        """
+        self.columns = columns
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'ColumnCollection':
+        """Initialize a ColumnCollection object from a json dictionary."""
+        args = {}
+        if 'columns' in _dict:
+            args['columns'] = [Column.from_dict(v) for v in _dict.get('columns')]
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a ColumnCollection object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'columns') and self.columns is not None:
+            columns_list = []
+            for v in self.columns:
+                if isinstance(v, dict):
+                    columns_list.append(v)
+                else:
+                    columns_list.append(v.to_dict())
+            _dict['columns'] = columns_list
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this ColumnCollection object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'ColumnCollection') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'ColumnCollection') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
@@ -6382,6 +6762,165 @@ class DatabaseCatalog:
         return not self == other
 
 
+class DatabaseDetails:
+    """
+    database details.
+
+    :param str certificate: (optional) contents of a pem/crt file.
+    :param str certificate_extension: (optional) extension of the certificate file.
+    :param str database_name: (optional) Database name.
+    :param str hostname: Host name.
+    :param str hostname_in_certificate: (optional) Hostname in certificate.
+    :param str hosts: (optional) String of hostname:port.
+    :param str password: (optional) Psssword.
+    :param int port: Port.
+    :param bool sasl: (optional) SASL Mode.
+    :param bool ssl: (optional) SSL Mode.
+    :param str tables: (optional) Only for Kafka - Add kafka tables.
+    :param str username: (optional) Username.
+    :param bool validate_server_certificate: (optional) Verify certificate.
+    """
+
+    def __init__(
+        self,
+        hostname: str,
+        port: int,
+        *,
+        certificate: Optional[str] = None,
+        certificate_extension: Optional[str] = None,
+        database_name: Optional[str] = None,
+        hostname_in_certificate: Optional[str] = None,
+        hosts: Optional[str] = None,
+        password: Optional[str] = None,
+        sasl: Optional[bool] = None,
+        ssl: Optional[bool] = None,
+        tables: Optional[str] = None,
+        username: Optional[str] = None,
+        validate_server_certificate: Optional[bool] = None,
+    ) -> None:
+        """
+        Initialize a DatabaseDetails object.
+
+        :param str hostname: Host name.
+        :param int port: Port.
+        :param str certificate: (optional) contents of a pem/crt file.
+        :param str certificate_extension: (optional) extension of the certificate
+               file.
+        :param str database_name: (optional) Database name.
+        :param str hostname_in_certificate: (optional) Hostname in certificate.
+        :param str hosts: (optional) String of hostname:port.
+        :param str password: (optional) Psssword.
+        :param bool sasl: (optional) SASL Mode.
+        :param bool ssl: (optional) SSL Mode.
+        :param str tables: (optional) Only for Kafka - Add kafka tables.
+        :param str username: (optional) Username.
+        :param bool validate_server_certificate: (optional) Verify certificate.
+        """
+        self.certificate = certificate
+        self.certificate_extension = certificate_extension
+        self.database_name = database_name
+        self.hostname = hostname
+        self.hostname_in_certificate = hostname_in_certificate
+        self.hosts = hosts
+        self.password = password
+        self.port = port
+        self.sasl = sasl
+        self.ssl = ssl
+        self.tables = tables
+        self.username = username
+        self.validate_server_certificate = validate_server_certificate
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'DatabaseDetails':
+        """Initialize a DatabaseDetails object from a json dictionary."""
+        args = {}
+        if 'certificate' in _dict:
+            args['certificate'] = _dict.get('certificate')
+        if 'certificate_extension' in _dict:
+            args['certificate_extension'] = _dict.get('certificate_extension')
+        if 'database_name' in _dict:
+            args['database_name'] = _dict.get('database_name')
+        if 'hostname' in _dict:
+            args['hostname'] = _dict.get('hostname')
+        else:
+            raise ValueError('Required property \'hostname\' not present in DatabaseDetails JSON')
+        if 'hostname_in_certificate' in _dict:
+            args['hostname_in_certificate'] = _dict.get('hostname_in_certificate')
+        if 'hosts' in _dict:
+            args['hosts'] = _dict.get('hosts')
+        if 'password' in _dict:
+            args['password'] = _dict.get('password')
+        if 'port' in _dict:
+            args['port'] = _dict.get('port')
+        else:
+            raise ValueError('Required property \'port\' not present in DatabaseDetails JSON')
+        if 'sasl' in _dict:
+            args['sasl'] = _dict.get('sasl')
+        if 'ssl' in _dict:
+            args['ssl'] = _dict.get('ssl')
+        if 'tables' in _dict:
+            args['tables'] = _dict.get('tables')
+        if 'username' in _dict:
+            args['username'] = _dict.get('username')
+        if 'validate_server_certificate' in _dict:
+            args['validate_server_certificate'] = _dict.get('validate_server_certificate')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a DatabaseDetails object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'certificate') and self.certificate is not None:
+            _dict['certificate'] = self.certificate
+        if hasattr(self, 'certificate_extension') and self.certificate_extension is not None:
+            _dict['certificate_extension'] = self.certificate_extension
+        if hasattr(self, 'database_name') and self.database_name is not None:
+            _dict['database_name'] = self.database_name
+        if hasattr(self, 'hostname') and self.hostname is not None:
+            _dict['hostname'] = self.hostname
+        if hasattr(self, 'hostname_in_certificate') and self.hostname_in_certificate is not None:
+            _dict['hostname_in_certificate'] = self.hostname_in_certificate
+        if hasattr(self, 'hosts') and self.hosts is not None:
+            _dict['hosts'] = self.hosts
+        if hasattr(self, 'password') and self.password is not None:
+            _dict['password'] = self.password
+        if hasattr(self, 'port') and self.port is not None:
+            _dict['port'] = self.port
+        if hasattr(self, 'sasl') and self.sasl is not None:
+            _dict['sasl'] = self.sasl
+        if hasattr(self, 'ssl') and self.ssl is not None:
+            _dict['ssl'] = self.ssl
+        if hasattr(self, 'tables') and self.tables is not None:
+            _dict['tables'] = self.tables
+        if hasattr(self, 'username') and self.username is not None:
+            _dict['username'] = self.username
+        if hasattr(self, 'validate_server_certificate') and self.validate_server_certificate is not None:
+            _dict['validate_server_certificate'] = self.validate_server_certificate
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this DatabaseDetails object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'DatabaseDetails') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'DatabaseDetails') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
 class DatabaseRegistration:
     """
     database registration object.
@@ -6391,7 +6930,7 @@ class DatabaseRegistration:
     :param str catalog_name: (optional) Catalog name.
     :param str created_by: (optional) Created by.
     :param str created_on: (optional) Created on.
-    :param DatabaseRegistrationDatabaseDetails database_details: database details.
+    :param DatabaseDetails database_details: database details.
     :param str database_display_name: Database display name.
     :param str database_id: (optional) Database ID.
     :param List[DatabaseRegistrationDatabasePropertiesItems] database_properties:
@@ -6403,7 +6942,7 @@ class DatabaseRegistration:
 
     def __init__(
         self,
-        database_details: 'DatabaseRegistrationDatabaseDetails',
+        database_details: 'DatabaseDetails',
         database_display_name: str,
         database_type: str,
         *,
@@ -6420,8 +6959,7 @@ class DatabaseRegistration:
         """
         Initialize a DatabaseRegistration object.
 
-        :param DatabaseRegistrationDatabaseDetails database_details: database
-               details.
+        :param DatabaseDetails database_details: database details.
         :param str database_display_name: Database display name.
         :param str database_type: Connector type.
         :param List[str] actions: (optional) actions.
@@ -6464,7 +7002,7 @@ class DatabaseRegistration:
         if 'created_on' in _dict:
             args['created_on'] = _dict.get('created_on')
         if 'database_details' in _dict:
-            args['database_details'] = DatabaseRegistrationDatabaseDetails.from_dict(_dict.get('database_details'))
+            args['database_details'] = DatabaseDetails.from_dict(_dict.get('database_details'))
         else:
             raise ValueError('Required property \'database_details\' not present in DatabaseRegistration JSON')
         if 'database_display_name' in _dict:
@@ -6474,9 +7012,7 @@ class DatabaseRegistration:
         if 'database_id' in _dict:
             args['database_id'] = _dict.get('database_id')
         if 'database_properties' in _dict:
-            args['database_properties'] = [
-                DatabaseRegistrationDatabasePropertiesItems.from_dict(v) for v in _dict.get('database_properties')
-            ]
+            args['database_properties'] = [DatabaseRegistrationDatabasePropertiesItems.from_dict(v) for v in _dict.get('database_properties')]
         if 'database_type' in _dict:
             args['database_type'] = _dict.get('database_type')
         else:
@@ -6578,9 +7114,7 @@ class DatabaseRegistrationCollection:
         """Initialize a DatabaseRegistrationCollection object from a json dictionary."""
         args = {}
         if 'database_registrations' in _dict:
-            args['database_registrations'] = [
-                DatabaseRegistration.from_dict(v) for v in _dict.get('database_registrations')
-            ]
+            args['database_registrations'] = [DatabaseRegistration.from_dict(v) for v in _dict.get('database_registrations')]
         return cls(**args)
 
     @classmethod
@@ -6620,149 +7154,6 @@ class DatabaseRegistrationCollection:
         return not self == other
 
 
-class DatabaseRegistrationDatabaseDetails:
-    """
-    database details.
-
-    :param str certificate: (optional) contents of a pem/crt file.
-    :param str certificate_extension: (optional) extension of the certificate file.
-    :param str database_name: (optional) Database name.
-    :param str hostname: Host name.
-    :param str hosts: (optional) String of hostname:port.
-    :param str password: (optional) Psssword.
-    :param int port: Port.
-    :param bool sasl: (optional) SASL Mode.
-    :param bool ssl: (optional) SSL Mode.
-    :param str tables: (optional) Only for Kafka - Add kafka tables.
-    :param str username: (optional) Username.
-    """
-
-    def __init__(
-        self,
-        hostname: str,
-        port: int,
-        *,
-        certificate: Optional[str] = None,
-        certificate_extension: Optional[str] = None,
-        database_name: Optional[str] = None,
-        hosts: Optional[str] = None,
-        password: Optional[str] = None,
-        sasl: Optional[bool] = None,
-        ssl: Optional[bool] = None,
-        tables: Optional[str] = None,
-        username: Optional[str] = None,
-    ) -> None:
-        """
-        Initialize a DatabaseRegistrationDatabaseDetails object.
-
-        :param str hostname: Host name.
-        :param int port: Port.
-        :param str certificate: (optional) contents of a pem/crt file.
-        :param str certificate_extension: (optional) extension of the certificate
-               file.
-        :param str database_name: (optional) Database name.
-        :param str hosts: (optional) String of hostname:port.
-        :param str password: (optional) Psssword.
-        :param bool sasl: (optional) SASL Mode.
-        :param bool ssl: (optional) SSL Mode.
-        :param str tables: (optional) Only for Kafka - Add kafka tables.
-        :param str username: (optional) Username.
-        """
-        self.certificate = certificate
-        self.certificate_extension = certificate_extension
-        self.database_name = database_name
-        self.hostname = hostname
-        self.hosts = hosts
-        self.password = password
-        self.port = port
-        self.sasl = sasl
-        self.ssl = ssl
-        self.tables = tables
-        self.username = username
-
-    @classmethod
-    def from_dict(cls, _dict: Dict) -> 'DatabaseRegistrationDatabaseDetails':
-        """Initialize a DatabaseRegistrationDatabaseDetails object from a json dictionary."""
-        args = {}
-        if 'certificate' in _dict:
-            args['certificate'] = _dict.get('certificate')
-        if 'certificate_extension' in _dict:
-            args['certificate_extension'] = _dict.get('certificate_extension')
-        if 'database_name' in _dict:
-            args['database_name'] = _dict.get('database_name')
-        if 'hostname' in _dict:
-            args['hostname'] = _dict.get('hostname')
-        else:
-            raise ValueError('Required property \'hostname\' not present in DatabaseRegistrationDatabaseDetails JSON')
-        if 'hosts' in _dict:
-            args['hosts'] = _dict.get('hosts')
-        if 'password' in _dict:
-            args['password'] = _dict.get('password')
-        if 'port' in _dict:
-            args['port'] = _dict.get('port')
-        else:
-            raise ValueError('Required property \'port\' not present in DatabaseRegistrationDatabaseDetails JSON')
-        if 'sasl' in _dict:
-            args['sasl'] = _dict.get('sasl')
-        if 'ssl' in _dict:
-            args['ssl'] = _dict.get('ssl')
-        if 'tables' in _dict:
-            args['tables'] = _dict.get('tables')
-        if 'username' in _dict:
-            args['username'] = _dict.get('username')
-        return cls(**args)
-
-    @classmethod
-    def _from_dict(cls, _dict):
-        """Initialize a DatabaseRegistrationDatabaseDetails object from a json dictionary."""
-        return cls.from_dict(_dict)
-
-    def to_dict(self) -> Dict:
-        """Return a json dictionary representing this model."""
-        _dict = {}
-        if hasattr(self, 'certificate') and self.certificate is not None:
-            _dict['certificate'] = self.certificate
-        if hasattr(self, 'certificate_extension') and self.certificate_extension is not None:
-            _dict['certificate_extension'] = self.certificate_extension
-        if hasattr(self, 'database_name') and self.database_name is not None:
-            _dict['database_name'] = self.database_name
-        if hasattr(self, 'hostname') and self.hostname is not None:
-            _dict['hostname'] = self.hostname
-        if hasattr(self, 'hosts') and self.hosts is not None:
-            _dict['hosts'] = self.hosts
-        if hasattr(self, 'password') and self.password is not None:
-            _dict['password'] = self.password
-        if hasattr(self, 'port') and self.port is not None:
-            _dict['port'] = self.port
-        if hasattr(self, 'sasl') and self.sasl is not None:
-            _dict['sasl'] = self.sasl
-        if hasattr(self, 'ssl') and self.ssl is not None:
-            _dict['ssl'] = self.ssl
-        if hasattr(self, 'tables') and self.tables is not None:
-            _dict['tables'] = self.tables
-        if hasattr(self, 'username') and self.username is not None:
-            _dict['username'] = self.username
-        return _dict
-
-    def _to_dict(self):
-        """Return a json dictionary representing this model."""
-        return self.to_dict()
-
-    def __str__(self) -> str:
-        """Return a `str` version of this DatabaseRegistrationDatabaseDetails object."""
-        return json.dumps(self.to_dict(), indent=2)
-
-    def __eq__(self, other: 'DatabaseRegistrationDatabaseDetails') -> bool:
-        """Return `true` when self and other are equal, false otherwise."""
-        if not isinstance(other, self.__class__):
-            return False
-        return self.__dict__ == other.__dict__
-
-    def __ne__(self, other: 'DatabaseRegistrationDatabaseDetails') -> bool:
-        """Return `true` when self and other are not equal, false otherwise."""
-        return not self == other
-
-
 class DatabaseRegistrationDatabasePropertiesItems:
     """
     Key value object.
@@ -6796,21 +7187,15 @@ class DatabaseRegistrationDatabasePropertiesItems:
         if 'encrypt' in _dict:
             args['encrypt'] = _dict.get('encrypt')
         else:
-            raise ValueError(
-                'Required property \'encrypt\' not present in DatabaseRegistrationDatabasePropertiesItems JSON'
-            )
+            raise ValueError('Required property \'encrypt\' not present in DatabaseRegistrationDatabasePropertiesItems JSON')
         if 'key' in _dict:
             args['key'] = _dict.get('key')
         else:
-            raise ValueError(
-                'Required property \'key\' not present in DatabaseRegistrationDatabasePropertiesItems JSON'
-            )
+            raise ValueError('Required property \'key\' not present in DatabaseRegistrationDatabasePropertiesItems JSON')
         if 'value' in _dict:
             args['value'] = _dict.get('value')
         else:
-            raise ValueError(
-                'Required property \'value\' not present in DatabaseRegistrationDatabasePropertiesItems JSON'
-            )
+            raise ValueError('Required property \'value\' not present in DatabaseRegistrationDatabasePropertiesItems JSON')
         return cls(**args)
 
     @classmethod
@@ -6848,153 +7233,6 @@ class DatabaseRegistrationDatabasePropertiesItems:
         return not self == other
 
 
-class DatabaseRegistrationPrototypeDatabaseDetails:
-    """
-    database details.
-
-    :param str certificate: (optional) contents of a pem/crt file.
-    :param str certificate_extension: (optional) extension of the certificate file.
-    :param str database_name: (optional) Database name.
-    :param str hostname: Host name.
-    :param str hosts: (optional) String of hostname:port.
-    :param str password: (optional) Psssword.
-    :param int port: Port.
-    :param bool sasl: (optional) SASL Mode.
-    :param bool ssl: (optional) SSL Mode.
-    :param str tables: (optional) Only for Kafka - Add kafka tables.
-    :param str username: (optional) Username.
-    """
-
-    def __init__(
-        self,
-        hostname: str,
-        port: int,
-        *,
-        certificate: Optional[str] = None,
-        certificate_extension: Optional[str] = None,
-        database_name: Optional[str] = None,
-        hosts: Optional[str] = None,
-        password: Optional[str] = None,
-        sasl: Optional[bool] = None,
-        ssl: Optional[bool] = None,
-        tables: Optional[str] = None,
-        username: Optional[str] = None,
-    ) -> None:
-        """
-        Initialize a DatabaseRegistrationPrototypeDatabaseDetails object.
-
-        :param str hostname: Host name.
-        :param int port: Port.
-        :param str certificate: (optional) contents of a pem/crt file.
-        :param str certificate_extension: (optional) extension of the certificate
-               file.
-        :param str database_name: (optional) Database name.
-        :param str hosts: (optional) String of hostname:port.
-        :param str password: (optional) Psssword.
-        :param bool sasl: (optional) SASL Mode.
-        :param bool ssl: (optional) SSL Mode.
-        :param str tables: (optional) Only for Kafka - Add kafka tables.
-        :param str username: (optional) Username.
-        """
-        self.certificate = certificate
-        self.certificate_extension = certificate_extension
-        self.database_name = database_name
-        self.hostname = hostname
-        self.hosts = hosts
-        self.password = password
-        self.port = port
-        self.sasl = sasl
-        self.ssl = ssl
-        self.tables = tables
-        self.username = username
-
-    @classmethod
-    def from_dict(cls, _dict: Dict) -> 'DatabaseRegistrationPrototypeDatabaseDetails':
-        """Initialize a DatabaseRegistrationPrototypeDatabaseDetails object from a json dictionary."""
-        args = {}
-        if 'certificate' in _dict:
-            args['certificate'] = _dict.get('certificate')
-        if 'certificate_extension' in _dict:
-            args['certificate_extension'] = _dict.get('certificate_extension')
-        if 'database_name' in _dict:
-            args['database_name'] = _dict.get('database_name')
-        if 'hostname' in _dict:
-            args['hostname'] = _dict.get('hostname')
-        else:
-            raise ValueError(
-                'Required property \'hostname\' not present in DatabaseRegistrationPrototypeDatabaseDetails JSON'
-            )
-        if 'hosts' in _dict:
-            args['hosts'] = _dict.get('hosts')
-        if 'password' in _dict:
-            args['password'] = _dict.get('password')
-        if 'port' in _dict:
-            args['port'] = _dict.get('port')
-        else:
-            raise ValueError(
-                'Required property \'port\' not present in DatabaseRegistrationPrototypeDatabaseDetails JSON'
-            )
-        if 'sasl' in _dict:
-            args['sasl'] = _dict.get('sasl')
-        if 'ssl' in _dict:
-            args['ssl'] = _dict.get('ssl')
-        if 'tables' in _dict:
-            args['tables'] = _dict.get('tables')
-        if 'username' in _dict:
-            args['username'] = _dict.get('username')
-        return cls(**args)
-
-    @classmethod
-    def _from_dict(cls, _dict):
-        """Initialize a DatabaseRegistrationPrototypeDatabaseDetails object from a json dictionary."""
-        return cls.from_dict(_dict)
-
-    def to_dict(self) -> Dict:
-        """Return a json dictionary representing this model."""
-        _dict = {}
-        if hasattr(self, 'certificate') and self.certificate is not None:
-            _dict['certificate'] = self.certificate
-        if hasattr(self, 'certificate_extension') and self.certificate_extension is not None:
-            _dict['certificate_extension'] = self.certificate_extension
-        if hasattr(self, 'database_name') and self.database_name is not None:
-            _dict['database_name'] = self.database_name
-        if hasattr(self, 'hostname') and self.hostname is not None:
-            _dict['hostname'] = self.hostname
-        if hasattr(self, 'hosts') and self.hosts is not None:
-            _dict['hosts'] = self.hosts
-        if hasattr(self, 'password') and self.password is not None:
-            _dict['password'] = self.password
-        if hasattr(self, 'port') and self.port is not None:
-            _dict['port'] = self.port
-        if hasattr(self, 'sasl') and self.sasl is not None:
-            _dict['sasl'] = self.sasl
-        if hasattr(self, 'ssl') and self.ssl is not None:
-            _dict['ssl'] = self.ssl
-        if hasattr(self, 'tables') and self.tables is not None:
-            _dict['tables'] = self.tables
-        if hasattr(self, 'username') and self.username is not None:
-            _dict['username'] = self.username
-        return _dict
-
-    def _to_dict(self):
-        """Return a json dictionary representing this model."""
-        return self.to_dict()
-
-    def __str__(self) -> str:
-        """Return a `str` version of this DatabaseRegistrationPrototypeDatabaseDetails object."""
-        return json.dumps(self.to_dict(), indent=2)
-
-    def __eq__(self, other: 'DatabaseRegistrationPrototypeDatabaseDetails') -> bool:
-        """Return `true` when self and other are equal, false otherwise."""
-        if not isinstance(other, self.__class__):
-            return False
-        return self.__dict__ == other.__dict__
-
-    def __ne__(self, other: 'DatabaseRegistrationPrototypeDatabaseDetails') -> bool:
-        """Return `true` when self and other are not equal, false otherwise."""
-        return not self == other
-
-
 class DatabaseRegistrationPrototypeDatabasePropertiesItems:
     """
     Key value object.
@@ -7028,21 +7266,15 @@ class DatabaseRegistrationPrototypeDatabasePropertiesItems:
         if 'encrypt' in _dict:
             args['encrypt'] = _dict.get('encrypt')
         else:
-            raise ValueError(
-                'Required property \'encrypt\' not present in DatabaseRegistrationPrototypeDatabasePropertiesItems JSON'
-            )
+            raise ValueError('Required property \'encrypt\' not present in DatabaseRegistrationPrototypeDatabasePropertiesItems JSON')
         if 'key' in _dict:
             args['key'] = _dict.get('key')
         else:
-            raise ValueError(
-                'Required property \'key\' not present in DatabaseRegistrationPrototypeDatabasePropertiesItems JSON'
-            )
+            raise ValueError('Required property \'key\' not present in DatabaseRegistrationPrototypeDatabasePropertiesItems JSON')
         if 'value' in _dict:
             args['value'] = _dict.get('value')
         else:
-            raise ValueError(
-                'Required property \'value\' not present in DatabaseRegistrationPrototypeDatabasePropertiesItems JSON'
-            )
+            raise ValueError('Required property \'value\' not present in DatabaseRegistrationPrototypeDatabasePropertiesItems JSON')
         return cls(**args)
 
     @classmethod
@@ -7989,6 +8221,7 @@ class EngineDetailsBody:
         CUSTOM = 'custom'
 
 
+
 class Engines:
     """
     List all engines.
@@ -8125,129 +8358,6 @@ class GetDeploymentsOKBody:
         return not self == other
 
 
-class GetTableOKBody:
-    """
-    GetColumns OK.
-
-    :param List[Column] columns: (optional) Columns.
-    """
-
-    def __init__(
-        self,
-        *,
-        columns: Optional[List['Column']] = None,
-    ) -> None:
-        """
-        Initialize a GetTableOKBody object.
-
-        :param List[Column] columns: (optional) Columns.
-        """
-        self.columns = columns
-
-    @classmethod
-    def from_dict(cls, _dict: Dict) -> 'GetTableOKBody':
-        """Initialize a GetTableOKBody object from a json dictionary."""
-        args = {}
-        if 'columns' in _dict:
-            args['columns'] = [Column.from_dict(v) for v in _dict.get('columns')]
-        return cls(**args)
-
-    @classmethod
-    def _from_dict(cls, _dict):
-        """Initialize a GetTableOKBody object from a json dictionary."""
-        return cls.from_dict(_dict)
-
-    def to_dict(self) -> Dict:
-        """Return a json dictionary representing this model."""
-        _dict = {}
-        if hasattr(self, 'columns') and self.columns is not None:
-            columns_list = []
-            for v in self.columns:
-                if isinstance(v, dict):
-                    columns_list.append(v)
-                else:
-                    columns_list.append(v.to_dict())
-            _dict['columns'] = columns_list
-        return _dict
-
-    def _to_dict(self):
-        """Return a json dictionary representing this model."""
-        return self.to_dict()
-
-    def __str__(self) -> str:
-        """Return a `str` version of this GetTableOKBody object."""
-        return json.dumps(self.to_dict(), indent=2)
-
-    def __eq__(self, other: 'GetTableOKBody') -> bool:
-        """Return `true` when self and other are equal, false otherwise."""
-        if not isinstance(other, self.__class__):
-            return False
-        return self.__dict__ == other.__dict__
-
-    def __ne__(self, other: 'GetTableOKBody') -> bool:
-        """Return `true` when self and other are not equal, false otherwise."""
-        return not self == other
-
-
-class GetTableOKBodyCollection:
-    """
-    tables list.
-
-    :param List[str] tables: (optional) List of the tables present in the schema.
-    """
-
-    def __init__(
-        self,
-        *,
-        tables: Optional[List[str]] = None,
-    ) -> None:
-        """
-        Initialize a GetTableOKBodyCollection object.
-
-        :param List[str] tables: (optional) List of the tables present in the
-               schema.
-        """
-        self.tables = tables
-
-    @classmethod
-    def from_dict(cls, _dict: Dict) -> 'GetTableOKBodyCollection':
-        """Initialize a GetTableOKBodyCollection object from a json dictionary."""
-        args = {}
-        if 'tables' in _dict:
-            args['tables'] = _dict.get('tables')
-        return cls(**args)
-
-    @classmethod
-    def _from_dict(cls, _dict):
-        """Initialize a GetTableOKBodyCollection object from a json dictionary."""
-        return cls.from_dict(_dict)
-
-    def to_dict(self) -> Dict:
-        """Return a json dictionary representing this model."""
-        _dict = {}
-        if hasattr(self, 'tables') and self.tables is not None:
-            _dict['tables'] = self.tables
-        return _dict
-
-    def _to_dict(self):
-        """Return a json dictionary representing this model."""
-        return self.to_dict()
-
-    def __str__(self) -> str:
-        """Return a `str` version of this GetTableOKBodyCollection object."""
-        return json.dumps(self.to_dict(), indent=2)
-
-    def __eq__(self, other: 'GetTableOKBodyCollection') -> bool:
-        """Return `true` when self and other are equal, false otherwise."""
-        if not isinstance(other, self.__class__):
-            return False
-        return self.__dict__ == other.__dict__
-
-    def __ne__(self, other: 'GetTableOKBodyCollection') -> bool:
-        """Return `true` when self and other are not equal, false otherwise."""
-        return not self == other
-
-
 class JsonPatchOperation:
     """
     This model represents an individual patch operation to be performed on a JSON
@@ -8349,6 +8459,7 @@ class JsonPatchOperation:
         MOVE = 'move'
         COPY = 'copy'
         TEST = 'test'
+
 
 
 class ListSchemasOKBody:
@@ -8610,6 +8721,7 @@ class MilvusService:
         RUNNING = 'running'
         PENDING = 'pending'
         STOPPED = 'stopped'
+
 
 
 class MilvusServiceCollection:
@@ -9473,21 +9585,20 @@ class OtherEngineDetailsBody:
     """
     External engine details.
 
-    :param str connection_string: (optional) External engine connection string.
-    :param str engine_type: (optional) Actual engine type.
+    :param str connection_string: External engine connection string.
+    :param str engine_type: Actual engine type.
     """
 
     def __init__(
         self,
-        *,
-        connection_string: Optional[str] = None,
-        engine_type: Optional[str] = None,
+        connection_string: str,
+        engine_type: str,
     ) -> None:
         """
         Initialize a OtherEngineDetailsBody object.
 
-        :param str connection_string: (optional) External engine connection string.
-        :param str engine_type: (optional) Actual engine type.
+        :param str connection_string: External engine connection string.
+        :param str engine_type: Actual engine type.
         """
         self.connection_string = connection_string
         self.engine_type = engine_type
@@ -9498,8 +9609,12 @@ class OtherEngineDetailsBody:
         args = {}
         if 'connection_string' in _dict:
             args['connection_string'] = _dict.get('connection_string')
+        else:
+            raise ValueError('Required property \'connection_string\' not present in OtherEngineDetailsBody JSON')
         if 'engine_type' in _dict:
             args['engine_type'] = _dict.get('engine_type')
+        else:
+            raise ValueError('Required property \'engine_type\' not present in OtherEngineDetailsBody JSON')
         return cls(**args)
 
     @classmethod
@@ -9902,6 +10017,7 @@ class PrestissimoEngine:
         EXTERNAL = 'external'
         DISCOVER = 'discover'
 
+
     class StatusEnum(str, Enum):
         """
         Engine status.
@@ -9910,6 +10026,7 @@ class PrestissimoEngine:
         RUNNING = 'running'
         PENDING = 'pending'
         STOPPED = 'stopped'
+
 
 
 class PrestissimoEngineCollection:
@@ -10120,6 +10237,7 @@ class PrestissimoEngineDetails:
         MEDIUM = 'medium'
         LARGE = 'large'
         CUSTOM = 'custom'
+
 
 
 class PrestissimoNodeDescriptionBody:
@@ -10447,6 +10565,7 @@ class PrestoEngine:
         EXTERNAL = 'external'
         DISCOVER = 'discover'
 
+
     class StatusEnum(str, Enum):
         """
         Engine status.
@@ -10455,6 +10574,7 @@ class PrestoEngine:
         RUNNING = 'running'
         PENDING = 'pending'
         STOPPED = 'stopped'
+
 
 
 class PrestoEngineCollection:
@@ -11076,35 +11196,17 @@ class SparkApplicationDetailsConf:
         _dict = {}
         if hasattr(self, 'spark_app_name') and self.spark_app_name is not None:
             _dict['spark_app_name'] = self.spark_app_name
-        if (
-            hasattr(self, 'spark_hive_metastore_client_auth_mode')
-            and self.spark_hive_metastore_client_auth_mode is not None
-        ):
+        if hasattr(self, 'spark_hive_metastore_client_auth_mode') and self.spark_hive_metastore_client_auth_mode is not None:
             _dict['spark_hive_metastore_client_auth_mode'] = self.spark_hive_metastore_client_auth_mode
-        if (
-            hasattr(self, 'spark_hive_metastore_client_plain_password')
-            and self.spark_hive_metastore_client_plain_password is not None
-        ):
+        if hasattr(self, 'spark_hive_metastore_client_plain_password') and self.spark_hive_metastore_client_plain_password is not None:
             _dict['spark_hive_metastore_client_plain_password'] = self.spark_hive_metastore_client_plain_password
-        if (
-            hasattr(self, 'spark_hive_metastore_client_plain_username')
-            and self.spark_hive_metastore_client_plain_username is not None
-        ):
+        if hasattr(self, 'spark_hive_metastore_client_plain_username') and self.spark_hive_metastore_client_plain_username is not None:
             _dict['spark_hive_metastore_client_plain_username'] = self.spark_hive_metastore_client_plain_username
-        if (
-            hasattr(self, 'spark_hive_metastore_truststore_password')
-            and self.spark_hive_metastore_truststore_password is not None
-        ):
+        if hasattr(self, 'spark_hive_metastore_truststore_password') and self.spark_hive_metastore_truststore_password is not None:
             _dict['spark_hive_metastore_truststore_password'] = self.spark_hive_metastore_truststore_password
-        if (
-            hasattr(self, 'spark_hive_metastore_truststore_path')
-            and self.spark_hive_metastore_truststore_path is not None
-        ):
+        if hasattr(self, 'spark_hive_metastore_truststore_path') and self.spark_hive_metastore_truststore_path is not None:
             _dict['spark_hive_metastore_truststore_path'] = self.spark_hive_metastore_truststore_path
-        if (
-            hasattr(self, 'spark_hive_metastore_truststore_type')
-            and self.spark_hive_metastore_truststore_type is not None
-        ):
+        if hasattr(self, 'spark_hive_metastore_truststore_type') and self.spark_hive_metastore_truststore_type is not None:
             _dict['spark_hive_metastore_truststore_type'] = self.spark_hive_metastore_truststore_type
         if hasattr(self, 'spark_hive_metastore_use_ssl') and self.spark_hive_metastore_use_ssl is not None:
             _dict['spark_hive_metastore_use_ssl'] = self.spark_hive_metastore_use_ssl
@@ -11118,10 +11220,7 @@ class SparkApplicationDetailsConf:
             _dict['spark_sql_catalog_lakehouse_uri'] = self.spark_sql_catalog_lakehouse_uri
         if hasattr(self, 'spark_sql_extensions') and self.spark_sql_extensions is not None:
             _dict['spark_sql_extensions'] = self.spark_sql_extensions
-        if (
-            hasattr(self, 'spark_sql_iceberg_vectorization_enabled')
-            and self.spark_sql_iceberg_vectorization_enabled is not None
-        ):
+        if hasattr(self, 'spark_sql_iceberg_vectorization_enabled') and self.spark_sql_iceberg_vectorization_enabled is not None:
             _dict['spark_sql_iceberg_vectorization_enabled'] = self.spark_sql_iceberg_vectorization_enabled
         return _dict
 
@@ -11510,9 +11609,7 @@ class SparkEngineApplicationStatus:
         """Initialize a SparkEngineApplicationStatus object from a json dictionary."""
         args = {}
         if 'application_details' in _dict:
-            args['application_details'] = SparkEngineApplicationStatusApplicationDetails.from_dict(
-                _dict.get('application_details')
-            )
+            args['application_details'] = SparkEngineApplicationStatusApplicationDetails.from_dict(_dict.get('application_details'))
         if 'application_id' in _dict:
             args['application_id'] = _dict.get('application_id')
         if 'auto_termination_time' in _dict:
@@ -11546,9 +11643,7 @@ class SparkEngineApplicationStatus:
         if 'state' in _dict:
             args['state'] = _dict.get('state')
         if 'state_details' in _dict:
-            args['state_details'] = [
-                SparkEngineApplicationStatusStateDetailsItems.from_dict(v) for v in _dict.get('state_details')
-            ]
+            args['state_details'] = [SparkEngineApplicationStatusStateDetailsItems.from_dict(v) for v in _dict.get('state_details')]
         if 'submission_time' in _dict:
             args['submission_time'] = _dict.get('submission_time')
         if 'template_id' in _dict:
@@ -11646,6 +11741,7 @@ class SparkEngineApplicationStatus:
 
         IAE = 'iae'
         EMR = 'emr'
+
 
 
 class SparkEngineApplicationStatusApplicationDetails:
@@ -11876,35 +11972,17 @@ class SparkEngineApplicationStatusApplicationDetailsConf:
         _dict = {}
         if hasattr(self, 'spark_app_name') and self.spark_app_name is not None:
             _dict['spark_app_name'] = self.spark_app_name
-        if (
-            hasattr(self, 'spark_hive_metastore_client_auth_mode')
-            and self.spark_hive_metastore_client_auth_mode is not None
-        ):
+        if hasattr(self, 'spark_hive_metastore_client_auth_mode') and self.spark_hive_metastore_client_auth_mode is not None:
             _dict['spark_hive_metastore_client_auth_mode'] = self.spark_hive_metastore_client_auth_mode
-        if (
-            hasattr(self, 'spark_hive_metastore_client_plain_password')
-            and self.spark_hive_metastore_client_plain_password is not None
-        ):
+        if hasattr(self, 'spark_hive_metastore_client_plain_password') and self.spark_hive_metastore_client_plain_password is not None:
             _dict['spark_hive_metastore_client_plain_password'] = self.spark_hive_metastore_client_plain_password
-        if (
-            hasattr(self, 'spark_hive_metastore_client_plain_username')
-            and self.spark_hive_metastore_client_plain_username is not None
-        ):
+        if hasattr(self, 'spark_hive_metastore_client_plain_username') and self.spark_hive_metastore_client_plain_username is not None:
             _dict['spark_hive_metastore_client_plain_username'] = self.spark_hive_metastore_client_plain_username
-        if (
-            hasattr(self, 'spark_hive_metastore_truststore_password')
-            and self.spark_hive_metastore_truststore_password is not None
-        ):
+        if hasattr(self, 'spark_hive_metastore_truststore_password') and self.spark_hive_metastore_truststore_password is not None:
             _dict['spark_hive_metastore_truststore_password'] = self.spark_hive_metastore_truststore_password
-        if (
-            hasattr(self, 'spark_hive_metastore_truststore_path')
-            and self.spark_hive_metastore_truststore_path is not None
-        ):
+        if hasattr(self, 'spark_hive_metastore_truststore_path') and self.spark_hive_metastore_truststore_path is not None:
             _dict['spark_hive_metastore_truststore_path'] = self.spark_hive_metastore_truststore_path
-        if (
-            hasattr(self, 'spark_hive_metastore_truststore_type')
-            and self.spark_hive_metastore_truststore_type is not None
-        ):
+        if hasattr(self, 'spark_hive_metastore_truststore_type') and self.spark_hive_metastore_truststore_type is not None:
             _dict['spark_hive_metastore_truststore_type'] = self.spark_hive_metastore_truststore_type
         if hasattr(self, 'spark_hive_metastore_use_ssl') and self.spark_hive_metastore_use_ssl is not None:
             _dict['spark_hive_metastore_use_ssl'] = self.spark_hive_metastore_use_ssl
@@ -11918,10 +11996,7 @@ class SparkEngineApplicationStatusApplicationDetailsConf:
             _dict['spark_sql_catalog_lakehouse_uri'] = self.spark_sql_catalog_lakehouse_uri
         if hasattr(self, 'spark_sql_extensions') and self.spark_sql_extensions is not None:
             _dict['spark_sql_extensions'] = self.spark_sql_extensions
-        if (
-            hasattr(self, 'spark_sql_iceberg_vectorization_enabled')
-            and self.spark_sql_iceberg_vectorization_enabled is not None
-        ):
+        if hasattr(self, 'spark_sql_iceberg_vectorization_enabled') and self.spark_sql_iceberg_vectorization_enabled is not None:
             _dict['spark_sql_iceberg_vectorization_enabled'] = self.spark_sql_iceberg_vectorization_enabled
         return _dict
 
@@ -12279,7 +12354,7 @@ class SparkEngineDetailsPrototype:
     """
     Node details.
 
-    :param str api_key: api key to work with the saas IAE instance.
+    :param str api_key: (optional) api key to work with the saas IAE instance.
     :param str connection_string: (optional) External engine connection string.
     :param str instance_id: (optional) Instance to access the instance.
     :param str managed_by: (optional) How is the spark instance managed.
@@ -12287,8 +12362,8 @@ class SparkEngineDetailsPrototype:
 
     def __init__(
         self,
-        api_key: str,
         *,
+        api_key: Optional[str] = None,
         connection_string: Optional[str] = None,
         instance_id: Optional[str] = None,
         managed_by: Optional[str] = None,
@@ -12296,7 +12371,7 @@ class SparkEngineDetailsPrototype:
         """
         Initialize a SparkEngineDetailsPrototype object.
 
-        :param str api_key: api key to work with the saas IAE instance.
+        :param str api_key: (optional) api key to work with the saas IAE instance.
         :param str connection_string: (optional) External engine connection string.
         :param str instance_id: (optional) Instance to access the instance.
         :param str managed_by: (optional) How is the spark instance managed.
@@ -12312,8 +12387,6 @@ class SparkEngineDetailsPrototype:
         args = {}
         if 'api_key' in _dict:
             args['api_key'] = _dict.get('api_key')
-        else:
-            raise ValueError('Required property \'api_key\' not present in SparkEngineDetailsPrototype JSON')
         if 'connection_string' in _dict:
             args['connection_string'] = _dict.get('connection_string')
         if 'instance_id' in _dict:
@@ -12421,6 +12494,137 @@ class SuccessResponse:
         return self.__dict__ == other.__dict__
 
     def __ne__(self, other: 'SuccessResponse') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
+class Table:
+    """
+    GetColumns OK.
+
+    :param List[Column] columns: (optional) Columns.
+    :param str table_name: (optional) Table name.
+    """
+
+    def __init__(
+        self,
+        *,
+        columns: Optional[List['Column']] = None,
+        table_name: Optional[str] = None,
+    ) -> None:
+        """
+        Initialize a Table object.
+
+        :param List[Column] columns: (optional) Columns.
+        :param str table_name: (optional) Table name.
+        """
+        self.columns = columns
+        self.table_name = table_name
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'Table':
+        """Initialize a Table object from a json dictionary."""
+        args = {}
+        if 'columns' in _dict:
+            args['columns'] = [Column.from_dict(v) for v in _dict.get('columns')]
+        if 'table_name' in _dict:
+            args['table_name'] = _dict.get('table_name')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a Table object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'columns') and self.columns is not None:
+            columns_list = []
+            for v in self.columns:
+                if isinstance(v, dict):
+                    columns_list.append(v)
+                else:
+                    columns_list.append(v.to_dict())
+            _dict['columns'] = columns_list
+        if hasattr(self, 'table_name') and self.table_name is not None:
+            _dict['table_name'] = self.table_name
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this Table object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'Table') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'Table') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
+class TableCollection:
+    """
+    tables list.
+
+    :param List[str] tables: (optional) List of the tables present in the schema.
+    """
+
+    def __init__(
+        self,
+        *,
+        tables: Optional[List[str]] = None,
+    ) -> None:
+        """
+        Initialize a TableCollection object.
+
+        :param List[str] tables: (optional) List of the tables present in the
+               schema.
+        """
+        self.tables = tables
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'TableCollection':
+        """Initialize a TableCollection object from a json dictionary."""
+        args = {}
+        if 'tables' in _dict:
+            args['tables'] = _dict.get('tables')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a TableCollection object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'tables') and self.tables is not None:
+            _dict['tables'] = self.tables
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this TableCollection object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'TableCollection') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'TableCollection') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
@@ -12772,67 +12976,6 @@ class UpdateSyncCatalogOKBody:
         return not self == other
 
 
-class UpdateTableOKBody:
-    """
-    success response.
-
-    :param SuccessResponse response: (optional) Response of success.
-    """
-
-    def __init__(
-        self,
-        *,
-        response: Optional['SuccessResponse'] = None,
-    ) -> None:
-        """
-        Initialize a UpdateTableOKBody object.
-
-        :param SuccessResponse response: (optional) Response of success.
-        """
-        self.response = response
-
-    @classmethod
-    def from_dict(cls, _dict: Dict) -> 'UpdateTableOKBody':
-        """Initialize a UpdateTableOKBody object from a json dictionary."""
-        args = {}
-        if 'response' in _dict:
-            args['response'] = SuccessResponse.from_dict(_dict.get('response'))
-        return cls(**args)
-
-    @classmethod
-    def _from_dict(cls, _dict):
-        """Initialize a UpdateTableOKBody object from a json dictionary."""
-        return cls.from_dict(_dict)
-
-    def to_dict(self) -> Dict:
-        """Return a json dictionary representing this model."""
-        _dict = {}
-        if hasattr(self, 'response') and self.response is not None:
-            if isinstance(self.response, dict):
-                _dict['response'] = self.response
-            else:
-                _dict['response'] = self.response.to_dict()
-        return _dict
-
-    def _to_dict(self):
-        """Return a json dictionary representing this model."""
-        return self.to_dict()
-
-    def __str__(self) -> str:
-        """Return a `str` version of this UpdateTableOKBody object."""
-        return json.dumps(self.to_dict(), indent=2)
-
-    def __eq__(self, other: 'UpdateTableOKBody') -> bool:
-        """Return `true` when self and other are equal, false otherwise."""
-        if not isinstance(other, self.__class__):
-            return False
-        return self.__dict__ == other.__dict__
-
-    def __ne__(self, other: 'UpdateTableOKBody') -> bool:
-        """Return `true` when self and other are not equal, false otherwise."""
-        return not self == other
-
-
 class ValidateDatabaseBodyDatabaseDetails:
     """
     database details.
@@ -12845,6 +12988,7 @@ class ValidateDatabaseBodyDatabaseDetails:
     :param bool ssl: (optional) SSL Mode.
     :param str tables: (optional) Only for Kafka - Add kafka tables.
     :param str username: (optional) Username.
+    :param bool validate_server_certificate: (optional) Verify certificate.
     """
 
     def __init__(
@@ -12858,6 +13002,7 @@ class ValidateDatabaseBodyDatabaseDetails:
         ssl: Optional[bool] = None,
         tables: Optional[str] = None,
         username: Optional[str] = None,
+        validate_server_certificate: Optional[bool] = None,
     ) -> None:
         """
         Initialize a ValidateDatabaseBodyDatabaseDetails object.
@@ -12870,6 +13015,7 @@ class ValidateDatabaseBodyDatabaseDetails:
         :param bool ssl: (optional) SSL Mode.
         :param str tables: (optional) Only for Kafka - Add kafka tables.
         :param str username: (optional) Username.
+        :param bool validate_server_certificate: (optional) Verify certificate.
         """
         self.database_name = database_name
         self.hostname = hostname
@@ -12879,6 +13025,7 @@ class ValidateDatabaseBodyDatabaseDetails:
         self.ssl = ssl
         self.tables = tables
         self.username = username
+        self.validate_server_certificate = validate_server_certificate
 
     @classmethod
     def from_dict(cls, _dict: Dict) -> 'ValidateDatabaseBodyDatabaseDetails':
@@ -12904,6 +13051,8 @@ class ValidateDatabaseBodyDatabaseDetails:
             args['tables'] = _dict.get('tables')
         if 'username' in _dict:
             args['username'] = _dict.get('username')
+        if 'validate_server_certificate' in _dict:
+            args['validate_server_certificate'] = _dict.get('validate_server_certificate')
         return cls(**args)
 
     @classmethod
@@ -12930,6 +13079,8 @@ class ValidateDatabaseBodyDatabaseDetails:
             _dict['tables'] = self.tables
         if hasattr(self, 'username') and self.username is not None:
             _dict['username'] = self.username
+        if hasattr(self, 'validate_server_certificate') and self.validate_server_certificate is not None:
+            _dict['validate_server_certificate'] = self.validate_server_certificate
         return _dict
 
     def _to_dict(self):
