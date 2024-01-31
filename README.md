@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.com/IBM/watsonxdata-python-sdk.svg?&branch=main)](https://travis.ibm.com/IBM/watsonxdata-python-sdk)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
-# IBM Cloud Watsonx.data Python SDK 0.3.0
+# IBM Cloud Watsonx.data Python SDK 0.4.0
 
 Python client library to interact with various [IBM Cloud Watsonx-data APIs](https://cloud.ibm.com/apidocs?category=watsonxdata).
 
