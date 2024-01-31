@@ -21,7 +21,6 @@ install:
 script:
 - make ci
 
-
 # To enable semantic-release, uncomment these sections.
 before_deploy:
 - nvm install 14
