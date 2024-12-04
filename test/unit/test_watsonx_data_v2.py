@@ -243,7 +243,7 @@ class TestCreateBucketRegistration:
             headers={},
         )
 
-        # Check for correct operation
+        # Check for correct operation.
         assert len(responses.calls) == 1
         assert response.status_code == 201
         # Validate body params
