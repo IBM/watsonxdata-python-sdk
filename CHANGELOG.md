@@ -1,3 +1,10 @@
+# [0.5.0](https://github.com/IBM/watsonxdata-python-sdk/compare/v0.4.0...v0.5.0) (2024-12-04)
+
+
+### Features
+
+* **sdk:** update SDK to include 2.0.3 SaaS changes ([3d615ca](https://github.com/IBM/watsonxdata-python-sdk/commit/3d615ca3387ae27f73e2b06b9d55d1f49d9f9f4c))
+
 # [0.4.0](https://github.com/IBM/watsonxdata-python-sdk/compare/v0.3.0...v0.4.0) (2024-01-31)
 
 
