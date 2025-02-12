@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# (C) Copyright IBM Corp. 2024.
+# (C) Copyright IBM Corp. 2025.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ Unit Tests for WatsonxDataV2
 """
 
 from ibm_cloud_sdk_core.authenticators.no_auth_authenticator import NoAuthAuthenticator
+from ibm_cloud_sdk_core.utils import date_to_string, string_to_date
 import inspect
 import io
 import json
@@ -103,7 +104,7 @@ class TestListBucketRegistrations:
         """
         # Set up mock
         url = preprocess_url('/bucket_registrations')
-        mock_response = '{"bucket_registrations": [{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "bucket_details": {"access_key": "b9cbf248ea5c4c96947e64407108559j", "bucket_name": "sample-bucket", "endpoint": "https://s3.<region>.cloud-object-storage.appdomain.cloud/", "key_file": "key_file", "provider": "ibm_cos", "region": "us-south", "secret_key": "13b4045cac1a0be54c9fjbe53cb22df5fn397cd2c45b66c87"}, "bucket_display_name": "sample-bucket-displayname", "bucket_id": "samplebucket123", "bucket_type": "ibm_cos", "created_by": "<username>@<domain>.com", "created_on": "1686120645", "description": "COS bucket for customer data", "managed_by": "ibm", "region": "us-south", "state": "active", "storage_details": {"access_key": "<access_key>", "application_id": "<application_id>", "auth_mode": "<account_key/sas/service_principle>", "container_name": "sample-container", "directory_id": "<directory_id>", "endpoint": "abfss://<container_name>@<storage_account_name>.dfs.core.windows.net/", "sas_token": "<sas_token>", "secret_key": "secret_key", "storage_account_name": "sample-storage"}, "tags": ["tags"]}]}'
+        mock_response = '{"bucket_registrations": [{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "bucket_details": {"access_key": "<access_key>", "bucket_name": "sample-bucket", "endpoint": "https://s3.us-south.cloud-object-storage.appdomain.cloud/", "key_file": "key_file", "provider": "ibm-cos", "region": "us-south", "secret_key": "secret_key"}, "bucket_display_name": "sample-bucket-displayname", "bucket_id": "samplebucket123", "bucket_type": "ibm_cos", "created_by": "<username>@<domain>.com", "created_on": "1686120645", "description": "COS bucket for customer data", "managed_by": "ibm", "region": "us-south", "state": "active", "storage_details": {"access_key": "<access_key>", "application_id": "<application_id>", "auth_mode": "<account_key/sas/service_principle>", "container_name": "sample-container", "directory_id": "<directory_id>", "endpoint": "abfss://<container_name>@<storage_account_name>.dfs.core.windows.net/", "sas_token": "<sas_token>", "secret_key": "secret_key", "storage_account_name": "sample-storage"}, "system_bucket_update_credentials": true, "tags": ["tags"]}]}'
         responses.add(
             responses.GET,
             url,
@@ -141,7 +142,7 @@ class TestListBucketRegistrations:
         """
         # Set up mock
         url = preprocess_url('/bucket_registrations')
-        mock_response = '{"bucket_registrations": [{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "bucket_details": {"access_key": "b9cbf248ea5c4c96947e64407108559j", "bucket_name": "sample-bucket", "endpoint": "https://s3.<region>.cloud-object-storage.appdomain.cloud/", "key_file": "key_file", "provider": "ibm_cos", "region": "us-south", "secret_key": "13b4045cac1a0be54c9fjbe53cb22df5fn397cd2c45b66c87"}, "bucket_display_name": "sample-bucket-displayname", "bucket_id": "samplebucket123", "bucket_type": "ibm_cos", "created_by": "<username>@<domain>.com", "created_on": "1686120645", "description": "COS bucket for customer data", "managed_by": "ibm", "region": "us-south", "state": "active", "storage_details": {"access_key": "<access_key>", "application_id": "<application_id>", "auth_mode": "<account_key/sas/service_principle>", "container_name": "sample-container", "directory_id": "<directory_id>", "endpoint": "abfss://<container_name>@<storage_account_name>.dfs.core.windows.net/", "sas_token": "<sas_token>", "secret_key": "secret_key", "storage_account_name": "sample-storage"}, "tags": ["tags"]}]}'
+        mock_response = '{"bucket_registrations": [{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "bucket_details": {"access_key": "<access_key>", "bucket_name": "sample-bucket", "endpoint": "https://s3.us-south.cloud-object-storage.appdomain.cloud/", "key_file": "key_file", "provider": "ibm-cos", "region": "us-south", "secret_key": "secret_key"}, "bucket_display_name": "sample-bucket-displayname", "bucket_id": "samplebucket123", "bucket_type": "ibm_cos", "created_by": "<username>@<domain>.com", "created_on": "1686120645", "description": "COS bucket for customer data", "managed_by": "ibm", "region": "us-south", "state": "active", "storage_details": {"access_key": "<access_key>", "application_id": "<application_id>", "auth_mode": "<account_key/sas/service_principle>", "container_name": "sample-container", "directory_id": "<directory_id>", "endpoint": "abfss://<container_name>@<storage_account_name>.dfs.core.windows.net/", "sas_token": "<sas_token>", "secret_key": "secret_key", "storage_account_name": "sample-storage"}, "system_bucket_update_credentials": true, "tags": ["tags"]}]}'
         responses.add(
             responses.GET,
             url,
@@ -179,7 +180,7 @@ class TestCreateBucketRegistration:
         """
         # Set up mock
         url = preprocess_url('/bucket_registrations')
-        mock_response = '{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "bucket_details": {"access_key": "b9cbf248ea5c4c96947e64407108559j", "bucket_name": "sample-bucket", "endpoint": "https://s3.<region>.cloud-object-storage.appdomain.cloud/", "key_file": "key_file", "provider": "ibm_cos", "region": "us-south", "secret_key": "13b4045cac1a0be54c9fjbe53cb22df5fn397cd2c45b66c87"}, "bucket_display_name": "sample-bucket-displayname", "bucket_id": "samplebucket123", "bucket_type": "ibm_cos", "created_by": "<username>@<domain>.com", "created_on": "1686120645", "description": "COS bucket for customer data", "managed_by": "ibm", "region": "us-south", "state": "active", "storage_details": {"access_key": "<access_key>", "application_id": "<application_id>", "auth_mode": "<account_key/sas/service_principle>", "container_name": "sample-container", "directory_id": "<directory_id>", "endpoint": "abfss://<container_name>@<storage_account_name>.dfs.core.windows.net/", "sas_token": "<sas_token>", "secret_key": "secret_key", "storage_account_name": "sample-storage"}, "tags": ["tags"]}'
+        mock_response = '{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "bucket_details": {"access_key": "<access_key>", "bucket_name": "sample-bucket", "endpoint": "https://s3.us-south.cloud-object-storage.appdomain.cloud/", "key_file": "key_file", "provider": "ibm-cos", "region": "us-south", "secret_key": "secret_key"}, "bucket_display_name": "sample-bucket-displayname", "bucket_id": "samplebucket123", "bucket_type": "ibm_cos", "created_by": "<username>@<domain>.com", "created_on": "1686120645", "description": "COS bucket for customer data", "managed_by": "ibm", "region": "us-south", "state": "active", "storage_details": {"access_key": "<access_key>", "application_id": "<application_id>", "auth_mode": "<account_key/sas/service_principle>", "container_name": "sample-container", "directory_id": "<directory_id>", "endpoint": "abfss://<container_name>@<storage_account_name>.dfs.core.windows.net/", "sas_token": "<sas_token>", "secret_key": "secret_key", "storage_account_name": "sample-storage"}, "system_bucket_update_credentials": true, "tags": ["tags"]}'
         responses.add(
             responses.POST,
             url,
@@ -196,13 +197,13 @@ class TestCreateBucketRegistration:
 
         # Construct a dict representation of a BucketDetails model
         bucket_details_model = {}
-        bucket_details_model['access_key'] = 'b9cbf248ea5c4c96947e64407108559j'
+        bucket_details_model['access_key'] = '<access_key>'
         bucket_details_model['bucket_name'] = 'sample-bucket'
-        bucket_details_model['endpoint'] = 'https://s3.<region>.cloud-object-storage.appdomain.cloud/'
+        bucket_details_model['endpoint'] = 'https://s3.us-south.cloud-object-storage.appdomain.cloud/'
         bucket_details_model['key_file'] = 'key_file'
-        bucket_details_model['provider'] = 'ibm_cos'
+        bucket_details_model['provider'] = 'ibm-cos'
         bucket_details_model['region'] = 'us-south'
-        bucket_details_model['secret_key'] = '13b4045cac1a0be54c9fjbe53cb22df5fn397cd2c45b66c87'
+        bucket_details_model['secret_key'] = 'secret_key'
 
         # Construct a dict representation of a StorageDetails model
         storage_details_model = {}
@@ -217,12 +218,12 @@ class TestCreateBucketRegistration:
         storage_details_model['storage_account_name'] = 'sample-storage'
 
         # Set up parameter values
+        bucket_display_name = 'sample-bucket-displayname'
         bucket_type = 'ibm_cos'
         description = 'COS bucket for customer data'
         managed_by = 'ibm'
         associated_catalog = bucket_catalog_model
         bucket_details = bucket_details_model
-        bucket_display_name = 'sample-bucket-displayname'
         region = 'us-south'
         storage_details = storage_details_model
         tags = ['bucket-tag1', 'bucket-tag2']
@@ -230,12 +231,12 @@ class TestCreateBucketRegistration:
 
         # Invoke method
         response = _service.create_bucket_registration(
+            bucket_display_name,
             bucket_type,
             description,
             managed_by,
             associated_catalog=associated_catalog,
             bucket_details=bucket_details,
-            bucket_display_name=bucket_display_name,
             region=region,
             storage_details=storage_details,
             tags=tags,
@@ -243,17 +244,17 @@ class TestCreateBucketRegistration:
             headers={},
         )
 
-        # Check for correct operation.
+        # Check for correct operation
         assert len(responses.calls) == 1
         assert response.status_code == 201
         # Validate body params
         req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
+        assert req_body['bucket_display_name'] == 'sample-bucket-displayname'
         assert req_body['bucket_type'] == 'ibm_cos'
         assert req_body['description'] == 'COS bucket for customer data'
         assert req_body['managed_by'] == 'ibm'
         assert req_body['associated_catalog'] == bucket_catalog_model
         assert req_body['bucket_details'] == bucket_details_model
-        assert req_body['bucket_display_name'] == 'sample-bucket-displayname'
         assert req_body['region'] == 'us-south'
         assert req_body['storage_details'] == storage_details_model
         assert req_body['tags'] == ['bucket-tag1', 'bucket-tag2']
@@ -274,7 +275,7 @@ class TestCreateBucketRegistration:
         """
         # Set up mock
         url = preprocess_url('/bucket_registrations')
-        mock_response = '{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "bucket_details": {"access_key": "b9cbf248ea5c4c96947e64407108559j", "bucket_name": "sample-bucket", "endpoint": "https://s3.<region>.cloud-object-storage.appdomain.cloud/", "key_file": "key_file", "provider": "ibm_cos", "region": "us-south", "secret_key": "13b4045cac1a0be54c9fjbe53cb22df5fn397cd2c45b66c87"}, "bucket_display_name": "sample-bucket-displayname", "bucket_id": "samplebucket123", "bucket_type": "ibm_cos", "created_by": "<username>@<domain>.com", "created_on": "1686120645", "description": "COS bucket for customer data", "managed_by": "ibm", "region": "us-south", "state": "active", "storage_details": {"access_key": "<access_key>", "application_id": "<application_id>", "auth_mode": "<account_key/sas/service_principle>", "container_name": "sample-container", "directory_id": "<directory_id>", "endpoint": "abfss://<container_name>@<storage_account_name>.dfs.core.windows.net/", "sas_token": "<sas_token>", "secret_key": "secret_key", "storage_account_name": "sample-storage"}, "tags": ["tags"]}'
+        mock_response = '{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "bucket_details": {"access_key": "<access_key>", "bucket_name": "sample-bucket", "endpoint": "https://s3.us-south.cloud-object-storage.appdomain.cloud/", "key_file": "key_file", "provider": "ibm-cos", "region": "us-south", "secret_key": "secret_key"}, "bucket_display_name": "sample-bucket-displayname", "bucket_id": "samplebucket123", "bucket_type": "ibm_cos", "created_by": "<username>@<domain>.com", "created_on": "1686120645", "description": "COS bucket for customer data", "managed_by": "ibm", "region": "us-south", "state": "active", "storage_details": {"access_key": "<access_key>", "application_id": "<application_id>", "auth_mode": "<account_key/sas/service_principle>", "container_name": "sample-container", "directory_id": "<directory_id>", "endpoint": "abfss://<container_name>@<storage_account_name>.dfs.core.windows.net/", "sas_token": "<sas_token>", "secret_key": "secret_key", "storage_account_name": "sample-storage"}, "system_bucket_update_credentials": true, "tags": ["tags"]}'
         responses.add(
             responses.POST,
             url,
@@ -291,13 +292,13 @@ class TestCreateBucketRegistration:
 
         # Construct a dict representation of a BucketDetails model
         bucket_details_model = {}
-        bucket_details_model['access_key'] = 'b9cbf248ea5c4c96947e64407108559j'
+        bucket_details_model['access_key'] = '<access_key>'
         bucket_details_model['bucket_name'] = 'sample-bucket'
-        bucket_details_model['endpoint'] = 'https://s3.<region>.cloud-object-storage.appdomain.cloud/'
+        bucket_details_model['endpoint'] = 'https://s3.us-south.cloud-object-storage.appdomain.cloud/'
         bucket_details_model['key_file'] = 'key_file'
-        bucket_details_model['provider'] = 'ibm_cos'
+        bucket_details_model['provider'] = 'ibm-cos'
         bucket_details_model['region'] = 'us-south'
-        bucket_details_model['secret_key'] = '13b4045cac1a0be54c9fjbe53cb22df5fn397cd2c45b66c87'
+        bucket_details_model['secret_key'] = 'secret_key'
 
         # Construct a dict representation of a StorageDetails model
         storage_details_model = {}
@@ -312,24 +313,24 @@ class TestCreateBucketRegistration:
         storage_details_model['storage_account_name'] = 'sample-storage'
 
         # Set up parameter values
+        bucket_display_name = 'sample-bucket-displayname'
         bucket_type = 'ibm_cos'
         description = 'COS bucket for customer data'
         managed_by = 'ibm'
         associated_catalog = bucket_catalog_model
         bucket_details = bucket_details_model
-        bucket_display_name = 'sample-bucket-displayname'
         region = 'us-south'
         storage_details = storage_details_model
         tags = ['bucket-tag1', 'bucket-tag2']
 
         # Invoke method
         response = _service.create_bucket_registration(
+            bucket_display_name,
             bucket_type,
             description,
             managed_by,
             associated_catalog=associated_catalog,
             bucket_details=bucket_details,
-            bucket_display_name=bucket_display_name,
             region=region,
             storage_details=storage_details,
             tags=tags,
@@ -341,12 +342,12 @@ class TestCreateBucketRegistration:
         assert response.status_code == 201
         # Validate body params
         req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
+        assert req_body['bucket_display_name'] == 'sample-bucket-displayname'
         assert req_body['bucket_type'] == 'ibm_cos'
         assert req_body['description'] == 'COS bucket for customer data'
         assert req_body['managed_by'] == 'ibm'
         assert req_body['associated_catalog'] == bucket_catalog_model
         assert req_body['bucket_details'] == bucket_details_model
-        assert req_body['bucket_display_name'] == 'sample-bucket-displayname'
         assert req_body['region'] == 'us-south'
         assert req_body['storage_details'] == storage_details_model
         assert req_body['tags'] == ['bucket-tag1', 'bucket-tag2']
@@ -367,7 +368,7 @@ class TestCreateBucketRegistration:
         """
         # Set up mock
         url = preprocess_url('/bucket_registrations')
-        mock_response = '{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "bucket_details": {"access_key": "b9cbf248ea5c4c96947e64407108559j", "bucket_name": "sample-bucket", "endpoint": "https://s3.<region>.cloud-object-storage.appdomain.cloud/", "key_file": "key_file", "provider": "ibm_cos", "region": "us-south", "secret_key": "13b4045cac1a0be54c9fjbe53cb22df5fn397cd2c45b66c87"}, "bucket_display_name": "sample-bucket-displayname", "bucket_id": "samplebucket123", "bucket_type": "ibm_cos", "created_by": "<username>@<domain>.com", "created_on": "1686120645", "description": "COS bucket for customer data", "managed_by": "ibm", "region": "us-south", "state": "active", "storage_details": {"access_key": "<access_key>", "application_id": "<application_id>", "auth_mode": "<account_key/sas/service_principle>", "container_name": "sample-container", "directory_id": "<directory_id>", "endpoint": "abfss://<container_name>@<storage_account_name>.dfs.core.windows.net/", "sas_token": "<sas_token>", "secret_key": "secret_key", "storage_account_name": "sample-storage"}, "tags": ["tags"]}'
+        mock_response = '{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "bucket_details": {"access_key": "<access_key>", "bucket_name": "sample-bucket", "endpoint": "https://s3.us-south.cloud-object-storage.appdomain.cloud/", "key_file": "key_file", "provider": "ibm-cos", "region": "us-south", "secret_key": "secret_key"}, "bucket_display_name": "sample-bucket-displayname", "bucket_id": "samplebucket123", "bucket_type": "ibm_cos", "created_by": "<username>@<domain>.com", "created_on": "1686120645", "description": "COS bucket for customer data", "managed_by": "ibm", "region": "us-south", "state": "active", "storage_details": {"access_key": "<access_key>", "application_id": "<application_id>", "auth_mode": "<account_key/sas/service_principle>", "container_name": "sample-container", "directory_id": "<directory_id>", "endpoint": "abfss://<container_name>@<storage_account_name>.dfs.core.windows.net/", "sas_token": "<sas_token>", "secret_key": "secret_key", "storage_account_name": "sample-storage"}, "system_bucket_update_credentials": true, "tags": ["tags"]}'
         responses.add(
             responses.POST,
             url,
@@ -384,13 +385,13 @@ class TestCreateBucketRegistration:
 
         # Construct a dict representation of a BucketDetails model
         bucket_details_model = {}
-        bucket_details_model['access_key'] = 'b9cbf248ea5c4c96947e64407108559j'
+        bucket_details_model['access_key'] = '<access_key>'
         bucket_details_model['bucket_name'] = 'sample-bucket'
-        bucket_details_model['endpoint'] = 'https://s3.<region>.cloud-object-storage.appdomain.cloud/'
+        bucket_details_model['endpoint'] = 'https://s3.us-south.cloud-object-storage.appdomain.cloud/'
         bucket_details_model['key_file'] = 'key_file'
-        bucket_details_model['provider'] = 'ibm_cos'
+        bucket_details_model['provider'] = 'ibm-cos'
         bucket_details_model['region'] = 'us-south'
-        bucket_details_model['secret_key'] = '13b4045cac1a0be54c9fjbe53cb22df5fn397cd2c45b66c87'
+        bucket_details_model['secret_key'] = 'secret_key'
 
         # Construct a dict representation of a StorageDetails model
         storage_details_model = {}
@@ -405,18 +406,19 @@ class TestCreateBucketRegistration:
         storage_details_model['storage_account_name'] = 'sample-storage'
 
         # Set up parameter values
+        bucket_display_name = 'sample-bucket-displayname'
         bucket_type = 'ibm_cos'
         description = 'COS bucket for customer data'
         managed_by = 'ibm'
         associated_catalog = bucket_catalog_model
         bucket_details = bucket_details_model
-        bucket_display_name = 'sample-bucket-displayname'
         region = 'us-south'
         storage_details = storage_details_model
         tags = ['bucket-tag1', 'bucket-tag2']
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
+            "bucket_display_name": bucket_display_name,
             "bucket_type": bucket_type,
             "description": description,
             "managed_by": managed_by,
@@ -448,7 +450,7 @@ class TestGetBucketRegistration:
         """
         # Set up mock
         url = preprocess_url('/bucket_registrations/testString')
-        mock_response = '{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "bucket_details": {"access_key": "b9cbf248ea5c4c96947e64407108559j", "bucket_name": "sample-bucket", "endpoint": "https://s3.<region>.cloud-object-storage.appdomain.cloud/", "key_file": "key_file", "provider": "ibm_cos", "region": "us-south", "secret_key": "13b4045cac1a0be54c9fjbe53cb22df5fn397cd2c45b66c87"}, "bucket_display_name": "sample-bucket-displayname", "bucket_id": "samplebucket123", "bucket_type": "ibm_cos", "created_by": "<username>@<domain>.com", "created_on": "1686120645", "description": "COS bucket for customer data", "managed_by": "ibm", "region": "us-south", "state": "active", "storage_details": {"access_key": "<access_key>", "application_id": "<application_id>", "auth_mode": "<account_key/sas/service_principle>", "container_name": "sample-container", "directory_id": "<directory_id>", "endpoint": "abfss://<container_name>@<storage_account_name>.dfs.core.windows.net/", "sas_token": "<sas_token>", "secret_key": "secret_key", "storage_account_name": "sample-storage"}, "tags": ["tags"]}'
+        mock_response = '{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "bucket_details": {"access_key": "<access_key>", "bucket_name": "sample-bucket", "endpoint": "https://s3.us-south.cloud-object-storage.appdomain.cloud/", "key_file": "key_file", "provider": "ibm-cos", "region": "us-south", "secret_key": "secret_key"}, "bucket_display_name": "sample-bucket-displayname", "bucket_id": "samplebucket123", "bucket_type": "ibm_cos", "created_by": "<username>@<domain>.com", "created_on": "1686120645", "description": "COS bucket for customer data", "managed_by": "ibm", "region": "us-south", "state": "active", "storage_details": {"access_key": "<access_key>", "application_id": "<application_id>", "auth_mode": "<account_key/sas/service_principle>", "container_name": "sample-container", "directory_id": "<directory_id>", "endpoint": "abfss://<container_name>@<storage_account_name>.dfs.core.windows.net/", "sas_token": "<sas_token>", "secret_key": "secret_key", "storage_account_name": "sample-storage"}, "system_bucket_update_credentials": true, "tags": ["tags"]}'
         responses.add(
             responses.GET,
             url,
@@ -488,7 +490,7 @@ class TestGetBucketRegistration:
         """
         # Set up mock
         url = preprocess_url('/bucket_registrations/testString')
-        mock_response = '{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "bucket_details": {"access_key": "b9cbf248ea5c4c96947e64407108559j", "bucket_name": "sample-bucket", "endpoint": "https://s3.<region>.cloud-object-storage.appdomain.cloud/", "key_file": "key_file", "provider": "ibm_cos", "region": "us-south", "secret_key": "13b4045cac1a0be54c9fjbe53cb22df5fn397cd2c45b66c87"}, "bucket_display_name": "sample-bucket-displayname", "bucket_id": "samplebucket123", "bucket_type": "ibm_cos", "created_by": "<username>@<domain>.com", "created_on": "1686120645", "description": "COS bucket for customer data", "managed_by": "ibm", "region": "us-south", "state": "active", "storage_details": {"access_key": "<access_key>", "application_id": "<application_id>", "auth_mode": "<account_key/sas/service_principle>", "container_name": "sample-container", "directory_id": "<directory_id>", "endpoint": "abfss://<container_name>@<storage_account_name>.dfs.core.windows.net/", "sas_token": "<sas_token>", "secret_key": "secret_key", "storage_account_name": "sample-storage"}, "tags": ["tags"]}'
+        mock_response = '{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "bucket_details": {"access_key": "<access_key>", "bucket_name": "sample-bucket", "endpoint": "https://s3.us-south.cloud-object-storage.appdomain.cloud/", "key_file": "key_file", "provider": "ibm-cos", "region": "us-south", "secret_key": "secret_key"}, "bucket_display_name": "sample-bucket-displayname", "bucket_id": "samplebucket123", "bucket_type": "ibm_cos", "created_by": "<username>@<domain>.com", "created_on": "1686120645", "description": "COS bucket for customer data", "managed_by": "ibm", "region": "us-south", "state": "active", "storage_details": {"access_key": "<access_key>", "application_id": "<application_id>", "auth_mode": "<account_key/sas/service_principle>", "container_name": "sample-container", "directory_id": "<directory_id>", "endpoint": "abfss://<container_name>@<storage_account_name>.dfs.core.windows.net/", "sas_token": "<sas_token>", "secret_key": "secret_key", "storage_account_name": "sample-storage"}, "system_bucket_update_credentials": true, "tags": ["tags"]}'
         responses.add(
             responses.GET,
             url,
@@ -526,7 +528,7 @@ class TestGetBucketRegistration:
         """
         # Set up mock
         url = preprocess_url('/bucket_registrations/testString')
-        mock_response = '{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "bucket_details": {"access_key": "b9cbf248ea5c4c96947e64407108559j", "bucket_name": "sample-bucket", "endpoint": "https://s3.<region>.cloud-object-storage.appdomain.cloud/", "key_file": "key_file", "provider": "ibm_cos", "region": "us-south", "secret_key": "13b4045cac1a0be54c9fjbe53cb22df5fn397cd2c45b66c87"}, "bucket_display_name": "sample-bucket-displayname", "bucket_id": "samplebucket123", "bucket_type": "ibm_cos", "created_by": "<username>@<domain>.com", "created_on": "1686120645", "description": "COS bucket for customer data", "managed_by": "ibm", "region": "us-south", "state": "active", "storage_details": {"access_key": "<access_key>", "application_id": "<application_id>", "auth_mode": "<account_key/sas/service_principle>", "container_name": "sample-container", "directory_id": "<directory_id>", "endpoint": "abfss://<container_name>@<storage_account_name>.dfs.core.windows.net/", "sas_token": "<sas_token>", "secret_key": "secret_key", "storage_account_name": "sample-storage"}, "tags": ["tags"]}'
+        mock_response = '{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "bucket_details": {"access_key": "<access_key>", "bucket_name": "sample-bucket", "endpoint": "https://s3.us-south.cloud-object-storage.appdomain.cloud/", "key_file": "key_file", "provider": "ibm-cos", "region": "us-south", "secret_key": "secret_key"}, "bucket_display_name": "sample-bucket-displayname", "bucket_id": "samplebucket123", "bucket_type": "ibm_cos", "created_by": "<username>@<domain>.com", "created_on": "1686120645", "description": "COS bucket for customer data", "managed_by": "ibm", "region": "us-south", "state": "active", "storage_details": {"access_key": "<access_key>", "application_id": "<application_id>", "auth_mode": "<account_key/sas/service_principle>", "container_name": "sample-container", "directory_id": "<directory_id>", "endpoint": "abfss://<container_name>@<storage_account_name>.dfs.core.windows.net/", "sas_token": "<sas_token>", "secret_key": "secret_key", "storage_account_name": "sample-storage"}, "system_bucket_update_credentials": true, "tags": ["tags"]}'
         responses.add(
             responses.GET,
             url,
@@ -681,7 +683,7 @@ class TestUpdateBucketRegistration:
         """
         # Set up mock
         url = preprocess_url('/bucket_registrations/testString')
-        mock_response = '{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "bucket_details": {"access_key": "b9cbf248ea5c4c96947e64407108559j", "bucket_name": "sample-bucket", "endpoint": "https://s3.<region>.cloud-object-storage.appdomain.cloud/", "key_file": "key_file", "provider": "ibm_cos", "region": "us-south", "secret_key": "13b4045cac1a0be54c9fjbe53cb22df5fn397cd2c45b66c87"}, "bucket_display_name": "sample-bucket-displayname", "bucket_id": "samplebucket123", "bucket_type": "ibm_cos", "created_by": "<username>@<domain>.com", "created_on": "1686120645", "description": "COS bucket for customer data", "managed_by": "ibm", "region": "us-south", "state": "active", "storage_details": {"access_key": "<access_key>", "application_id": "<application_id>", "auth_mode": "<account_key/sas/service_principle>", "container_name": "sample-container", "directory_id": "<directory_id>", "endpoint": "abfss://<container_name>@<storage_account_name>.dfs.core.windows.net/", "sas_token": "<sas_token>", "secret_key": "secret_key", "storage_account_name": "sample-storage"}, "tags": ["tags"]}'
+        mock_response = '{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "bucket_details": {"access_key": "<access_key>", "bucket_name": "sample-bucket", "endpoint": "https://s3.us-south.cloud-object-storage.appdomain.cloud/", "key_file": "key_file", "provider": "ibm-cos", "region": "us-south", "secret_key": "secret_key"}, "bucket_display_name": "sample-bucket-displayname", "bucket_id": "samplebucket123", "bucket_type": "ibm_cos", "created_by": "<username>@<domain>.com", "created_on": "1686120645", "description": "COS bucket for customer data", "managed_by": "ibm", "region": "us-south", "state": "active", "storage_details": {"access_key": "<access_key>", "application_id": "<application_id>", "auth_mode": "<account_key/sas/service_principle>", "container_name": "sample-container", "directory_id": "<directory_id>", "endpoint": "abfss://<container_name>@<storage_account_name>.dfs.core.windows.net/", "sas_token": "<sas_token>", "secret_key": "secret_key", "storage_account_name": "sample-storage"}, "system_bucket_update_credentials": true, "tags": ["tags"]}'
         responses.add(
             responses.PATCH,
             url,
@@ -692,19 +694,20 @@ class TestUpdateBucketRegistration:
 
         # Construct a dict representation of a BucketDetails model
         bucket_details_model = {}
-        bucket_details_model['access_key'] = 'b9cbf248ea5c4c96947e64407108559j'
+        bucket_details_model['access_key'] = '<access_key>'
         bucket_details_model['bucket_name'] = 'sample-bucket'
-        bucket_details_model['endpoint'] = 'https://s3.<region>.cloud-object-storage.appdomain.cloud/'
+        bucket_details_model['endpoint'] = 'https://s3.us-south.cloud-object-storage.appdomain.cloud/'
         bucket_details_model['key_file'] = 'key_file'
-        bucket_details_model['provider'] = 'ibm_cos'
+        bucket_details_model['provider'] = 'ibm-cos'
         bucket_details_model['region'] = 'us-south'
-        bucket_details_model['secret_key'] = '13b4045cac1a0be54c9fjbe53cb22df5fn397cd2c45b66c87'
+        bucket_details_model['secret_key'] = 'secret_key'
 
         # Construct a dict representation of a BucketRegistrationPatch model
         bucket_registration_patch_model = {}
         bucket_registration_patch_model['bucket_details'] = bucket_details_model
         bucket_registration_patch_model['bucket_display_name'] = 'sample-bucket-displayname'
         bucket_registration_patch_model['description'] = 'COS bucket for customer data'
+        bucket_registration_patch_model['system_bucket_update_credentials'] = True
         bucket_registration_patch_model['tags'] = ['testbucket', 'userbucket']
 
         # Set up parameter values
@@ -743,7 +746,7 @@ class TestUpdateBucketRegistration:
         """
         # Set up mock
         url = preprocess_url('/bucket_registrations/testString')
-        mock_response = '{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "bucket_details": {"access_key": "b9cbf248ea5c4c96947e64407108559j", "bucket_name": "sample-bucket", "endpoint": "https://s3.<region>.cloud-object-storage.appdomain.cloud/", "key_file": "key_file", "provider": "ibm_cos", "region": "us-south", "secret_key": "13b4045cac1a0be54c9fjbe53cb22df5fn397cd2c45b66c87"}, "bucket_display_name": "sample-bucket-displayname", "bucket_id": "samplebucket123", "bucket_type": "ibm_cos", "created_by": "<username>@<domain>.com", "created_on": "1686120645", "description": "COS bucket for customer data", "managed_by": "ibm", "region": "us-south", "state": "active", "storage_details": {"access_key": "<access_key>", "application_id": "<application_id>", "auth_mode": "<account_key/sas/service_principle>", "container_name": "sample-container", "directory_id": "<directory_id>", "endpoint": "abfss://<container_name>@<storage_account_name>.dfs.core.windows.net/", "sas_token": "<sas_token>", "secret_key": "secret_key", "storage_account_name": "sample-storage"}, "tags": ["tags"]}'
+        mock_response = '{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "bucket_details": {"access_key": "<access_key>", "bucket_name": "sample-bucket", "endpoint": "https://s3.us-south.cloud-object-storage.appdomain.cloud/", "key_file": "key_file", "provider": "ibm-cos", "region": "us-south", "secret_key": "secret_key"}, "bucket_display_name": "sample-bucket-displayname", "bucket_id": "samplebucket123", "bucket_type": "ibm_cos", "created_by": "<username>@<domain>.com", "created_on": "1686120645", "description": "COS bucket for customer data", "managed_by": "ibm", "region": "us-south", "state": "active", "storage_details": {"access_key": "<access_key>", "application_id": "<application_id>", "auth_mode": "<account_key/sas/service_principle>", "container_name": "sample-container", "directory_id": "<directory_id>", "endpoint": "abfss://<container_name>@<storage_account_name>.dfs.core.windows.net/", "sas_token": "<sas_token>", "secret_key": "secret_key", "storage_account_name": "sample-storage"}, "system_bucket_update_credentials": true, "tags": ["tags"]}'
         responses.add(
             responses.PATCH,
             url,
@@ -754,19 +757,20 @@ class TestUpdateBucketRegistration:
 
         # Construct a dict representation of a BucketDetails model
         bucket_details_model = {}
-        bucket_details_model['access_key'] = 'b9cbf248ea5c4c96947e64407108559j'
+        bucket_details_model['access_key'] = '<access_key>'
         bucket_details_model['bucket_name'] = 'sample-bucket'
-        bucket_details_model['endpoint'] = 'https://s3.<region>.cloud-object-storage.appdomain.cloud/'
+        bucket_details_model['endpoint'] = 'https://s3.us-south.cloud-object-storage.appdomain.cloud/'
         bucket_details_model['key_file'] = 'key_file'
-        bucket_details_model['provider'] = 'ibm_cos'
+        bucket_details_model['provider'] = 'ibm-cos'
         bucket_details_model['region'] = 'us-south'
-        bucket_details_model['secret_key'] = '13b4045cac1a0be54c9fjbe53cb22df5fn397cd2c45b66c87'
+        bucket_details_model['secret_key'] = 'secret_key'
 
         # Construct a dict representation of a BucketRegistrationPatch model
         bucket_registration_patch_model = {}
         bucket_registration_patch_model['bucket_details'] = bucket_details_model
         bucket_registration_patch_model['bucket_display_name'] = 'sample-bucket-displayname'
         bucket_registration_patch_model['description'] = 'COS bucket for customer data'
+        bucket_registration_patch_model['system_bucket_update_credentials'] = True
         bucket_registration_patch_model['tags'] = ['testbucket', 'userbucket']
 
         # Set up parameter values
@@ -803,7 +807,7 @@ class TestUpdateBucketRegistration:
         """
         # Set up mock
         url = preprocess_url('/bucket_registrations/testString')
-        mock_response = '{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "bucket_details": {"access_key": "b9cbf248ea5c4c96947e64407108559j", "bucket_name": "sample-bucket", "endpoint": "https://s3.<region>.cloud-object-storage.appdomain.cloud/", "key_file": "key_file", "provider": "ibm_cos", "region": "us-south", "secret_key": "13b4045cac1a0be54c9fjbe53cb22df5fn397cd2c45b66c87"}, "bucket_display_name": "sample-bucket-displayname", "bucket_id": "samplebucket123", "bucket_type": "ibm_cos", "created_by": "<username>@<domain>.com", "created_on": "1686120645", "description": "COS bucket for customer data", "managed_by": "ibm", "region": "us-south", "state": "active", "storage_details": {"access_key": "<access_key>", "application_id": "<application_id>", "auth_mode": "<account_key/sas/service_principle>", "container_name": "sample-container", "directory_id": "<directory_id>", "endpoint": "abfss://<container_name>@<storage_account_name>.dfs.core.windows.net/", "sas_token": "<sas_token>", "secret_key": "secret_key", "storage_account_name": "sample-storage"}, "tags": ["tags"]}'
+        mock_response = '{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "bucket_details": {"access_key": "<access_key>", "bucket_name": "sample-bucket", "endpoint": "https://s3.us-south.cloud-object-storage.appdomain.cloud/", "key_file": "key_file", "provider": "ibm-cos", "region": "us-south", "secret_key": "secret_key"}, "bucket_display_name": "sample-bucket-displayname", "bucket_id": "samplebucket123", "bucket_type": "ibm_cos", "created_by": "<username>@<domain>.com", "created_on": "1686120645", "description": "COS bucket for customer data", "managed_by": "ibm", "region": "us-south", "state": "active", "storage_details": {"access_key": "<access_key>", "application_id": "<application_id>", "auth_mode": "<account_key/sas/service_principle>", "container_name": "sample-container", "directory_id": "<directory_id>", "endpoint": "abfss://<container_name>@<storage_account_name>.dfs.core.windows.net/", "sas_token": "<sas_token>", "secret_key": "secret_key", "storage_account_name": "sample-storage"}, "system_bucket_update_credentials": true, "tags": ["tags"]}'
         responses.add(
             responses.PATCH,
             url,
@@ -814,19 +818,20 @@ class TestUpdateBucketRegistration:
 
         # Construct a dict representation of a BucketDetails model
         bucket_details_model = {}
-        bucket_details_model['access_key'] = 'b9cbf248ea5c4c96947e64407108559j'
+        bucket_details_model['access_key'] = '<access_key>'
         bucket_details_model['bucket_name'] = 'sample-bucket'
-        bucket_details_model['endpoint'] = 'https://s3.<region>.cloud-object-storage.appdomain.cloud/'
+        bucket_details_model['endpoint'] = 'https://s3.us-south.cloud-object-storage.appdomain.cloud/'
         bucket_details_model['key_file'] = 'key_file'
-        bucket_details_model['provider'] = 'ibm_cos'
+        bucket_details_model['provider'] = 'ibm-cos'
         bucket_details_model['region'] = 'us-south'
-        bucket_details_model['secret_key'] = '13b4045cac1a0be54c9fjbe53cb22df5fn397cd2c45b66c87'
+        bucket_details_model['secret_key'] = 'secret_key'
 
         # Construct a dict representation of a BucketRegistrationPatch model
         bucket_registration_patch_model = {}
         bucket_registration_patch_model['bucket_details'] = bucket_details_model
         bucket_registration_patch_model['bucket_display_name'] = 'sample-bucket-displayname'
         bucket_registration_patch_model['description'] = 'COS bucket for customer data'
+        bucket_registration_patch_model['system_bucket_update_credentials'] = True
         bucket_registration_patch_model['tags'] = ['testbucket', 'userbucket']
 
         # Set up parameter values
@@ -1234,13 +1239,13 @@ class TestGetBucketObjectProperties:
             status=201,
         )
 
-        # Construct a dict representation of a Path model
-        path_model = {}
-        path_model['path'] = 'string'
+        # Construct a dict representation of a BucketObjectSizePathsItems model
+        bucket_object_size_paths_items_model = {}
+        bucket_object_size_paths_items_model['path'] = 'testString'
 
         # Set up parameter values
         bucket_id = 'testString'
-        paths = [path_model]
+        paths = [bucket_object_size_paths_items_model]
         auth_instance_id = 'testString'
 
         # Invoke method
@@ -1256,7 +1261,7 @@ class TestGetBucketObjectProperties:
         assert response.status_code == 201
         # Validate body params
         req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
-        assert req_body['paths'] == [path_model]
+        assert req_body['paths'] == [bucket_object_size_paths_items_model]
 
     def test_get_bucket_object_properties_all_params_with_retries(self):
         # Enable retries and run test_get_bucket_object_properties_all_params.
@@ -1283,13 +1288,13 @@ class TestGetBucketObjectProperties:
             status=201,
         )
 
-        # Construct a dict representation of a Path model
-        path_model = {}
-        path_model['path'] = 'string'
+        # Construct a dict representation of a BucketObjectSizePathsItems model
+        bucket_object_size_paths_items_model = {}
+        bucket_object_size_paths_items_model['path'] = 'testString'
 
         # Set up parameter values
         bucket_id = 'testString'
-        paths = [path_model]
+        paths = [bucket_object_size_paths_items_model]
 
         # Invoke method
         response = _service.get_bucket_object_properties(
@@ -1303,7 +1308,7 @@ class TestGetBucketObjectProperties:
         assert response.status_code == 201
         # Validate body params
         req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
-        assert req_body['paths'] == [path_model]
+        assert req_body['paths'] == [bucket_object_size_paths_items_model]
 
     def test_get_bucket_object_properties_required_params_with_retries(self):
         # Enable retries and run test_get_bucket_object_properties_required_params.
@@ -1330,13 +1335,13 @@ class TestGetBucketObjectProperties:
             status=201,
         )
 
-        # Construct a dict representation of a Path model
-        path_model = {}
-        path_model['path'] = 'string'
+        # Construct a dict representation of a BucketObjectSizePathsItems model
+        bucket_object_size_paths_items_model = {}
+        bucket_object_size_paths_items_model['path'] = 'testString'
 
         # Set up parameter values
         bucket_id = 'testString'
-        paths = [path_model]
+        paths = [bucket_object_size_paths_items_model]
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
@@ -1355,6 +1360,308 @@ class TestGetBucketObjectProperties:
         # Disable retries and run test_get_bucket_object_properties_value_error.
         _service.disable_retries()
         self.test_get_bucket_object_properties_value_error()
+
+
+class TestGenerateBenchmarkReport:
+    """
+    Test Class for generate_benchmark_report
+    """
+
+    @responses.activate
+    def test_generate_benchmark_report_all_params(self):
+        """
+        generate_benchmark_report()
+        """
+        # Set up mock
+        url = preprocess_url('/generate_benchmark_report')
+        mock_response = '{"response": {"message": "message", "req_id": "req_id", "status": "status"}}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
+
+        # Set up parameter values
+        bucket_name = 'testString'
+        engine_id = 'testString'
+        pod_name = 'testString'
+        file_count = 'testString'
+        file_size = 'testString'
+        auth_instance_id = 'testString'
+
+        # Invoke method
+        response = _service.generate_benchmark_report(
+            bucket_name,
+            engine_id,
+            pod_name,
+            file_count=file_count,
+            file_size=file_size,
+            auth_instance_id=auth_instance_id,
+            headers={},
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+        # Validate query params
+        query_string = responses.calls[0].request.url.split('?', 1)[1]
+        query_string = urllib.parse.unquote_plus(query_string)
+        assert 'bucket_name={}'.format(bucket_name) in query_string
+        assert 'engine_id={}'.format(engine_id) in query_string
+        assert 'pod_name={}'.format(pod_name) in query_string
+        assert 'file_count={}'.format(file_count) in query_string
+        assert 'file_size={}'.format(file_size) in query_string
+
+    def test_generate_benchmark_report_all_params_with_retries(self):
+        # Enable retries and run test_generate_benchmark_report_all_params.
+        _service.enable_retries()
+        self.test_generate_benchmark_report_all_params()
+
+        # Disable retries and run test_generate_benchmark_report_all_params.
+        _service.disable_retries()
+        self.test_generate_benchmark_report_all_params()
+
+    @responses.activate
+    def test_generate_benchmark_report_required_params(self):
+        """
+        test_generate_benchmark_report_required_params()
+        """
+        # Set up mock
+        url = preprocess_url('/generate_benchmark_report')
+        mock_response = '{"response": {"message": "message", "req_id": "req_id", "status": "status"}}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
+
+        # Set up parameter values
+        bucket_name = 'testString'
+        engine_id = 'testString'
+        pod_name = 'testString'
+
+        # Invoke method
+        response = _service.generate_benchmark_report(
+            bucket_name,
+            engine_id,
+            pod_name,
+            headers={},
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+        # Validate query params
+        query_string = responses.calls[0].request.url.split('?', 1)[1]
+        query_string = urllib.parse.unquote_plus(query_string)
+        assert 'bucket_name={}'.format(bucket_name) in query_string
+        assert 'engine_id={}'.format(engine_id) in query_string
+        assert 'pod_name={}'.format(pod_name) in query_string
+
+    def test_generate_benchmark_report_required_params_with_retries(self):
+        # Enable retries and run test_generate_benchmark_report_required_params.
+        _service.enable_retries()
+        self.test_generate_benchmark_report_required_params()
+
+        # Disable retries and run test_generate_benchmark_report_required_params.
+        _service.disable_retries()
+        self.test_generate_benchmark_report_required_params()
+
+    @responses.activate
+    def test_generate_benchmark_report_value_error(self):
+        """
+        test_generate_benchmark_report_value_error()
+        """
+        # Set up mock
+        url = preprocess_url('/generate_benchmark_report')
+        mock_response = '{"response": {"message": "message", "req_id": "req_id", "status": "status"}}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
+
+        # Set up parameter values
+        bucket_name = 'testString'
+        engine_id = 'testString'
+        pod_name = 'testString'
+
+        # Pass in all but one required param and check for a ValueError
+        req_param_dict = {
+            "bucket_name": bucket_name,
+            "engine_id": engine_id,
+            "pod_name": pod_name,
+        }
+        for param in req_param_dict.keys():
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            with pytest.raises(ValueError):
+                _service.generate_benchmark_report(**req_copy)
+
+    def test_generate_benchmark_report_value_error_with_retries(self):
+        # Enable retries and run test_generate_benchmark_report_value_error.
+        _service.enable_retries()
+        self.test_generate_benchmark_report_value_error()
+
+        # Disable retries and run test_generate_benchmark_report_value_error.
+        _service.disable_retries()
+        self.test_generate_benchmark_report_value_error()
+
+
+class TestGenerateBenchmarkReportStatus:
+    """
+    Test Class for generate_benchmark_report_status
+    """
+
+    @responses.activate
+    def test_generate_benchmark_report_status_all_params(self):
+        """
+        generate_benchmark_report_status()
+        """
+        # Set up mock
+        url = preprocess_url('/generate_benchmark_report/status/testString')
+        mock_response = '{"data": {"bandwidth": {"download_bandwidth_mbps": "download_bandwidth_mbps", "upload_bandwidth_mbps": "upload_bandwidth_mbps"}, "date": "2019-01-01", "num_files": 0, "results": {"create_bucket_time_sec": "create_bucket_time_sec", "download_files_time_sec": "download_files_time_sec", "erase_bucket_time_sec": "erase_bucket_time_sec", "erase_objects_time_sec": "erase_objects_time_sec", "list_files_time_sec": "list_files_time_sec", "total_operations_time_sec": "total_operations_time_sec", "upload_files_time_sec": "upload_files_time_sec"}, "size_files": 0, "time": "time"}, "error": "error", "message": "message", "status": "status"}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
+
+        # Set up parameter values
+        req_id = 'testString'
+        engine_id = 'testString'
+        bucket_name = 'testString'
+        pod_name = 'testString'
+        auth_instance_id = 'testString'
+
+        # Invoke method
+        response = _service.generate_benchmark_report_status(
+            req_id,
+            engine_id,
+            bucket_name,
+            pod_name,
+            auth_instance_id=auth_instance_id,
+            headers={},
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+        # Validate query params
+        query_string = responses.calls[0].request.url.split('?', 1)[1]
+        query_string = urllib.parse.unquote_plus(query_string)
+        assert 'engine_id={}'.format(engine_id) in query_string
+        assert 'bucket_name={}'.format(bucket_name) in query_string
+        assert 'pod_name={}'.format(pod_name) in query_string
+
+    def test_generate_benchmark_report_status_all_params_with_retries(self):
+        # Enable retries and run test_generate_benchmark_report_status_all_params.
+        _service.enable_retries()
+        self.test_generate_benchmark_report_status_all_params()
+
+        # Disable retries and run test_generate_benchmark_report_status_all_params.
+        _service.disable_retries()
+        self.test_generate_benchmark_report_status_all_params()
+
+    @responses.activate
+    def test_generate_benchmark_report_status_required_params(self):
+        """
+        test_generate_benchmark_report_status_required_params()
+        """
+        # Set up mock
+        url = preprocess_url('/generate_benchmark_report/status/testString')
+        mock_response = '{"data": {"bandwidth": {"download_bandwidth_mbps": "download_bandwidth_mbps", "upload_bandwidth_mbps": "upload_bandwidth_mbps"}, "date": "2019-01-01", "num_files": 0, "results": {"create_bucket_time_sec": "create_bucket_time_sec", "download_files_time_sec": "download_files_time_sec", "erase_bucket_time_sec": "erase_bucket_time_sec", "erase_objects_time_sec": "erase_objects_time_sec", "list_files_time_sec": "list_files_time_sec", "total_operations_time_sec": "total_operations_time_sec", "upload_files_time_sec": "upload_files_time_sec"}, "size_files": 0, "time": "time"}, "error": "error", "message": "message", "status": "status"}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
+
+        # Set up parameter values
+        req_id = 'testString'
+        engine_id = 'testString'
+        bucket_name = 'testString'
+        pod_name = 'testString'
+
+        # Invoke method
+        response = _service.generate_benchmark_report_status(
+            req_id,
+            engine_id,
+            bucket_name,
+            pod_name,
+            headers={},
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+        # Validate query params
+        query_string = responses.calls[0].request.url.split('?', 1)[1]
+        query_string = urllib.parse.unquote_plus(query_string)
+        assert 'engine_id={}'.format(engine_id) in query_string
+        assert 'bucket_name={}'.format(bucket_name) in query_string
+        assert 'pod_name={}'.format(pod_name) in query_string
+
+    def test_generate_benchmark_report_status_required_params_with_retries(self):
+        # Enable retries and run test_generate_benchmark_report_status_required_params.
+        _service.enable_retries()
+        self.test_generate_benchmark_report_status_required_params()
+
+        # Disable retries and run test_generate_benchmark_report_status_required_params.
+        _service.disable_retries()
+        self.test_generate_benchmark_report_status_required_params()
+
+    @responses.activate
+    def test_generate_benchmark_report_status_value_error(self):
+        """
+        test_generate_benchmark_report_status_value_error()
+        """
+        # Set up mock
+        url = preprocess_url('/generate_benchmark_report/status/testString')
+        mock_response = '{"data": {"bandwidth": {"download_bandwidth_mbps": "download_bandwidth_mbps", "upload_bandwidth_mbps": "upload_bandwidth_mbps"}, "date": "2019-01-01", "num_files": 0, "results": {"create_bucket_time_sec": "create_bucket_time_sec", "download_files_time_sec": "download_files_time_sec", "erase_bucket_time_sec": "erase_bucket_time_sec", "erase_objects_time_sec": "erase_objects_time_sec", "list_files_time_sec": "list_files_time_sec", "total_operations_time_sec": "total_operations_time_sec", "upload_files_time_sec": "upload_files_time_sec"}, "size_files": 0, "time": "time"}, "error": "error", "message": "message", "status": "status"}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
+
+        # Set up parameter values
+        req_id = 'testString'
+        engine_id = 'testString'
+        bucket_name = 'testString'
+        pod_name = 'testString'
+
+        # Pass in all but one required param and check for a ValueError
+        req_param_dict = {
+            "req_id": req_id,
+            "engine_id": engine_id,
+            "bucket_name": bucket_name,
+            "pod_name": pod_name,
+        }
+        for param in req_param_dict.keys():
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            with pytest.raises(ValueError):
+                _service.generate_benchmark_report_status(**req_copy)
+
+    def test_generate_benchmark_report_status_value_error_with_retries(self):
+        # Enable retries and run test_generate_benchmark_report_status_value_error.
+        _service.enable_retries()
+        self.test_generate_benchmark_report_status_value_error()
+
+        # Disable retries and run test_generate_benchmark_report_status_value_error.
+        _service.disable_retries()
+        self.test_generate_benchmark_report_status_value_error()
 
 
 class TestCreateHdfsStorage:
@@ -1597,7 +1904,7 @@ class TestListDatabaseRegistrations:
         """
         # Set up mock
         url = preprocess_url('/database_registrations')
-        mock_response = '{"database_registrations": [{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "catalog_name": "sampleCatalog", "created_by": "user1@bim.com", "created_on": "1686792721", "database_details": {"authentication_type": "LDAP", "authentication_value": "LDAP", "broker_authentication_password": "samplepassword", "broker_authentication_type": "PASSWORD", "broker_authentication_user": "sampleuser", "broker_host": "samplehost", "broker_port": 4553, "certificate": "contents of a pem/crt file", "certificate_extension": "pem/crt", "connection_method": "basic, apikey", "connection_mode": "service_name", "connection_mode_value": "orclpdb", "connection_type": "JDBC, Arrow flight", "controller_authentication_password": "samplepassword", "controller_authentication_type": "PASSWORD", "controller_authentication_user": "sampleuser", "coordinator_host": "samplehost", "coordinator_port": 4553, "cpd_hostname": "samplecpdhostname", "credentials_key": "eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......", "database_name": "new_database", "database_properties": [{"encrypt": true, "key": "hive.metastore", "value": "glue"}], "hostname": "db2@<hostname>.com", "hostname_in_certificate": "samplehostname", "hosts": "abc.com:1234,xyz.com:4321", "informix_server": "ol_informix1410", "password": "samplepassword", "port": 4553, "project_id": "conops-bigquery", "sasl": true, "sasl_mechanism": "plain", "schema_name": "sampleSchema", "schemas": "redis__name", "service_api_key": "sampleapikey", "service_hostname": "api.dataplatform.dev.cloud.ibm.com", "service_password": "samplepassword", "service_port": 443, "service_ssl": true, "service_token_url": "sampletoakenurl", "service_username": "sampleusername", "ssl": true, "tables": "kafka_table_name, redis_table_name", "username": "sampleuser", "validate_server_certificate": true, "verify_host_name": true, "warehouse_name": "samplewrehouse"}, "database_display_name": "new_database", "database_id": "new_database_id", "database_properties": [{"encrypt": true, "key": "hive.metastore", "value": "glue"}], "database_type": "netezza", "tables": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "sample file name", "schema_name": "customer", "table_name": "customer"}], "description": "Description of the external database", "tags": ["tags"], "topics": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "sample file name", "topic_name": "customer"}]}]}'
+        mock_response = '{"database_registrations": [{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "catalog_name": "sampleCatalog", "created_by": "user1@ibm.com", "created_on": "1686792721", "database_details": {"authentication_type": "LDAP", "authentication_value": "LDAP", "broker_authentication_password": "samplepassword", "broker_authentication_type": "PASSWORD", "broker_authentication_user": "sampleuser", "broker_host": "samplehost", "broker_port": 4553, "certificate": "exampleCertificate", "certificate_extension": "pem", "connection_method": "basic, apikey", "connection_mode": "service_name", "connection_mode_value": "orclpdb", "connection_type": "JDBC, Arrow flight", "controller_authentication_password": "samplepassword", "controller_authentication_type": "PASSWORD", "controller_authentication_user": "sampleuser", "coordinator_host": "samplehost", "coordinator_port": 4553, "cpd_hostname": "samplecpdhostname", "credentials_key": "eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......", "database_name": "new_database", "hostname": "http://db2@localhost:9900.com", "hostname_in_certificate": "samplehostname", "hosts": "abc.com:1234,xyz.com:4321", "informix_server": "ol_informix1410", "password": "samplepassword", "port": 4553, "project_id": "conops-bigquery", "sasl": true, "sasl_mechanism": "plain", "schema_name": "sampleSchema", "schemas": "redis__name", "service_api_key": "sampleapikey", "service_hostname": "api.dataplatform.dev.cloud.ibm.com", "service_password": "samplepassword", "service_port": 443, "service_ssl": true, "service_token_url": "sampletoakenurl", "service_username": "sampleusername", "ssl": true, "tables": "kafka_table_name, redis_table_name", "username": "sampleuser", "validate_server_certificate": true, "verify_host_name": true, "warehouse_name": "samplewrehouse"}, "database_display_name": "new_database", "database_id": "mysql123", "database_properties": [{"encrypt": true, "key": "hive.metastore", "value": "glue"}], "database_type": "netezza", "description": "Description of the external database", "tables": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "test.json", "schema_name": "customer", "table_name": "customer"}], "tags": ["tags"], "topics": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "employee.json", "topic_name": "customer"}]}]}'
         responses.add(
             responses.GET,
             url,
@@ -1635,7 +1942,7 @@ class TestListDatabaseRegistrations:
         """
         # Set up mock
         url = preprocess_url('/database_registrations')
-        mock_response = '{"database_registrations": [{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "catalog_name": "sampleCatalog", "created_by": "user1@bim.com", "created_on": "1686792721", "database_details": {"authentication_type": "LDAP", "authentication_value": "LDAP", "broker_authentication_password": "samplepassword", "broker_authentication_type": "PASSWORD", "broker_authentication_user": "sampleuser", "broker_host": "samplehost", "broker_port": 4553, "certificate": "contents of a pem/crt file", "certificate_extension": "pem/crt", "connection_method": "basic, apikey", "connection_mode": "service_name", "connection_mode_value": "orclpdb", "connection_type": "JDBC, Arrow flight", "controller_authentication_password": "samplepassword", "controller_authentication_type": "PASSWORD", "controller_authentication_user": "sampleuser", "coordinator_host": "samplehost", "coordinator_port": 4553, "cpd_hostname": "samplecpdhostname", "credentials_key": "eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......", "database_name": "new_database", "database_properties": [{"encrypt": true, "key": "hive.metastore", "value": "glue"}], "hostname": "db2@<hostname>.com", "hostname_in_certificate": "samplehostname", "hosts": "abc.com:1234,xyz.com:4321", "informix_server": "ol_informix1410", "password": "samplepassword", "port": 4553, "project_id": "conops-bigquery", "sasl": true, "sasl_mechanism": "plain", "schema_name": "sampleSchema", "schemas": "redis__name", "service_api_key": "sampleapikey", "service_hostname": "api.dataplatform.dev.cloud.ibm.com", "service_password": "samplepassword", "service_port": 443, "service_ssl": true, "service_token_url": "sampletoakenurl", "service_username": "sampleusername", "ssl": true, "tables": "kafka_table_name, redis_table_name", "username": "sampleuser", "validate_server_certificate": true, "verify_host_name": true, "warehouse_name": "samplewrehouse"}, "database_display_name": "new_database", "database_id": "new_database_id", "database_properties": [{"encrypt": true, "key": "hive.metastore", "value": "glue"}], "database_type": "netezza", "tables": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "sample file name", "schema_name": "customer", "table_name": "customer"}], "description": "Description of the external database", "tags": ["tags"], "topics": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "sample file name", "topic_name": "customer"}]}]}'
+        mock_response = '{"database_registrations": [{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "catalog_name": "sampleCatalog", "created_by": "user1@ibm.com", "created_on": "1686792721", "database_details": {"authentication_type": "LDAP", "authentication_value": "LDAP", "broker_authentication_password": "samplepassword", "broker_authentication_type": "PASSWORD", "broker_authentication_user": "sampleuser", "broker_host": "samplehost", "broker_port": 4553, "certificate": "exampleCertificate", "certificate_extension": "pem", "connection_method": "basic, apikey", "connection_mode": "service_name", "connection_mode_value": "orclpdb", "connection_type": "JDBC, Arrow flight", "controller_authentication_password": "samplepassword", "controller_authentication_type": "PASSWORD", "controller_authentication_user": "sampleuser", "coordinator_host": "samplehost", "coordinator_port": 4553, "cpd_hostname": "samplecpdhostname", "credentials_key": "eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......", "database_name": "new_database", "hostname": "http://db2@localhost:9900.com", "hostname_in_certificate": "samplehostname", "hosts": "abc.com:1234,xyz.com:4321", "informix_server": "ol_informix1410", "password": "samplepassword", "port": 4553, "project_id": "conops-bigquery", "sasl": true, "sasl_mechanism": "plain", "schema_name": "sampleSchema", "schemas": "redis__name", "service_api_key": "sampleapikey", "service_hostname": "api.dataplatform.dev.cloud.ibm.com", "service_password": "samplepassword", "service_port": 443, "service_ssl": true, "service_token_url": "sampletoakenurl", "service_username": "sampleusername", "ssl": true, "tables": "kafka_table_name, redis_table_name", "username": "sampleuser", "validate_server_certificate": true, "verify_host_name": true, "warehouse_name": "samplewrehouse"}, "database_display_name": "new_database", "database_id": "mysql123", "database_properties": [{"encrypt": true, "key": "hive.metastore", "value": "glue"}], "database_type": "netezza", "description": "Description of the external database", "tables": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "test.json", "schema_name": "customer", "table_name": "customer"}], "tags": ["tags"], "topics": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "employee.json", "topic_name": "customer"}]}]}'
         responses.add(
             responses.GET,
             url,
@@ -1673,7 +1980,7 @@ class TestCreateDatabaseRegistration:
         """
         # Set up mock
         url = preprocess_url('/database_registrations')
-        mock_response = '{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "catalog_name": "sampleCatalog", "created_by": "user1@bim.com", "created_on": "1686792721", "database_details": {"authentication_type": "LDAP", "authentication_value": "LDAP", "broker_authentication_password": "samplepassword", "broker_authentication_type": "PASSWORD", "broker_authentication_user": "sampleuser", "broker_host": "samplehost", "broker_port": 4553, "certificate": "contents of a pem/crt file", "certificate_extension": "pem/crt", "connection_method": "basic, apikey", "connection_mode": "service_name", "connection_mode_value": "orclpdb", "connection_type": "JDBC, Arrow flight", "controller_authentication_password": "samplepassword", "controller_authentication_type": "PASSWORD", "controller_authentication_user": "sampleuser", "coordinator_host": "samplehost", "coordinator_port": 4553, "cpd_hostname": "samplecpdhostname", "credentials_key": "eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......", "database_name": "new_database", "database_properties": [{"encrypt": true, "key": "hive.metastore", "value": "glue"}], "hostname": "db2@<hostname>.com", "hostname_in_certificate": "samplehostname", "hosts": "abc.com:1234,xyz.com:4321", "informix_server": "ol_informix1410", "password": "samplepassword", "port": 4553, "project_id": "conops-bigquery", "sasl": true, "sasl_mechanism": "plain", "schema_name": "sampleSchema", "schemas": "redis__name", "service_api_key": "sampleapikey", "service_hostname": "api.dataplatform.dev.cloud.ibm.com", "service_password": "samplepassword", "service_port": 443, "service_ssl": true, "service_token_url": "sampletoakenurl", "service_username": "sampleusername", "ssl": true, "tables": "kafka_table_name, redis_table_name", "username": "sampleuser", "validate_server_certificate": true, "verify_host_name": true, "warehouse_name": "samplewrehouse"}, "database_display_name": "new_database", "database_id": "new_database_id", "database_properties": [{"encrypt": true, "key": "hive.metastore", "value": "glue"}], "database_type": "netezza", "tables": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "sample file name", "schema_name": "customer", "table_name": "customer"}], "description": "Description of the external database", "tags": ["tags"], "topics": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "sample file name", "topic_name": "customer"}]}'
+        mock_response = '{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "catalog_name": "sampleCatalog", "created_by": "user1@ibm.com", "created_on": "1686792721", "database_details": {"authentication_type": "LDAP", "authentication_value": "LDAP", "broker_authentication_password": "samplepassword", "broker_authentication_type": "PASSWORD", "broker_authentication_user": "sampleuser", "broker_host": "samplehost", "broker_port": 4553, "certificate": "exampleCertificate", "certificate_extension": "pem", "connection_method": "basic, apikey", "connection_mode": "service_name", "connection_mode_value": "orclpdb", "connection_type": "JDBC, Arrow flight", "controller_authentication_password": "samplepassword", "controller_authentication_type": "PASSWORD", "controller_authentication_user": "sampleuser", "coordinator_host": "samplehost", "coordinator_port": 4553, "cpd_hostname": "samplecpdhostname", "credentials_key": "eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......", "database_name": "new_database", "hostname": "http://db2@localhost:9900.com", "hostname_in_certificate": "samplehostname", "hosts": "abc.com:1234,xyz.com:4321", "informix_server": "ol_informix1410", "password": "samplepassword", "port": 4553, "project_id": "conops-bigquery", "sasl": true, "sasl_mechanism": "plain", "schema_name": "sampleSchema", "schemas": "redis__name", "service_api_key": "sampleapikey", "service_hostname": "api.dataplatform.dev.cloud.ibm.com", "service_password": "samplepassword", "service_port": 443, "service_ssl": true, "service_token_url": "sampletoakenurl", "service_username": "sampleusername", "ssl": true, "tables": "kafka_table_name, redis_table_name", "username": "sampleuser", "validate_server_certificate": true, "verify_host_name": true, "warehouse_name": "samplewrehouse"}, "database_display_name": "new_database", "database_id": "mysql123", "database_properties": [{"encrypt": true, "key": "hive.metastore", "value": "glue"}], "database_type": "netezza", "description": "Description of the external database", "tables": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "test.json", "schema_name": "customer", "table_name": "customer"}], "tags": ["tags"], "topics": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "employee.json", "topic_name": "customer"}]}'
         responses.add(
             responses.POST,
             url,
@@ -1682,17 +1989,10 @@ class TestCreateDatabaseRegistration:
             status=201,
         )
 
-        # Construct a dict representation of a DatabaseCatalog model
-        database_catalog_model = {}
-        database_catalog_model['catalog_name'] = 'sampleCatalog'
-        database_catalog_model['catalog_tags'] = ['catalog_tag_1', 'catalog_tag_2']
-        database_catalog_model['catalog_type'] = 'iceberg'
-
-        # Construct a dict representation of a DatabaseRegistrationPatchDatabaseDetailsDatabasePropertiesItems model
-        database_registration_patch_database_details_database_properties_items_model = {}
-        database_registration_patch_database_details_database_properties_items_model['encrypt'] = True
-        database_registration_patch_database_details_database_properties_items_model['key'] = 'abc'
-        database_registration_patch_database_details_database_properties_items_model['value'] = 'xyz'
+        # Construct a dict representation of a DatabaseCatalogPrototype model
+        database_catalog_prototype_model = {}
+        database_catalog_prototype_model['catalog_name'] = 'sampleCatalog'
+        database_catalog_prototype_model['catalog_type'] = 'iceberg'
 
         # Construct a dict representation of a DatabaseDetails model
         database_details_model = {}
@@ -1703,8 +2003,8 @@ class TestCreateDatabaseRegistration:
         database_details_model['broker_authentication_user'] = 'sampleuser'
         database_details_model['broker_host'] = 'samplehost'
         database_details_model['broker_port'] = 4553
-        database_details_model['certificate'] = 'contents of a pem/crt file'
-        database_details_model['certificate_extension'] = 'pem/crt'
+        database_details_model['certificate'] = 'exampleCertificate'
+        database_details_model['certificate_extension'] = 'pem'
         database_details_model['connection_method'] = 'basic, apikey'
         database_details_model['connection_mode'] = 'service_name'
         database_details_model['connection_mode_value'] = 'orclpdb'
@@ -1717,8 +2017,7 @@ class TestCreateDatabaseRegistration:
         database_details_model['cpd_hostname'] = 'samplecpdhostname'
         database_details_model['credentials_key'] = 'eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......'
         database_details_model['database_name'] = 'new_database'
-        database_details_model['database_properties'] = [database_registration_patch_database_details_database_properties_items_model]
-        database_details_model['hostname'] = 'db2@<hostname>.com'
+        database_details_model['hostname'] = 'http://db2@localhost:9900.com'
         database_details_model['hostname_in_certificate'] = 'samplehostname'
         database_details_model['hosts'] = 'abc.com:1234,xyz.com:4321'
         database_details_model['informix_server'] = 'ol_informix1410'
@@ -1752,7 +2051,7 @@ class TestCreateDatabaseRegistration:
         # Set up parameter values
         database_display_name = 'new_database'
         database_type = 'db2'
-        associated_catalog = database_catalog_model
+        associated_catalog = database_catalog_prototype_model
         created_on = '1686792721'
         database_details = database_details_model
         database_properties = [database_registration_prototype_database_properties_items_model]
@@ -1781,7 +2080,7 @@ class TestCreateDatabaseRegistration:
         req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
         assert req_body['database_display_name'] == 'new_database'
         assert req_body['database_type'] == 'db2'
-        assert req_body['associated_catalog'] == database_catalog_model
+        assert req_body['associated_catalog'] == database_catalog_prototype_model
         assert req_body['created_on'] == '1686792721'
         assert req_body['database_details'] == database_details_model
         assert req_body['database_properties'] == [database_registration_prototype_database_properties_items_model]
@@ -1804,7 +2103,7 @@ class TestCreateDatabaseRegistration:
         """
         # Set up mock
         url = preprocess_url('/database_registrations')
-        mock_response = '{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "catalog_name": "sampleCatalog", "created_by": "user1@bim.com", "created_on": "1686792721", "database_details": {"authentication_type": "LDAP", "authentication_value": "LDAP", "broker_authentication_password": "samplepassword", "broker_authentication_type": "PASSWORD", "broker_authentication_user": "sampleuser", "broker_host": "samplehost", "broker_port": 4553, "certificate": "contents of a pem/crt file", "certificate_extension": "pem/crt", "connection_method": "basic, apikey", "connection_mode": "service_name", "connection_mode_value": "orclpdb", "connection_type": "JDBC, Arrow flight", "controller_authentication_password": "samplepassword", "controller_authentication_type": "PASSWORD", "controller_authentication_user": "sampleuser", "coordinator_host": "samplehost", "coordinator_port": 4553, "cpd_hostname": "samplecpdhostname", "credentials_key": "eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......", "database_name": "new_database", "database_properties": [{"encrypt": true, "key": "hive.metastore", "value": "glue"}], "hostname": "db2@<hostname>.com", "hostname_in_certificate": "samplehostname", "hosts": "abc.com:1234,xyz.com:4321", "informix_server": "ol_informix1410", "password": "samplepassword", "port": 4553, "project_id": "conops-bigquery", "sasl": true, "sasl_mechanism": "plain", "schema_name": "sampleSchema", "schemas": "redis__name", "service_api_key": "sampleapikey", "service_hostname": "api.dataplatform.dev.cloud.ibm.com", "service_password": "samplepassword", "service_port": 443, "service_ssl": true, "service_token_url": "sampletoakenurl", "service_username": "sampleusername", "ssl": true, "tables": "kafka_table_name, redis_table_name", "username": "sampleuser", "validate_server_certificate": true, "verify_host_name": true, "warehouse_name": "samplewrehouse"}, "database_display_name": "new_database", "database_id": "new_database_id", "database_properties": [{"encrypt": true, "key": "hive.metastore", "value": "glue"}], "database_type": "netezza", "tables": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "sample file name", "schema_name": "customer", "table_name": "customer"}], "description": "Description of the external database", "tags": ["tags"], "topics": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "sample file name", "topic_name": "customer"}]}'
+        mock_response = '{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "catalog_name": "sampleCatalog", "created_by": "user1@ibm.com", "created_on": "1686792721", "database_details": {"authentication_type": "LDAP", "authentication_value": "LDAP", "broker_authentication_password": "samplepassword", "broker_authentication_type": "PASSWORD", "broker_authentication_user": "sampleuser", "broker_host": "samplehost", "broker_port": 4553, "certificate": "exampleCertificate", "certificate_extension": "pem", "connection_method": "basic, apikey", "connection_mode": "service_name", "connection_mode_value": "orclpdb", "connection_type": "JDBC, Arrow flight", "controller_authentication_password": "samplepassword", "controller_authentication_type": "PASSWORD", "controller_authentication_user": "sampleuser", "coordinator_host": "samplehost", "coordinator_port": 4553, "cpd_hostname": "samplecpdhostname", "credentials_key": "eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......", "database_name": "new_database", "hostname": "http://db2@localhost:9900.com", "hostname_in_certificate": "samplehostname", "hosts": "abc.com:1234,xyz.com:4321", "informix_server": "ol_informix1410", "password": "samplepassword", "port": 4553, "project_id": "conops-bigquery", "sasl": true, "sasl_mechanism": "plain", "schema_name": "sampleSchema", "schemas": "redis__name", "service_api_key": "sampleapikey", "service_hostname": "api.dataplatform.dev.cloud.ibm.com", "service_password": "samplepassword", "service_port": 443, "service_ssl": true, "service_token_url": "sampletoakenurl", "service_username": "sampleusername", "ssl": true, "tables": "kafka_table_name, redis_table_name", "username": "sampleuser", "validate_server_certificate": true, "verify_host_name": true, "warehouse_name": "samplewrehouse"}, "database_display_name": "new_database", "database_id": "mysql123", "database_properties": [{"encrypt": true, "key": "hive.metastore", "value": "glue"}], "database_type": "netezza", "description": "Description of the external database", "tables": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "test.json", "schema_name": "customer", "table_name": "customer"}], "tags": ["tags"], "topics": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "employee.json", "topic_name": "customer"}]}'
         responses.add(
             responses.POST,
             url,
@@ -1813,17 +2112,10 @@ class TestCreateDatabaseRegistration:
             status=201,
         )
 
-        # Construct a dict representation of a DatabaseCatalog model
-        database_catalog_model = {}
-        database_catalog_model['catalog_name'] = 'sampleCatalog'
-        database_catalog_model['catalog_tags'] = ['catalog_tag_1', 'catalog_tag_2']
-        database_catalog_model['catalog_type'] = 'iceberg'
-
-        # Construct a dict representation of a DatabaseRegistrationPatchDatabaseDetailsDatabasePropertiesItems model
-        database_registration_patch_database_details_database_properties_items_model = {}
-        database_registration_patch_database_details_database_properties_items_model['encrypt'] = True
-        database_registration_patch_database_details_database_properties_items_model['key'] = 'abc'
-        database_registration_patch_database_details_database_properties_items_model['value'] = 'xyz'
+        # Construct a dict representation of a DatabaseCatalogPrototype model
+        database_catalog_prototype_model = {}
+        database_catalog_prototype_model['catalog_name'] = 'sampleCatalog'
+        database_catalog_prototype_model['catalog_type'] = 'iceberg'
 
         # Construct a dict representation of a DatabaseDetails model
         database_details_model = {}
@@ -1834,8 +2126,8 @@ class TestCreateDatabaseRegistration:
         database_details_model['broker_authentication_user'] = 'sampleuser'
         database_details_model['broker_host'] = 'samplehost'
         database_details_model['broker_port'] = 4553
-        database_details_model['certificate'] = 'contents of a pem/crt file'
-        database_details_model['certificate_extension'] = 'pem/crt'
+        database_details_model['certificate'] = 'exampleCertificate'
+        database_details_model['certificate_extension'] = 'pem'
         database_details_model['connection_method'] = 'basic, apikey'
         database_details_model['connection_mode'] = 'service_name'
         database_details_model['connection_mode_value'] = 'orclpdb'
@@ -1848,8 +2140,7 @@ class TestCreateDatabaseRegistration:
         database_details_model['cpd_hostname'] = 'samplecpdhostname'
         database_details_model['credentials_key'] = 'eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......'
         database_details_model['database_name'] = 'new_database'
-        database_details_model['database_properties'] = [database_registration_patch_database_details_database_properties_items_model]
-        database_details_model['hostname'] = 'db2@<hostname>.com'
+        database_details_model['hostname'] = 'http://db2@localhost:9900.com'
         database_details_model['hostname_in_certificate'] = 'samplehostname'
         database_details_model['hosts'] = 'abc.com:1234,xyz.com:4321'
         database_details_model['informix_server'] = 'ol_informix1410'
@@ -1883,7 +2174,7 @@ class TestCreateDatabaseRegistration:
         # Set up parameter values
         database_display_name = 'new_database'
         database_type = 'db2'
-        associated_catalog = database_catalog_model
+        associated_catalog = database_catalog_prototype_model
         created_on = '1686792721'
         database_details = database_details_model
         database_properties = [database_registration_prototype_database_properties_items_model]
@@ -1910,7 +2201,7 @@ class TestCreateDatabaseRegistration:
         req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
         assert req_body['database_display_name'] == 'new_database'
         assert req_body['database_type'] == 'db2'
-        assert req_body['associated_catalog'] == database_catalog_model
+        assert req_body['associated_catalog'] == database_catalog_prototype_model
         assert req_body['created_on'] == '1686792721'
         assert req_body['database_details'] == database_details_model
         assert req_body['database_properties'] == [database_registration_prototype_database_properties_items_model]
@@ -1933,7 +2224,7 @@ class TestCreateDatabaseRegistration:
         """
         # Set up mock
         url = preprocess_url('/database_registrations')
-        mock_response = '{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "catalog_name": "sampleCatalog", "created_by": "user1@bim.com", "created_on": "1686792721", "database_details": {"authentication_type": "LDAP", "authentication_value": "LDAP", "broker_authentication_password": "samplepassword", "broker_authentication_type": "PASSWORD", "broker_authentication_user": "sampleuser", "broker_host": "samplehost", "broker_port": 4553, "certificate": "contents of a pem/crt file", "certificate_extension": "pem/crt", "connection_method": "basic, apikey", "connection_mode": "service_name", "connection_mode_value": "orclpdb", "connection_type": "JDBC, Arrow flight", "controller_authentication_password": "samplepassword", "controller_authentication_type": "PASSWORD", "controller_authentication_user": "sampleuser", "coordinator_host": "samplehost", "coordinator_port": 4553, "cpd_hostname": "samplecpdhostname", "credentials_key": "eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......", "database_name": "new_database", "database_properties": [{"encrypt": true, "key": "hive.metastore", "value": "glue"}], "hostname": "db2@<hostname>.com", "hostname_in_certificate": "samplehostname", "hosts": "abc.com:1234,xyz.com:4321", "informix_server": "ol_informix1410", "password": "samplepassword", "port": 4553, "project_id": "conops-bigquery", "sasl": true, "sasl_mechanism": "plain", "schema_name": "sampleSchema", "schemas": "redis__name", "service_api_key": "sampleapikey", "service_hostname": "api.dataplatform.dev.cloud.ibm.com", "service_password": "samplepassword", "service_port": 443, "service_ssl": true, "service_token_url": "sampletoakenurl", "service_username": "sampleusername", "ssl": true, "tables": "kafka_table_name, redis_table_name", "username": "sampleuser", "validate_server_certificate": true, "verify_host_name": true, "warehouse_name": "samplewrehouse"}, "database_display_name": "new_database", "database_id": "new_database_id", "database_properties": [{"encrypt": true, "key": "hive.metastore", "value": "glue"}], "database_type": "netezza", "tables": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "sample file name", "schema_name": "customer", "table_name": "customer"}], "description": "Description of the external database", "tags": ["tags"], "topics": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "sample file name", "topic_name": "customer"}]}'
+        mock_response = '{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "catalog_name": "sampleCatalog", "created_by": "user1@ibm.com", "created_on": "1686792721", "database_details": {"authentication_type": "LDAP", "authentication_value": "LDAP", "broker_authentication_password": "samplepassword", "broker_authentication_type": "PASSWORD", "broker_authentication_user": "sampleuser", "broker_host": "samplehost", "broker_port": 4553, "certificate": "exampleCertificate", "certificate_extension": "pem", "connection_method": "basic, apikey", "connection_mode": "service_name", "connection_mode_value": "orclpdb", "connection_type": "JDBC, Arrow flight", "controller_authentication_password": "samplepassword", "controller_authentication_type": "PASSWORD", "controller_authentication_user": "sampleuser", "coordinator_host": "samplehost", "coordinator_port": 4553, "cpd_hostname": "samplecpdhostname", "credentials_key": "eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......", "database_name": "new_database", "hostname": "http://db2@localhost:9900.com", "hostname_in_certificate": "samplehostname", "hosts": "abc.com:1234,xyz.com:4321", "informix_server": "ol_informix1410", "password": "samplepassword", "port": 4553, "project_id": "conops-bigquery", "sasl": true, "sasl_mechanism": "plain", "schema_name": "sampleSchema", "schemas": "redis__name", "service_api_key": "sampleapikey", "service_hostname": "api.dataplatform.dev.cloud.ibm.com", "service_password": "samplepassword", "service_port": 443, "service_ssl": true, "service_token_url": "sampletoakenurl", "service_username": "sampleusername", "ssl": true, "tables": "kafka_table_name, redis_table_name", "username": "sampleuser", "validate_server_certificate": true, "verify_host_name": true, "warehouse_name": "samplewrehouse"}, "database_display_name": "new_database", "database_id": "mysql123", "database_properties": [{"encrypt": true, "key": "hive.metastore", "value": "glue"}], "database_type": "netezza", "description": "Description of the external database", "tables": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "test.json", "schema_name": "customer", "table_name": "customer"}], "tags": ["tags"], "topics": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "employee.json", "topic_name": "customer"}]}'
         responses.add(
             responses.POST,
             url,
@@ -1942,17 +2233,10 @@ class TestCreateDatabaseRegistration:
             status=201,
         )
 
-        # Construct a dict representation of a DatabaseCatalog model
-        database_catalog_model = {}
-        database_catalog_model['catalog_name'] = 'sampleCatalog'
-        database_catalog_model['catalog_tags'] = ['catalog_tag_1', 'catalog_tag_2']
-        database_catalog_model['catalog_type'] = 'iceberg'
-
-        # Construct a dict representation of a DatabaseRegistrationPatchDatabaseDetailsDatabasePropertiesItems model
-        database_registration_patch_database_details_database_properties_items_model = {}
-        database_registration_patch_database_details_database_properties_items_model['encrypt'] = True
-        database_registration_patch_database_details_database_properties_items_model['key'] = 'abc'
-        database_registration_patch_database_details_database_properties_items_model['value'] = 'xyz'
+        # Construct a dict representation of a DatabaseCatalogPrototype model
+        database_catalog_prototype_model = {}
+        database_catalog_prototype_model['catalog_name'] = 'sampleCatalog'
+        database_catalog_prototype_model['catalog_type'] = 'iceberg'
 
         # Construct a dict representation of a DatabaseDetails model
         database_details_model = {}
@@ -1963,8 +2247,8 @@ class TestCreateDatabaseRegistration:
         database_details_model['broker_authentication_user'] = 'sampleuser'
         database_details_model['broker_host'] = 'samplehost'
         database_details_model['broker_port'] = 4553
-        database_details_model['certificate'] = 'contents of a pem/crt file'
-        database_details_model['certificate_extension'] = 'pem/crt'
+        database_details_model['certificate'] = 'exampleCertificate'
+        database_details_model['certificate_extension'] = 'pem'
         database_details_model['connection_method'] = 'basic, apikey'
         database_details_model['connection_mode'] = 'service_name'
         database_details_model['connection_mode_value'] = 'orclpdb'
@@ -1977,8 +2261,7 @@ class TestCreateDatabaseRegistration:
         database_details_model['cpd_hostname'] = 'samplecpdhostname'
         database_details_model['credentials_key'] = 'eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......'
         database_details_model['database_name'] = 'new_database'
-        database_details_model['database_properties'] = [database_registration_patch_database_details_database_properties_items_model]
-        database_details_model['hostname'] = 'db2@<hostname>.com'
+        database_details_model['hostname'] = 'http://db2@localhost:9900.com'
         database_details_model['hostname_in_certificate'] = 'samplehostname'
         database_details_model['hosts'] = 'abc.com:1234,xyz.com:4321'
         database_details_model['informix_server'] = 'ol_informix1410'
@@ -2012,7 +2295,7 @@ class TestCreateDatabaseRegistration:
         # Set up parameter values
         database_display_name = 'new_database'
         database_type = 'db2'
-        associated_catalog = database_catalog_model
+        associated_catalog = database_catalog_prototype_model
         created_on = '1686792721'
         database_details = database_details_model
         database_properties = [database_registration_prototype_database_properties_items_model]
@@ -2051,7 +2334,7 @@ class TestGetDatabase:
         """
         # Set up mock
         url = preprocess_url('/database_registrations/testString')
-        mock_response = '{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "catalog_name": "sampleCatalog", "created_by": "user1@bim.com", "created_on": "1686792721", "database_details": {"authentication_type": "LDAP", "authentication_value": "LDAP", "broker_authentication_password": "samplepassword", "broker_authentication_type": "PASSWORD", "broker_authentication_user": "sampleuser", "broker_host": "samplehost", "broker_port": 4553, "certificate": "contents of a pem/crt file", "certificate_extension": "pem/crt", "connection_method": "basic, apikey", "connection_mode": "service_name", "connection_mode_value": "orclpdb", "connection_type": "JDBC, Arrow flight", "controller_authentication_password": "samplepassword", "controller_authentication_type": "PASSWORD", "controller_authentication_user": "sampleuser", "coordinator_host": "samplehost", "coordinator_port": 4553, "cpd_hostname": "samplecpdhostname", "credentials_key": "eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......", "database_name": "new_database", "database_properties": [{"encrypt": true, "key": "hive.metastore", "value": "glue"}], "hostname": "db2@<hostname>.com", "hostname_in_certificate": "samplehostname", "hosts": "abc.com:1234,xyz.com:4321", "informix_server": "ol_informix1410", "password": "samplepassword", "port": 4553, "project_id": "conops-bigquery", "sasl": true, "sasl_mechanism": "plain", "schema_name": "sampleSchema", "schemas": "redis__name", "service_api_key": "sampleapikey", "service_hostname": "api.dataplatform.dev.cloud.ibm.com", "service_password": "samplepassword", "service_port": 443, "service_ssl": true, "service_token_url": "sampletoakenurl", "service_username": "sampleusername", "ssl": true, "tables": "kafka_table_name, redis_table_name", "username": "sampleuser", "validate_server_certificate": true, "verify_host_name": true, "warehouse_name": "samplewrehouse"}, "database_display_name": "new_database", "database_id": "new_database_id", "database_properties": [{"encrypt": true, "key": "hive.metastore", "value": "glue"}], "database_type": "netezza", "tables": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "sample file name", "schema_name": "customer", "table_name": "customer"}], "description": "Description of the external database", "tags": ["tags"], "topics": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "sample file name", "topic_name": "customer"}]}'
+        mock_response = '{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "catalog_name": "sampleCatalog", "created_by": "user1@ibm.com", "created_on": "1686792721", "database_details": {"authentication_type": "LDAP", "authentication_value": "LDAP", "broker_authentication_password": "samplepassword", "broker_authentication_type": "PASSWORD", "broker_authentication_user": "sampleuser", "broker_host": "samplehost", "broker_port": 4553, "certificate": "exampleCertificate", "certificate_extension": "pem", "connection_method": "basic, apikey", "connection_mode": "service_name", "connection_mode_value": "orclpdb", "connection_type": "JDBC, Arrow flight", "controller_authentication_password": "samplepassword", "controller_authentication_type": "PASSWORD", "controller_authentication_user": "sampleuser", "coordinator_host": "samplehost", "coordinator_port": 4553, "cpd_hostname": "samplecpdhostname", "credentials_key": "eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......", "database_name": "new_database", "hostname": "http://db2@localhost:9900.com", "hostname_in_certificate": "samplehostname", "hosts": "abc.com:1234,xyz.com:4321", "informix_server": "ol_informix1410", "password": "samplepassword", "port": 4553, "project_id": "conops-bigquery", "sasl": true, "sasl_mechanism": "plain", "schema_name": "sampleSchema", "schemas": "redis__name", "service_api_key": "sampleapikey", "service_hostname": "api.dataplatform.dev.cloud.ibm.com", "service_password": "samplepassword", "service_port": 443, "service_ssl": true, "service_token_url": "sampletoakenurl", "service_username": "sampleusername", "ssl": true, "tables": "kafka_table_name, redis_table_name", "username": "sampleuser", "validate_server_certificate": true, "verify_host_name": true, "warehouse_name": "samplewrehouse"}, "database_display_name": "new_database", "database_id": "mysql123", "database_properties": [{"encrypt": true, "key": "hive.metastore", "value": "glue"}], "database_type": "netezza", "description": "Description of the external database", "tables": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "test.json", "schema_name": "customer", "table_name": "customer"}], "tags": ["tags"], "topics": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "employee.json", "topic_name": "customer"}]}'
         responses.add(
             responses.GET,
             url,
@@ -2091,7 +2374,7 @@ class TestGetDatabase:
         """
         # Set up mock
         url = preprocess_url('/database_registrations/testString')
-        mock_response = '{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "catalog_name": "sampleCatalog", "created_by": "user1@bim.com", "created_on": "1686792721", "database_details": {"authentication_type": "LDAP", "authentication_value": "LDAP", "broker_authentication_password": "samplepassword", "broker_authentication_type": "PASSWORD", "broker_authentication_user": "sampleuser", "broker_host": "samplehost", "broker_port": 4553, "certificate": "contents of a pem/crt file", "certificate_extension": "pem/crt", "connection_method": "basic, apikey", "connection_mode": "service_name", "connection_mode_value": "orclpdb", "connection_type": "JDBC, Arrow flight", "controller_authentication_password": "samplepassword", "controller_authentication_type": "PASSWORD", "controller_authentication_user": "sampleuser", "coordinator_host": "samplehost", "coordinator_port": 4553, "cpd_hostname": "samplecpdhostname", "credentials_key": "eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......", "database_name": "new_database", "database_properties": [{"encrypt": true, "key": "hive.metastore", "value": "glue"}], "hostname": "db2@<hostname>.com", "hostname_in_certificate": "samplehostname", "hosts": "abc.com:1234,xyz.com:4321", "informix_server": "ol_informix1410", "password": "samplepassword", "port": 4553, "project_id": "conops-bigquery", "sasl": true, "sasl_mechanism": "plain", "schema_name": "sampleSchema", "schemas": "redis__name", "service_api_key": "sampleapikey", "service_hostname": "api.dataplatform.dev.cloud.ibm.com", "service_password": "samplepassword", "service_port": 443, "service_ssl": true, "service_token_url": "sampletoakenurl", "service_username": "sampleusername", "ssl": true, "tables": "kafka_table_name, redis_table_name", "username": "sampleuser", "validate_server_certificate": true, "verify_host_name": true, "warehouse_name": "samplewrehouse"}, "database_display_name": "new_database", "database_id": "new_database_id", "database_properties": [{"encrypt": true, "key": "hive.metastore", "value": "glue"}], "database_type": "netezza", "tables": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "sample file name", "schema_name": "customer", "table_name": "customer"}], "description": "Description of the external database", "tags": ["tags"], "topics": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "sample file name", "topic_name": "customer"}]}'
+        mock_response = '{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "catalog_name": "sampleCatalog", "created_by": "user1@ibm.com", "created_on": "1686792721", "database_details": {"authentication_type": "LDAP", "authentication_value": "LDAP", "broker_authentication_password": "samplepassword", "broker_authentication_type": "PASSWORD", "broker_authentication_user": "sampleuser", "broker_host": "samplehost", "broker_port": 4553, "certificate": "exampleCertificate", "certificate_extension": "pem", "connection_method": "basic, apikey", "connection_mode": "service_name", "connection_mode_value": "orclpdb", "connection_type": "JDBC, Arrow flight", "controller_authentication_password": "samplepassword", "controller_authentication_type": "PASSWORD", "controller_authentication_user": "sampleuser", "coordinator_host": "samplehost", "coordinator_port": 4553, "cpd_hostname": "samplecpdhostname", "credentials_key": "eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......", "database_name": "new_database", "hostname": "http://db2@localhost:9900.com", "hostname_in_certificate": "samplehostname", "hosts": "abc.com:1234,xyz.com:4321", "informix_server": "ol_informix1410", "password": "samplepassword", "port": 4553, "project_id": "conops-bigquery", "sasl": true, "sasl_mechanism": "plain", "schema_name": "sampleSchema", "schemas": "redis__name", "service_api_key": "sampleapikey", "service_hostname": "api.dataplatform.dev.cloud.ibm.com", "service_password": "samplepassword", "service_port": 443, "service_ssl": true, "service_token_url": "sampletoakenurl", "service_username": "sampleusername", "ssl": true, "tables": "kafka_table_name, redis_table_name", "username": "sampleuser", "validate_server_certificate": true, "verify_host_name": true, "warehouse_name": "samplewrehouse"}, "database_display_name": "new_database", "database_id": "mysql123", "database_properties": [{"encrypt": true, "key": "hive.metastore", "value": "glue"}], "database_type": "netezza", "description": "Description of the external database", "tables": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "test.json", "schema_name": "customer", "table_name": "customer"}], "tags": ["tags"], "topics": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "employee.json", "topic_name": "customer"}]}'
         responses.add(
             responses.GET,
             url,
@@ -2129,7 +2412,7 @@ class TestGetDatabase:
         """
         # Set up mock
         url = preprocess_url('/database_registrations/testString')
-        mock_response = '{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "catalog_name": "sampleCatalog", "created_by": "user1@bim.com", "created_on": "1686792721", "database_details": {"authentication_type": "LDAP", "authentication_value": "LDAP", "broker_authentication_password": "samplepassword", "broker_authentication_type": "PASSWORD", "broker_authentication_user": "sampleuser", "broker_host": "samplehost", "broker_port": 4553, "certificate": "contents of a pem/crt file", "certificate_extension": "pem/crt", "connection_method": "basic, apikey", "connection_mode": "service_name", "connection_mode_value": "orclpdb", "connection_type": "JDBC, Arrow flight", "controller_authentication_password": "samplepassword", "controller_authentication_type": "PASSWORD", "controller_authentication_user": "sampleuser", "coordinator_host": "samplehost", "coordinator_port": 4553, "cpd_hostname": "samplecpdhostname", "credentials_key": "eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......", "database_name": "new_database", "database_properties": [{"encrypt": true, "key": "hive.metastore", "value": "glue"}], "hostname": "db2@<hostname>.com", "hostname_in_certificate": "samplehostname", "hosts": "abc.com:1234,xyz.com:4321", "informix_server": "ol_informix1410", "password": "samplepassword", "port": 4553, "project_id": "conops-bigquery", "sasl": true, "sasl_mechanism": "plain", "schema_name": "sampleSchema", "schemas": "redis__name", "service_api_key": "sampleapikey", "service_hostname": "api.dataplatform.dev.cloud.ibm.com", "service_password": "samplepassword", "service_port": 443, "service_ssl": true, "service_token_url": "sampletoakenurl", "service_username": "sampleusername", "ssl": true, "tables": "kafka_table_name, redis_table_name", "username": "sampleuser", "validate_server_certificate": true, "verify_host_name": true, "warehouse_name": "samplewrehouse"}, "database_display_name": "new_database", "database_id": "new_database_id", "database_properties": [{"encrypt": true, "key": "hive.metastore", "value": "glue"}], "database_type": "netezza", "tables": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "sample file name", "schema_name": "customer", "table_name": "customer"}], "description": "Description of the external database", "tags": ["tags"], "topics": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "sample file name", "topic_name": "customer"}]}'
+        mock_response = '{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "catalog_name": "sampleCatalog", "created_by": "user1@ibm.com", "created_on": "1686792721", "database_details": {"authentication_type": "LDAP", "authentication_value": "LDAP", "broker_authentication_password": "samplepassword", "broker_authentication_type": "PASSWORD", "broker_authentication_user": "sampleuser", "broker_host": "samplehost", "broker_port": 4553, "certificate": "exampleCertificate", "certificate_extension": "pem", "connection_method": "basic, apikey", "connection_mode": "service_name", "connection_mode_value": "orclpdb", "connection_type": "JDBC, Arrow flight", "controller_authentication_password": "samplepassword", "controller_authentication_type": "PASSWORD", "controller_authentication_user": "sampleuser", "coordinator_host": "samplehost", "coordinator_port": 4553, "cpd_hostname": "samplecpdhostname", "credentials_key": "eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......", "database_name": "new_database", "hostname": "http://db2@localhost:9900.com", "hostname_in_certificate": "samplehostname", "hosts": "abc.com:1234,xyz.com:4321", "informix_server": "ol_informix1410", "password": "samplepassword", "port": 4553, "project_id": "conops-bigquery", "sasl": true, "sasl_mechanism": "plain", "schema_name": "sampleSchema", "schemas": "redis__name", "service_api_key": "sampleapikey", "service_hostname": "api.dataplatform.dev.cloud.ibm.com", "service_password": "samplepassword", "service_port": 443, "service_ssl": true, "service_token_url": "sampletoakenurl", "service_username": "sampleusername", "ssl": true, "tables": "kafka_table_name, redis_table_name", "username": "sampleuser", "validate_server_certificate": true, "verify_host_name": true, "warehouse_name": "samplewrehouse"}, "database_display_name": "new_database", "database_id": "mysql123", "database_properties": [{"encrypt": true, "key": "hive.metastore", "value": "glue"}], "database_type": "netezza", "description": "Description of the external database", "tables": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "test.json", "schema_name": "customer", "table_name": "customer"}], "tags": ["tags"], "topics": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "employee.json", "topic_name": "customer"}]}'
         responses.add(
             responses.GET,
             url,
@@ -2284,7 +2567,7 @@ class TestUpdateDatabase:
         """
         # Set up mock
         url = preprocess_url('/database_registrations/testString')
-        mock_response = '{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "catalog_name": "sampleCatalog", "created_by": "user1@bim.com", "created_on": "1686792721", "database_details": {"authentication_type": "LDAP", "authentication_value": "LDAP", "broker_authentication_password": "samplepassword", "broker_authentication_type": "PASSWORD", "broker_authentication_user": "sampleuser", "broker_host": "samplehost", "broker_port": 4553, "certificate": "contents of a pem/crt file", "certificate_extension": "pem/crt", "connection_method": "basic, apikey", "connection_mode": "service_name", "connection_mode_value": "orclpdb", "connection_type": "JDBC, Arrow flight", "controller_authentication_password": "samplepassword", "controller_authentication_type": "PASSWORD", "controller_authentication_user": "sampleuser", "coordinator_host": "samplehost", "coordinator_port": 4553, "cpd_hostname": "samplecpdhostname", "credentials_key": "eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......", "database_name": "new_database", "database_properties": [{"encrypt": true, "key": "hive.metastore", "value": "glue"}], "hostname": "db2@<hostname>.com", "hostname_in_certificate": "samplehostname", "hosts": "abc.com:1234,xyz.com:4321", "informix_server": "ol_informix1410", "password": "samplepassword", "port": 4553, "project_id": "conops-bigquery", "sasl": true, "sasl_mechanism": "plain", "schema_name": "sampleSchema", "schemas": "redis__name", "service_api_key": "sampleapikey", "service_hostname": "api.dataplatform.dev.cloud.ibm.com", "service_password": "samplepassword", "service_port": 443, "service_ssl": true, "service_token_url": "sampletoakenurl", "service_username": "sampleusername", "ssl": true, "tables": "kafka_table_name, redis_table_name", "username": "sampleuser", "validate_server_certificate": true, "verify_host_name": true, "warehouse_name": "samplewrehouse"}, "database_display_name": "new_database", "database_id": "new_database_id", "database_properties": [{"encrypt": true, "key": "hive.metastore", "value": "glue"}], "database_type": "netezza", "tables": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "sample file name", "schema_name": "customer", "table_name": "customer"}], "description": "Description of the external database", "tags": ["tags"], "topics": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "sample file name", "topic_name": "customer"}]}'
+        mock_response = '{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "catalog_name": "sampleCatalog", "created_by": "user1@ibm.com", "created_on": "1686792721", "database_details": {"authentication_type": "LDAP", "authentication_value": "LDAP", "broker_authentication_password": "samplepassword", "broker_authentication_type": "PASSWORD", "broker_authentication_user": "sampleuser", "broker_host": "samplehost", "broker_port": 4553, "certificate": "exampleCertificate", "certificate_extension": "pem", "connection_method": "basic, apikey", "connection_mode": "service_name", "connection_mode_value": "orclpdb", "connection_type": "JDBC, Arrow flight", "controller_authentication_password": "samplepassword", "controller_authentication_type": "PASSWORD", "controller_authentication_user": "sampleuser", "coordinator_host": "samplehost", "coordinator_port": 4553, "cpd_hostname": "samplecpdhostname", "credentials_key": "eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......", "database_name": "new_database", "hostname": "http://db2@localhost:9900.com", "hostname_in_certificate": "samplehostname", "hosts": "abc.com:1234,xyz.com:4321", "informix_server": "ol_informix1410", "password": "samplepassword", "port": 4553, "project_id": "conops-bigquery", "sasl": true, "sasl_mechanism": "plain", "schema_name": "sampleSchema", "schemas": "redis__name", "service_api_key": "sampleapikey", "service_hostname": "api.dataplatform.dev.cloud.ibm.com", "service_password": "samplepassword", "service_port": 443, "service_ssl": true, "service_token_url": "sampletoakenurl", "service_username": "sampleusername", "ssl": true, "tables": "kafka_table_name, redis_table_name", "username": "sampleuser", "validate_server_certificate": true, "verify_host_name": true, "warehouse_name": "samplewrehouse"}, "database_display_name": "new_database", "database_id": "mysql123", "database_properties": [{"encrypt": true, "key": "hive.metastore", "value": "glue"}], "database_type": "netezza", "description": "Description of the external database", "tables": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "test.json", "schema_name": "customer", "table_name": "customer"}], "tags": ["tags"], "topics": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "employee.json", "topic_name": "customer"}]}'
         responses.add(
             responses.PATCH,
             url,
@@ -2317,7 +2600,7 @@ class TestUpdateDatabase:
         database_registration_patch_tables_items_model = {}
         database_registration_patch_tables_items_model['created_on'] = '1686792721'
         database_registration_patch_tables_items_model['file_contents'] = 'sample file content'
-        database_registration_patch_tables_items_model['file_name'] = 'sample file name'
+        database_registration_patch_tables_items_model['file_name'] = 'test.json'
         database_registration_patch_tables_items_model['schema_name'] = 'customer'
         database_registration_patch_tables_items_model['table_name'] = 'customer'
 
@@ -2325,7 +2608,7 @@ class TestUpdateDatabase:
         database_registration_patch_topics_items_model = {}
         database_registration_patch_topics_items_model['created_on'] = '1686792721'
         database_registration_patch_topics_items_model['file_contents'] = 'sample file contents'
-        database_registration_patch_topics_items_model['file_name'] = 'sample file name'
+        database_registration_patch_topics_items_model['file_name'] = 'test.json'
         database_registration_patch_topics_items_model['topic_name'] = 'customer'
 
         # Construct a dict representation of a DatabaseRegistrationPatch model
@@ -2335,7 +2618,6 @@ class TestUpdateDatabase:
         database_registration_patch_model['description'] = 'External database description'
         database_registration_patch_model['tables'] = [database_registration_patch_tables_items_model]
         database_registration_patch_model['tags'] = ['testdatabase', 'userdatabase']
-        database_registration_patch_model['database_properties'] = [database_registration_patch_database_details_database_properties_items_model]
         database_registration_patch_model['topics'] = [database_registration_patch_topics_items_model]
 
         # Set up parameter values
@@ -2374,7 +2656,7 @@ class TestUpdateDatabase:
         """
         # Set up mock
         url = preprocess_url('/database_registrations/testString')
-        mock_response = '{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "catalog_name": "sampleCatalog", "created_by": "user1@bim.com", "created_on": "1686792721", "database_details": {"authentication_type": "LDAP", "authentication_value": "LDAP", "broker_authentication_password": "samplepassword", "broker_authentication_type": "PASSWORD", "broker_authentication_user": "sampleuser", "broker_host": "samplehost", "broker_port": 4553, "certificate": "contents of a pem/crt file", "certificate_extension": "pem/crt", "connection_method": "basic, apikey", "connection_mode": "service_name", "connection_mode_value": "orclpdb", "connection_type": "JDBC, Arrow flight", "controller_authentication_password": "samplepassword", "controller_authentication_type": "PASSWORD", "controller_authentication_user": "sampleuser", "coordinator_host": "samplehost", "coordinator_port": 4553, "cpd_hostname": "samplecpdhostname", "credentials_key": "eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......", "database_name": "new_database", "database_properties": [{"encrypt": true, "key": "hive.metastore", "value": "glue"}], "hostname": "db2@<hostname>.com", "hostname_in_certificate": "samplehostname", "hosts": "abc.com:1234,xyz.com:4321", "informix_server": "ol_informix1410", "password": "samplepassword", "port": 4553, "project_id": "conops-bigquery", "sasl": true, "sasl_mechanism": "plain", "schema_name": "sampleSchema", "schemas": "redis__name", "service_api_key": "sampleapikey", "service_hostname": "api.dataplatform.dev.cloud.ibm.com", "service_password": "samplepassword", "service_port": 443, "service_ssl": true, "service_token_url": "sampletoakenurl", "service_username": "sampleusername", "ssl": true, "tables": "kafka_table_name, redis_table_name", "username": "sampleuser", "validate_server_certificate": true, "verify_host_name": true, "warehouse_name": "samplewrehouse"}, "database_display_name": "new_database", "database_id": "new_database_id", "database_properties": [{"encrypt": true, "key": "hive.metastore", "value": "glue"}], "database_type": "netezza", "tables": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "sample file name", "schema_name": "customer", "table_name": "customer"}], "description": "Description of the external database", "tags": ["tags"], "topics": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "sample file name", "topic_name": "customer"}]}'
+        mock_response = '{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "catalog_name": "sampleCatalog", "created_by": "user1@ibm.com", "created_on": "1686792721", "database_details": {"authentication_type": "LDAP", "authentication_value": "LDAP", "broker_authentication_password": "samplepassword", "broker_authentication_type": "PASSWORD", "broker_authentication_user": "sampleuser", "broker_host": "samplehost", "broker_port": 4553, "certificate": "exampleCertificate", "certificate_extension": "pem", "connection_method": "basic, apikey", "connection_mode": "service_name", "connection_mode_value": "orclpdb", "connection_type": "JDBC, Arrow flight", "controller_authentication_password": "samplepassword", "controller_authentication_type": "PASSWORD", "controller_authentication_user": "sampleuser", "coordinator_host": "samplehost", "coordinator_port": 4553, "cpd_hostname": "samplecpdhostname", "credentials_key": "eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......", "database_name": "new_database", "hostname": "http://db2@localhost:9900.com", "hostname_in_certificate": "samplehostname", "hosts": "abc.com:1234,xyz.com:4321", "informix_server": "ol_informix1410", "password": "samplepassword", "port": 4553, "project_id": "conops-bigquery", "sasl": true, "sasl_mechanism": "plain", "schema_name": "sampleSchema", "schemas": "redis__name", "service_api_key": "sampleapikey", "service_hostname": "api.dataplatform.dev.cloud.ibm.com", "service_password": "samplepassword", "service_port": 443, "service_ssl": true, "service_token_url": "sampletoakenurl", "service_username": "sampleusername", "ssl": true, "tables": "kafka_table_name, redis_table_name", "username": "sampleuser", "validate_server_certificate": true, "verify_host_name": true, "warehouse_name": "samplewrehouse"}, "database_display_name": "new_database", "database_id": "mysql123", "database_properties": [{"encrypt": true, "key": "hive.metastore", "value": "glue"}], "database_type": "netezza", "description": "Description of the external database", "tables": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "test.json", "schema_name": "customer", "table_name": "customer"}], "tags": ["tags"], "topics": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "employee.json", "topic_name": "customer"}]}'
         responses.add(
             responses.PATCH,
             url,
@@ -2407,7 +2689,7 @@ class TestUpdateDatabase:
         database_registration_patch_tables_items_model = {}
         database_registration_patch_tables_items_model['created_on'] = '1686792721'
         database_registration_patch_tables_items_model['file_contents'] = 'sample file content'
-        database_registration_patch_tables_items_model['file_name'] = 'sample file name'
+        database_registration_patch_tables_items_model['file_name'] = 'test.json'
         database_registration_patch_tables_items_model['schema_name'] = 'customer'
         database_registration_patch_tables_items_model['table_name'] = 'customer'
 
@@ -2415,7 +2697,7 @@ class TestUpdateDatabase:
         database_registration_patch_topics_items_model = {}
         database_registration_patch_topics_items_model['created_on'] = '1686792721'
         database_registration_patch_topics_items_model['file_contents'] = 'sample file contents'
-        database_registration_patch_topics_items_model['file_name'] = 'sample file name'
+        database_registration_patch_topics_items_model['file_name'] = 'test.json'
         database_registration_patch_topics_items_model['topic_name'] = 'customer'
 
         # Construct a dict representation of a DatabaseRegistrationPatch model
@@ -2425,7 +2707,6 @@ class TestUpdateDatabase:
         database_registration_patch_model['description'] = 'External database description'
         database_registration_patch_model['tables'] = [database_registration_patch_tables_items_model]
         database_registration_patch_model['tags'] = ['testdatabase', 'userdatabase']
-        database_registration_patch_model['database_properties'] = [database_registration_patch_database_details_database_properties_items_model]
         database_registration_patch_model['topics'] = [database_registration_patch_topics_items_model]
 
         # Set up parameter values
@@ -2462,7 +2743,7 @@ class TestUpdateDatabase:
         """
         # Set up mock
         url = preprocess_url('/database_registrations/testString')
-        mock_response = '{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "catalog_name": "sampleCatalog", "created_by": "user1@bim.com", "created_on": "1686792721", "database_details": {"authentication_type": "LDAP", "authentication_value": "LDAP", "broker_authentication_password": "samplepassword", "broker_authentication_type": "PASSWORD", "broker_authentication_user": "sampleuser", "broker_host": "samplehost", "broker_port": 4553, "certificate": "contents of a pem/crt file", "certificate_extension": "pem/crt", "connection_method": "basic, apikey", "connection_mode": "service_name", "connection_mode_value": "orclpdb", "connection_type": "JDBC, Arrow flight", "controller_authentication_password": "samplepassword", "controller_authentication_type": "PASSWORD", "controller_authentication_user": "sampleuser", "coordinator_host": "samplehost", "coordinator_port": 4553, "cpd_hostname": "samplecpdhostname", "credentials_key": "eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......", "database_name": "new_database", "database_properties": [{"encrypt": true, "key": "hive.metastore", "value": "glue"}], "hostname": "db2@<hostname>.com", "hostname_in_certificate": "samplehostname", "hosts": "abc.com:1234,xyz.com:4321", "informix_server": "ol_informix1410", "password": "samplepassword", "port": 4553, "project_id": "conops-bigquery", "sasl": true, "sasl_mechanism": "plain", "schema_name": "sampleSchema", "schemas": "redis__name", "service_api_key": "sampleapikey", "service_hostname": "api.dataplatform.dev.cloud.ibm.com", "service_password": "samplepassword", "service_port": 443, "service_ssl": true, "service_token_url": "sampletoakenurl", "service_username": "sampleusername", "ssl": true, "tables": "kafka_table_name, redis_table_name", "username": "sampleuser", "validate_server_certificate": true, "verify_host_name": true, "warehouse_name": "samplewrehouse"}, "database_display_name": "new_database", "database_id": "new_database_id", "database_properties": [{"encrypt": true, "key": "hive.metastore", "value": "glue"}], "database_type": "netezza", "tables": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "sample file name", "schema_name": "customer", "table_name": "customer"}], "description": "Description of the external database", "tags": ["tags"], "topics": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "sample file name", "topic_name": "customer"}]}'
+        mock_response = '{"actions": ["actions"], "associated_catalog": {"catalog_name": "sampleCatalog", "catalog_tags": ["catalog_tags"], "catalog_type": "iceberg"}, "catalog_name": "sampleCatalog", "created_by": "user1@ibm.com", "created_on": "1686792721", "database_details": {"authentication_type": "LDAP", "authentication_value": "LDAP", "broker_authentication_password": "samplepassword", "broker_authentication_type": "PASSWORD", "broker_authentication_user": "sampleuser", "broker_host": "samplehost", "broker_port": 4553, "certificate": "exampleCertificate", "certificate_extension": "pem", "connection_method": "basic, apikey", "connection_mode": "service_name", "connection_mode_value": "orclpdb", "connection_type": "JDBC, Arrow flight", "controller_authentication_password": "samplepassword", "controller_authentication_type": "PASSWORD", "controller_authentication_user": "sampleuser", "coordinator_host": "samplehost", "coordinator_port": 4553, "cpd_hostname": "samplecpdhostname", "credentials_key": "eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......", "database_name": "new_database", "hostname": "http://db2@localhost:9900.com", "hostname_in_certificate": "samplehostname", "hosts": "abc.com:1234,xyz.com:4321", "informix_server": "ol_informix1410", "password": "samplepassword", "port": 4553, "project_id": "conops-bigquery", "sasl": true, "sasl_mechanism": "plain", "schema_name": "sampleSchema", "schemas": "redis__name", "service_api_key": "sampleapikey", "service_hostname": "api.dataplatform.dev.cloud.ibm.com", "service_password": "samplepassword", "service_port": 443, "service_ssl": true, "service_token_url": "sampletoakenurl", "service_username": "sampleusername", "ssl": true, "tables": "kafka_table_name, redis_table_name", "username": "sampleuser", "validate_server_certificate": true, "verify_host_name": true, "warehouse_name": "samplewrehouse"}, "database_display_name": "new_database", "database_id": "mysql123", "database_properties": [{"encrypt": true, "key": "hive.metastore", "value": "glue"}], "database_type": "netezza", "description": "Description of the external database", "tables": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "test.json", "schema_name": "customer", "table_name": "customer"}], "tags": ["tags"], "topics": [{"created_on": "1686792721", "file_contents": "sample file content", "file_name": "employee.json", "topic_name": "customer"}]}'
         responses.add(
             responses.PATCH,
             url,
@@ -2495,7 +2776,7 @@ class TestUpdateDatabase:
         database_registration_patch_tables_items_model = {}
         database_registration_patch_tables_items_model['created_on'] = '1686792721'
         database_registration_patch_tables_items_model['file_contents'] = 'sample file content'
-        database_registration_patch_tables_items_model['file_name'] = 'sample file name'
+        database_registration_patch_tables_items_model['file_name'] = 'test.json'
         database_registration_patch_tables_items_model['schema_name'] = 'customer'
         database_registration_patch_tables_items_model['table_name'] = 'customer'
 
@@ -2503,7 +2784,7 @@ class TestUpdateDatabase:
         database_registration_patch_topics_items_model = {}
         database_registration_patch_topics_items_model['created_on'] = '1686792721'
         database_registration_patch_topics_items_model['file_contents'] = 'sample file contents'
-        database_registration_patch_topics_items_model['file_name'] = 'sample file name'
+        database_registration_patch_topics_items_model['file_name'] = 'test.json'
         database_registration_patch_topics_items_model['topic_name'] = 'customer'
 
         # Construct a dict representation of a DatabaseRegistrationPatch model
@@ -2513,7 +2794,6 @@ class TestUpdateDatabase:
         database_registration_patch_model['description'] = 'External database description'
         database_registration_patch_model['tables'] = [database_registration_patch_tables_items_model]
         database_registration_patch_model['tags'] = ['testdatabase', 'userdatabase']
-        database_registration_patch_model['database_properties'] = [database_registration_patch_database_details_database_properties_items_model]
         database_registration_patch_model['topics'] = [database_registration_patch_topics_items_model]
 
         # Set up parameter values
@@ -2543,6 +2823,196 @@ class TestUpdateDatabase:
 # endregion
 ##############################################################################
 # End of Service: Databases
+##############################################################################
+
+##############################################################################
+# Start of Service: Engines
+##############################################################################
+# region
+
+
+class TestNewInstance:
+    """
+    Test Class for new_instance
+    """
+
+    def test_new_instance(self):
+        """
+        new_instance()
+        """
+        os.environ['TEST_SERVICE_AUTH_TYPE'] = 'noAuth'
+
+        service = WatsonxDataV2.new_instance(
+            service_name='TEST_SERVICE',
+        )
+
+        assert service is not None
+        assert isinstance(service, WatsonxDataV2)
+
+    def test_new_instance_without_authenticator(self):
+        """
+        new_instance_without_authenticator()
+        """
+        with pytest.raises(ValueError, match='authenticator must be provided'):
+            service = WatsonxDataV2.new_instance(
+                service_name='TEST_SERVICE_NOT_FOUND',
+            )
+
+
+class TestGenerateEngineDump:
+    """
+    Test Class for generate_engine_dump
+    """
+
+    @responses.activate
+    def test_generate_engine_dump_all_params(self):
+        """
+        generate_engine_dump()
+        """
+        # Set up mock
+        url = preprocess_url('/generate_engine_dump')
+        mock_response = '{"response": {"message": "message", "status": "status"}}'
+        responses.add(
+            responses.POST,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
+
+        # Set up parameter values
+        dump_file_name = 'prestodump'
+        dump_type = 'heat'
+        engine_id = 'presto-123'
+        pod_name = 'presto'
+        auth_instance_id = 'testString'
+
+        # Invoke method
+        response = _service.generate_engine_dump(
+            dump_file_name,
+            dump_type,
+            engine_id,
+            pod_name,
+            auth_instance_id=auth_instance_id,
+            headers={},
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+        # Validate body params
+        req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
+        assert req_body['dump_file_name'] == 'prestodump'
+        assert req_body['dump_type'] == 'heat'
+        assert req_body['engine_id'] == 'presto-123'
+        assert req_body['pod_name'] == 'presto'
+
+    def test_generate_engine_dump_all_params_with_retries(self):
+        # Enable retries and run test_generate_engine_dump_all_params.
+        _service.enable_retries()
+        self.test_generate_engine_dump_all_params()
+
+        # Disable retries and run test_generate_engine_dump_all_params.
+        _service.disable_retries()
+        self.test_generate_engine_dump_all_params()
+
+    @responses.activate
+    def test_generate_engine_dump_required_params(self):
+        """
+        test_generate_engine_dump_required_params()
+        """
+        # Set up mock
+        url = preprocess_url('/generate_engine_dump')
+        mock_response = '{"response": {"message": "message", "status": "status"}}'
+        responses.add(
+            responses.POST,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
+
+        # Set up parameter values
+        dump_file_name = 'prestodump'
+        dump_type = 'heat'
+        engine_id = 'presto-123'
+        pod_name = 'presto'
+
+        # Invoke method
+        response = _service.generate_engine_dump(
+            dump_file_name,
+            dump_type,
+            engine_id,
+            pod_name,
+            headers={},
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+        # Validate body params
+        req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
+        assert req_body['dump_file_name'] == 'prestodump'
+        assert req_body['dump_type'] == 'heat'
+        assert req_body['engine_id'] == 'presto-123'
+        assert req_body['pod_name'] == 'presto'
+
+    def test_generate_engine_dump_required_params_with_retries(self):
+        # Enable retries and run test_generate_engine_dump_required_params.
+        _service.enable_retries()
+        self.test_generate_engine_dump_required_params()
+
+        # Disable retries and run test_generate_engine_dump_required_params.
+        _service.disable_retries()
+        self.test_generate_engine_dump_required_params()
+
+    @responses.activate
+    def test_generate_engine_dump_value_error(self):
+        """
+        test_generate_engine_dump_value_error()
+        """
+        # Set up mock
+        url = preprocess_url('/generate_engine_dump')
+        mock_response = '{"response": {"message": "message", "status": "status"}}'
+        responses.add(
+            responses.POST,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
+
+        # Set up parameter values
+        dump_file_name = 'prestodump'
+        dump_type = 'heat'
+        engine_id = 'presto-123'
+        pod_name = 'presto'
+
+        # Pass in all but one required param and check for a ValueError
+        req_param_dict = {
+            "dump_file_name": dump_file_name,
+            "dump_type": dump_type,
+            "engine_id": engine_id,
+            "pod_name": pod_name,
+        }
+        for param in req_param_dict.keys():
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            with pytest.raises(ValueError):
+                _service.generate_engine_dump(**req_copy)
+
+    def test_generate_engine_dump_value_error_with_retries(self):
+        # Enable retries and run test_generate_engine_dump_value_error.
+        _service.enable_retries()
+        self.test_generate_engine_dump_value_error()
+
+        # Disable retries and run test_generate_engine_dump_value_error.
+        _service.disable_retries()
+        self.test_generate_engine_dump_value_error()
+
+
+# endregion
+##############################################################################
+# End of Service: Engines
 ##############################################################################
 
 ##############################################################################
@@ -2989,7 +3459,7 @@ class TestListAllIntegrations:
         """
         # Set up mock
         url = preprocess_url('/integrations')
-        mock_response = '{"integrations": [{"apikey": "apikey", "config_properties": "ikc-env.password=ibmlhenc__0001__uMkFATDDZNnxJ7z6BA/QqA==\nikc-env.url=ikc\nikc-enabled-catalogs=\nikc-username=\nlh-unique-identifier=1711796957622126\nlh-crn=1711796957622126", "enable_data_policy_within_wxd": false, "governance_properties": "query-governance.name=external", "integration_id": "presto01", "modified_at": 11, "modified_by": "<username>@<domain>.com", "password": "password", "resource": "presto01", "service_type": "ikc", "state": "active", "storage_catalogs": ["storage_catalogs"], "url": "ikc.url", "username": "username@email.com"}]}'
+        mock_response = '{"integrations": [{"access_token": "accessToken", "apikey": "apikey", "auth_url": "https://abc.ibm.com", "config_properties": "ikc-env.password=ibm-abcefghijklmno==\nikc-env.url=ikc\nikc-enabled-catalogs=\nikc-username=\nlh-unique-identifier=1711796957622126\nlh-crn=1711796957622126", "cross_account_integration": true, "enable_data_policy_within_wxd": false, "governance_properties": "query-governance.name=external", "ikc_user_account_id": "abcdefghijklmnopqrstuvwxyz", "integration_id": "ikc001", "manta_url": "https://abcd.com/gov_lineage/v2/lineage_events/openlineage", "modified_at": 123456789, "modified_by": "username@email.com", "password": "password", "resource": "presto01", "service_type": "ikc", "state": "active", "storage_catalogs": ["storage_catalogs"], "url": "http://abcd.efgh.com:9876/", "username": "username@email.com"}]}'
         responses.add(
             responses.GET,
             url,
@@ -3038,7 +3508,7 @@ class TestListAllIntegrations:
         """
         # Set up mock
         url = preprocess_url('/integrations')
-        mock_response = '{"integrations": [{"apikey": "apikey", "config_properties": "ikc-env.password=ibmlhenc__0001__uMkFATDDZNnxJ7z6BA/QqA==\nikc-env.url=ikc\nikc-enabled-catalogs=\nikc-username=\nlh-unique-identifier=1711796957622126\nlh-crn=1711796957622126", "enable_data_policy_within_wxd": false, "governance_properties": "query-governance.name=external", "integration_id": "presto01", "modified_at": 11, "modified_by": "<username>@<domain>.com", "password": "password", "resource": "presto01", "service_type": "ikc", "state": "active", "storage_catalogs": ["storage_catalogs"], "url": "ikc.url", "username": "username@email.com"}]}'
+        mock_response = '{"integrations": [{"access_token": "accessToken", "apikey": "apikey", "auth_url": "https://abc.ibm.com", "config_properties": "ikc-env.password=ibm-abcefghijklmno==\nikc-env.url=ikc\nikc-enabled-catalogs=\nikc-username=\nlh-unique-identifier=1711796957622126\nlh-crn=1711796957622126", "cross_account_integration": true, "enable_data_policy_within_wxd": false, "governance_properties": "query-governance.name=external", "ikc_user_account_id": "abcdefghijklmnopqrstuvwxyz", "integration_id": "ikc001", "manta_url": "https://abcd.com/gov_lineage/v2/lineage_events/openlineage", "modified_at": 123456789, "modified_by": "username@email.com", "password": "password", "resource": "presto01", "service_type": "ikc", "state": "active", "storage_catalogs": ["storage_catalogs"], "url": "http://abcd.efgh.com:9876/", "username": "username@email.com"}]}'
         responses.add(
             responses.GET,
             url,
@@ -3076,7 +3546,7 @@ class TestCreateIntegration:
         """
         # Set up mock
         url = preprocess_url('/integrations')
-        mock_response = '{"apikey": "apikey", "config_properties": "ikc-env.password=ibmlhenc__0001__uMkFATDDZNnxJ7z6BA/QqA==\nikc-env.url=ikc\nikc-enabled-catalogs=\nikc-username=\nlh-unique-identifier=1711796957622126\nlh-crn=1711796957622126", "enable_data_policy_within_wxd": false, "governance_properties": "query-governance.name=external", "integration_id": "presto01", "modified_at": 11, "modified_by": "<username>@<domain>.com", "password": "password", "resource": "presto01", "service_type": "ikc", "state": "active", "storage_catalogs": ["storage_catalogs"], "url": "ikc.url", "username": "username@email.com"}'
+        mock_response = '{"access_token": "accessToken", "apikey": "apikey", "auth_url": "https://abc.ibm.com", "config_properties": "ikc-env.password=ibm-abcefghijklmno==\nikc-env.url=ikc\nikc-enabled-catalogs=\nikc-username=\nlh-unique-identifier=1711796957622126\nlh-crn=1711796957622126", "cross_account_integration": true, "enable_data_policy_within_wxd": false, "governance_properties": "query-governance.name=external", "ikc_user_account_id": "abcdefghijklmnopqrstuvwxyz", "integration_id": "ikc001", "manta_url": "https://abcd.com/gov_lineage/v2/lineage_events/openlineage", "modified_at": 123456789, "modified_by": "username@email.com", "password": "password", "resource": "presto01", "service_type": "ikc", "state": "active", "storage_catalogs": ["storage_catalogs"], "url": "http://abcd.efgh.com:9876/", "username": "username@email.com"}'
         responses.add(
             responses.POST,
             url,
@@ -3086,8 +3556,11 @@ class TestCreateIntegration:
         )
 
         # Set up parameter values
+        access_token = 'testString'
         apikey = 'testString'
+        cross_account_integration = True
         enable_data_policy_within_wxd = False
+        ikc_user_account_id = 'testString'
         password = 'password'
         resource = 'resource_name'
         service_type = 'ranger'
@@ -3098,8 +3571,11 @@ class TestCreateIntegration:
 
         # Invoke method
         response = _service.create_integration(
+            access_token=access_token,
             apikey=apikey,
+            cross_account_integration=cross_account_integration,
             enable_data_policy_within_wxd=enable_data_policy_within_wxd,
+            ikc_user_account_id=ikc_user_account_id,
             password=password,
             resource=resource,
             service_type=service_type,
@@ -3115,8 +3591,11 @@ class TestCreateIntegration:
         assert response.status_code == 201
         # Validate body params
         req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
+        assert req_body['access_token'] == 'testString'
         assert req_body['apikey'] == 'testString'
+        assert req_body['cross_account_integration'] == True
         assert req_body['enable_data_policy_within_wxd'] == False
+        assert req_body['ikc_user_account_id'] == 'testString'
         assert req_body['password'] == 'password'
         assert req_body['resource'] == 'resource_name'
         assert req_body['service_type'] == 'ranger'
@@ -3140,7 +3619,7 @@ class TestCreateIntegration:
         """
         # Set up mock
         url = preprocess_url('/integrations')
-        mock_response = '{"apikey": "apikey", "config_properties": "ikc-env.password=ibmlhenc__0001__uMkFATDDZNnxJ7z6BA/QqA==\nikc-env.url=ikc\nikc-enabled-catalogs=\nikc-username=\nlh-unique-identifier=1711796957622126\nlh-crn=1711796957622126", "enable_data_policy_within_wxd": false, "governance_properties": "query-governance.name=external", "integration_id": "presto01", "modified_at": 11, "modified_by": "<username>@<domain>.com", "password": "password", "resource": "presto01", "service_type": "ikc", "state": "active", "storage_catalogs": ["storage_catalogs"], "url": "ikc.url", "username": "username@email.com"}'
+        mock_response = '{"access_token": "accessToken", "apikey": "apikey", "auth_url": "https://abc.ibm.com", "config_properties": "ikc-env.password=ibm-abcefghijklmno==\nikc-env.url=ikc\nikc-enabled-catalogs=\nikc-username=\nlh-unique-identifier=1711796957622126\nlh-crn=1711796957622126", "cross_account_integration": true, "enable_data_policy_within_wxd": false, "governance_properties": "query-governance.name=external", "ikc_user_account_id": "abcdefghijklmnopqrstuvwxyz", "integration_id": "ikc001", "manta_url": "https://abcd.com/gov_lineage/v2/lineage_events/openlineage", "modified_at": 123456789, "modified_by": "username@email.com", "password": "password", "resource": "presto01", "service_type": "ikc", "state": "active", "storage_catalogs": ["storage_catalogs"], "url": "http://abcd.efgh.com:9876/", "username": "username@email.com"}'
         responses.add(
             responses.POST,
             url,
@@ -3150,8 +3629,11 @@ class TestCreateIntegration:
         )
 
         # Set up parameter values
+        access_token = 'testString'
         apikey = 'testString'
+        cross_account_integration = True
         enable_data_policy_within_wxd = False
+        ikc_user_account_id = 'testString'
         password = 'password'
         resource = 'resource_name'
         service_type = 'ranger'
@@ -3161,8 +3643,11 @@ class TestCreateIntegration:
 
         # Invoke method
         response = _service.create_integration(
+            access_token=access_token,
             apikey=apikey,
+            cross_account_integration=cross_account_integration,
             enable_data_policy_within_wxd=enable_data_policy_within_wxd,
+            ikc_user_account_id=ikc_user_account_id,
             password=password,
             resource=resource,
             service_type=service_type,
@@ -3177,8 +3662,11 @@ class TestCreateIntegration:
         assert response.status_code == 201
         # Validate body params
         req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
+        assert req_body['access_token'] == 'testString'
         assert req_body['apikey'] == 'testString'
+        assert req_body['cross_account_integration'] == True
         assert req_body['enable_data_policy_within_wxd'] == False
+        assert req_body['ikc_user_account_id'] == 'testString'
         assert req_body['password'] == 'password'
         assert req_body['resource'] == 'resource_name'
         assert req_body['service_type'] == 'ranger'
@@ -3208,7 +3696,7 @@ class TestGetIntegrations:
         """
         # Set up mock
         url = preprocess_url('/integrations/testString')
-        mock_response = '{"apikey": "apikey", "config_properties": "ikc-env.password=ibmlhenc__0001__uMkFATDDZNnxJ7z6BA/QqA==\nikc-env.url=ikc\nikc-enabled-catalogs=\nikc-username=\nlh-unique-identifier=1711796957622126\nlh-crn=1711796957622126", "enable_data_policy_within_wxd": false, "governance_properties": "query-governance.name=external", "integration_id": "presto01", "modified_at": 11, "modified_by": "<username>@<domain>.com", "password": "password", "resource": "presto01", "service_type": "ikc", "state": "active", "storage_catalogs": ["storage_catalogs"], "url": "ikc.url", "username": "username@email.com"}'
+        mock_response = '{"access_token": "accessToken", "apikey": "apikey", "auth_url": "https://abc.ibm.com", "config_properties": "ikc-env.password=ibm-abcefghijklmno==\nikc-env.url=ikc\nikc-enabled-catalogs=\nikc-username=\nlh-unique-identifier=1711796957622126\nlh-crn=1711796957622126", "cross_account_integration": true, "enable_data_policy_within_wxd": false, "governance_properties": "query-governance.name=external", "ikc_user_account_id": "abcdefghijklmnopqrstuvwxyz", "integration_id": "ikc001", "manta_url": "https://abcd.com/gov_lineage/v2/lineage_events/openlineage", "modified_at": 123456789, "modified_by": "username@email.com", "password": "password", "resource": "presto01", "service_type": "ikc", "state": "active", "storage_catalogs": ["storage_catalogs"], "url": "http://abcd.efgh.com:9876/", "username": "username@email.com"}'
         responses.add(
             responses.GET,
             url,
@@ -3250,7 +3738,7 @@ class TestGetIntegrations:
         """
         # Set up mock
         url = preprocess_url('/integrations/testString')
-        mock_response = '{"apikey": "apikey", "config_properties": "ikc-env.password=ibmlhenc__0001__uMkFATDDZNnxJ7z6BA/QqA==\nikc-env.url=ikc\nikc-enabled-catalogs=\nikc-username=\nlh-unique-identifier=1711796957622126\nlh-crn=1711796957622126", "enable_data_policy_within_wxd": false, "governance_properties": "query-governance.name=external", "integration_id": "presto01", "modified_at": 11, "modified_by": "<username>@<domain>.com", "password": "password", "resource": "presto01", "service_type": "ikc", "state": "active", "storage_catalogs": ["storage_catalogs"], "url": "ikc.url", "username": "username@email.com"}'
+        mock_response = '{"access_token": "accessToken", "apikey": "apikey", "auth_url": "https://abc.ibm.com", "config_properties": "ikc-env.password=ibm-abcefghijklmno==\nikc-env.url=ikc\nikc-enabled-catalogs=\nikc-username=\nlh-unique-identifier=1711796957622126\nlh-crn=1711796957622126", "cross_account_integration": true, "enable_data_policy_within_wxd": false, "governance_properties": "query-governance.name=external", "ikc_user_account_id": "abcdefghijklmnopqrstuvwxyz", "integration_id": "ikc001", "manta_url": "https://abcd.com/gov_lineage/v2/lineage_events/openlineage", "modified_at": 123456789, "modified_by": "username@email.com", "password": "password", "resource": "presto01", "service_type": "ikc", "state": "active", "storage_catalogs": ["storage_catalogs"], "url": "http://abcd.efgh.com:9876/", "username": "username@email.com"}'
         responses.add(
             responses.GET,
             url,
@@ -3288,7 +3776,7 @@ class TestGetIntegrations:
         """
         # Set up mock
         url = preprocess_url('/integrations/testString')
-        mock_response = '{"apikey": "apikey", "config_properties": "ikc-env.password=ibmlhenc__0001__uMkFATDDZNnxJ7z6BA/QqA==\nikc-env.url=ikc\nikc-enabled-catalogs=\nikc-username=\nlh-unique-identifier=1711796957622126\nlh-crn=1711796957622126", "enable_data_policy_within_wxd": false, "governance_properties": "query-governance.name=external", "integration_id": "presto01", "modified_at": 11, "modified_by": "<username>@<domain>.com", "password": "password", "resource": "presto01", "service_type": "ikc", "state": "active", "storage_catalogs": ["storage_catalogs"], "url": "ikc.url", "username": "username@email.com"}'
+        mock_response = '{"access_token": "accessToken", "apikey": "apikey", "auth_url": "https://abc.ibm.com", "config_properties": "ikc-env.password=ibm-abcefghijklmno==\nikc-env.url=ikc\nikc-enabled-catalogs=\nikc-username=\nlh-unique-identifier=1711796957622126\nlh-crn=1711796957622126", "cross_account_integration": true, "enable_data_policy_within_wxd": false, "governance_properties": "query-governance.name=external", "ikc_user_account_id": "abcdefghijklmnopqrstuvwxyz", "integration_id": "ikc001", "manta_url": "https://abcd.com/gov_lineage/v2/lineage_events/openlineage", "modified_at": 123456789, "modified_by": "username@email.com", "password": "password", "resource": "presto01", "service_type": "ikc", "state": "active", "storage_catalogs": ["storage_catalogs"], "url": "http://abcd.efgh.com:9876/", "username": "username@email.com"}'
         responses.add(
             responses.GET,
             url,
@@ -3443,7 +3931,7 @@ class TestUpdateIntegration:
         """
         # Set up mock
         url = preprocess_url('/integrations/testString')
-        mock_response = '{"apikey": "apikey", "config_properties": "ikc-env.password=ibmlhenc__0001__uMkFATDDZNnxJ7z6BA/QqA==\nikc-env.url=ikc\nikc-enabled-catalogs=\nikc-username=\nlh-unique-identifier=1711796957622126\nlh-crn=1711796957622126", "enable_data_policy_within_wxd": false, "governance_properties": "query-governance.name=external", "integration_id": "presto01", "modified_at": 11, "modified_by": "<username>@<domain>.com", "password": "password", "resource": "presto01", "service_type": "ikc", "state": "active", "storage_catalogs": ["storage_catalogs"], "url": "ikc.url", "username": "username@email.com"}'
+        mock_response = '{"access_token": "accessToken", "apikey": "apikey", "auth_url": "https://abc.ibm.com", "config_properties": "ikc-env.password=ibm-abcefghijklmno==\nikc-env.url=ikc\nikc-enabled-catalogs=\nikc-username=\nlh-unique-identifier=1711796957622126\nlh-crn=1711796957622126", "cross_account_integration": true, "enable_data_policy_within_wxd": false, "governance_properties": "query-governance.name=external", "ikc_user_account_id": "abcdefghijklmnopqrstuvwxyz", "integration_id": "ikc001", "manta_url": "https://abcd.com/gov_lineage/v2/lineage_events/openlineage", "modified_at": 123456789, "modified_by": "username@email.com", "password": "password", "resource": "presto01", "service_type": "ikc", "state": "active", "storage_catalogs": ["storage_catalogs"], "url": "http://abcd.efgh.com:9876/", "username": "username@email.com"}'
         responses.add(
             responses.PATCH,
             url,
@@ -3454,10 +3942,14 @@ class TestUpdateIntegration:
 
         # Construct a dict representation of a IntegrationPatch model
         integration_patch_model = {}
+        integration_patch_model['access_token'] = 'uiOO90kklop'
         integration_patch_model['apikey'] = 'apikey'
+        integration_patch_model['cross_account_integration'] = False
         integration_patch_model['enable_data_policy_within_wxd'] = True
+        integration_patch_model['ikc_user_account_id'] = 'abcdefghijklmnopqrstuvwxyz'
         integration_patch_model['password'] = 'password'
         integration_patch_model['resource'] = 'resource_name'
+        integration_patch_model['state'] = 'active'
         integration_patch_model['storage_catalogs'] = ['iceberg_data', 'hive_data']
         integration_patch_model['url'] = 'http://abcd.efgh.com:9876/'
         integration_patch_model['username'] = 'username'
@@ -3498,7 +3990,7 @@ class TestUpdateIntegration:
         """
         # Set up mock
         url = preprocess_url('/integrations/testString')
-        mock_response = '{"apikey": "apikey", "config_properties": "ikc-env.password=ibmlhenc__0001__uMkFATDDZNnxJ7z6BA/QqA==\nikc-env.url=ikc\nikc-enabled-catalogs=\nikc-username=\nlh-unique-identifier=1711796957622126\nlh-crn=1711796957622126", "enable_data_policy_within_wxd": false, "governance_properties": "query-governance.name=external", "integration_id": "presto01", "modified_at": 11, "modified_by": "<username>@<domain>.com", "password": "password", "resource": "presto01", "service_type": "ikc", "state": "active", "storage_catalogs": ["storage_catalogs"], "url": "ikc.url", "username": "username@email.com"}'
+        mock_response = '{"access_token": "accessToken", "apikey": "apikey", "auth_url": "https://abc.ibm.com", "config_properties": "ikc-env.password=ibm-abcefghijklmno==\nikc-env.url=ikc\nikc-enabled-catalogs=\nikc-username=\nlh-unique-identifier=1711796957622126\nlh-crn=1711796957622126", "cross_account_integration": true, "enable_data_policy_within_wxd": false, "governance_properties": "query-governance.name=external", "ikc_user_account_id": "abcdefghijklmnopqrstuvwxyz", "integration_id": "ikc001", "manta_url": "https://abcd.com/gov_lineage/v2/lineage_events/openlineage", "modified_at": 123456789, "modified_by": "username@email.com", "password": "password", "resource": "presto01", "service_type": "ikc", "state": "active", "storage_catalogs": ["storage_catalogs"], "url": "http://abcd.efgh.com:9876/", "username": "username@email.com"}'
         responses.add(
             responses.PATCH,
             url,
@@ -3509,10 +4001,14 @@ class TestUpdateIntegration:
 
         # Construct a dict representation of a IntegrationPatch model
         integration_patch_model = {}
+        integration_patch_model['access_token'] = 'uiOO90kklop'
         integration_patch_model['apikey'] = 'apikey'
+        integration_patch_model['cross_account_integration'] = False
         integration_patch_model['enable_data_policy_within_wxd'] = True
+        integration_patch_model['ikc_user_account_id'] = 'abcdefghijklmnopqrstuvwxyz'
         integration_patch_model['password'] = 'password'
         integration_patch_model['resource'] = 'resource_name'
+        integration_patch_model['state'] = 'active'
         integration_patch_model['storage_catalogs'] = ['iceberg_data', 'hive_data']
         integration_patch_model['url'] = 'http://abcd.efgh.com:9876/'
         integration_patch_model['username'] = 'username'
@@ -3551,7 +4047,7 @@ class TestUpdateIntegration:
         """
         # Set up mock
         url = preprocess_url('/integrations/testString')
-        mock_response = '{"apikey": "apikey", "config_properties": "ikc-env.password=ibmlhenc__0001__uMkFATDDZNnxJ7z6BA/QqA==\nikc-env.url=ikc\nikc-enabled-catalogs=\nikc-username=\nlh-unique-identifier=1711796957622126\nlh-crn=1711796957622126", "enable_data_policy_within_wxd": false, "governance_properties": "query-governance.name=external", "integration_id": "presto01", "modified_at": 11, "modified_by": "<username>@<domain>.com", "password": "password", "resource": "presto01", "service_type": "ikc", "state": "active", "storage_catalogs": ["storage_catalogs"], "url": "ikc.url", "username": "username@email.com"}'
+        mock_response = '{"access_token": "accessToken", "apikey": "apikey", "auth_url": "https://abc.ibm.com", "config_properties": "ikc-env.password=ibm-abcefghijklmno==\nikc-env.url=ikc\nikc-enabled-catalogs=\nikc-username=\nlh-unique-identifier=1711796957622126\nlh-crn=1711796957622126", "cross_account_integration": true, "enable_data_policy_within_wxd": false, "governance_properties": "query-governance.name=external", "ikc_user_account_id": "abcdefghijklmnopqrstuvwxyz", "integration_id": "ikc001", "manta_url": "https://abcd.com/gov_lineage/v2/lineage_events/openlineage", "modified_at": 123456789, "modified_by": "username@email.com", "password": "password", "resource": "presto01", "service_type": "ikc", "state": "active", "storage_catalogs": ["storage_catalogs"], "url": "http://abcd.efgh.com:9876/", "username": "username@email.com"}'
         responses.add(
             responses.PATCH,
             url,
@@ -3562,10 +4058,14 @@ class TestUpdateIntegration:
 
         # Construct a dict representation of a IntegrationPatch model
         integration_patch_model = {}
+        integration_patch_model['access_token'] = 'uiOO90kklop'
         integration_patch_model['apikey'] = 'apikey'
+        integration_patch_model['cross_account_integration'] = False
         integration_patch_model['enable_data_policy_within_wxd'] = True
+        integration_patch_model['ikc_user_account_id'] = 'abcdefghijklmnopqrstuvwxyz'
         integration_patch_model['password'] = 'password'
         integration_patch_model['resource'] = 'resource_name'
+        integration_patch_model['state'] = 'active'
         integration_patch_model['storage_catalogs'] = ['iceberg_data', 'hive_data']
         integration_patch_model['url'] = 'http://abcd.efgh.com:9876/'
         integration_patch_model['username'] = 'username'
@@ -3645,7 +4145,7 @@ class TestListDb2Engines:
         """
         # Set up mock
         url = preprocess_url('/db2_engines')
-        mock_response = '{"db2_engines": [{"actions": ["actions"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "db2 engine for running sql queries", "engine_details": {"connection_string": "1.2.3.4", "metastore_host": "1.2.3.4"}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "host_name": "xyz-db2-01-db2-svc", "origin": "ibm", "port": 4, "status": "REGISTERED", "tags": ["tags"], "type": "db2"}]}'
+        mock_response = '{"db2_engines": [{"actions": ["actions"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 0, "description": "db2 engine to run sql queries", "engine_details": {"connection_string": "1.2.3.4", "metastore_host": "1.2.3.4"}, "engine_display_name": "sample-engine", "engine_id": "sampleEngine123", "host_name": "xyz-db2-01-db2-svc", "origin": "ibm", "port": 0, "status": "REGISTERED", "tags": ["tags"], "type": "db2"}]}'
         responses.add(
             responses.GET,
             url,
@@ -3683,7 +4183,7 @@ class TestListDb2Engines:
         """
         # Set up mock
         url = preprocess_url('/db2_engines')
-        mock_response = '{"db2_engines": [{"actions": ["actions"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "db2 engine for running sql queries", "engine_details": {"connection_string": "1.2.3.4", "metastore_host": "1.2.3.4"}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "host_name": "xyz-db2-01-db2-svc", "origin": "ibm", "port": 4, "status": "REGISTERED", "tags": ["tags"], "type": "db2"}]}'
+        mock_response = '{"db2_engines": [{"actions": ["actions"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 0, "description": "db2 engine to run sql queries", "engine_details": {"connection_string": "1.2.3.4", "metastore_host": "1.2.3.4"}, "engine_display_name": "sample-engine", "engine_id": "sampleEngine123", "host_name": "xyz-db2-01-db2-svc", "origin": "ibm", "port": 0, "status": "REGISTERED", "tags": ["tags"], "type": "db2"}]}'
         responses.add(
             responses.GET,
             url,
@@ -3721,7 +4221,7 @@ class TestCreateDb2Engine:
         """
         # Set up mock
         url = preprocess_url('/db2_engines')
-        mock_response = '{"actions": ["actions"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "db2 engine for running sql queries", "engine_details": {"connection_string": "1.2.3.4", "metastore_host": "1.2.3.4"}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "host_name": "xyz-db2-01-db2-svc", "origin": "ibm", "port": 4, "status": "REGISTERED", "tags": ["tags"], "type": "db2"}'
+        mock_response = '{"actions": ["actions"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 0, "description": "db2 engine to run sql queries", "engine_details": {"connection_string": "1.2.3.4", "metastore_host": "1.2.3.4"}, "engine_display_name": "sample-engine", "engine_id": "sampleEngine123", "host_name": "xyz-db2-01-db2-svc", "origin": "ibm", "port": 0, "status": "REGISTERED", "tags": ["tags"], "type": "db2"}'
         responses.add(
             responses.POST,
             url,
@@ -3780,7 +4280,7 @@ class TestCreateDb2Engine:
         """
         # Set up mock
         url = preprocess_url('/db2_engines')
-        mock_response = '{"actions": ["actions"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "db2 engine for running sql queries", "engine_details": {"connection_string": "1.2.3.4", "metastore_host": "1.2.3.4"}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "host_name": "xyz-db2-01-db2-svc", "origin": "ibm", "port": 4, "status": "REGISTERED", "tags": ["tags"], "type": "db2"}'
+        mock_response = '{"actions": ["actions"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 0, "description": "db2 engine to run sql queries", "engine_details": {"connection_string": "1.2.3.4", "metastore_host": "1.2.3.4"}, "engine_display_name": "sample-engine", "engine_id": "sampleEngine123", "host_name": "xyz-db2-01-db2-svc", "origin": "ibm", "port": 0, "status": "REGISTERED", "tags": ["tags"], "type": "db2"}'
         responses.add(
             responses.POST,
             url,
@@ -3837,7 +4337,7 @@ class TestCreateDb2Engine:
         """
         # Set up mock
         url = preprocess_url('/db2_engines')
-        mock_response = '{"actions": ["actions"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "db2 engine for running sql queries", "engine_details": {"connection_string": "1.2.3.4", "metastore_host": "1.2.3.4"}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "host_name": "xyz-db2-01-db2-svc", "origin": "ibm", "port": 4, "status": "REGISTERED", "tags": ["tags"], "type": "db2"}'
+        mock_response = '{"actions": ["actions"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 0, "description": "db2 engine to run sql queries", "engine_details": {"connection_string": "1.2.3.4", "metastore_host": "1.2.3.4"}, "engine_display_name": "sample-engine", "engine_id": "sampleEngine123", "host_name": "xyz-db2-01-db2-svc", "origin": "ibm", "port": 0, "status": "REGISTERED", "tags": ["tags"], "type": "db2"}'
         responses.add(
             responses.POST,
             url,
@@ -4000,7 +4500,7 @@ class TestUpdateDb2Engine:
         """
         # Set up mock
         url = preprocess_url('/db2_engines/testString')
-        mock_response = '{"actions": ["actions"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "db2 engine for running sql queries", "engine_details": {"connection_string": "1.2.3.4", "metastore_host": "1.2.3.4"}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "host_name": "xyz-db2-01-db2-svc", "origin": "ibm", "port": 4, "status": "REGISTERED", "tags": ["tags"], "type": "db2"}'
+        mock_response = '{"actions": ["actions"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 0, "description": "db2 engine to run sql queries", "engine_details": {"connection_string": "1.2.3.4", "metastore_host": "1.2.3.4"}, "engine_display_name": "sample-engine", "engine_id": "sampleEngine123", "host_name": "xyz-db2-01-db2-svc", "origin": "ibm", "port": 0, "status": "REGISTERED", "tags": ["tags"], "type": "db2"}'
         responses.add(
             responses.PATCH,
             url,
@@ -4051,7 +4551,7 @@ class TestUpdateDb2Engine:
         """
         # Set up mock
         url = preprocess_url('/db2_engines/testString')
-        mock_response = '{"actions": ["actions"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "db2 engine for running sql queries", "engine_details": {"connection_string": "1.2.3.4", "metastore_host": "1.2.3.4"}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "host_name": "xyz-db2-01-db2-svc", "origin": "ibm", "port": 4, "status": "REGISTERED", "tags": ["tags"], "type": "db2"}'
+        mock_response = '{"actions": ["actions"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 0, "description": "db2 engine to run sql queries", "engine_details": {"connection_string": "1.2.3.4", "metastore_host": "1.2.3.4"}, "engine_display_name": "sample-engine", "engine_id": "sampleEngine123", "host_name": "xyz-db2-01-db2-svc", "origin": "ibm", "port": 0, "status": "REGISTERED", "tags": ["tags"], "type": "db2"}'
         responses.add(
             responses.PATCH,
             url,
@@ -4100,7 +4600,7 @@ class TestUpdateDb2Engine:
         """
         # Set up mock
         url = preprocess_url('/db2_engines/testString')
-        mock_response = '{"actions": ["actions"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "db2 engine for running sql queries", "engine_details": {"connection_string": "1.2.3.4", "metastore_host": "1.2.3.4"}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "host_name": "xyz-db2-01-db2-svc", "origin": "ibm", "port": 4, "status": "REGISTERED", "tags": ["tags"], "type": "db2"}'
+        mock_response = '{"actions": ["actions"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 0, "description": "db2 engine to run sql queries", "engine_details": {"connection_string": "1.2.3.4", "metastore_host": "1.2.3.4"}, "engine_display_name": "sample-engine", "engine_id": "sampleEngine123", "host_name": "xyz-db2-01-db2-svc", "origin": "ibm", "port": 0, "status": "REGISTERED", "tags": ["tags"], "type": "db2"}'
         responses.add(
             responses.PATCH,
             url,
@@ -4190,7 +4690,7 @@ class TestListNetezzaEngines:
         """
         # Set up mock
         url = preprocess_url('/netezza_engines')
-        mock_response = '{"netezza_engines": [{"actions": ["actions"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "netezza engine for running sql queries", "engine_details": {"connection_string": "1.2.3.4", "metastore_host": "1.2.3.4"}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "host_name": "xyz-netezza-01-netezza-svc", "origin": "ibm", "port": 4, "status": "REGISTERED", "tags": ["tags"], "type": "netezza"}]}'
+        mock_response = '{"netezza_engines": [{"actions": ["actions"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 0, "description": "netezza engine for running sql queries", "engine_details": {"connection_string": "1.2.3.4", "metastore_host": "1.2.3.4"}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "host_name": "xyz-netezza-01-netezza-svc", "origin": "ibm", "port": 0, "status": "REGISTERED", "tags": ["tags"], "type": "netezza"}]}'
         responses.add(
             responses.GET,
             url,
@@ -4228,7 +4728,7 @@ class TestListNetezzaEngines:
         """
         # Set up mock
         url = preprocess_url('/netezza_engines')
-        mock_response = '{"netezza_engines": [{"actions": ["actions"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "netezza engine for running sql queries", "engine_details": {"connection_string": "1.2.3.4", "metastore_host": "1.2.3.4"}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "host_name": "xyz-netezza-01-netezza-svc", "origin": "ibm", "port": 4, "status": "REGISTERED", "tags": ["tags"], "type": "netezza"}]}'
+        mock_response = '{"netezza_engines": [{"actions": ["actions"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 0, "description": "netezza engine for running sql queries", "engine_details": {"connection_string": "1.2.3.4", "metastore_host": "1.2.3.4"}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "host_name": "xyz-netezza-01-netezza-svc", "origin": "ibm", "port": 0, "status": "REGISTERED", "tags": ["tags"], "type": "netezza"}]}'
         responses.add(
             responses.GET,
             url,
@@ -4266,7 +4766,7 @@ class TestCreateNetezzaEngine:
         """
         # Set up mock
         url = preprocess_url('/netezza_engines')
-        mock_response = '{"actions": ["actions"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "netezza engine for running sql queries", "engine_details": {"connection_string": "1.2.3.4", "metastore_host": "1.2.3.4"}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "host_name": "xyz-netezza-01-netezza-svc", "origin": "ibm", "port": 4, "status": "REGISTERED", "tags": ["tags"], "type": "netezza"}'
+        mock_response = '{"actions": ["actions"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 0, "description": "netezza engine for running sql queries", "engine_details": {"connection_string": "1.2.3.4", "metastore_host": "1.2.3.4"}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "host_name": "xyz-netezza-01-netezza-svc", "origin": "ibm", "port": 0, "status": "REGISTERED", "tags": ["tags"], "type": "netezza"}'
         responses.add(
             responses.POST,
             url,
@@ -4325,7 +4825,7 @@ class TestCreateNetezzaEngine:
         """
         # Set up mock
         url = preprocess_url('/netezza_engines')
-        mock_response = '{"actions": ["actions"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "netezza engine for running sql queries", "engine_details": {"connection_string": "1.2.3.4", "metastore_host": "1.2.3.4"}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "host_name": "xyz-netezza-01-netezza-svc", "origin": "ibm", "port": 4, "status": "REGISTERED", "tags": ["tags"], "type": "netezza"}'
+        mock_response = '{"actions": ["actions"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 0, "description": "netezza engine for running sql queries", "engine_details": {"connection_string": "1.2.3.4", "metastore_host": "1.2.3.4"}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "host_name": "xyz-netezza-01-netezza-svc", "origin": "ibm", "port": 0, "status": "REGISTERED", "tags": ["tags"], "type": "netezza"}'
         responses.add(
             responses.POST,
             url,
@@ -4382,7 +4882,7 @@ class TestCreateNetezzaEngine:
         """
         # Set up mock
         url = preprocess_url('/netezza_engines')
-        mock_response = '{"actions": ["actions"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "netezza engine for running sql queries", "engine_details": {"connection_string": "1.2.3.4", "metastore_host": "1.2.3.4"}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "host_name": "xyz-netezza-01-netezza-svc", "origin": "ibm", "port": 4, "status": "REGISTERED", "tags": ["tags"], "type": "netezza"}'
+        mock_response = '{"actions": ["actions"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 0, "description": "netezza engine for running sql queries", "engine_details": {"connection_string": "1.2.3.4", "metastore_host": "1.2.3.4"}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "host_name": "xyz-netezza-01-netezza-svc", "origin": "ibm", "port": 0, "status": "REGISTERED", "tags": ["tags"], "type": "netezza"}'
         responses.add(
             responses.POST,
             url,
@@ -4545,7 +5045,7 @@ class TestUpdateNetezzaEngine:
         """
         # Set up mock
         url = preprocess_url('/netezza_engines/testString')
-        mock_response = '{"actions": ["actions"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "netezza engine for running sql queries", "engine_details": {"connection_string": "1.2.3.4", "metastore_host": "1.2.3.4"}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "host_name": "xyz-netezza-01-netezza-svc", "origin": "ibm", "port": 4, "status": "REGISTERED", "tags": ["tags"], "type": "netezza"}'
+        mock_response = '{"actions": ["actions"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 0, "description": "netezza engine for running sql queries", "engine_details": {"connection_string": "1.2.3.4", "metastore_host": "1.2.3.4"}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "host_name": "xyz-netezza-01-netezza-svc", "origin": "ibm", "port": 0, "status": "REGISTERED", "tags": ["tags"], "type": "netezza"}'
         responses.add(
             responses.PATCH,
             url,
@@ -4596,7 +5096,7 @@ class TestUpdateNetezzaEngine:
         """
         # Set up mock
         url = preprocess_url('/netezza_engines/testString')
-        mock_response = '{"actions": ["actions"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "netezza engine for running sql queries", "engine_details": {"connection_string": "1.2.3.4", "metastore_host": "1.2.3.4"}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "host_name": "xyz-netezza-01-netezza-svc", "origin": "ibm", "port": 4, "status": "REGISTERED", "tags": ["tags"], "type": "netezza"}'
+        mock_response = '{"actions": ["actions"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 0, "description": "netezza engine for running sql queries", "engine_details": {"connection_string": "1.2.3.4", "metastore_host": "1.2.3.4"}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "host_name": "xyz-netezza-01-netezza-svc", "origin": "ibm", "port": 0, "status": "REGISTERED", "tags": ["tags"], "type": "netezza"}'
         responses.add(
             responses.PATCH,
             url,
@@ -4645,7 +5145,7 @@ class TestUpdateNetezzaEngine:
         """
         # Set up mock
         url = preprocess_url('/netezza_engines/testString')
-        mock_response = '{"actions": ["actions"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "netezza engine for running sql queries", "engine_details": {"connection_string": "1.2.3.4", "metastore_host": "1.2.3.4"}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "host_name": "xyz-netezza-01-netezza-svc", "origin": "ibm", "port": 4, "status": "REGISTERED", "tags": ["tags"], "type": "netezza"}'
+        mock_response = '{"actions": ["actions"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 0, "description": "netezza engine for running sql queries", "engine_details": {"connection_string": "1.2.3.4", "metastore_host": "1.2.3.4"}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "host_name": "xyz-netezza-01-netezza-svc", "origin": "ibm", "port": 0, "status": "REGISTERED", "tags": ["tags"], "type": "netezza"}'
         responses.add(
             responses.PATCH,
             url,
@@ -4876,6 +5376,538 @@ class TestCreateExecuteQuery:
 ##############################################################################
 
 ##############################################################################
+# Start of Service: Instance
+##############################################################################
+# region
+
+
+class TestNewInstance:
+    """
+    Test Class for new_instance
+    """
+
+    def test_new_instance(self):
+        """
+        new_instance()
+        """
+        os.environ['TEST_SERVICE_AUTH_TYPE'] = 'noAuth'
+
+        service = WatsonxDataV2.new_instance(
+            service_name='TEST_SERVICE',
+        )
+
+        assert service is not None
+        assert isinstance(service, WatsonxDataV2)
+
+    def test_new_instance_without_authenticator(self):
+        """
+        new_instance_without_authenticator()
+        """
+        with pytest.raises(ValueError, match='authenticator must be provided'):
+            service = WatsonxDataV2.new_instance(
+                service_name='TEST_SERVICE_NOT_FOUND',
+            )
+
+
+class TestListInstanceDetails:
+    """
+    Test Class for list_instance_details
+    """
+
+    @responses.activate
+    def test_list_instance_details_all_params(self):
+        """
+        list_instance_details()
+        """
+        # Set up mock
+        url = preprocess_url('/instance_details')
+        mock_response = '{"engines_services": [{"details": [{"ca_certificate": "sample ca certificate", "default_configs": {"mapKey": "inner"}, "external": {"port": 4553, "hostname": "external hostname"}, "grpc_api_endpoint": {"port": 4553, "hostname": "internal hostname"}, "hostname": "sample hostname", "id": "sample ID", "instance_crn": "sample instance CRN", "instance_id": "sample instance ID", "internal": {"port": 4553, "hostname": "internal hostname"}, "jdbc_class": "com.facebook.presto.jdbc.PrestoDriver", "jdbc_urls": {"external": "thrift://username:password@metastore1-internal-hostname:9083", "internal": "thrift://username:password@metastore1-internal-hostname:9083"}, "name": "sample name", "port": 4553, "rest_api_endpoint": {"port": 4553, "hostname": "internal hostname"}, "spark_engine_endpoint": "Spark Engine endpoint", "ssl_certificate": "sample ssl certificate", "thrift_urls": {"external": "thrift://username:password@metastore1-internal-hostname:9083", "internal": "thrift://username:password@metastore1-internal-hostname:9083"}, "version": "java", "watsonx_data_application_endpoint": "sample application end point"}], "type": "presto"}], "watsonx_data_instance": {"ca_certificate": "sample ca certificate", "default_configs": {"mapKey": "inner"}, "external": {"port": 4553, "hostname": "external hostname"}, "grpc_api_endpoint": {"port": 4553, "hostname": "internal hostname"}, "hostname": "sample hostname", "id": "sample ID", "instance_crn": "sample instance CRN", "instance_id": "sample instance ID", "internal": {"port": 4553, "hostname": "internal hostname"}, "jdbc_class": "com.facebook.presto.jdbc.PrestoDriver", "jdbc_urls": {"external": "thrift://username:password@metastore1-internal-hostname:9083", "internal": "thrift://username:password@metastore1-internal-hostname:9083"}, "name": "sample name", "port": 4553, "rest_api_endpoint": {"port": 4553, "hostname": "internal hostname"}, "spark_engine_endpoint": "Spark Engine endpoint", "ssl_certificate": "sample ssl certificate", "thrift_urls": {"external": "thrift://username:password@metastore1-internal-hostname:9083", "internal": "thrift://username:password@metastore1-internal-hostname:9083"}, "version": "java", "watsonx_data_application_endpoint": "sample application end point"}}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
+
+        # Set up parameter values
+        auth_instance_id = 'testString'
+
+        # Invoke method
+        response = _service.list_instance_details(
+            auth_instance_id=auth_instance_id,
+            headers={},
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+
+    def test_list_instance_details_all_params_with_retries(self):
+        # Enable retries and run test_list_instance_details_all_params.
+        _service.enable_retries()
+        self.test_list_instance_details_all_params()
+
+        # Disable retries and run test_list_instance_details_all_params.
+        _service.disable_retries()
+        self.test_list_instance_details_all_params()
+
+    @responses.activate
+    def test_list_instance_details_required_params(self):
+        """
+        test_list_instance_details_required_params()
+        """
+        # Set up mock
+        url = preprocess_url('/instance_details')
+        mock_response = '{"engines_services": [{"details": [{"ca_certificate": "sample ca certificate", "default_configs": {"mapKey": "inner"}, "external": {"port": 4553, "hostname": "external hostname"}, "grpc_api_endpoint": {"port": 4553, "hostname": "internal hostname"}, "hostname": "sample hostname", "id": "sample ID", "instance_crn": "sample instance CRN", "instance_id": "sample instance ID", "internal": {"port": 4553, "hostname": "internal hostname"}, "jdbc_class": "com.facebook.presto.jdbc.PrestoDriver", "jdbc_urls": {"external": "thrift://username:password@metastore1-internal-hostname:9083", "internal": "thrift://username:password@metastore1-internal-hostname:9083"}, "name": "sample name", "port": 4553, "rest_api_endpoint": {"port": 4553, "hostname": "internal hostname"}, "spark_engine_endpoint": "Spark Engine endpoint", "ssl_certificate": "sample ssl certificate", "thrift_urls": {"external": "thrift://username:password@metastore1-internal-hostname:9083", "internal": "thrift://username:password@metastore1-internal-hostname:9083"}, "version": "java", "watsonx_data_application_endpoint": "sample application end point"}], "type": "presto"}], "watsonx_data_instance": {"ca_certificate": "sample ca certificate", "default_configs": {"mapKey": "inner"}, "external": {"port": 4553, "hostname": "external hostname"}, "grpc_api_endpoint": {"port": 4553, "hostname": "internal hostname"}, "hostname": "sample hostname", "id": "sample ID", "instance_crn": "sample instance CRN", "instance_id": "sample instance ID", "internal": {"port": 4553, "hostname": "internal hostname"}, "jdbc_class": "com.facebook.presto.jdbc.PrestoDriver", "jdbc_urls": {"external": "thrift://username:password@metastore1-internal-hostname:9083", "internal": "thrift://username:password@metastore1-internal-hostname:9083"}, "name": "sample name", "port": 4553, "rest_api_endpoint": {"port": 4553, "hostname": "internal hostname"}, "spark_engine_endpoint": "Spark Engine endpoint", "ssl_certificate": "sample ssl certificate", "thrift_urls": {"external": "thrift://username:password@metastore1-internal-hostname:9083", "internal": "thrift://username:password@metastore1-internal-hostname:9083"}, "version": "java", "watsonx_data_application_endpoint": "sample application end point"}}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
+
+        # Invoke method
+        response = _service.list_instance_details()
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+
+    def test_list_instance_details_required_params_with_retries(self):
+        # Enable retries and run test_list_instance_details_required_params.
+        _service.enable_retries()
+        self.test_list_instance_details_required_params()
+
+        # Disable retries and run test_list_instance_details_required_params.
+        _service.disable_retries()
+        self.test_list_instance_details_required_params()
+
+
+class TestListInstanceServiceDetails:
+    """
+    Test Class for list_instance_service_details
+    """
+
+    @responses.activate
+    def test_list_instance_service_details_all_params(self):
+        """
+        list_instance_service_details()
+        """
+        # Set up mock
+        url = preprocess_url('/instance_details/engines_services')
+        mock_response = '{"engines_services": [{"connection_name": "presto-01", "details": {"ca_certificate": "sample ca certificate", "default_configs": {"mapKey": "inner"}, "external": {"port": 4553, "hostname": "external hostname"}, "grpc_api_endpoint": {"port": 4553, "hostname": "internal hostname"}, "hostname": "sample hostname", "id": "sample ID", "instance_crn": "sample instance CRN", "instance_id": "sample instance ID", "internal": {"port": 4553, "hostname": "internal hostname"}, "jdbc_class": "com.facebook.presto.jdbc.PrestoDriver", "jdbc_urls": {"external": "thrift://username:password@metastore1-internal-hostname:9083", "internal": "thrift://username:password@metastore1-internal-hostname:9083"}, "name": "sample name", "port": 4553, "rest_api_endpoint": {"port": 4553, "hostname": "internal hostname"}, "spark_engine_endpoint": "Spark Engine endpoint", "ssl_certificate": "sample ssl certificate", "thrift_urls": {"external": "thrift://username:password@metastore1-internal-hostname:9083", "internal": "thrift://username:password@metastore1-internal-hostname:9083"}, "version": "java", "watsonx_data_application_endpoint": "sample application end point"}, "properties": {"connection": [{"name": "host", "value": "sample_value"}]}, "type": "presto"}]}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
+
+        # Set up parameter values
+        target = 'testString'
+        internal_host = False
+        auth_instance_id = 'testString'
+
+        # Invoke method
+        response = _service.list_instance_service_details(
+            target,
+            internal_host=internal_host,
+            auth_instance_id=auth_instance_id,
+            headers={},
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+        # Validate query params
+        query_string = responses.calls[0].request.url.split('?', 1)[1]
+        query_string = urllib.parse.unquote_plus(query_string)
+        assert 'target={}'.format(target) in query_string
+        assert 'internal_host={}'.format('true' if internal_host else 'false') in query_string
+
+    def test_list_instance_service_details_all_params_with_retries(self):
+        # Enable retries and run test_list_instance_service_details_all_params.
+        _service.enable_retries()
+        self.test_list_instance_service_details_all_params()
+
+        # Disable retries and run test_list_instance_service_details_all_params.
+        _service.disable_retries()
+        self.test_list_instance_service_details_all_params()
+
+    @responses.activate
+    def test_list_instance_service_details_required_params(self):
+        """
+        test_list_instance_service_details_required_params()
+        """
+        # Set up mock
+        url = preprocess_url('/instance_details/engines_services')
+        mock_response = '{"engines_services": [{"connection_name": "presto-01", "details": {"ca_certificate": "sample ca certificate", "default_configs": {"mapKey": "inner"}, "external": {"port": 4553, "hostname": "external hostname"}, "grpc_api_endpoint": {"port": 4553, "hostname": "internal hostname"}, "hostname": "sample hostname", "id": "sample ID", "instance_crn": "sample instance CRN", "instance_id": "sample instance ID", "internal": {"port": 4553, "hostname": "internal hostname"}, "jdbc_class": "com.facebook.presto.jdbc.PrestoDriver", "jdbc_urls": {"external": "thrift://username:password@metastore1-internal-hostname:9083", "internal": "thrift://username:password@metastore1-internal-hostname:9083"}, "name": "sample name", "port": 4553, "rest_api_endpoint": {"port": 4553, "hostname": "internal hostname"}, "spark_engine_endpoint": "Spark Engine endpoint", "ssl_certificate": "sample ssl certificate", "thrift_urls": {"external": "thrift://username:password@metastore1-internal-hostname:9083", "internal": "thrift://username:password@metastore1-internal-hostname:9083"}, "version": "java", "watsonx_data_application_endpoint": "sample application end point"}, "properties": {"connection": [{"name": "host", "value": "sample_value"}]}, "type": "presto"}]}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
+
+        # Set up parameter values
+        target = 'testString'
+
+        # Invoke method
+        response = _service.list_instance_service_details(
+            target,
+            headers={},
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+        # Validate query params
+        query_string = responses.calls[0].request.url.split('?', 1)[1]
+        query_string = urllib.parse.unquote_plus(query_string)
+        assert 'target={}'.format(target) in query_string
+
+    def test_list_instance_service_details_required_params_with_retries(self):
+        # Enable retries and run test_list_instance_service_details_required_params.
+        _service.enable_retries()
+        self.test_list_instance_service_details_required_params()
+
+        # Disable retries and run test_list_instance_service_details_required_params.
+        _service.disable_retries()
+        self.test_list_instance_service_details_required_params()
+
+    @responses.activate
+    def test_list_instance_service_details_value_error(self):
+        """
+        test_list_instance_service_details_value_error()
+        """
+        # Set up mock
+        url = preprocess_url('/instance_details/engines_services')
+        mock_response = '{"engines_services": [{"connection_name": "presto-01", "details": {"ca_certificate": "sample ca certificate", "default_configs": {"mapKey": "inner"}, "external": {"port": 4553, "hostname": "external hostname"}, "grpc_api_endpoint": {"port": 4553, "hostname": "internal hostname"}, "hostname": "sample hostname", "id": "sample ID", "instance_crn": "sample instance CRN", "instance_id": "sample instance ID", "internal": {"port": 4553, "hostname": "internal hostname"}, "jdbc_class": "com.facebook.presto.jdbc.PrestoDriver", "jdbc_urls": {"external": "thrift://username:password@metastore1-internal-hostname:9083", "internal": "thrift://username:password@metastore1-internal-hostname:9083"}, "name": "sample name", "port": 4553, "rest_api_endpoint": {"port": 4553, "hostname": "internal hostname"}, "spark_engine_endpoint": "Spark Engine endpoint", "ssl_certificate": "sample ssl certificate", "thrift_urls": {"external": "thrift://username:password@metastore1-internal-hostname:9083", "internal": "thrift://username:password@metastore1-internal-hostname:9083"}, "version": "java", "watsonx_data_application_endpoint": "sample application end point"}, "properties": {"connection": [{"name": "host", "value": "sample_value"}]}, "type": "presto"}]}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
+
+        # Set up parameter values
+        target = 'testString'
+
+        # Pass in all but one required param and check for a ValueError
+        req_param_dict = {
+            "target": target,
+        }
+        for param in req_param_dict.keys():
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            with pytest.raises(ValueError):
+                _service.list_instance_service_details(**req_copy)
+
+    def test_list_instance_service_details_value_error_with_retries(self):
+        # Enable retries and run test_list_instance_service_details_value_error.
+        _service.enable_retries()
+        self.test_list_instance_service_details_value_error()
+
+        # Disable retries and run test_list_instance_service_details_value_error.
+        _service.disable_retries()
+        self.test_list_instance_service_details_value_error()
+
+
+class TestGetServicesDetails:
+    """
+    Test Class for get_services_details
+    """
+
+    @responses.activate
+    def test_get_services_details_all_params(self):
+        """
+        get_services_details()
+        """
+        # Set up mock
+        url = preprocess_url('/instance_details/engines_services/testString')
+        mock_response = '{"engines_services": [{"connection_name": "presto-01", "details": {"ca_certificate": "sample ca certificate", "default_configs": {"mapKey": "inner"}, "external": {"port": 4553, "hostname": "external hostname"}, "grpc_api_endpoint": {"port": 4553, "hostname": "internal hostname"}, "hostname": "sample hostname", "id": "sample ID", "instance_crn": "sample instance CRN", "instance_id": "sample instance ID", "internal": {"port": 4553, "hostname": "internal hostname"}, "jdbc_class": "com.facebook.presto.jdbc.PrestoDriver", "jdbc_urls": {"external": "thrift://username:password@metastore1-internal-hostname:9083", "internal": "thrift://username:password@metastore1-internal-hostname:9083"}, "name": "sample name", "port": 4553, "rest_api_endpoint": {"port": 4553, "hostname": "internal hostname"}, "spark_engine_endpoint": "Spark Engine endpoint", "ssl_certificate": "sample ssl certificate", "thrift_urls": {"external": "thrift://username:password@metastore1-internal-hostname:9083", "internal": "thrift://username:password@metastore1-internal-hostname:9083"}, "version": "java", "watsonx_data_application_endpoint": "sample application end point"}, "properties": {"connection": [{"name": "host", "value": "sample_value"}]}, "type": "presto"}]}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
+
+        # Set up parameter values
+        target = 'testString'
+        engine_or_service_type = 'testString'
+        internal_host = False
+        auth_instance_id = 'testString'
+
+        # Invoke method
+        response = _service.get_services_details(
+            target,
+            engine_or_service_type,
+            internal_host=internal_host,
+            auth_instance_id=auth_instance_id,
+            headers={},
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+        # Validate query params
+        query_string = responses.calls[0].request.url.split('?', 1)[1]
+        query_string = urllib.parse.unquote_plus(query_string)
+        assert 'target={}'.format(target) in query_string
+        assert 'internal_host={}'.format('true' if internal_host else 'false') in query_string
+
+    def test_get_services_details_all_params_with_retries(self):
+        # Enable retries and run test_get_services_details_all_params.
+        _service.enable_retries()
+        self.test_get_services_details_all_params()
+
+        # Disable retries and run test_get_services_details_all_params.
+        _service.disable_retries()
+        self.test_get_services_details_all_params()
+
+    @responses.activate
+    def test_get_services_details_required_params(self):
+        """
+        test_get_services_details_required_params()
+        """
+        # Set up mock
+        url = preprocess_url('/instance_details/engines_services/testString')
+        mock_response = '{"engines_services": [{"connection_name": "presto-01", "details": {"ca_certificate": "sample ca certificate", "default_configs": {"mapKey": "inner"}, "external": {"port": 4553, "hostname": "external hostname"}, "grpc_api_endpoint": {"port": 4553, "hostname": "internal hostname"}, "hostname": "sample hostname", "id": "sample ID", "instance_crn": "sample instance CRN", "instance_id": "sample instance ID", "internal": {"port": 4553, "hostname": "internal hostname"}, "jdbc_class": "com.facebook.presto.jdbc.PrestoDriver", "jdbc_urls": {"external": "thrift://username:password@metastore1-internal-hostname:9083", "internal": "thrift://username:password@metastore1-internal-hostname:9083"}, "name": "sample name", "port": 4553, "rest_api_endpoint": {"port": 4553, "hostname": "internal hostname"}, "spark_engine_endpoint": "Spark Engine endpoint", "ssl_certificate": "sample ssl certificate", "thrift_urls": {"external": "thrift://username:password@metastore1-internal-hostname:9083", "internal": "thrift://username:password@metastore1-internal-hostname:9083"}, "version": "java", "watsonx_data_application_endpoint": "sample application end point"}, "properties": {"connection": [{"name": "host", "value": "sample_value"}]}, "type": "presto"}]}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
+
+        # Set up parameter values
+        target = 'testString'
+        engine_or_service_type = 'testString'
+
+        # Invoke method
+        response = _service.get_services_details(
+            target,
+            engine_or_service_type,
+            headers={},
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+        # Validate query params
+        query_string = responses.calls[0].request.url.split('?', 1)[1]
+        query_string = urllib.parse.unquote_plus(query_string)
+        assert 'target={}'.format(target) in query_string
+
+    def test_get_services_details_required_params_with_retries(self):
+        # Enable retries and run test_get_services_details_required_params.
+        _service.enable_retries()
+        self.test_get_services_details_required_params()
+
+        # Disable retries and run test_get_services_details_required_params.
+        _service.disable_retries()
+        self.test_get_services_details_required_params()
+
+    @responses.activate
+    def test_get_services_details_value_error(self):
+        """
+        test_get_services_details_value_error()
+        """
+        # Set up mock
+        url = preprocess_url('/instance_details/engines_services/testString')
+        mock_response = '{"engines_services": [{"connection_name": "presto-01", "details": {"ca_certificate": "sample ca certificate", "default_configs": {"mapKey": "inner"}, "external": {"port": 4553, "hostname": "external hostname"}, "grpc_api_endpoint": {"port": 4553, "hostname": "internal hostname"}, "hostname": "sample hostname", "id": "sample ID", "instance_crn": "sample instance CRN", "instance_id": "sample instance ID", "internal": {"port": 4553, "hostname": "internal hostname"}, "jdbc_class": "com.facebook.presto.jdbc.PrestoDriver", "jdbc_urls": {"external": "thrift://username:password@metastore1-internal-hostname:9083", "internal": "thrift://username:password@metastore1-internal-hostname:9083"}, "name": "sample name", "port": 4553, "rest_api_endpoint": {"port": 4553, "hostname": "internal hostname"}, "spark_engine_endpoint": "Spark Engine endpoint", "ssl_certificate": "sample ssl certificate", "thrift_urls": {"external": "thrift://username:password@metastore1-internal-hostname:9083", "internal": "thrift://username:password@metastore1-internal-hostname:9083"}, "version": "java", "watsonx_data_application_endpoint": "sample application end point"}, "properties": {"connection": [{"name": "host", "value": "sample_value"}]}, "type": "presto"}]}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
+
+        # Set up parameter values
+        target = 'testString'
+        engine_or_service_type = 'testString'
+
+        # Pass in all but one required param and check for a ValueError
+        req_param_dict = {
+            "target": target,
+            "engine_or_service_type": engine_or_service_type,
+        }
+        for param in req_param_dict.keys():
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            with pytest.raises(ValueError):
+                _service.get_services_details(**req_copy)
+
+    def test_get_services_details_value_error_with_retries(self):
+        # Enable retries and run test_get_services_details_value_error.
+        _service.enable_retries()
+        self.test_get_services_details_value_error()
+
+        # Disable retries and run test_get_services_details_value_error.
+        _service.disable_retries()
+        self.test_get_services_details_value_error()
+
+
+class TestGetServiceDetail:
+    """
+    Test Class for get_service_detail
+    """
+
+    @responses.activate
+    def test_get_service_detail_all_params(self):
+        """
+        get_service_detail()
+        """
+        # Set up mock
+        url = preprocess_url('/instance_details/engines_services/testString/id/testString')
+        mock_response = '{"connection_name": "presto-01", "details": {"ca_certificate": "sample ca certificate", "default_configs": {"mapKey": "inner"}, "external": {"port": 4553, "hostname": "external hostname"}, "grpc_api_endpoint": {"port": 4553, "hostname": "internal hostname"}, "hostname": "sample hostname", "id": "sample ID", "instance_crn": "sample instance CRN", "instance_id": "sample instance ID", "internal": {"port": 4553, "hostname": "internal hostname"}, "jdbc_class": "com.facebook.presto.jdbc.PrestoDriver", "jdbc_urls": {"external": "thrift://username:password@metastore1-internal-hostname:9083", "internal": "thrift://username:password@metastore1-internal-hostname:9083"}, "name": "sample name", "port": 4553, "rest_api_endpoint": {"port": 4553, "hostname": "internal hostname"}, "spark_engine_endpoint": "Spark Engine endpoint", "ssl_certificate": "sample ssl certificate", "thrift_urls": {"external": "thrift://username:password@metastore1-internal-hostname:9083", "internal": "thrift://username:password@metastore1-internal-hostname:9083"}, "version": "java", "watsonx_data_application_endpoint": "sample application end point"}, "properties": {"connection": [{"name": "host", "value": "sample_value"}]}, "type": "presto"}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
+
+        # Set up parameter values
+        target = 'testString'
+        engine_or_service_type = 'testString'
+        id = 'testString'
+        database = 'testString'
+        internal_host = False
+        auth_instance_id = 'testString'
+
+        # Invoke method
+        response = _service.get_service_detail(
+            target,
+            engine_or_service_type,
+            id,
+            database=database,
+            internal_host=internal_host,
+            auth_instance_id=auth_instance_id,
+            headers={},
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+        # Validate query params
+        query_string = responses.calls[0].request.url.split('?', 1)[1]
+        query_string = urllib.parse.unquote_plus(query_string)
+        assert 'target={}'.format(target) in query_string
+        assert 'database={}'.format(database) in query_string
+        assert 'internal_host={}'.format('true' if internal_host else 'false') in query_string
+
+    def test_get_service_detail_all_params_with_retries(self):
+        # Enable retries and run test_get_service_detail_all_params.
+        _service.enable_retries()
+        self.test_get_service_detail_all_params()
+
+        # Disable retries and run test_get_service_detail_all_params.
+        _service.disable_retries()
+        self.test_get_service_detail_all_params()
+
+    @responses.activate
+    def test_get_service_detail_required_params(self):
+        """
+        test_get_service_detail_required_params()
+        """
+        # Set up mock
+        url = preprocess_url('/instance_details/engines_services/testString/id/testString')
+        mock_response = '{"connection_name": "presto-01", "details": {"ca_certificate": "sample ca certificate", "default_configs": {"mapKey": "inner"}, "external": {"port": 4553, "hostname": "external hostname"}, "grpc_api_endpoint": {"port": 4553, "hostname": "internal hostname"}, "hostname": "sample hostname", "id": "sample ID", "instance_crn": "sample instance CRN", "instance_id": "sample instance ID", "internal": {"port": 4553, "hostname": "internal hostname"}, "jdbc_class": "com.facebook.presto.jdbc.PrestoDriver", "jdbc_urls": {"external": "thrift://username:password@metastore1-internal-hostname:9083", "internal": "thrift://username:password@metastore1-internal-hostname:9083"}, "name": "sample name", "port": 4553, "rest_api_endpoint": {"port": 4553, "hostname": "internal hostname"}, "spark_engine_endpoint": "Spark Engine endpoint", "ssl_certificate": "sample ssl certificate", "thrift_urls": {"external": "thrift://username:password@metastore1-internal-hostname:9083", "internal": "thrift://username:password@metastore1-internal-hostname:9083"}, "version": "java", "watsonx_data_application_endpoint": "sample application end point"}, "properties": {"connection": [{"name": "host", "value": "sample_value"}]}, "type": "presto"}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
+
+        # Set up parameter values
+        target = 'testString'
+        engine_or_service_type = 'testString'
+        id = 'testString'
+
+        # Invoke method
+        response = _service.get_service_detail(
+            target,
+            engine_or_service_type,
+            id,
+            headers={},
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+        # Validate query params
+        query_string = responses.calls[0].request.url.split('?', 1)[1]
+        query_string = urllib.parse.unquote_plus(query_string)
+        assert 'target={}'.format(target) in query_string
+
+    def test_get_service_detail_required_params_with_retries(self):
+        # Enable retries and run test_get_service_detail_required_params.
+        _service.enable_retries()
+        self.test_get_service_detail_required_params()
+
+        # Disable retries and run test_get_service_detail_required_params.
+        _service.disable_retries()
+        self.test_get_service_detail_required_params()
+
+    @responses.activate
+    def test_get_service_detail_value_error(self):
+        """
+        test_get_service_detail_value_error()
+        """
+        # Set up mock
+        url = preprocess_url('/instance_details/engines_services/testString/id/testString')
+        mock_response = '{"connection_name": "presto-01", "details": {"ca_certificate": "sample ca certificate", "default_configs": {"mapKey": "inner"}, "external": {"port": 4553, "hostname": "external hostname"}, "grpc_api_endpoint": {"port": 4553, "hostname": "internal hostname"}, "hostname": "sample hostname", "id": "sample ID", "instance_crn": "sample instance CRN", "instance_id": "sample instance ID", "internal": {"port": 4553, "hostname": "internal hostname"}, "jdbc_class": "com.facebook.presto.jdbc.PrestoDriver", "jdbc_urls": {"external": "thrift://username:password@metastore1-internal-hostname:9083", "internal": "thrift://username:password@metastore1-internal-hostname:9083"}, "name": "sample name", "port": 4553, "rest_api_endpoint": {"port": 4553, "hostname": "internal hostname"}, "spark_engine_endpoint": "Spark Engine endpoint", "ssl_certificate": "sample ssl certificate", "thrift_urls": {"external": "thrift://username:password@metastore1-internal-hostname:9083", "internal": "thrift://username:password@metastore1-internal-hostname:9083"}, "version": "java", "watsonx_data_application_endpoint": "sample application end point"}, "properties": {"connection": [{"name": "host", "value": "sample_value"}]}, "type": "presto"}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
+
+        # Set up parameter values
+        target = 'testString'
+        engine_or_service_type = 'testString'
+        id = 'testString'
+
+        # Pass in all but one required param and check for a ValueError
+        req_param_dict = {
+            "target": target,
+            "engine_or_service_type": engine_or_service_type,
+            "id": id,
+        }
+        for param in req_param_dict.keys():
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            with pytest.raises(ValueError):
+                _service.get_service_detail(**req_copy)
+
+    def test_get_service_detail_value_error_with_retries(self):
+        # Enable retries and run test_get_service_detail_value_error.
+        _service.enable_retries()
+        self.test_get_service_detail_value_error()
+
+        # Disable retries and run test_get_service_detail_value_error.
+        _service.disable_retries()
+        self.test_get_service_detail_value_error()
+
+
+# endregion
+##############################################################################
+# End of Service: Instance
+##############################################################################
+
+##############################################################################
 # Start of Service: PrestissimoEngines
 ##############################################################################
 # region
@@ -4921,7 +5953,7 @@ class TestListPrestissimoEngines:
         """
         # Set up mock
         url = preprocess_url('/prestissimo_engines')
-        mock_response = '{"prestissimo_engines": [{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "prestissimo engine for running sql queries", "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications"}, "instance_id": "instance_id", "managed_by": "fully/self", "metastore_host": "1.2.3.4", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "velox": {"velox_property": ["velox_property"]}, "global": {"global_property": "enable-mixed-case-support:true"}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "xyz-prestissimo-01-prestissimo-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"]}, "velox": ["velox"]}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "prestissimo", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}]}'
+        mock_response = '{"prestissimo_engines": [{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "prestissimo engine for running sql queries", "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications"}, "instance_id": "instance_id", "managed_by": "fully/self", "metastore_host": "1.2.3.4", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "velox": {"velox_property": ["velox_property"]}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "xyz-prestissimo-01-prestissimo-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"]}, "velox": ["velox"]}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "prestissimo", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}]}'
         responses.add(
             responses.GET,
             url,
@@ -4959,7 +5991,7 @@ class TestListPrestissimoEngines:
         """
         # Set up mock
         url = preprocess_url('/prestissimo_engines')
-        mock_response = '{"prestissimo_engines": [{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "prestissimo engine for running sql queries", "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications"}, "instance_id": "instance_id", "managed_by": "fully/self", "metastore_host": "1.2.3.4", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "velox": {"velox_property": ["velox_property"]}, "global": {"global_property": "enable-mixed-case-support:true"}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "xyz-prestissimo-01-prestissimo-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"]}, "velox": ["velox"]}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "prestissimo", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}]}'
+        mock_response = '{"prestissimo_engines": [{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "prestissimo engine for running sql queries", "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications"}, "instance_id": "instance_id", "managed_by": "fully/self", "metastore_host": "1.2.3.4", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "velox": {"velox_property": ["velox_property"]}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "xyz-prestissimo-01-prestissimo-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"]}, "velox": ["velox"]}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "prestissimo", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}]}'
         responses.add(
             responses.GET,
             url,
@@ -4997,7 +6029,7 @@ class TestCreatePrestissimoEngine:
         """
         # Set up mock
         url = preprocess_url('/prestissimo_engines')
-        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "prestissimo engine for running sql queries", "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications"}, "instance_id": "instance_id", "managed_by": "fully/self", "metastore_host": "1.2.3.4", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "velox": {"velox_property": ["velox_property"]}, "global": {"global_property": "enable-mixed-case-support:true"}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "xyz-prestissimo-01-prestissimo-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"]}, "velox": ["velox"]}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "prestissimo", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}'
+        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "prestissimo engine for running sql queries", "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications"}, "instance_id": "instance_id", "managed_by": "fully/self", "metastore_host": "1.2.3.4", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "velox": {"velox_property": ["velox_property"]}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "xyz-prestissimo-01-prestissimo-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"]}, "velox": ["velox"]}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "prestissimo", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}'
         responses.add(
             responses.POST,
             url,
@@ -5088,7 +6120,7 @@ class TestCreatePrestissimoEngine:
         """
         # Set up mock
         url = preprocess_url('/prestissimo_engines')
-        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "prestissimo engine for running sql queries", "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications"}, "instance_id": "instance_id", "managed_by": "fully/self", "metastore_host": "1.2.3.4", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "velox": {"velox_property": ["velox_property"]}, "global": {"global_property": "enable-mixed-case-support:true"}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "xyz-prestissimo-01-prestissimo-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"]}, "velox": ["velox"]}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "prestissimo", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}'
+        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "prestissimo engine for running sql queries", "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications"}, "instance_id": "instance_id", "managed_by": "fully/self", "metastore_host": "1.2.3.4", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "velox": {"velox_property": ["velox_property"]}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "xyz-prestissimo-01-prestissimo-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"]}, "velox": ["velox"]}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "prestissimo", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}'
         responses.add(
             responses.POST,
             url,
@@ -5177,7 +6209,7 @@ class TestCreatePrestissimoEngine:
         """
         # Set up mock
         url = preprocess_url('/prestissimo_engines')
-        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "prestissimo engine for running sql queries", "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications"}, "instance_id": "instance_id", "managed_by": "fully/self", "metastore_host": "1.2.3.4", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "velox": {"velox_property": ["velox_property"]}, "global": {"global_property": "enable-mixed-case-support:true"}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "xyz-prestissimo-01-prestissimo-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"]}, "velox": ["velox"]}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "prestissimo", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}'
+        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "prestissimo engine for running sql queries", "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications"}, "instance_id": "instance_id", "managed_by": "fully/self", "metastore_host": "1.2.3.4", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "velox": {"velox_property": ["velox_property"]}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "xyz-prestissimo-01-prestissimo-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"]}, "velox": ["velox"]}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "prestissimo", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}'
         responses.add(
             responses.POST,
             url,
@@ -5254,7 +6286,7 @@ class TestGetPrestissimoEngine:
         """
         # Set up mock
         url = preprocess_url('/prestissimo_engines/testString')
-        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "prestissimo engine for running sql queries", "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications"}, "instance_id": "instance_id", "managed_by": "fully/self", "metastore_host": "1.2.3.4", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "velox": {"velox_property": ["velox_property"]}, "global": {"global_property": "enable-mixed-case-support:true"}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "xyz-prestissimo-01-prestissimo-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"]}, "velox": ["velox"]}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "prestissimo", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}'
+        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "prestissimo engine for running sql queries", "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications"}, "instance_id": "instance_id", "managed_by": "fully/self", "metastore_host": "1.2.3.4", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "velox": {"velox_property": ["velox_property"]}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "xyz-prestissimo-01-prestissimo-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"]}, "velox": ["velox"]}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "prestissimo", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}'
         responses.add(
             responses.GET,
             url,
@@ -5294,7 +6326,7 @@ class TestGetPrestissimoEngine:
         """
         # Set up mock
         url = preprocess_url('/prestissimo_engines/testString')
-        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "prestissimo engine for running sql queries", "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications"}, "instance_id": "instance_id", "managed_by": "fully/self", "metastore_host": "1.2.3.4", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "velox": {"velox_property": ["velox_property"]}, "global": {"global_property": "enable-mixed-case-support:true"}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "xyz-prestissimo-01-prestissimo-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"]}, "velox": ["velox"]}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "prestissimo", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}'
+        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "prestissimo engine for running sql queries", "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications"}, "instance_id": "instance_id", "managed_by": "fully/self", "metastore_host": "1.2.3.4", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "velox": {"velox_property": ["velox_property"]}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "xyz-prestissimo-01-prestissimo-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"]}, "velox": ["velox"]}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "prestissimo", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}'
         responses.add(
             responses.GET,
             url,
@@ -5332,7 +6364,7 @@ class TestGetPrestissimoEngine:
         """
         # Set up mock
         url = preprocess_url('/prestissimo_engines/testString')
-        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "prestissimo engine for running sql queries", "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications"}, "instance_id": "instance_id", "managed_by": "fully/self", "metastore_host": "1.2.3.4", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "velox": {"velox_property": ["velox_property"]}, "global": {"global_property": "enable-mixed-case-support:true"}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "xyz-prestissimo-01-prestissimo-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"]}, "velox": ["velox"]}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "prestissimo", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}'
+        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "prestissimo engine for running sql queries", "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications"}, "instance_id": "instance_id", "managed_by": "fully/self", "metastore_host": "1.2.3.4", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "velox": {"velox_property": ["velox_property"]}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "xyz-prestissimo-01-prestissimo-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"]}, "velox": ["velox"]}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "prestissimo", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}'
         responses.add(
             responses.GET,
             url,
@@ -5487,7 +6519,7 @@ class TestUpdatePrestissimoEngine:
         """
         # Set up mock
         url = preprocess_url('/prestissimo_engines/testString')
-        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "prestissimo engine for running sql queries", "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications"}, "instance_id": "instance_id", "managed_by": "fully/self", "metastore_host": "1.2.3.4", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "velox": {"velox_property": ["velox_property"]}, "global": {"global_property": "enable-mixed-case-support:true"}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "xyz-prestissimo-01-prestissimo-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"]}, "velox": ["velox"]}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "prestissimo", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}'
+        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "prestissimo engine for running sql queries", "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications"}, "instance_id": "instance_id", "managed_by": "fully/self", "metastore_host": "1.2.3.4", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "velox": {"velox_property": ["velox_property"]}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "xyz-prestissimo-01-prestissimo-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"]}, "velox": ["velox"]}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "prestissimo", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}'
         responses.add(
             responses.PATCH,
             url,
@@ -5514,10 +6546,6 @@ class TestUpdatePrestissimoEngine:
         prestissimo_engine_properties_velox_model = {}
         prestissimo_engine_properties_velox_model['velox_property'] = ['testString']
 
-        # Construct a dict representation of a PrestissimoEnginePropertiesGlobal model
-        prestissimo_engine_properties_global_model = {}
-        prestissimo_engine_properties_global_model['global_property'] = 'enable-mixed-case-support:true'
-
         # Construct a dict representation of a NodeDescriptionBody model
         node_description_body_model = {}
         node_description_body_model['node_type'] = 'worker'
@@ -5532,7 +6560,6 @@ class TestUpdatePrestissimoEngine:
         prestissimo_engine_engine_properties_model['catalog'] = prestissimo_engine_properties_catalog_model
         prestissimo_engine_engine_properties_model['configuration'] = engine_properties_oai_gen_configuration_model
         prestissimo_engine_engine_properties_model['velox'] = prestissimo_engine_properties_velox_model
-        prestissimo_engine_engine_properties_model['global'] = prestissimo_engine_properties_global_model
         prestissimo_engine_engine_properties_model['jvm'] = prestissimo_engine_properties_oai_gen1_jvm_model
 
         # Construct a dict representation of a RemoveEnginePropertiesConfiguration model
@@ -5596,7 +6623,7 @@ class TestUpdatePrestissimoEngine:
         """
         # Set up mock
         url = preprocess_url('/prestissimo_engines/testString')
-        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "prestissimo engine for running sql queries", "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications"}, "instance_id": "instance_id", "managed_by": "fully/self", "metastore_host": "1.2.3.4", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "velox": {"velox_property": ["velox_property"]}, "global": {"global_property": "enable-mixed-case-support:true"}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "xyz-prestissimo-01-prestissimo-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"]}, "velox": ["velox"]}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "prestissimo", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}'
+        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "prestissimo engine for running sql queries", "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications"}, "instance_id": "instance_id", "managed_by": "fully/self", "metastore_host": "1.2.3.4", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "velox": {"velox_property": ["velox_property"]}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "xyz-prestissimo-01-prestissimo-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"]}, "velox": ["velox"]}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "prestissimo", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}'
         responses.add(
             responses.PATCH,
             url,
@@ -5623,10 +6650,6 @@ class TestUpdatePrestissimoEngine:
         prestissimo_engine_properties_velox_model = {}
         prestissimo_engine_properties_velox_model['velox_property'] = ['testString']
 
-        # Construct a dict representation of a PrestissimoEnginePropertiesGlobal model
-        prestissimo_engine_properties_global_model = {}
-        prestissimo_engine_properties_global_model['global_property'] = 'enable-mixed-case-support:true'
-
         # Construct a dict representation of a NodeDescriptionBody model
         node_description_body_model = {}
         node_description_body_model['node_type'] = 'worker'
@@ -5641,7 +6664,6 @@ class TestUpdatePrestissimoEngine:
         prestissimo_engine_engine_properties_model['catalog'] = prestissimo_engine_properties_catalog_model
         prestissimo_engine_engine_properties_model['configuration'] = engine_properties_oai_gen_configuration_model
         prestissimo_engine_engine_properties_model['velox'] = prestissimo_engine_properties_velox_model
-        prestissimo_engine_engine_properties_model['global'] = prestissimo_engine_properties_global_model
         prestissimo_engine_engine_properties_model['jvm'] = prestissimo_engine_properties_oai_gen1_jvm_model
 
         # Construct a dict representation of a RemoveEnginePropertiesConfiguration model
@@ -5703,7 +6725,7 @@ class TestUpdatePrestissimoEngine:
         """
         # Set up mock
         url = preprocess_url('/prestissimo_engines/testString')
-        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "prestissimo engine for running sql queries", "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications"}, "instance_id": "instance_id", "managed_by": "fully/self", "metastore_host": "1.2.3.4", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "velox": {"velox_property": ["velox_property"]}, "global": {"global_property": "enable-mixed-case-support:true"}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "xyz-prestissimo-01-prestissimo-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"]}, "velox": ["velox"]}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "prestissimo", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}'
+        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "prestissimo engine for running sql queries", "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications"}, "instance_id": "instance_id", "managed_by": "fully/self", "metastore_host": "1.2.3.4", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "velox": {"velox_property": ["velox_property"]}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "xyz-prestissimo-01-prestissimo-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": ["catalog_name"]}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"]}, "velox": ["velox"]}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "prestissimo", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}'
         responses.add(
             responses.PATCH,
             url,
@@ -5730,10 +6752,6 @@ class TestUpdatePrestissimoEngine:
         prestissimo_engine_properties_velox_model = {}
         prestissimo_engine_properties_velox_model['velox_property'] = ['testString']
 
-        # Construct a dict representation of a PrestissimoEnginePropertiesGlobal model
-        prestissimo_engine_properties_global_model = {}
-        prestissimo_engine_properties_global_model['global_property'] = 'enable-mixed-case-support:true'
-
         # Construct a dict representation of a NodeDescriptionBody model
         node_description_body_model = {}
         node_description_body_model['node_type'] = 'worker'
@@ -5748,7 +6766,6 @@ class TestUpdatePrestissimoEngine:
         prestissimo_engine_engine_properties_model['catalog'] = prestissimo_engine_properties_catalog_model
         prestissimo_engine_engine_properties_model['configuration'] = engine_properties_oai_gen_configuration_model
         prestissimo_engine_engine_properties_model['velox'] = prestissimo_engine_properties_velox_model
-        prestissimo_engine_engine_properties_model['global'] = prestissimo_engine_properties_global_model
         prestissimo_engine_engine_properties_model['jvm'] = prestissimo_engine_properties_oai_gen1_jvm_model
 
         # Construct a dict representation of a RemoveEnginePropertiesConfiguration model
@@ -5812,7 +6829,7 @@ class TestListPrestissimoEngineCatalogs:
         """
         # Set up mock
         url = preprocess_url('/prestissimo_engines/testString/catalogs')
-        mock_response = '{"catalogs": [{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_names": "catalog_names", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}]}'
+        mock_response = '{"catalogs": [{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "days_left": "30", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "rest_uri": "https://samplehost-catalog:4352", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}]}'
         responses.add(
             responses.GET,
             url,
@@ -5852,7 +6869,7 @@ class TestListPrestissimoEngineCatalogs:
         """
         # Set up mock
         url = preprocess_url('/prestissimo_engines/testString/catalogs')
-        mock_response = '{"catalogs": [{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_names": "catalog_names", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}]}'
+        mock_response = '{"catalogs": [{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "days_left": "30", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "rest_uri": "https://samplehost-catalog:4352", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}]}'
         responses.add(
             responses.GET,
             url,
@@ -5890,7 +6907,7 @@ class TestListPrestissimoEngineCatalogs:
         """
         # Set up mock
         url = preprocess_url('/prestissimo_engines/testString/catalogs')
-        mock_response = '{"catalogs": [{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_names": "catalog_names", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}]}'
+        mock_response = '{"catalogs": [{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "days_left": "30", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "rest_uri": "https://samplehost-catalog:4352", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}]}'
         responses.add(
             responses.GET,
             url,
@@ -5933,7 +6950,7 @@ class TestCreatePrestissimoEngineCatalogs:
         """
         # Set up mock
         url = preprocess_url('/prestissimo_engines/testString/catalogs')
-        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_names": "catalog_names", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
+        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "days_left": "30", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "rest_uri": "https://samplehost-catalog:4352", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
         responses.add(
             responses.POST,
             url,
@@ -5978,7 +6995,7 @@ class TestCreatePrestissimoEngineCatalogs:
         """
         # Set up mock
         url = preprocess_url('/prestissimo_engines/testString/catalogs')
-        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_names": "catalog_names", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
+        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "days_left": "30", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "rest_uri": "https://samplehost-catalog:4352", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
         responses.add(
             responses.POST,
             url,
@@ -6021,7 +7038,7 @@ class TestCreatePrestissimoEngineCatalogs:
         """
         # Set up mock
         url = preprocess_url('/prestissimo_engines/testString/catalogs')
-        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_names": "catalog_names", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
+        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "days_left": "30", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "rest_uri": "https://samplehost-catalog:4352", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
         responses.add(
             responses.POST,
             url,
@@ -6191,7 +7208,7 @@ class TestGetPrestissimoEngineCatalog:
         """
         # Set up mock
         url = preprocess_url('/prestissimo_engines/testString/catalogs/testString')
-        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_names": "catalog_names", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
+        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "days_left": "30", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "rest_uri": "https://samplehost-catalog:4352", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
         responses.add(
             responses.GET,
             url,
@@ -6233,7 +7250,7 @@ class TestGetPrestissimoEngineCatalog:
         """
         # Set up mock
         url = preprocess_url('/prestissimo_engines/testString/catalogs/testString')
-        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_names": "catalog_names", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
+        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "days_left": "30", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "rest_uri": "https://samplehost-catalog:4352", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
         responses.add(
             responses.GET,
             url,
@@ -6273,7 +7290,7 @@ class TestGetPrestissimoEngineCatalog:
         """
         # Set up mock
         url = preprocess_url('/prestissimo_engines/testString/catalogs/testString')
-        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_names": "catalog_names", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
+        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "days_left": "30", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "rest_uri": "https://samplehost-catalog:4352", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
         responses.add(
             responses.GET,
             url,
@@ -7161,7 +8178,7 @@ class TestListPrestoEngines:
         """
         # Set up mock
         url = preprocess_url('/presto_engines')
-        mock_response = '{"presto_engines": [{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "presto engine for running sql queries", "drivers": [{"connection_type": "saphana", "driver_id": "saphanadriver123", "driver_name": "saphanadriver-1.2.3", "driver_version": "1.2.3"}], "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "instance_id": "instance_id", "managed_by": "fully/self", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "event_listener": {"event_listener_property": "event_listener_property"}, "global": {"global_property": "enable-mixed-case-support:true"}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "log_config": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "ibm-lh-lakehouse-presto-01-presto-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"], "worker": ["worker"]}, "event_listener": ["event_listener"]}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "presto", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}]}'
+        mock_response = '{"presto_engines": [{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "presto engine for running sql queries", "drivers": [{"connection_type": "saphana", "driver_id": "saphanadriver123", "driver_name": "saphanadriver-1.2.3", "driver_version": "1.2.3"}], "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "instance_id": "instance_id", "managed_by": "fully/self", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "event_listener": {"event_listener_property": "event_listener_property"}, "global": {"global_property": "enable-mixed-case-support:true"}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "jmx_exporter_config": {"global_property": "watsonx_data_presto_cluster_memory_manager_cluster_memory_bytes:presto.memory<name=ClusterMemoryManager><>ClusterMemoryBytes"}, "log_config": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "ibm-lh-lakehouse-presto-01-presto-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"], "worker": ["worker"]}, "event_listener": ["event_listener"], "global": ["global_"], "jmx_exporter_config": ["jmx_exporter_config"], "log_config": {"coordinator": ["coordinator"], "worker": ["worker"]}}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "presto", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}]}'
         responses.add(
             responses.GET,
             url,
@@ -7199,7 +8216,7 @@ class TestListPrestoEngines:
         """
         # Set up mock
         url = preprocess_url('/presto_engines')
-        mock_response = '{"presto_engines": [{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "presto engine for running sql queries", "drivers": [{"connection_type": "saphana", "driver_id": "saphanadriver123", "driver_name": "saphanadriver-1.2.3", "driver_version": "1.2.3"}], "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "instance_id": "instance_id", "managed_by": "fully/self", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "event_listener": {"event_listener_property": "event_listener_property"}, "global": {"global_property": "enable-mixed-case-support:true"}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "log_config": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "ibm-lh-lakehouse-presto-01-presto-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"], "worker": ["worker"]}, "event_listener": ["event_listener"]}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "presto", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}]}'
+        mock_response = '{"presto_engines": [{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "presto engine for running sql queries", "drivers": [{"connection_type": "saphana", "driver_id": "saphanadriver123", "driver_name": "saphanadriver-1.2.3", "driver_version": "1.2.3"}], "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "instance_id": "instance_id", "managed_by": "fully/self", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "event_listener": {"event_listener_property": "event_listener_property"}, "global": {"global_property": "enable-mixed-case-support:true"}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "jmx_exporter_config": {"global_property": "watsonx_data_presto_cluster_memory_manager_cluster_memory_bytes:presto.memory<name=ClusterMemoryManager><>ClusterMemoryBytes"}, "log_config": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "ibm-lh-lakehouse-presto-01-presto-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"], "worker": ["worker"]}, "event_listener": ["event_listener"], "global": ["global_"], "jmx_exporter_config": ["jmx_exporter_config"], "log_config": {"coordinator": ["coordinator"], "worker": ["worker"]}}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "presto", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}]}'
         responses.add(
             responses.GET,
             url,
@@ -7237,7 +8254,7 @@ class TestCreatePrestoEngine:
         """
         # Set up mock
         url = preprocess_url('/presto_engines')
-        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "presto engine for running sql queries", "drivers": [{"connection_type": "saphana", "driver_id": "saphanadriver123", "driver_name": "saphanadriver-1.2.3", "driver_version": "1.2.3"}], "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "instance_id": "instance_id", "managed_by": "fully/self", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "event_listener": {"event_listener_property": "event_listener_property"}, "global": {"global_property": "enable-mixed-case-support:true"}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "log_config": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "ibm-lh-lakehouse-presto-01-presto-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"], "worker": ["worker"]}, "event_listener": ["event_listener"]}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "presto", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}'
+        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "presto engine for running sql queries", "drivers": [{"connection_type": "saphana", "driver_id": "saphanadriver123", "driver_name": "saphanadriver-1.2.3", "driver_version": "1.2.3"}], "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "instance_id": "instance_id", "managed_by": "fully/self", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "event_listener": {"event_listener_property": "event_listener_property"}, "global": {"global_property": "enable-mixed-case-support:true"}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "jmx_exporter_config": {"global_property": "watsonx_data_presto_cluster_memory_manager_cluster_memory_bytes:presto.memory<name=ClusterMemoryManager><>ClusterMemoryBytes"}, "log_config": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "ibm-lh-lakehouse-presto-01-presto-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"], "worker": ["worker"]}, "event_listener": ["event_listener"], "global": ["global_"], "jmx_exporter_config": ["jmx_exporter_config"], "log_config": {"coordinator": ["coordinator"], "worker": ["worker"]}}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "presto", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}'
         responses.add(
             responses.POST,
             url,
@@ -7263,7 +8280,7 @@ class TestCreatePrestoEngine:
 
         # Set up parameter values
         origin = 'native'
-        associated_catalogs = ['iceberg_data', 'hive_data']
+        associated_catalogs = ['iceberg-data', 'hive-data']
         description = 'presto engine for running sql queries'
         engine_details = engine_details_body_model
         engine_display_name = 'sampleEngine'
@@ -7292,7 +8309,7 @@ class TestCreatePrestoEngine:
         # Validate body params
         req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
         assert req_body['origin'] == 'native'
-        assert req_body['associated_catalogs'] == ['iceberg_data', 'hive_data']
+        assert req_body['associated_catalogs'] == ['iceberg-data', 'hive-data']
         assert req_body['description'] == 'presto engine for running sql queries'
         assert req_body['engine_details'] == engine_details_body_model
         assert req_body['engine_display_name'] == 'sampleEngine'
@@ -7316,7 +8333,7 @@ class TestCreatePrestoEngine:
         """
         # Set up mock
         url = preprocess_url('/presto_engines')
-        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "presto engine for running sql queries", "drivers": [{"connection_type": "saphana", "driver_id": "saphanadriver123", "driver_name": "saphanadriver-1.2.3", "driver_version": "1.2.3"}], "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "instance_id": "instance_id", "managed_by": "fully/self", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "event_listener": {"event_listener_property": "event_listener_property"}, "global": {"global_property": "enable-mixed-case-support:true"}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "log_config": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "ibm-lh-lakehouse-presto-01-presto-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"], "worker": ["worker"]}, "event_listener": ["event_listener"]}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "presto", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}'
+        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "presto engine for running sql queries", "drivers": [{"connection_type": "saphana", "driver_id": "saphanadriver123", "driver_name": "saphanadriver-1.2.3", "driver_version": "1.2.3"}], "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "instance_id": "instance_id", "managed_by": "fully/self", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "event_listener": {"event_listener_property": "event_listener_property"}, "global": {"global_property": "enable-mixed-case-support:true"}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "jmx_exporter_config": {"global_property": "watsonx_data_presto_cluster_memory_manager_cluster_memory_bytes:presto.memory<name=ClusterMemoryManager><>ClusterMemoryBytes"}, "log_config": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "ibm-lh-lakehouse-presto-01-presto-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"], "worker": ["worker"]}, "event_listener": ["event_listener"], "global": ["global_"], "jmx_exporter_config": ["jmx_exporter_config"], "log_config": {"coordinator": ["coordinator"], "worker": ["worker"]}}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "presto", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}'
         responses.add(
             responses.POST,
             url,
@@ -7342,7 +8359,7 @@ class TestCreatePrestoEngine:
 
         # Set up parameter values
         origin = 'native'
-        associated_catalogs = ['iceberg_data', 'hive_data']
+        associated_catalogs = ['iceberg-data', 'hive-data']
         description = 'presto engine for running sql queries'
         engine_details = engine_details_body_model
         engine_display_name = 'sampleEngine'
@@ -7369,7 +8386,7 @@ class TestCreatePrestoEngine:
         # Validate body params
         req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
         assert req_body['origin'] == 'native'
-        assert req_body['associated_catalogs'] == ['iceberg_data', 'hive_data']
+        assert req_body['associated_catalogs'] == ['iceberg-data', 'hive-data']
         assert req_body['description'] == 'presto engine for running sql queries'
         assert req_body['engine_details'] == engine_details_body_model
         assert req_body['engine_display_name'] == 'sampleEngine'
@@ -7393,7 +8410,7 @@ class TestCreatePrestoEngine:
         """
         # Set up mock
         url = preprocess_url('/presto_engines')
-        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "presto engine for running sql queries", "drivers": [{"connection_type": "saphana", "driver_id": "saphanadriver123", "driver_name": "saphanadriver-1.2.3", "driver_version": "1.2.3"}], "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "instance_id": "instance_id", "managed_by": "fully/self", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "event_listener": {"event_listener_property": "event_listener_property"}, "global": {"global_property": "enable-mixed-case-support:true"}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "log_config": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "ibm-lh-lakehouse-presto-01-presto-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"], "worker": ["worker"]}, "event_listener": ["event_listener"]}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "presto", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}'
+        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "presto engine for running sql queries", "drivers": [{"connection_type": "saphana", "driver_id": "saphanadriver123", "driver_name": "saphanadriver-1.2.3", "driver_version": "1.2.3"}], "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "instance_id": "instance_id", "managed_by": "fully/self", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "event_listener": {"event_listener_property": "event_listener_property"}, "global": {"global_property": "enable-mixed-case-support:true"}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "jmx_exporter_config": {"global_property": "watsonx_data_presto_cluster_memory_manager_cluster_memory_bytes:presto.memory<name=ClusterMemoryManager><>ClusterMemoryBytes"}, "log_config": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "ibm-lh-lakehouse-presto-01-presto-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"], "worker": ["worker"]}, "event_listener": ["event_listener"], "global": ["global_"], "jmx_exporter_config": ["jmx_exporter_config"], "log_config": {"coordinator": ["coordinator"], "worker": ["worker"]}}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "presto", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}'
         responses.add(
             responses.POST,
             url,
@@ -7419,7 +8436,7 @@ class TestCreatePrestoEngine:
 
         # Set up parameter values
         origin = 'native'
-        associated_catalogs = ['iceberg_data', 'hive_data']
+        associated_catalogs = ['iceberg-data', 'hive-data']
         description = 'presto engine for running sql queries'
         engine_details = engine_details_body_model
         engine_display_name = 'sampleEngine'
@@ -7458,7 +8475,7 @@ class TestGetPrestoEngine:
         """
         # Set up mock
         url = preprocess_url('/presto_engines/testString')
-        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "presto engine for running sql queries", "drivers": [{"connection_type": "saphana", "driver_id": "saphanadriver123", "driver_name": "saphanadriver-1.2.3", "driver_version": "1.2.3"}], "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "instance_id": "instance_id", "managed_by": "fully/self", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "event_listener": {"event_listener_property": "event_listener_property"}, "global": {"global_property": "enable-mixed-case-support:true"}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "log_config": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "ibm-lh-lakehouse-presto-01-presto-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"], "worker": ["worker"]}, "event_listener": ["event_listener"]}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "presto", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}'
+        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "presto engine for running sql queries", "drivers": [{"connection_type": "saphana", "driver_id": "saphanadriver123", "driver_name": "saphanadriver-1.2.3", "driver_version": "1.2.3"}], "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "instance_id": "instance_id", "managed_by": "fully/self", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "event_listener": {"event_listener_property": "event_listener_property"}, "global": {"global_property": "enable-mixed-case-support:true"}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "jmx_exporter_config": {"global_property": "watsonx_data_presto_cluster_memory_manager_cluster_memory_bytes:presto.memory<name=ClusterMemoryManager><>ClusterMemoryBytes"}, "log_config": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "ibm-lh-lakehouse-presto-01-presto-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"], "worker": ["worker"]}, "event_listener": ["event_listener"], "global": ["global_"], "jmx_exporter_config": ["jmx_exporter_config"], "log_config": {"coordinator": ["coordinator"], "worker": ["worker"]}}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "presto", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}'
         responses.add(
             responses.GET,
             url,
@@ -7498,7 +8515,7 @@ class TestGetPrestoEngine:
         """
         # Set up mock
         url = preprocess_url('/presto_engines/testString')
-        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "presto engine for running sql queries", "drivers": [{"connection_type": "saphana", "driver_id": "saphanadriver123", "driver_name": "saphanadriver-1.2.3", "driver_version": "1.2.3"}], "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "instance_id": "instance_id", "managed_by": "fully/self", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "event_listener": {"event_listener_property": "event_listener_property"}, "global": {"global_property": "enable-mixed-case-support:true"}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "log_config": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "ibm-lh-lakehouse-presto-01-presto-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"], "worker": ["worker"]}, "event_listener": ["event_listener"]}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "presto", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}'
+        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "presto engine for running sql queries", "drivers": [{"connection_type": "saphana", "driver_id": "saphanadriver123", "driver_name": "saphanadriver-1.2.3", "driver_version": "1.2.3"}], "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "instance_id": "instance_id", "managed_by": "fully/self", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "event_listener": {"event_listener_property": "event_listener_property"}, "global": {"global_property": "enable-mixed-case-support:true"}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "jmx_exporter_config": {"global_property": "watsonx_data_presto_cluster_memory_manager_cluster_memory_bytes:presto.memory<name=ClusterMemoryManager><>ClusterMemoryBytes"}, "log_config": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "ibm-lh-lakehouse-presto-01-presto-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"], "worker": ["worker"]}, "event_listener": ["event_listener"], "global": ["global_"], "jmx_exporter_config": ["jmx_exporter_config"], "log_config": {"coordinator": ["coordinator"], "worker": ["worker"]}}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "presto", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}'
         responses.add(
             responses.GET,
             url,
@@ -7536,7 +8553,7 @@ class TestGetPrestoEngine:
         """
         # Set up mock
         url = preprocess_url('/presto_engines/testString')
-        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "presto engine for running sql queries", "drivers": [{"connection_type": "saphana", "driver_id": "saphanadriver123", "driver_name": "saphanadriver-1.2.3", "driver_version": "1.2.3"}], "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "instance_id": "instance_id", "managed_by": "fully/self", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "event_listener": {"event_listener_property": "event_listener_property"}, "global": {"global_property": "enable-mixed-case-support:true"}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "log_config": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "ibm-lh-lakehouse-presto-01-presto-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"], "worker": ["worker"]}, "event_listener": ["event_listener"]}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "presto", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}'
+        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "presto engine for running sql queries", "drivers": [{"connection_type": "saphana", "driver_id": "saphanadriver123", "driver_name": "saphanadriver-1.2.3", "driver_version": "1.2.3"}], "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "instance_id": "instance_id", "managed_by": "fully/self", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "event_listener": {"event_listener_property": "event_listener_property"}, "global": {"global_property": "enable-mixed-case-support:true"}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "jmx_exporter_config": {"global_property": "watsonx_data_presto_cluster_memory_manager_cluster_memory_bytes:presto.memory<name=ClusterMemoryManager><>ClusterMemoryBytes"}, "log_config": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "ibm-lh-lakehouse-presto-01-presto-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"], "worker": ["worker"]}, "event_listener": ["event_listener"], "global": ["global_"], "jmx_exporter_config": ["jmx_exporter_config"], "log_config": {"coordinator": ["coordinator"], "worker": ["worker"]}}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "presto", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}'
         responses.add(
             responses.GET,
             url,
@@ -7691,7 +8708,7 @@ class TestUpdatePrestoEngine:
         """
         # Set up mock
         url = preprocess_url('/presto_engines/testString')
-        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "presto engine for running sql queries", "drivers": [{"connection_type": "saphana", "driver_id": "saphanadriver123", "driver_name": "saphanadriver-1.2.3", "driver_version": "1.2.3"}], "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "instance_id": "instance_id", "managed_by": "fully/self", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "event_listener": {"event_listener_property": "event_listener_property"}, "global": {"global_property": "enable-mixed-case-support:true"}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "log_config": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "ibm-lh-lakehouse-presto-01-presto-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"], "worker": ["worker"]}, "event_listener": ["event_listener"]}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "presto", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}'
+        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "presto engine for running sql queries", "drivers": [{"connection_type": "saphana", "driver_id": "saphanadriver123", "driver_name": "saphanadriver-1.2.3", "driver_version": "1.2.3"}], "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "instance_id": "instance_id", "managed_by": "fully/self", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "event_listener": {"event_listener_property": "event_listener_property"}, "global": {"global_property": "enable-mixed-case-support:true"}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "jmx_exporter_config": {"global_property": "watsonx_data_presto_cluster_memory_manager_cluster_memory_bytes:presto.memory<name=ClusterMemoryManager><>ClusterMemoryBytes"}, "log_config": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "ibm-lh-lakehouse-presto-01-presto-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"], "worker": ["worker"]}, "event_listener": ["event_listener"], "global": ["global_"], "jmx_exporter_config": ["jmx_exporter_config"], "log_config": {"coordinator": ["coordinator"], "worker": ["worker"]}}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "presto", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}'
         responses.add(
             responses.PATCH,
             url,
@@ -7727,6 +8744,10 @@ class TestUpdatePrestoEngine:
         engine_properties_oai_gen1_jvm_model['coordinator'] = node_description_body_model
         engine_properties_oai_gen1_jvm_model['worker'] = node_description_body_model
 
+        # Construct a dict representation of a PrestoEnginePropertiesJMX model
+        presto_engine_properties_jmx_model = {}
+        presto_engine_properties_jmx_model['global_property'] = 'watsonx_data_presto_cluster_memory_manager_cluster_memory_bytes:presto.memory<name=ClusterMemoryManager><>ClusterMemoryBytes'
+
         # Construct a dict representation of a EnginePropertiesLogConfiguration model
         engine_properties_log_configuration_model = {}
         engine_properties_log_configuration_model['coordinator'] = node_description_body_model
@@ -7739,6 +8760,7 @@ class TestUpdatePrestoEngine:
         presto_engine_engine_properties_model['event_listener'] = presto_engine_properties_event_listener_model
         presto_engine_engine_properties_model['global'] = presto_engine_properties_global_model
         presto_engine_engine_properties_model['jvm'] = engine_properties_oai_gen1_jvm_model
+        presto_engine_engine_properties_model['jmx_exporter_config'] = presto_engine_properties_jmx_model
         presto_engine_engine_properties_model['log_config'] = engine_properties_log_configuration_model
 
         # Construct a dict representation of a RemoveEnginePropertiesOaiGenConfiguration model
@@ -7751,12 +8773,20 @@ class TestUpdatePrestoEngine:
         remove_engine_properties_oai_gen_jvm_model['coordinator'] = ['testString']
         remove_engine_properties_oai_gen_jvm_model['worker'] = ['testString']
 
+        # Construct a dict representation of a RemoveEnginePropertiesLogConfig model
+        remove_engine_properties_log_config_model = {}
+        remove_engine_properties_log_config_model['coordinator'] = ['testString']
+        remove_engine_properties_log_config_model['worker'] = ['testString']
+
         # Construct a dict representation of a PrestoEnginePatchRemoveEngineProperties model
         presto_engine_patch_remove_engine_properties_model = {}
         presto_engine_patch_remove_engine_properties_model['catalog'] = presto_engine_properties_catalog_model
         presto_engine_patch_remove_engine_properties_model['configuration'] = remove_engine_properties_oai_gen_configuration_model
         presto_engine_patch_remove_engine_properties_model['jvm'] = remove_engine_properties_oai_gen_jvm_model
-        presto_engine_patch_remove_engine_properties_model['event_listener'] = []
+        presto_engine_patch_remove_engine_properties_model['event_listener'] = ['testString']
+        presto_engine_patch_remove_engine_properties_model['global'] = ['testString']
+        presto_engine_patch_remove_engine_properties_model['jmx_exporter_config'] = ['testString']
+        presto_engine_patch_remove_engine_properties_model['log_config'] = remove_engine_properties_log_config_model
 
         # Construct a dict representation of a PrestoEnginePatch model
         presto_engine_patch_model = {}
@@ -7803,7 +8833,7 @@ class TestUpdatePrestoEngine:
         """
         # Set up mock
         url = preprocess_url('/presto_engines/testString')
-        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "presto engine for running sql queries", "drivers": [{"connection_type": "saphana", "driver_id": "saphanadriver123", "driver_name": "saphanadriver-1.2.3", "driver_version": "1.2.3"}], "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "instance_id": "instance_id", "managed_by": "fully/self", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "event_listener": {"event_listener_property": "event_listener_property"}, "global": {"global_property": "enable-mixed-case-support:true"}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "log_config": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "ibm-lh-lakehouse-presto-01-presto-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"], "worker": ["worker"]}, "event_listener": ["event_listener"]}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "presto", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}'
+        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "presto engine for running sql queries", "drivers": [{"connection_type": "saphana", "driver_id": "saphanadriver123", "driver_name": "saphanadriver-1.2.3", "driver_version": "1.2.3"}], "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "instance_id": "instance_id", "managed_by": "fully/self", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "event_listener": {"event_listener_property": "event_listener_property"}, "global": {"global_property": "enable-mixed-case-support:true"}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "jmx_exporter_config": {"global_property": "watsonx_data_presto_cluster_memory_manager_cluster_memory_bytes:presto.memory<name=ClusterMemoryManager><>ClusterMemoryBytes"}, "log_config": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "ibm-lh-lakehouse-presto-01-presto-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"], "worker": ["worker"]}, "event_listener": ["event_listener"], "global": ["global_"], "jmx_exporter_config": ["jmx_exporter_config"], "log_config": {"coordinator": ["coordinator"], "worker": ["worker"]}}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "presto", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}'
         responses.add(
             responses.PATCH,
             url,
@@ -7839,6 +8869,10 @@ class TestUpdatePrestoEngine:
         engine_properties_oai_gen1_jvm_model['coordinator'] = node_description_body_model
         engine_properties_oai_gen1_jvm_model['worker'] = node_description_body_model
 
+        # Construct a dict representation of a PrestoEnginePropertiesJMX model
+        presto_engine_properties_jmx_model = {}
+        presto_engine_properties_jmx_model['global_property'] = 'watsonx_data_presto_cluster_memory_manager_cluster_memory_bytes:presto.memory<name=ClusterMemoryManager><>ClusterMemoryBytes'
+
         # Construct a dict representation of a EnginePropertiesLogConfiguration model
         engine_properties_log_configuration_model = {}
         engine_properties_log_configuration_model['coordinator'] = node_description_body_model
@@ -7851,6 +8885,7 @@ class TestUpdatePrestoEngine:
         presto_engine_engine_properties_model['event_listener'] = presto_engine_properties_event_listener_model
         presto_engine_engine_properties_model['global'] = presto_engine_properties_global_model
         presto_engine_engine_properties_model['jvm'] = engine_properties_oai_gen1_jvm_model
+        presto_engine_engine_properties_model['jmx_exporter_config'] = presto_engine_properties_jmx_model
         presto_engine_engine_properties_model['log_config'] = engine_properties_log_configuration_model
 
         # Construct a dict representation of a RemoveEnginePropertiesOaiGenConfiguration model
@@ -7863,12 +8898,20 @@ class TestUpdatePrestoEngine:
         remove_engine_properties_oai_gen_jvm_model['coordinator'] = ['testString']
         remove_engine_properties_oai_gen_jvm_model['worker'] = ['testString']
 
+        # Construct a dict representation of a RemoveEnginePropertiesLogConfig model
+        remove_engine_properties_log_config_model = {}
+        remove_engine_properties_log_config_model['coordinator'] = ['testString']
+        remove_engine_properties_log_config_model['worker'] = ['testString']
+
         # Construct a dict representation of a PrestoEnginePatchRemoveEngineProperties model
         presto_engine_patch_remove_engine_properties_model = {}
         presto_engine_patch_remove_engine_properties_model['catalog'] = presto_engine_properties_catalog_model
         presto_engine_patch_remove_engine_properties_model['configuration'] = remove_engine_properties_oai_gen_configuration_model
         presto_engine_patch_remove_engine_properties_model['jvm'] = remove_engine_properties_oai_gen_jvm_model
-        presto_engine_patch_remove_engine_properties_model['event_listener'] = []
+        presto_engine_patch_remove_engine_properties_model['event_listener'] = ['testString']
+        presto_engine_patch_remove_engine_properties_model['global'] = ['testString']
+        presto_engine_patch_remove_engine_properties_model['jmx_exporter_config'] = ['testString']
+        presto_engine_patch_remove_engine_properties_model['log_config'] = remove_engine_properties_log_config_model
 
         # Construct a dict representation of a PrestoEnginePatch model
         presto_engine_patch_model = {}
@@ -7913,7 +8956,7 @@ class TestUpdatePrestoEngine:
         """
         # Set up mock
         url = preprocess_url('/presto_engines/testString')
-        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "presto engine for running sql queries", "drivers": [{"connection_type": "saphana", "driver_id": "saphanadriver123", "driver_name": "saphanadriver-1.2.3", "driver_version": "1.2.3"}], "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "instance_id": "instance_id", "managed_by": "fully/self", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "event_listener": {"event_listener_property": "event_listener_property"}, "global": {"global_property": "enable-mixed-case-support:true"}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "log_config": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "ibm-lh-lakehouse-presto-01-presto-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"], "worker": ["worker"]}, "event_listener": ["event_listener"]}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "presto", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}'
+        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "coordinator": {"node_type": "worker", "quantity": 8}, "created_by": "<username>@<domain>.com", "created_on": 10, "description": "presto engine for running sql queries", "drivers": [{"connection_type": "saphana", "driver_id": "saphanadriver123", "driver_name": "saphanadriver-1.2.3", "driver_version": "1.2.3"}], "engine_details": {"api_key": "<api_key>", "connection_string": "1.2.3.4", "coordinator": {"node_type": "worker", "quantity": 8}, "instance_id": "instance_id", "managed_by": "fully/self", "size_config": "starter", "worker": {"node_type": "worker", "quantity": 8}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "event_listener": {"event_listener_property": "event_listener_property"}, "global": {"global_property": "enable-mixed-case-support:true"}, "jvm": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}, "jmx_exporter_config": {"global_property": "watsonx_data_presto_cluster_memory_manager_cluster_memory_bytes:presto.memory<name=ClusterMemoryManager><>ClusterMemoryBytes"}, "log_config": {"coordinator": {"node_type": "worker", "quantity": 8}, "worker": {"node_type": "worker", "quantity": 8}}}, "engine_restart": "force", "external_host_name": "your-hostname.apps.your-domain.com", "group_id": "new_group_id", "host_name": "ibm-lh-lakehouse-presto-01-presto-svc", "origin": "native", "port": 4, "region": "us-south", "remove_engine_properties": {"catalog": {"catalog_name": "catalog_name"}, "configuration": {"coordinator": ["coordinator"], "worker": ["worker"]}, "jvm": {"coordinator": ["coordinator"], "worker": ["worker"]}, "event_listener": ["event_listener"], "global": ["global_"], "jmx_exporter_config": ["jmx_exporter_config"], "log_config": {"coordinator": ["coordinator"], "worker": ["worker"]}}, "size_config": "starter", "status": "running", "status_code": 11, "tags": ["tags"], "type": "presto", "version": "1.2.0", "worker": {"node_type": "worker", "quantity": 8}}'
         responses.add(
             responses.PATCH,
             url,
@@ -7949,6 +8992,10 @@ class TestUpdatePrestoEngine:
         engine_properties_oai_gen1_jvm_model['coordinator'] = node_description_body_model
         engine_properties_oai_gen1_jvm_model['worker'] = node_description_body_model
 
+        # Construct a dict representation of a PrestoEnginePropertiesJMX model
+        presto_engine_properties_jmx_model = {}
+        presto_engine_properties_jmx_model['global_property'] = 'watsonx_data_presto_cluster_memory_manager_cluster_memory_bytes:presto.memory<name=ClusterMemoryManager><>ClusterMemoryBytes'
+
         # Construct a dict representation of a EnginePropertiesLogConfiguration model
         engine_properties_log_configuration_model = {}
         engine_properties_log_configuration_model['coordinator'] = node_description_body_model
@@ -7961,6 +9008,7 @@ class TestUpdatePrestoEngine:
         presto_engine_engine_properties_model['event_listener'] = presto_engine_properties_event_listener_model
         presto_engine_engine_properties_model['global'] = presto_engine_properties_global_model
         presto_engine_engine_properties_model['jvm'] = engine_properties_oai_gen1_jvm_model
+        presto_engine_engine_properties_model['jmx_exporter_config'] = presto_engine_properties_jmx_model
         presto_engine_engine_properties_model['log_config'] = engine_properties_log_configuration_model
 
         # Construct a dict representation of a RemoveEnginePropertiesOaiGenConfiguration model
@@ -7973,12 +9021,20 @@ class TestUpdatePrestoEngine:
         remove_engine_properties_oai_gen_jvm_model['coordinator'] = ['testString']
         remove_engine_properties_oai_gen_jvm_model['worker'] = ['testString']
 
+        # Construct a dict representation of a RemoveEnginePropertiesLogConfig model
+        remove_engine_properties_log_config_model = {}
+        remove_engine_properties_log_config_model['coordinator'] = ['testString']
+        remove_engine_properties_log_config_model['worker'] = ['testString']
+
         # Construct a dict representation of a PrestoEnginePatchRemoveEngineProperties model
         presto_engine_patch_remove_engine_properties_model = {}
         presto_engine_patch_remove_engine_properties_model['catalog'] = presto_engine_properties_catalog_model
         presto_engine_patch_remove_engine_properties_model['configuration'] = remove_engine_properties_oai_gen_configuration_model
         presto_engine_patch_remove_engine_properties_model['jvm'] = remove_engine_properties_oai_gen_jvm_model
-        presto_engine_patch_remove_engine_properties_model['event_listener'] = []
+        presto_engine_patch_remove_engine_properties_model['event_listener'] = ['testString']
+        presto_engine_patch_remove_engine_properties_model['global'] = ['testString']
+        presto_engine_patch_remove_engine_properties_model['jmx_exporter_config'] = ['testString']
+        presto_engine_patch_remove_engine_properties_model['log_config'] = remove_engine_properties_log_config_model
 
         # Construct a dict representation of a PrestoEnginePatch model
         presto_engine_patch_model = {}
@@ -8025,7 +9081,7 @@ class TestListPrestoEngineCatalogs:
         """
         # Set up mock
         url = preprocess_url('/presto_engines/testString/catalogs')
-        mock_response = '{"catalogs": [{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_names": "catalog_names", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}]}'
+        mock_response = '{"catalogs": [{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "days_left": "30", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "rest_uri": "https://samplehost-catalog:4352", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}]}'
         responses.add(
             responses.GET,
             url,
@@ -8065,7 +9121,7 @@ class TestListPrestoEngineCatalogs:
         """
         # Set up mock
         url = preprocess_url('/presto_engines/testString/catalogs')
-        mock_response = '{"catalogs": [{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_names": "catalog_names", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}]}'
+        mock_response = '{"catalogs": [{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "days_left": "30", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "rest_uri": "https://samplehost-catalog:4352", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}]}'
         responses.add(
             responses.GET,
             url,
@@ -8103,7 +9159,7 @@ class TestListPrestoEngineCatalogs:
         """
         # Set up mock
         url = preprocess_url('/presto_engines/testString/catalogs')
-        mock_response = '{"catalogs": [{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_names": "catalog_names", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}]}'
+        mock_response = '{"catalogs": [{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "days_left": "30", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "rest_uri": "https://samplehost-catalog:4352", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}]}'
         responses.add(
             responses.GET,
             url,
@@ -8146,7 +9202,7 @@ class TestCreatePrestoEngineCatalogs:
         """
         # Set up mock
         url = preprocess_url('/presto_engines/testString/catalogs')
-        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_names": "catalog_names", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
+        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "days_left": "30", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "rest_uri": "https://samplehost-catalog:4352", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
         responses.add(
             responses.POST,
             url,
@@ -8191,7 +9247,7 @@ class TestCreatePrestoEngineCatalogs:
         """
         # Set up mock
         url = preprocess_url('/presto_engines/testString/catalogs')
-        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_names": "catalog_names", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
+        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "days_left": "30", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "rest_uri": "https://samplehost-catalog:4352", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
         responses.add(
             responses.POST,
             url,
@@ -8234,7 +9290,7 @@ class TestCreatePrestoEngineCatalogs:
         """
         # Set up mock
         url = preprocess_url('/presto_engines/testString/catalogs')
-        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_names": "catalog_names", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
+        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "days_left": "30", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "rest_uri": "https://samplehost-catalog:4352", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
         responses.add(
             responses.POST,
             url,
@@ -8404,7 +9460,7 @@ class TestGetPrestoEngineCatalog:
         """
         # Set up mock
         url = preprocess_url('/presto_engines/testString/catalogs/testString')
-        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_names": "catalog_names", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
+        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "days_left": "30", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "rest_uri": "https://samplehost-catalog:4352", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
         responses.add(
             responses.GET,
             url,
@@ -8446,7 +9502,7 @@ class TestGetPrestoEngineCatalog:
         """
         # Set up mock
         url = preprocess_url('/presto_engines/testString/catalogs/testString')
-        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_names": "catalog_names", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
+        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "days_left": "30", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "rest_uri": "https://samplehost-catalog:4352", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
         responses.add(
             responses.GET,
             url,
@@ -8486,7 +9542,7 @@ class TestGetPrestoEngineCatalog:
         """
         # Set up mock
         url = preprocess_url('/presto_engines/testString/catalogs/testString')
-        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_names": "catalog_names", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
+        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "days_left": "30", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "rest_uri": "https://samplehost-catalog:4352", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
         responses.add(
             responses.GET,
             url,
@@ -9800,12 +10856,12 @@ class TestCreateSalIntegrationEnrichment:
         enrichment_obj_model['tables'] = ['testString']
 
         # Set up parameter values
-        changes = enrichment_obj_model
+        enrichment_prototype = enrichment_obj_model
         auth_instance_id = 'testString'
 
         # Invoke method
         response = _service.create_sal_integration_enrichment(
-            changes=changes,
+            enrichment_prototype=enrichment_prototype,
             auth_instance_id=auth_instance_id,
             headers={},
         )
@@ -9815,7 +10871,7 @@ class TestCreateSalIntegrationEnrichment:
         assert response.status_code == 204
         # Validate body params
         req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
-        assert req_body['changes'] == enrichment_obj_model
+        assert req_body['enrichment_prototype'] == enrichment_obj_model
 
     def test_create_sal_integration_enrichment_all_params_with_retries(self):
         # Enable retries and run test_create_sal_integration_enrichment_all_params.
@@ -9847,11 +10903,11 @@ class TestCreateSalIntegrationEnrichment:
         enrichment_obj_model['tables'] = ['testString']
 
         # Set up parameter values
-        changes = enrichment_obj_model
+        enrichment_prototype = enrichment_obj_model
 
         # Invoke method
         response = _service.create_sal_integration_enrichment(
-            changes=changes,
+            enrichment_prototype=enrichment_prototype,
             headers={},
         )
 
@@ -9860,7 +10916,7 @@ class TestCreateSalIntegrationEnrichment:
         assert response.status_code == 204
         # Validate body params
         req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
-        assert req_body['changes'] == enrichment_obj_model
+        assert req_body['enrichment_prototype'] == enrichment_obj_model
 
     def test_create_sal_integration_enrichment_required_params_with_retries(self):
         # Enable retries and run test_create_sal_integration_enrichment_required_params.
@@ -11227,7 +12283,7 @@ class TestListSparkEngines:
         """
         # Set up mock
         url = preprocess_url('/spark_engines')
-        mock_response = '{"spark_engines": [{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "spark engine for running sql queries", "engine_details": {"api_key": "apikey", "connection_string": "https://xyz.<region>.ae.cloud.123.com/v3/analytics_engines/<spark_iae_id>", "default_config": {"config1": "config1", "config2": "config2"}, "default_version": "4.8.3", "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications", "wxd_engine_endpoint": "$HOST/v1/1698311655308796/engines/spark817", "wxd_history_server_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server", "wxd_history_server_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server/ui"}, "engine_home_bucket_display_name": "test-spark-bucket", "engine_home_bucket_name": "test-spark-bucket", "engine_home_path": "spark/spark1234", "engine_home_volume": "test-spark-volume", "engine_home_volume_id": "1704979825978585", "engine_home_volume_name": "my-volume", "engine_home_volume_storage_class": "nfs-client", "engine_home_volume_storage_size": "5Gi", "engine_sub_type": "java/cpp", "instance_id": "spark-id", "managed_by": "fully/self", "scale_config": {"auto_scale_enabled": true, "current_number_of_nodes": 2, "maximum_number_of_nodes": 5, "minimum_number_of_nodes": 1, "node_type": "medium", "number_of_nodes": 2}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "origin": "external", "status": "Registered", "tags": ["tags"], "type": "spark"}]}'
+        mock_response = '{"spark_engines": [{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "spark engine for running sql queries", "engine_details": {"api_key": "apikey", "connection_string": "https://xyz.<region>.ae.cloud.123.com/v3/analytics-engines/<spark-iae-id>", "default_config": {"config1": "config1", "config2": "config2"}, "default_version": "4.8.3", "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications", "wxd_engine_endpoint": "$HOST/v1/1698311655308796/engines/spark817", "wxd_history_server_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server", "wxd_history_server_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server/ui"}, "engine_home_bucket_display_name": "test-spark-bucket", "engine_home_bucket_name": "test-spark-bucket", "engine_home_path": "spark/spark1234", "engine_home_volume": "test-spark-volume", "engine_home_volume_id": "1704979825978585", "engine_home_volume_name": "my-volume", "engine_home_volume_storage_class": "nfs-client", "engine_home_volume_storage_size": "5Gi", "instance_id": "spark-id", "engine_sub_type": "java/cpp", "managed_by": "fully/self", "scale_config": {"auto_scale_enabled": true, "current_number_of_nodes": 2, "maximum_number_of_nodes": 5, "minimum_number_of_nodes": 1, "node_type": "medium", "number_of_nodes": 2}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "origin": "external", "status": "Registered", "tags": ["tags"], "type": "spark"}]}'
         responses.add(
             responses.GET,
             url,
@@ -11265,7 +12321,7 @@ class TestListSparkEngines:
         """
         # Set up mock
         url = preprocess_url('/spark_engines')
-        mock_response = '{"spark_engines": [{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "spark engine for running sql queries", "engine_details": {"api_key": "apikey", "connection_string": "https://xyz.<region>.ae.cloud.123.com/v3/analytics_engines/<spark_iae_id>", "default_config": {"config1": "config1", "config2": "config2"}, "default_version": "4.8.3", "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications", "wxd_engine_endpoint": "$HOST/v1/1698311655308796/engines/spark817", "wxd_history_server_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server", "wxd_history_server_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server/ui"}, "engine_home_bucket_display_name": "test-spark-bucket", "engine_home_bucket_name": "test-spark-bucket", "engine_home_path": "spark/spark1234", "engine_home_volume": "test-spark-volume", "engine_home_volume_id": "1704979825978585", "engine_home_volume_name": "my-volume", "engine_home_volume_storage_class": "nfs-client", "engine_home_volume_storage_size": "5Gi", "engine_sub_type": "java/cpp", "instance_id": "spark-id", "managed_by": "fully/self", "scale_config": {"auto_scale_enabled": true, "current_number_of_nodes": 2, "maximum_number_of_nodes": 5, "minimum_number_of_nodes": 1, "node_type": "medium", "number_of_nodes": 2}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "origin": "external", "status": "Registered", "tags": ["tags"], "type": "spark"}]}'
+        mock_response = '{"spark_engines": [{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "spark engine for running sql queries", "engine_details": {"api_key": "apikey", "connection_string": "https://xyz.<region>.ae.cloud.123.com/v3/analytics-engines/<spark-iae-id>", "default_config": {"config1": "config1", "config2": "config2"}, "default_version": "4.8.3", "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications", "wxd_engine_endpoint": "$HOST/v1/1698311655308796/engines/spark817", "wxd_history_server_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server", "wxd_history_server_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server/ui"}, "engine_home_bucket_display_name": "test-spark-bucket", "engine_home_bucket_name": "test-spark-bucket", "engine_home_path": "spark/spark1234", "engine_home_volume": "test-spark-volume", "engine_home_volume_id": "1704979825978585", "engine_home_volume_name": "my-volume", "engine_home_volume_storage_class": "nfs-client", "engine_home_volume_storage_size": "5Gi", "instance_id": "spark-id", "engine_sub_type": "java/cpp", "managed_by": "fully/self", "scale_config": {"auto_scale_enabled": true, "current_number_of_nodes": 2, "maximum_number_of_nodes": 5, "minimum_number_of_nodes": 1, "node_type": "medium", "number_of_nodes": 2}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "origin": "external", "status": "Registered", "tags": ["tags"], "type": "spark"}]}'
         responses.add(
             responses.GET,
             url,
@@ -11303,7 +12359,7 @@ class TestCreateSparkEngine:
         """
         # Set up mock
         url = preprocess_url('/spark_engines')
-        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "spark engine for running sql queries", "engine_details": {"api_key": "apikey", "connection_string": "https://xyz.<region>.ae.cloud.123.com/v3/analytics_engines/<spark_iae_id>", "default_config": {"config1": "config1", "config2": "config2"}, "default_version": "4.8.3", "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications", "wxd_engine_endpoint": "$HOST/v1/1698311655308796/engines/spark817", "wxd_history_server_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server", "wxd_history_server_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server/ui"}, "engine_home_bucket_display_name": "test-spark-bucket", "engine_home_bucket_name": "test-spark-bucket", "engine_home_path": "spark/spark1234", "engine_home_volume": "test-spark-volume", "engine_home_volume_id": "1704979825978585", "engine_home_volume_name": "my-volume", "engine_home_volume_storage_class": "nfs-client", "engine_home_volume_storage_size": "5Gi", "engine_sub_type": "java/cpp", "instance_id": "spark-id", "managed_by": "fully/self", "scale_config": {"auto_scale_enabled": true, "current_number_of_nodes": 2, "maximum_number_of_nodes": 5, "minimum_number_of_nodes": 1, "node_type": "medium", "number_of_nodes": 2}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "origin": "external", "status": "Registered", "tags": ["tags"], "type": "spark"}'
+        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "spark engine for running sql queries", "engine_details": {"api_key": "apikey", "connection_string": "https://xyz.<region>.ae.cloud.123.com/v3/analytics-engines/<spark-iae-id>", "default_config": {"config1": "config1", "config2": "config2"}, "default_version": "4.8.3", "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications", "wxd_engine_endpoint": "$HOST/v1/1698311655308796/engines/spark817", "wxd_history_server_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server", "wxd_history_server_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server/ui"}, "engine_home_bucket_display_name": "test-spark-bucket", "engine_home_bucket_name": "test-spark-bucket", "engine_home_path": "spark/spark1234", "engine_home_volume": "test-spark-volume", "engine_home_volume_id": "1704979825978585", "engine_home_volume_name": "my-volume", "engine_home_volume_storage_class": "nfs-client", "engine_home_volume_storage_size": "5Gi", "instance_id": "spark-id", "engine_sub_type": "java/cpp", "managed_by": "fully/self", "scale_config": {"auto_scale_enabled": true, "current_number_of_nodes": 2, "maximum_number_of_nodes": 5, "minimum_number_of_nodes": 1, "node_type": "medium", "number_of_nodes": 2}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "origin": "external", "status": "Registered", "tags": ["tags"], "type": "spark"}'
         responses.add(
             responses.POST,
             url,
@@ -11339,14 +12395,14 @@ class TestCreateSparkEngine:
         spark_engine_details_prototype_model['engine_home_volume_name'] = 'my-volume'
         spark_engine_details_prototype_model['engine_home_volume_storage_class'] = 'nfs-client'
         spark_engine_details_prototype_model['engine_home_volume_storage_size'] = '5Gi'
-        spark_engine_details_prototype_model['instance_id'] = 'spark-id'
         spark_engine_details_prototype_model['engine_sub_type'] = 'java/cpp'
+        spark_engine_details_prototype_model['instance_id'] = 'spark-id'
         spark_engine_details_prototype_model['managed_by'] = 'fully/self'
         spark_engine_details_prototype_model['scale_config'] = spark_scale_config_model
 
         # Set up parameter values
         origin = 'native'
-        associated_catalogs = ['iceberg_data']
+        associated_catalogs = ['iceberg-data']
         description = 'testString'
         engine_details = spark_engine_details_prototype_model
         engine_display_name = 'test-native'
@@ -11373,7 +12429,7 @@ class TestCreateSparkEngine:
         # Validate body params
         req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
         assert req_body['origin'] == 'native'
-        assert req_body['associated_catalogs'] == ['iceberg_data']
+        assert req_body['associated_catalogs'] == ['iceberg-data']
         assert req_body['description'] == 'testString'
         assert req_body['engine_details'] == spark_engine_details_prototype_model
         assert req_body['engine_display_name'] == 'test-native'
@@ -11396,7 +12452,7 @@ class TestCreateSparkEngine:
         """
         # Set up mock
         url = preprocess_url('/spark_engines')
-        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "spark engine for running sql queries", "engine_details": {"api_key": "apikey", "connection_string": "https://xyz.<region>.ae.cloud.123.com/v3/analytics_engines/<spark_iae_id>", "default_config": {"config1": "config1", "config2": "config2"}, "default_version": "4.8.3", "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications", "wxd_engine_endpoint": "$HOST/v1/1698311655308796/engines/spark817", "wxd_history_server_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server", "wxd_history_server_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server/ui"}, "engine_home_bucket_display_name": "test-spark-bucket", "engine_home_bucket_name": "test-spark-bucket", "engine_home_path": "spark/spark1234", "engine_home_volume": "test-spark-volume", "engine_home_volume_id": "1704979825978585", "engine_home_volume_name": "my-volume", "engine_home_volume_storage_class": "nfs-client", "engine_home_volume_storage_size": "5Gi", "engine_sub_type": "java/cpp", "instance_id": "spark-id", "managed_by": "fully/self", "scale_config": {"auto_scale_enabled": true, "current_number_of_nodes": 2, "maximum_number_of_nodes": 5, "minimum_number_of_nodes": 1, "node_type": "medium", "number_of_nodes": 2}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "origin": "external", "status": "Registered", "tags": ["tags"], "type": "spark"}'
+        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "spark engine for running sql queries", "engine_details": {"api_key": "apikey", "connection_string": "https://xyz.<region>.ae.cloud.123.com/v3/analytics-engines/<spark-iae-id>", "default_config": {"config1": "config1", "config2": "config2"}, "default_version": "4.8.3", "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications", "wxd_engine_endpoint": "$HOST/v1/1698311655308796/engines/spark817", "wxd_history_server_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server", "wxd_history_server_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server/ui"}, "engine_home_bucket_display_name": "test-spark-bucket", "engine_home_bucket_name": "test-spark-bucket", "engine_home_path": "spark/spark1234", "engine_home_volume": "test-spark-volume", "engine_home_volume_id": "1704979825978585", "engine_home_volume_name": "my-volume", "engine_home_volume_storage_class": "nfs-client", "engine_home_volume_storage_size": "5Gi", "instance_id": "spark-id", "engine_sub_type": "java/cpp", "managed_by": "fully/self", "scale_config": {"auto_scale_enabled": true, "current_number_of_nodes": 2, "maximum_number_of_nodes": 5, "minimum_number_of_nodes": 1, "node_type": "medium", "number_of_nodes": 2}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "origin": "external", "status": "Registered", "tags": ["tags"], "type": "spark"}'
         responses.add(
             responses.POST,
             url,
@@ -11432,14 +12488,14 @@ class TestCreateSparkEngine:
         spark_engine_details_prototype_model['engine_home_volume_name'] = 'my-volume'
         spark_engine_details_prototype_model['engine_home_volume_storage_class'] = 'nfs-client'
         spark_engine_details_prototype_model['engine_home_volume_storage_size'] = '5Gi'
-        spark_engine_details_prototype_model['instance_id'] = 'spark-id'
         spark_engine_details_prototype_model['engine_sub_type'] = 'java/cpp'
+        spark_engine_details_prototype_model['instance_id'] = 'spark-id'
         spark_engine_details_prototype_model['managed_by'] = 'fully/self'
         spark_engine_details_prototype_model['scale_config'] = spark_scale_config_model
 
         # Set up parameter values
         origin = 'native'
-        associated_catalogs = ['iceberg_data']
+        associated_catalogs = ['iceberg-data']
         description = 'testString'
         engine_details = spark_engine_details_prototype_model
         engine_display_name = 'test-native'
@@ -11464,7 +12520,7 @@ class TestCreateSparkEngine:
         # Validate body params
         req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
         assert req_body['origin'] == 'native'
-        assert req_body['associated_catalogs'] == ['iceberg_data']
+        assert req_body['associated_catalogs'] == ['iceberg-data']
         assert req_body['description'] == 'testString'
         assert req_body['engine_details'] == spark_engine_details_prototype_model
         assert req_body['engine_display_name'] == 'test-native'
@@ -11487,7 +12543,7 @@ class TestCreateSparkEngine:
         """
         # Set up mock
         url = preprocess_url('/spark_engines')
-        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "spark engine for running sql queries", "engine_details": {"api_key": "apikey", "connection_string": "https://xyz.<region>.ae.cloud.123.com/v3/analytics_engines/<spark_iae_id>", "default_config": {"config1": "config1", "config2": "config2"}, "default_version": "4.8.3", "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications", "wxd_engine_endpoint": "$HOST/v1/1698311655308796/engines/spark817", "wxd_history_server_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server", "wxd_history_server_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server/ui"}, "engine_home_bucket_display_name": "test-spark-bucket", "engine_home_bucket_name": "test-spark-bucket", "engine_home_path": "spark/spark1234", "engine_home_volume": "test-spark-volume", "engine_home_volume_id": "1704979825978585", "engine_home_volume_name": "my-volume", "engine_home_volume_storage_class": "nfs-client", "engine_home_volume_storage_size": "5Gi", "engine_sub_type": "java/cpp", "instance_id": "spark-id", "managed_by": "fully/self", "scale_config": {"auto_scale_enabled": true, "current_number_of_nodes": 2, "maximum_number_of_nodes": 5, "minimum_number_of_nodes": 1, "node_type": "medium", "number_of_nodes": 2}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "origin": "external", "status": "Registered", "tags": ["tags"], "type": "spark"}'
+        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "spark engine for running sql queries", "engine_details": {"api_key": "apikey", "connection_string": "https://xyz.<region>.ae.cloud.123.com/v3/analytics-engines/<spark-iae-id>", "default_config": {"config1": "config1", "config2": "config2"}, "default_version": "4.8.3", "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications", "wxd_engine_endpoint": "$HOST/v1/1698311655308796/engines/spark817", "wxd_history_server_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server", "wxd_history_server_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server/ui"}, "engine_home_bucket_display_name": "test-spark-bucket", "engine_home_bucket_name": "test-spark-bucket", "engine_home_path": "spark/spark1234", "engine_home_volume": "test-spark-volume", "engine_home_volume_id": "1704979825978585", "engine_home_volume_name": "my-volume", "engine_home_volume_storage_class": "nfs-client", "engine_home_volume_storage_size": "5Gi", "instance_id": "spark-id", "engine_sub_type": "java/cpp", "managed_by": "fully/self", "scale_config": {"auto_scale_enabled": true, "current_number_of_nodes": 2, "maximum_number_of_nodes": 5, "minimum_number_of_nodes": 1, "node_type": "medium", "number_of_nodes": 2}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "origin": "external", "status": "Registered", "tags": ["tags"], "type": "spark"}'
         responses.add(
             responses.POST,
             url,
@@ -11523,14 +12579,14 @@ class TestCreateSparkEngine:
         spark_engine_details_prototype_model['engine_home_volume_name'] = 'my-volume'
         spark_engine_details_prototype_model['engine_home_volume_storage_class'] = 'nfs-client'
         spark_engine_details_prototype_model['engine_home_volume_storage_size'] = '5Gi'
-        spark_engine_details_prototype_model['instance_id'] = 'spark-id'
         spark_engine_details_prototype_model['engine_sub_type'] = 'java/cpp'
+        spark_engine_details_prototype_model['instance_id'] = 'spark-id'
         spark_engine_details_prototype_model['managed_by'] = 'fully/self'
         spark_engine_details_prototype_model['scale_config'] = spark_scale_config_model
 
         # Set up parameter values
         origin = 'native'
-        associated_catalogs = ['iceberg_data']
+        associated_catalogs = ['iceberg-data']
         description = 'testString'
         engine_details = spark_engine_details_prototype_model
         engine_display_name = 'test-native'
@@ -11568,7 +12624,7 @@ class TestGetSparkEngine:
         """
         # Set up mock
         url = preprocess_url('/spark_engines/testString')
-        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "spark engine for running sql queries", "engine_details": {"api_key": "apikey", "connection_string": "https://xyz.<region>.ae.cloud.123.com/v3/analytics_engines/<spark_iae_id>", "default_config": {"config1": "config1", "config2": "config2"}, "default_version": "4.8.3", "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications", "wxd_engine_endpoint": "$HOST/v1/1698311655308796/engines/spark817", "wxd_history_server_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server", "wxd_history_server_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server/ui"}, "engine_home_bucket_display_name": "test-spark-bucket", "engine_home_bucket_name": "test-spark-bucket", "engine_home_path": "spark/spark1234", "engine_home_volume": "test-spark-volume", "engine_home_volume_id": "1704979825978585", "engine_home_volume_name": "my-volume", "engine_home_volume_storage_class": "nfs-client", "engine_home_volume_storage_size": "5Gi", "engine_sub_type": "java/cpp", "instance_id": "spark-id", "managed_by": "fully/self", "scale_config": {"auto_scale_enabled": true, "current_number_of_nodes": 2, "maximum_number_of_nodes": 5, "minimum_number_of_nodes": 1, "node_type": "medium", "number_of_nodes": 2}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "origin": "external", "status": "Registered", "tags": ["tags"], "type": "spark"}'
+        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "spark engine for running sql queries", "engine_details": {"api_key": "apikey", "connection_string": "https://xyz.<region>.ae.cloud.123.com/v3/analytics-engines/<spark-iae-id>", "default_config": {"config1": "config1", "config2": "config2"}, "default_version": "4.8.3", "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications", "wxd_engine_endpoint": "$HOST/v1/1698311655308796/engines/spark817", "wxd_history_server_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server", "wxd_history_server_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server/ui"}, "engine_home_bucket_display_name": "test-spark-bucket", "engine_home_bucket_name": "test-spark-bucket", "engine_home_path": "spark/spark1234", "engine_home_volume": "test-spark-volume", "engine_home_volume_id": "1704979825978585", "engine_home_volume_name": "my-volume", "engine_home_volume_storage_class": "nfs-client", "engine_home_volume_storage_size": "5Gi", "instance_id": "spark-id", "engine_sub_type": "java/cpp", "managed_by": "fully/self", "scale_config": {"auto_scale_enabled": true, "current_number_of_nodes": 2, "maximum_number_of_nodes": 5, "minimum_number_of_nodes": 1, "node_type": "medium", "number_of_nodes": 2}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "origin": "external", "status": "Registered", "tags": ["tags"], "type": "spark"}'
         responses.add(
             responses.GET,
             url,
@@ -11608,7 +12664,7 @@ class TestGetSparkEngine:
         """
         # Set up mock
         url = preprocess_url('/spark_engines/testString')
-        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "spark engine for running sql queries", "engine_details": {"api_key": "apikey", "connection_string": "https://xyz.<region>.ae.cloud.123.com/v3/analytics_engines/<spark_iae_id>", "default_config": {"config1": "config1", "config2": "config2"}, "default_version": "4.8.3", "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications", "wxd_engine_endpoint": "$HOST/v1/1698311655308796/engines/spark817", "wxd_history_server_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server", "wxd_history_server_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server/ui"}, "engine_home_bucket_display_name": "test-spark-bucket", "engine_home_bucket_name": "test-spark-bucket", "engine_home_path": "spark/spark1234", "engine_home_volume": "test-spark-volume", "engine_home_volume_id": "1704979825978585", "engine_home_volume_name": "my-volume", "engine_home_volume_storage_class": "nfs-client", "engine_home_volume_storage_size": "5Gi", "engine_sub_type": "java/cpp", "instance_id": "spark-id", "managed_by": "fully/self", "scale_config": {"auto_scale_enabled": true, "current_number_of_nodes": 2, "maximum_number_of_nodes": 5, "minimum_number_of_nodes": 1, "node_type": "medium", "number_of_nodes": 2}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "origin": "external", "status": "Registered", "tags": ["tags"], "type": "spark"}'
+        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "spark engine for running sql queries", "engine_details": {"api_key": "apikey", "connection_string": "https://xyz.<region>.ae.cloud.123.com/v3/analytics-engines/<spark-iae-id>", "default_config": {"config1": "config1", "config2": "config2"}, "default_version": "4.8.3", "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications", "wxd_engine_endpoint": "$HOST/v1/1698311655308796/engines/spark817", "wxd_history_server_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server", "wxd_history_server_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server/ui"}, "engine_home_bucket_display_name": "test-spark-bucket", "engine_home_bucket_name": "test-spark-bucket", "engine_home_path": "spark/spark1234", "engine_home_volume": "test-spark-volume", "engine_home_volume_id": "1704979825978585", "engine_home_volume_name": "my-volume", "engine_home_volume_storage_class": "nfs-client", "engine_home_volume_storage_size": "5Gi", "instance_id": "spark-id", "engine_sub_type": "java/cpp", "managed_by": "fully/self", "scale_config": {"auto_scale_enabled": true, "current_number_of_nodes": 2, "maximum_number_of_nodes": 5, "minimum_number_of_nodes": 1, "node_type": "medium", "number_of_nodes": 2}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "origin": "external", "status": "Registered", "tags": ["tags"], "type": "spark"}'
         responses.add(
             responses.GET,
             url,
@@ -11646,7 +12702,7 @@ class TestGetSparkEngine:
         """
         # Set up mock
         url = preprocess_url('/spark_engines/testString')
-        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "spark engine for running sql queries", "engine_details": {"api_key": "apikey", "connection_string": "https://xyz.<region>.ae.cloud.123.com/v3/analytics_engines/<spark_iae_id>", "default_config": {"config1": "config1", "config2": "config2"}, "default_version": "4.8.3", "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications", "wxd_engine_endpoint": "$HOST/v1/1698311655308796/engines/spark817", "wxd_history_server_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server", "wxd_history_server_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server/ui"}, "engine_home_bucket_display_name": "test-spark-bucket", "engine_home_bucket_name": "test-spark-bucket", "engine_home_path": "spark/spark1234", "engine_home_volume": "test-spark-volume", "engine_home_volume_id": "1704979825978585", "engine_home_volume_name": "my-volume", "engine_home_volume_storage_class": "nfs-client", "engine_home_volume_storage_size": "5Gi", "engine_sub_type": "java/cpp", "instance_id": "spark-id", "managed_by": "fully/self", "scale_config": {"auto_scale_enabled": true, "current_number_of_nodes": 2, "maximum_number_of_nodes": 5, "minimum_number_of_nodes": 1, "node_type": "medium", "number_of_nodes": 2}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "origin": "external", "status": "Registered", "tags": ["tags"], "type": "spark"}'
+        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "spark engine for running sql queries", "engine_details": {"api_key": "apikey", "connection_string": "https://xyz.<region>.ae.cloud.123.com/v3/analytics-engines/<spark-iae-id>", "default_config": {"config1": "config1", "config2": "config2"}, "default_version": "4.8.3", "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications", "wxd_engine_endpoint": "$HOST/v1/1698311655308796/engines/spark817", "wxd_history_server_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server", "wxd_history_server_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server/ui"}, "engine_home_bucket_display_name": "test-spark-bucket", "engine_home_bucket_name": "test-spark-bucket", "engine_home_path": "spark/spark1234", "engine_home_volume": "test-spark-volume", "engine_home_volume_id": "1704979825978585", "engine_home_volume_name": "my-volume", "engine_home_volume_storage_class": "nfs-client", "engine_home_volume_storage_size": "5Gi", "instance_id": "spark-id", "engine_sub_type": "java/cpp", "managed_by": "fully/self", "scale_config": {"auto_scale_enabled": true, "current_number_of_nodes": 2, "maximum_number_of_nodes": 5, "minimum_number_of_nodes": 1, "node_type": "medium", "number_of_nodes": 2}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "origin": "external", "status": "Registered", "tags": ["tags"], "type": "spark"}'
         responses.add(
             responses.GET,
             url,
@@ -11801,7 +12857,7 @@ class TestUpdateSparkEngine:
         """
         # Set up mock
         url = preprocess_url('/spark_engines/testString')
-        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "spark engine for running sql queries", "engine_details": {"api_key": "apikey", "connection_string": "https://xyz.<region>.ae.cloud.123.com/v3/analytics_engines/<spark_iae_id>", "default_config": {"config1": "config1", "config2": "config2"}, "default_version": "4.8.3", "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications", "wxd_engine_endpoint": "$HOST/v1/1698311655308796/engines/spark817", "wxd_history_server_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server", "wxd_history_server_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server/ui"}, "engine_home_bucket_display_name": "test-spark-bucket", "engine_home_bucket_name": "test-spark-bucket", "engine_home_path": "spark/spark1234", "engine_home_volume": "test-spark-volume", "engine_home_volume_id": "1704979825978585", "engine_home_volume_name": "my-volume", "engine_home_volume_storage_class": "nfs-client", "engine_home_volume_storage_size": "5Gi", "engine_sub_type": "java/cpp", "instance_id": "spark-id", "managed_by": "fully/self", "scale_config": {"auto_scale_enabled": true, "current_number_of_nodes": 2, "maximum_number_of_nodes": 5, "minimum_number_of_nodes": 1, "node_type": "medium", "number_of_nodes": 2}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "origin": "external", "status": "Registered", "tags": ["tags"], "type": "spark"}'
+        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "spark engine for running sql queries", "engine_details": {"api_key": "apikey", "connection_string": "https://xyz.<region>.ae.cloud.123.com/v3/analytics-engines/<spark-iae-id>", "default_config": {"config1": "config1", "config2": "config2"}, "default_version": "4.8.3", "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications", "wxd_engine_endpoint": "$HOST/v1/1698311655308796/engines/spark817", "wxd_history_server_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server", "wxd_history_server_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server/ui"}, "engine_home_bucket_display_name": "test-spark-bucket", "engine_home_bucket_name": "test-spark-bucket", "engine_home_path": "spark/spark1234", "engine_home_volume": "test-spark-volume", "engine_home_volume_id": "1704979825978585", "engine_home_volume_name": "my-volume", "engine_home_volume_storage_class": "nfs-client", "engine_home_volume_storage_size": "5Gi", "instance_id": "spark-id", "engine_sub_type": "java/cpp", "managed_by": "fully/self", "scale_config": {"auto_scale_enabled": true, "current_number_of_nodes": 2, "maximum_number_of_nodes": 5, "minimum_number_of_nodes": 1, "node_type": "medium", "number_of_nodes": 2}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "origin": "external", "status": "Registered", "tags": ["tags"], "type": "spark"}'
         responses.add(
             responses.PATCH,
             url,
@@ -11866,7 +12922,7 @@ class TestUpdateSparkEngine:
         """
         # Set up mock
         url = preprocess_url('/spark_engines/testString')
-        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "spark engine for running sql queries", "engine_details": {"api_key": "apikey", "connection_string": "https://xyz.<region>.ae.cloud.123.com/v3/analytics_engines/<spark_iae_id>", "default_config": {"config1": "config1", "config2": "config2"}, "default_version": "4.8.3", "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications", "wxd_engine_endpoint": "$HOST/v1/1698311655308796/engines/spark817", "wxd_history_server_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server", "wxd_history_server_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server/ui"}, "engine_home_bucket_display_name": "test-spark-bucket", "engine_home_bucket_name": "test-spark-bucket", "engine_home_path": "spark/spark1234", "engine_home_volume": "test-spark-volume", "engine_home_volume_id": "1704979825978585", "engine_home_volume_name": "my-volume", "engine_home_volume_storage_class": "nfs-client", "engine_home_volume_storage_size": "5Gi", "engine_sub_type": "java/cpp", "instance_id": "spark-id", "managed_by": "fully/self", "scale_config": {"auto_scale_enabled": true, "current_number_of_nodes": 2, "maximum_number_of_nodes": 5, "minimum_number_of_nodes": 1, "node_type": "medium", "number_of_nodes": 2}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "origin": "external", "status": "Registered", "tags": ["tags"], "type": "spark"}'
+        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "spark engine for running sql queries", "engine_details": {"api_key": "apikey", "connection_string": "https://xyz.<region>.ae.cloud.123.com/v3/analytics-engines/<spark-iae-id>", "default_config": {"config1": "config1", "config2": "config2"}, "default_version": "4.8.3", "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications", "wxd_engine_endpoint": "$HOST/v1/1698311655308796/engines/spark817", "wxd_history_server_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server", "wxd_history_server_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server/ui"}, "engine_home_bucket_display_name": "test-spark-bucket", "engine_home_bucket_name": "test-spark-bucket", "engine_home_path": "spark/spark1234", "engine_home_volume": "test-spark-volume", "engine_home_volume_id": "1704979825978585", "engine_home_volume_name": "my-volume", "engine_home_volume_storage_class": "nfs-client", "engine_home_volume_storage_size": "5Gi", "instance_id": "spark-id", "engine_sub_type": "java/cpp", "managed_by": "fully/self", "scale_config": {"auto_scale_enabled": true, "current_number_of_nodes": 2, "maximum_number_of_nodes": 5, "minimum_number_of_nodes": 1, "node_type": "medium", "number_of_nodes": 2}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "origin": "external", "status": "Registered", "tags": ["tags"], "type": "spark"}'
         responses.add(
             responses.PATCH,
             url,
@@ -11929,7 +12985,7 @@ class TestUpdateSparkEngine:
         """
         # Set up mock
         url = preprocess_url('/spark_engines/testString')
-        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "spark engine for running sql queries", "engine_details": {"api_key": "apikey", "connection_string": "https://xyz.<region>.ae.cloud.123.com/v3/analytics_engines/<spark_iae_id>", "default_config": {"config1": "config1", "config2": "config2"}, "default_version": "4.8.3", "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications", "wxd_engine_endpoint": "$HOST/v1/1698311655308796/engines/spark817", "wxd_history_server_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server", "wxd_history_server_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server/ui"}, "engine_home_bucket_display_name": "test-spark-bucket", "engine_home_bucket_name": "test-spark-bucket", "engine_home_path": "spark/spark1234", "engine_home_volume": "test-spark-volume", "engine_home_volume_id": "1704979825978585", "engine_home_volume_name": "my-volume", "engine_home_volume_storage_class": "nfs-client", "engine_home_volume_storage_size": "5Gi", "engine_sub_type": "java/cpp", "instance_id": "spark-id", "managed_by": "fully/self", "scale_config": {"auto_scale_enabled": true, "current_number_of_nodes": 2, "maximum_number_of_nodes": 5, "minimum_number_of_nodes": 1, "node_type": "medium", "number_of_nodes": 2}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "origin": "external", "status": "Registered", "tags": ["tags"], "type": "spark"}'
+        mock_response = '{"actions": ["actions"], "associated_catalogs": ["associated_catalogs"], "build_version": "1.0.3.0.0", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "spark engine for running sql queries", "engine_details": {"api_key": "apikey", "connection_string": "https://xyz.<region>.ae.cloud.123.com/v3/analytics-engines/<spark-iae-id>", "default_config": {"config1": "config1", "config2": "config2"}, "default_version": "4.8.3", "endpoints": {"applications_api": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications/<application_id>", "history_server_endpoint": "$HOST/v2/spark/v3/instances/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_history_server", "spark_access_endpoint": "$HOST/analytics-engine/details/spark-<instance_id>", "spark_jobs_v4_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/spark_applications", "spark_kernel_endpoint": "$HOST/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/jkg/api/kernels", "view_history_server": "view_history_server", "wxd_application_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications", "wxd_engine_endpoint": "$HOST/v1/1698311655308796/engines/spark817", "wxd_history_server_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server", "wxd_history_server_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/history_server/ui"}, "engine_home_bucket_display_name": "test-spark-bucket", "engine_home_bucket_name": "test-spark-bucket", "engine_home_path": "spark/spark1234", "engine_home_volume": "test-spark-volume", "engine_home_volume_id": "1704979825978585", "engine_home_volume_name": "my-volume", "engine_home_volume_storage_class": "nfs-client", "engine_home_volume_storage_size": "5Gi", "instance_id": "spark-id", "engine_sub_type": "java/cpp", "managed_by": "fully/self", "scale_config": {"auto_scale_enabled": true, "current_number_of_nodes": 2, "maximum_number_of_nodes": 5, "minimum_number_of_nodes": 1, "node_type": "medium", "number_of_nodes": 2}}, "engine_display_name": "sampleEngine", "engine_id": "sampleEngine123", "origin": "external", "status": "Registered", "tags": ["tags"], "type": "spark"}'
         responses.add(
             responses.PATCH,
             url,
@@ -11994,7 +13050,7 @@ class TestListSparkEngineApplications:
         """
         # Set up mock
         url = preprocess_url('/spark_engines/testString/applications')
-        mock_response = '{"applications": [{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "class": "org.apache.spark.examples.SparkPi", "conf": {"spark_sample_config_properpty": "spark_sample_config_properpty"}, "env": {"sample_env_key": "sample_env_key"}, "files": "s3://mybucket/myfile.txt", "jars": "jars", "name": "SparkApplicaton1", "packages": "org.apache.spark:example_1.2.3", "repositories": "https://repo1.maven.org/maven2/", "spark_version": "3.3", "runtime": {"spark_version": "3.4"}}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "spark_version": "3.3", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae", "volumes": [{"mount_path": "/mount/path", "name": "my-volume", "read_only": true, "source_sub_path": "/source/path"}], "wxd_application_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications/c7b3fccf-badb-46b0-b1ef-9b3154424021/ui"}]}'
+        mock_response = '{"applications": [{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "class": "org.apache.spark.examples.SparkPi", "conf": {"spark_sample_config_properpty": "spark_sample_config_properpty"}, "env": {"sample_env_key": "sample_env_key"}, "files": "s3://mybucket/myfile.txt", "jars": "jars", "name": "SparkApplicaton1", "packages": "org.apache.spark:example_1.2.3", "repositories": "https://repo1.maven.org/maven2/", "spark_version": "3.3"}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "spark_version": "3.3", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae", "volumes": [{"mount_path": "/mount/path", "name": "my-volume", "read_only": true, "source_sub_path": "/source/path"}], "wxd_application_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications/c7b3fccf-badb-46b0-b1ef-9b3154424021/ui"}]}'
         responses.add(
             responses.GET,
             url,
@@ -12040,7 +13096,7 @@ class TestListSparkEngineApplications:
         """
         # Set up mock
         url = preprocess_url('/spark_engines/testString/applications')
-        mock_response = '{"applications": [{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "class": "org.apache.spark.examples.SparkPi", "conf": {"spark_sample_config_properpty": "spark_sample_config_properpty"}, "env": {"sample_env_key": "sample_env_key"}, "files": "s3://mybucket/myfile.txt", "jars": "jars", "name": "SparkApplicaton1", "packages": "org.apache.spark:example_1.2.3", "repositories": "https://repo1.maven.org/maven2/", "spark_version": "3.3", "runtime": {"spark_version": "3.4"}}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "spark_version": "3.3", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae", "volumes": [{"mount_path": "/mount/path", "name": "my-volume", "read_only": true, "source_sub_path": "/source/path"}], "wxd_application_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications/c7b3fccf-badb-46b0-b1ef-9b3154424021/ui"}]}'
+        mock_response = '{"applications": [{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "class": "org.apache.spark.examples.SparkPi", "conf": {"spark_sample_config_properpty": "spark_sample_config_properpty"}, "env": {"sample_env_key": "sample_env_key"}, "files": "s3://mybucket/myfile.txt", "jars": "jars", "name": "SparkApplicaton1", "packages": "org.apache.spark:example_1.2.3", "repositories": "https://repo1.maven.org/maven2/", "spark_version": "3.3"}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "spark_version": "3.3", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae", "volumes": [{"mount_path": "/mount/path", "name": "my-volume", "read_only": true, "source_sub_path": "/source/path"}], "wxd_application_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications/c7b3fccf-badb-46b0-b1ef-9b3154424021/ui"}]}'
         responses.add(
             responses.GET,
             url,
@@ -12078,7 +13134,7 @@ class TestListSparkEngineApplications:
         """
         # Set up mock
         url = preprocess_url('/spark_engines/testString/applications')
-        mock_response = '{"applications": [{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "class": "org.apache.spark.examples.SparkPi", "conf": {"spark_sample_config_properpty": "spark_sample_config_properpty"}, "env": {"sample_env_key": "sample_env_key"}, "files": "s3://mybucket/myfile.txt", "jars": "jars", "name": "SparkApplicaton1", "packages": "org.apache.spark:example_1.2.3", "repositories": "https://repo1.maven.org/maven2/", "spark_version": "3.3", "runtime": {"spark_version": "3.4"}}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "spark_version": "3.3", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae", "volumes": [{"mount_path": "/mount/path", "name": "my-volume", "read_only": true, "source_sub_path": "/source/path"}], "wxd_application_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications/c7b3fccf-badb-46b0-b1ef-9b3154424021/ui"}]}'
+        mock_response = '{"applications": [{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "class": "org.apache.spark.examples.SparkPi", "conf": {"spark_sample_config_properpty": "spark_sample_config_properpty"}, "env": {"sample_env_key": "sample_env_key"}, "files": "s3://mybucket/myfile.txt", "jars": "jars", "name": "SparkApplicaton1", "packages": "org.apache.spark:example_1.2.3", "repositories": "https://repo1.maven.org/maven2/", "spark_version": "3.3"}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "spark_version": "3.3", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae", "volumes": [{"mount_path": "/mount/path", "name": "my-volume", "read_only": true, "source_sub_path": "/source/path"}], "wxd_application_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications/c7b3fccf-badb-46b0-b1ef-9b3154424021/ui"}]}'
         responses.add(
             responses.GET,
             url,
@@ -12121,7 +13177,7 @@ class TestCreateSparkEngineApplication:
         """
         # Set up mock
         url = preprocess_url('/spark_engines/testString/applications')
-        mock_response = '{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "class": "org.apache.spark.examples.SparkPi", "conf": {"spark_sample_config_properpty": "spark_sample_config_properpty"}, "env": {"sample_env_key": "sample_env_key"}, "files": "s3://mybucket/myfile.txt", "jars": "jars", "name": "SparkApplicaton1", "packages": "org.apache.spark:example_1.2.3", "repositories": "https://repo1.maven.org/maven2/", "spark_version": "3.3", "runtime": {"spark_version": "3.4"}}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "spark_version": "3.3", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae", "volumes": [{"mount_path": "/mount/path", "name": "my-volume", "read_only": true, "source_sub_path": "/source/path"}], "wxd_application_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications/c7b3fccf-badb-46b0-b1ef-9b3154424021/ui"}'
+        mock_response = '{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "class": "org.apache.spark.examples.SparkPi", "conf": {"spark_sample_config_properpty": "spark_sample_config_properpty"}, "env": {"sample_env_key": "sample_env_key"}, "files": "s3://mybucket/myfile.txt", "jars": "jars", "name": "SparkApplicaton1", "packages": "org.apache.spark:example_1.2.3", "repositories": "https://repo1.maven.org/maven2/", "spark_version": "3.3"}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "spark_version": "3.3", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae", "volumes": [{"mount_path": "/mount/path", "name": "my-volume", "read_only": true, "source_sub_path": "/source/path"}], "wxd_application_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications/c7b3fccf-badb-46b0-b1ef-9b3154424021/ui"}'
         responses.add(
             responses.POST,
             url,
@@ -12138,10 +13194,6 @@ class TestCreateSparkEngineApplication:
         spark_application_env_model = {}
         spark_application_env_model['sample_env_key'] = 'testString'
 
-        # Construct a dict representation of a SparkApplicationDetailsRuntime model
-        spark_application_details_runtime_model = {}
-        spark_application_details_runtime_model['spark_version'] = '3.4'
-
         # Construct a dict representation of a SparkApplicationDetails model
         spark_application_details_model = {}
         spark_application_details_model['application'] = '/opt/ibm/spark/examples/src/main/python/wordcount.py'
@@ -12155,7 +13207,6 @@ class TestCreateSparkEngineApplication:
         spark_application_details_model['packages'] = 'org.apache.spark:example_1.2.3'
         spark_application_details_model['repositories'] = 'https://repo1.maven.org/maven2/'
         spark_application_details_model['spark_version'] = '3.3'
-        spark_application_details_model['runtime'] = spark_application_details_runtime_model
 
         # Construct a dict representation of a SparkVolumeDetails model
         spark_volume_details_model = {}
@@ -12218,7 +13269,7 @@ class TestCreateSparkEngineApplication:
         """
         # Set up mock
         url = preprocess_url('/spark_engines/testString/applications')
-        mock_response = '{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "class": "org.apache.spark.examples.SparkPi", "conf": {"spark_sample_config_properpty": "spark_sample_config_properpty"}, "env": {"sample_env_key": "sample_env_key"}, "files": "s3://mybucket/myfile.txt", "jars": "jars", "name": "SparkApplicaton1", "packages": "org.apache.spark:example_1.2.3", "repositories": "https://repo1.maven.org/maven2/", "spark_version": "3.3", "runtime": {"spark_version": "3.4"}}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "spark_version": "3.3", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae", "volumes": [{"mount_path": "/mount/path", "name": "my-volume", "read_only": true, "source_sub_path": "/source/path"}], "wxd_application_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications/c7b3fccf-badb-46b0-b1ef-9b3154424021/ui"}'
+        mock_response = '{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "class": "org.apache.spark.examples.SparkPi", "conf": {"spark_sample_config_properpty": "spark_sample_config_properpty"}, "env": {"sample_env_key": "sample_env_key"}, "files": "s3://mybucket/myfile.txt", "jars": "jars", "name": "SparkApplicaton1", "packages": "org.apache.spark:example_1.2.3", "repositories": "https://repo1.maven.org/maven2/", "spark_version": "3.3"}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "spark_version": "3.3", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae", "volumes": [{"mount_path": "/mount/path", "name": "my-volume", "read_only": true, "source_sub_path": "/source/path"}], "wxd_application_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications/c7b3fccf-badb-46b0-b1ef-9b3154424021/ui"}'
         responses.add(
             responses.POST,
             url,
@@ -12235,10 +13286,6 @@ class TestCreateSparkEngineApplication:
         spark_application_env_model = {}
         spark_application_env_model['sample_env_key'] = 'testString'
 
-        # Construct a dict representation of a SparkApplicationDetailsRuntime model
-        spark_application_details_runtime_model = {}
-        spark_application_details_runtime_model['spark_version'] = '3.4'
-
         # Construct a dict representation of a SparkApplicationDetails model
         spark_application_details_model = {}
         spark_application_details_model['application'] = '/opt/ibm/spark/examples/src/main/python/wordcount.py'
@@ -12252,7 +13299,6 @@ class TestCreateSparkEngineApplication:
         spark_application_details_model['packages'] = 'org.apache.spark:example_1.2.3'
         spark_application_details_model['repositories'] = 'https://repo1.maven.org/maven2/'
         spark_application_details_model['spark_version'] = '3.3'
-        spark_application_details_model['runtime'] = spark_application_details_runtime_model
 
         # Construct a dict representation of a SparkVolumeDetails model
         spark_volume_details_model = {}
@@ -12307,7 +13353,7 @@ class TestCreateSparkEngineApplication:
         """
         # Set up mock
         url = preprocess_url('/spark_engines/testString/applications')
-        mock_response = '{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "class": "org.apache.spark.examples.SparkPi", "conf": {"spark_sample_config_properpty": "spark_sample_config_properpty"}, "env": {"sample_env_key": "sample_env_key"}, "files": "s3://mybucket/myfile.txt", "jars": "jars", "name": "SparkApplicaton1", "packages": "org.apache.spark:example_1.2.3", "repositories": "https://repo1.maven.org/maven2/", "spark_version": "3.3", "runtime": {"spark_version": "3.4"}}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "spark_version": "3.3", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae", "volumes": [{"mount_path": "/mount/path", "name": "my-volume", "read_only": true, "source_sub_path": "/source/path"}], "wxd_application_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications/c7b3fccf-badb-46b0-b1ef-9b3154424021/ui"}'
+        mock_response = '{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "class": "org.apache.spark.examples.SparkPi", "conf": {"spark_sample_config_properpty": "spark_sample_config_properpty"}, "env": {"sample_env_key": "sample_env_key"}, "files": "s3://mybucket/myfile.txt", "jars": "jars", "name": "SparkApplicaton1", "packages": "org.apache.spark:example_1.2.3", "repositories": "https://repo1.maven.org/maven2/", "spark_version": "3.3"}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "spark_version": "3.3", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae", "volumes": [{"mount_path": "/mount/path", "name": "my-volume", "read_only": true, "source_sub_path": "/source/path"}], "wxd_application_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications/c7b3fccf-badb-46b0-b1ef-9b3154424021/ui"}'
         responses.add(
             responses.POST,
             url,
@@ -12324,10 +13370,6 @@ class TestCreateSparkEngineApplication:
         spark_application_env_model = {}
         spark_application_env_model['sample_env_key'] = 'testString'
 
-        # Construct a dict representation of a SparkApplicationDetailsRuntime model
-        spark_application_details_runtime_model = {}
-        spark_application_details_runtime_model['spark_version'] = '3.4'
-
         # Construct a dict representation of a SparkApplicationDetails model
         spark_application_details_model = {}
         spark_application_details_model['application'] = '/opt/ibm/spark/examples/src/main/python/wordcount.py'
@@ -12341,7 +13383,6 @@ class TestCreateSparkEngineApplication:
         spark_application_details_model['packages'] = 'org.apache.spark:example_1.2.3'
         spark_application_details_model['repositories'] = 'https://repo1.maven.org/maven2/'
         spark_application_details_model['spark_version'] = '3.3'
-        spark_application_details_model['runtime'] = spark_application_details_runtime_model
 
         # Construct a dict representation of a SparkVolumeDetails model
         spark_volume_details_model = {}
@@ -12519,7 +13560,7 @@ class TestGetSparkEngineApplicationStatus:
         """
         # Set up mock
         url = preprocess_url('/spark_engines/testString/applications/testString')
-        mock_response = '{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "class": "org.apache.spark.examples.SparkPi", "conf": {"spark_sample_config_properpty": "spark_sample_config_properpty"}, "env": {"sample_env_key": "sample_env_key"}, "files": "s3://mybucket/myfile.txt", "jars": "jars", "name": "SparkApplicaton1", "packages": "org.apache.spark:example_1.2.3", "repositories": "https://repo1.maven.org/maven2/", "spark_version": "3.3", "runtime": {"spark_version": "3.4"}}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "spark_version": "3.3", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae", "volumes": [{"mount_path": "/mount/path", "name": "my-volume", "read_only": true, "source_sub_path": "/source/path"}], "wxd_application_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications/c7b3fccf-badb-46b0-b1ef-9b3154424021/ui"}'
+        mock_response = '{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "class": "org.apache.spark.examples.SparkPi", "conf": {"spark_sample_config_properpty": "spark_sample_config_properpty"}, "env": {"sample_env_key": "sample_env_key"}, "files": "s3://mybucket/myfile.txt", "jars": "jars", "name": "SparkApplicaton1", "packages": "org.apache.spark:example_1.2.3", "repositories": "https://repo1.maven.org/maven2/", "spark_version": "3.3"}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "spark_version": "3.3", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae", "volumes": [{"mount_path": "/mount/path", "name": "my-volume", "read_only": true, "source_sub_path": "/source/path"}], "wxd_application_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications/c7b3fccf-badb-46b0-b1ef-9b3154424021/ui"}'
         responses.add(
             responses.GET,
             url,
@@ -12561,7 +13602,7 @@ class TestGetSparkEngineApplicationStatus:
         """
         # Set up mock
         url = preprocess_url('/spark_engines/testString/applications/testString')
-        mock_response = '{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "class": "org.apache.spark.examples.SparkPi", "conf": {"spark_sample_config_properpty": "spark_sample_config_properpty"}, "env": {"sample_env_key": "sample_env_key"}, "files": "s3://mybucket/myfile.txt", "jars": "jars", "name": "SparkApplicaton1", "packages": "org.apache.spark:example_1.2.3", "repositories": "https://repo1.maven.org/maven2/", "spark_version": "3.3", "runtime": {"spark_version": "3.4"}}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "spark_version": "3.3", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae", "volumes": [{"mount_path": "/mount/path", "name": "my-volume", "read_only": true, "source_sub_path": "/source/path"}], "wxd_application_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications/c7b3fccf-badb-46b0-b1ef-9b3154424021/ui"}'
+        mock_response = '{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "class": "org.apache.spark.examples.SparkPi", "conf": {"spark_sample_config_properpty": "spark_sample_config_properpty"}, "env": {"sample_env_key": "sample_env_key"}, "files": "s3://mybucket/myfile.txt", "jars": "jars", "name": "SparkApplicaton1", "packages": "org.apache.spark:example_1.2.3", "repositories": "https://repo1.maven.org/maven2/", "spark_version": "3.3"}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "spark_version": "3.3", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae", "volumes": [{"mount_path": "/mount/path", "name": "my-volume", "read_only": true, "source_sub_path": "/source/path"}], "wxd_application_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications/c7b3fccf-badb-46b0-b1ef-9b3154424021/ui"}'
         responses.add(
             responses.GET,
             url,
@@ -12601,7 +13642,7 @@ class TestGetSparkEngineApplicationStatus:
         """
         # Set up mock
         url = preprocess_url('/spark_engines/testString/applications/testString')
-        mock_response = '{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "class": "org.apache.spark.examples.SparkPi", "conf": {"spark_sample_config_properpty": "spark_sample_config_properpty"}, "env": {"sample_env_key": "sample_env_key"}, "files": "s3://mybucket/myfile.txt", "jars": "jars", "name": "SparkApplicaton1", "packages": "org.apache.spark:example_1.2.3", "repositories": "https://repo1.maven.org/maven2/", "spark_version": "3.3", "runtime": {"spark_version": "3.4"}}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "spark_version": "3.3", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae", "volumes": [{"mount_path": "/mount/path", "name": "my-volume", "read_only": true, "source_sub_path": "/source/path"}], "wxd_application_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications/c7b3fccf-badb-46b0-b1ef-9b3154424021/ui"}'
+        mock_response = '{"application_details": {"application": "s3://mybucket/wordcount.py", "arguments": ["people.txt"], "class": "org.apache.spark.examples.SparkPi", "conf": {"spark_sample_config_properpty": "spark_sample_config_properpty"}, "env": {"sample_env_key": "sample_env_key"}, "files": "s3://mybucket/myfile.txt", "jars": "jars", "name": "SparkApplicaton1", "packages": "org.apache.spark:example_1.2.3", "repositories": "https://repo1.maven.org/maven2/", "spark_version": "3.3"}, "application_id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "auto_termination_time": "2020-12-08T10:00:00.000Z", "creation_time": "Saturday 28 October 2023 07:17:06.856+0000", "deploy_mode": "stand-alone", "end_time": "2020-12-08T10:00:00.000Z", "failed_time": "failed_time", "finish_time": "Saturday 28 October 2023 07:17:38.966+0000", "id": "cd7cbf1f-8893-4c51-aa3d-d92729f05e99", "job_endpoint": "<host>/v4/analytics_engines/c7b3fccf-badb-46b0-b1ef-9b3154424021/engine_applications", "return_code": "0", "runtime": {"spark_version": "3.3"}, "service_instance_id": "service_instance_id", "spark_application_id": "app-20231028071726-0000", "spark_application_name": "PythonWordCount", "spark_version": "3.3", "start_time": "Saturday 28 October 2023 07:17:26.649+0000", "state": "FINISHED", "state_details": [{"code": "code", "message": "message", "type": "type"}], "submission_time": "2023-11-01T11:18:49.758Z", "template_id": "spark-3.3-jaas-v2-cp4d-template", "type": "iae", "volumes": [{"mount_path": "/mount/path", "name": "my-volume", "read_only": true, "source_sub_path": "/source/path"}], "wxd_application_ui_endpoint": "$HOST/v1/1698311655308796/engines/spark817/applications/c7b3fccf-badb-46b0-b1ef-9b3154424021/ui"}'
         responses.add(
             responses.GET,
             url,
@@ -12646,7 +13687,7 @@ class TestListSparkEngineCatalogs:
         """
         # Set up mock
         url = preprocess_url('/spark_engines/testString/catalogs')
-        mock_response = '{"catalogs": [{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_names": "catalog_names", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}]}'
+        mock_response = '{"catalogs": [{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "days_left": "30", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "rest_uri": "https://samplehost-catalog:4352", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}]}'
         responses.add(
             responses.GET,
             url,
@@ -12686,7 +13727,7 @@ class TestListSparkEngineCatalogs:
         """
         # Set up mock
         url = preprocess_url('/spark_engines/testString/catalogs')
-        mock_response = '{"catalogs": [{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_names": "catalog_names", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}]}'
+        mock_response = '{"catalogs": [{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "days_left": "30", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "rest_uri": "https://samplehost-catalog:4352", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}]}'
         responses.add(
             responses.GET,
             url,
@@ -12724,7 +13765,7 @@ class TestListSparkEngineCatalogs:
         """
         # Set up mock
         url = preprocess_url('/spark_engines/testString/catalogs')
-        mock_response = '{"catalogs": [{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_names": "catalog_names", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}]}'
+        mock_response = '{"catalogs": [{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "days_left": "30", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "rest_uri": "https://samplehost-catalog:4352", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}]}'
         responses.add(
             responses.GET,
             url,
@@ -12767,7 +13808,7 @@ class TestCreateSparkEngineCatalogs:
         """
         # Set up mock
         url = preprocess_url('/spark_engines/testString/catalogs')
-        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_names": "catalog_names", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
+        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "days_left": "30", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "rest_uri": "https://samplehost-catalog:4352", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
         responses.add(
             responses.POST,
             url,
@@ -12812,7 +13853,7 @@ class TestCreateSparkEngineCatalogs:
         """
         # Set up mock
         url = preprocess_url('/spark_engines/testString/catalogs')
-        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_names": "catalog_names", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
+        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "days_left": "30", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "rest_uri": "https://samplehost-catalog:4352", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
         responses.add(
             responses.POST,
             url,
@@ -12855,7 +13896,7 @@ class TestCreateSparkEngineCatalogs:
         """
         # Set up mock
         url = preprocess_url('/spark_engines/testString/catalogs')
-        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_names": "catalog_names", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
+        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "days_left": "30", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "rest_uri": "https://samplehost-catalog:4352", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
         responses.add(
             responses.POST,
             url,
@@ -13025,7 +14066,7 @@ class TestGetSparkEngineCatalog:
         """
         # Set up mock
         url = preprocess_url('/spark_engines/testString/catalogs/testString')
-        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_names": "catalog_names", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
+        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "days_left": "30", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "rest_uri": "https://samplehost-catalog:4352", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
         responses.add(
             responses.GET,
             url,
@@ -13067,7 +14108,7 @@ class TestGetSparkEngineCatalog:
         """
         # Set up mock
         url = preprocess_url('/spark_engines/testString/catalogs/testString')
-        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_names": "catalog_names", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
+        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "days_left": "30", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "rest_uri": "https://samplehost-catalog:4352", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
         responses.add(
             responses.GET,
             url,
@@ -13107,7 +14148,7 @@ class TestGetSparkEngineCatalog:
         """
         # Set up mock
         url = preprocess_url('/spark_engines/testString/catalogs/testString')
-        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_names": "catalog_names", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
+        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "days_left": "30", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "rest_uri": "https://samplehost-catalog:4352", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
         responses.add(
             responses.GET,
             url,
@@ -13893,7 +14934,7 @@ class TestListSparkVersions:
         """
         # Set up mock
         url = preprocess_url('/spark_versions')
-        mock_response = '{"response": {"message": "message", "message_code": "message_code"}, "spark_versions": [{"display_name": "Instance Name"}]}'
+        mock_response = '{"response": {"message": "message", "message_code": "message_code"}, "spark_versions": [{"cpp": [{"display_name": "Instance Name", "value": "Instance Name"}], "java": [{"display_name": "Instance Name", "value": "Instance Name"}]}]}'
         responses.add(
             responses.GET,
             url,
@@ -13931,7 +14972,7 @@ class TestListSparkVersions:
         """
         # Set up mock
         url = preprocess_url('/spark_versions')
-        mock_response = '{"response": {"message": "message", "message_code": "message_code"}, "spark_versions": [{"display_name": "Instance Name"}]}'
+        mock_response = '{"response": {"message": "message", "message_code": "message_code"}, "spark_versions": [{"cpp": [{"display_name": "Instance Name", "value": "Instance Name"}], "java": [{"display_name": "Instance Name", "value": "Instance Name"}]}]}'
         responses.add(
             responses.GET,
             url,
@@ -14008,7 +15049,7 @@ class TestListCatalogs:
         """
         # Set up mock
         url = preprocess_url('/catalogs')
-        mock_response = '{"catalogs": [{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_names": "catalog_names", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}]}'
+        mock_response = '{"catalogs": [{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "days_left": "30", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "rest_uri": "https://samplehost-catalog:4352", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}]}'
         responses.add(
             responses.GET,
             url,
@@ -14046,7 +15087,7 @@ class TestListCatalogs:
         """
         # Set up mock
         url = preprocess_url('/catalogs')
-        mock_response = '{"catalogs": [{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_names": "catalog_names", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}]}'
+        mock_response = '{"catalogs": [{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "days_left": "30", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "rest_uri": "https://samplehost-catalog:4352", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}]}'
         responses.add(
             responses.GET,
             url,
@@ -14084,7 +15125,7 @@ class TestGetCatalog:
         """
         # Set up mock
         url = preprocess_url('/catalogs/testString')
-        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_names": "catalog_names", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
+        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "days_left": "30", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "rest_uri": "https://samplehost-catalog:4352", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
         responses.add(
             responses.GET,
             url,
@@ -14124,7 +15165,7 @@ class TestGetCatalog:
         """
         # Set up mock
         url = preprocess_url('/catalogs/testString')
-        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_names": "catalog_names", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
+        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "days_left": "30", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "rest_uri": "https://samplehost-catalog:4352", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
         responses.add(
             responses.GET,
             url,
@@ -14162,7 +15203,7 @@ class TestGetCatalog:
         """
         # Set up mock
         url = preprocess_url('/catalogs/testString')
-        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_names": "catalog_names", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
+        mock_response = '{"actions": ["actions"], "associated_buckets": ["associated_buckets"], "associated_databases": ["associated_databases"], "associated_engines": ["associated_engines"], "catalog_name": "sampleCatalog", "catalog_type": "iceberg", "created_by": "<username>@<domain>.com", "created_on": "1602839833", "days_left": "30", "description": "Iceberg catalog description", "hostname": "s3a://samplehost.com", "last_sync_at": "1602839833", "managed_by": "ibm", "metastore": "glue", "port": "3232", "rest_uri": "https://samplehost-catalog:4352", "status": "running", "sync_description": "Table registration was successful", "sync_exception": ["sync_exception"], "sync_status": "SUCCESS", "tags": ["tags"], "thrift_uri": "thrift://samplehost-catalog:4354"}'
         responses.add(
             responses.GET,
             url,
@@ -14789,7 +15830,7 @@ class TestGetTable:
         """
         # Set up mock
         url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString')
-        mock_response = '{"columns": [{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "scale": "2", "precision": "10", "type": "varchar"}], "table_name": "table_name"}'
+        mock_response = '{"columns": [{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "precision": "10", "scale": "2", "type": "varchar"}], "table_name": "table_name"}'
         responses.add(
             responses.GET,
             url,
@@ -14842,7 +15883,7 @@ class TestGetTable:
         """
         # Set up mock
         url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString')
-        mock_response = '{"columns": [{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "scale": "2", "precision": "10", "type": "varchar"}], "table_name": "table_name"}'
+        mock_response = '{"columns": [{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "precision": "10", "scale": "2", "type": "varchar"}], "table_name": "table_name"}'
         responses.add(
             responses.GET,
             url,
@@ -14890,7 +15931,7 @@ class TestGetTable:
         """
         # Set up mock
         url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString')
-        mock_response = '{"columns": [{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "scale": "2", "precision": "10", "type": "varchar"}], "table_name": "table_name"}'
+        mock_response = '{"columns": [{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "precision": "10", "scale": "2", "type": "varchar"}], "table_name": "table_name"}'
         responses.add(
             responses.GET,
             url,
@@ -15080,7 +16121,7 @@ class TestUpdateTable:
         """
         # Set up mock
         url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString')
-        mock_response = '{"columns": [{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "scale": "2", "precision": "10", "type": "varchar"}], "table_name": "table_name"}'
+        mock_response = '{"columns": [{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "precision": "10", "scale": "2", "type": "varchar"}], "table_name": "table_name"}'
         responses.add(
             responses.PATCH,
             url,
@@ -15142,7 +16183,7 @@ class TestUpdateTable:
         """
         # Set up mock
         url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString')
-        mock_response = '{"columns": [{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "scale": "2", "precision": "10", "type": "varchar"}], "table_name": "table_name"}'
+        mock_response = '{"columns": [{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "precision": "10", "scale": "2", "type": "varchar"}], "table_name": "table_name"}'
         responses.add(
             responses.PATCH,
             url,
@@ -15199,7 +16240,7 @@ class TestUpdateTable:
         """
         # Set up mock
         url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString')
-        mock_response = '{"columns": [{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "scale": "2", "precision": "10", "type": "varchar"}], "table_name": "table_name"}'
+        mock_response = '{"columns": [{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "precision": "10", "scale": "2", "type": "varchar"}], "table_name": "table_name"}'
         responses.add(
             responses.PATCH,
             url,
@@ -15254,7 +16295,7 @@ class TestListColumns:
         """
         # Set up mock
         url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString/columns')
-        mock_response = '{"columns": [{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "scale": "2", "precision": "10", "type": "varchar"}]}'
+        mock_response = '{"columns": [{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "precision": "10", "scale": "2", "type": "varchar"}]}'
         responses.add(
             responses.GET,
             url,
@@ -15304,7 +16345,7 @@ class TestListColumns:
         """
         # Set up mock
         url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString/columns')
-        mock_response = '{"columns": [{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "scale": "2", "precision": "10", "type": "varchar"}]}'
+        mock_response = '{"columns": [{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "precision": "10", "scale": "2", "type": "varchar"}]}'
         responses.add(
             responses.GET,
             url,
@@ -15352,7 +16393,7 @@ class TestListColumns:
         """
         # Set up mock
         url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString/columns')
-        mock_response = '{"columns": [{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "scale": "2", "precision": "10", "type": "varchar"}]}'
+        mock_response = '{"columns": [{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "precision": "10", "scale": "2", "type": "varchar"}]}'
         responses.add(
             responses.GET,
             url,
@@ -15401,7 +16442,7 @@ class TestCreateColumns:
         """
         # Set up mock
         url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString/columns')
-        mock_response = '{"columns": [{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "scale": "2", "precision": "10", "type": "varchar"}]}'
+        mock_response = '{"columns": [{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "precision": "10", "scale": "2", "type": "varchar"}]}'
         responses.add(
             responses.POST,
             url,
@@ -15416,8 +16457,8 @@ class TestCreateColumns:
         column_model['comment'] = 'expenses column'
         column_model['extra'] = 'varchar'
         column_model['length'] = '30'
-        column_model['scale'] = '2'
         column_model['precision'] = '10'
+        column_model['scale'] = '2'
         column_model['type'] = 'varchar'
 
         # Set up parameter values
@@ -15466,7 +16507,7 @@ class TestCreateColumns:
         """
         # Set up mock
         url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString/columns')
-        mock_response = '{"columns": [{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "scale": "2", "precision": "10", "type": "varchar"}]}'
+        mock_response = '{"columns": [{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "precision": "10", "scale": "2", "type": "varchar"}]}'
         responses.add(
             responses.POST,
             url,
@@ -15481,8 +16522,8 @@ class TestCreateColumns:
         column_model['comment'] = 'expenses column'
         column_model['extra'] = 'varchar'
         column_model['length'] = '30'
-        column_model['scale'] = '2'
         column_model['precision'] = '10'
+        column_model['scale'] = '2'
         column_model['type'] = 'varchar'
 
         # Set up parameter values
@@ -15529,7 +16570,7 @@ class TestCreateColumns:
         """
         # Set up mock
         url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString/columns')
-        mock_response = '{"columns": [{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "scale": "2", "precision": "10", "type": "varchar"}]}'
+        mock_response = '{"columns": [{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "precision": "10", "scale": "2", "type": "varchar"}]}'
         responses.add(
             responses.POST,
             url,
@@ -15544,8 +16585,8 @@ class TestCreateColumns:
         column_model['comment'] = 'expenses column'
         column_model['extra'] = 'varchar'
         column_model['length'] = '30'
-        column_model['scale'] = '2'
         column_model['precision'] = '10'
+        column_model['scale'] = '2'
         column_model['type'] = 'varchar'
 
         # Set up parameter values
@@ -15733,7 +16774,7 @@ class TestUpdateColumn:
         """
         # Set up mock
         url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString/columns/testString')
-        mock_response = '{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "scale": "2", "precision": "10", "type": "varchar"}'
+        mock_response = '{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "precision": "10", "scale": "2", "type": "varchar"}'
         responses.add(
             responses.PATCH,
             url,
@@ -15794,7 +16835,7 @@ class TestUpdateColumn:
         """
         # Set up mock
         url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString/columns/testString')
-        mock_response = '{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "scale": "2", "precision": "10", "type": "varchar"}'
+        mock_response = '{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "precision": "10", "scale": "2", "type": "varchar"}'
         responses.add(
             responses.PATCH,
             url,
@@ -15853,7 +16894,7 @@ class TestUpdateColumn:
         """
         # Set up mock
         url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString/columns/testString')
-        mock_response = '{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "scale": "2", "precision": "10", "type": "varchar"}'
+        mock_response = '{"column_name": "expenses", "comment": "expenses column", "extra": "varchar", "length": "30", "precision": "10", "scale": "2", "type": "varchar"}'
         responses.add(
             responses.PATCH,
             url,
@@ -16402,7 +17443,7 @@ class TestListMilvusServices:
         """
         # Set up mock
         url = preprocess_url('/milvus_services')
-        mock_response = '{"milvus_services": [{"access_key": "Sample bucket access key", "actions": ["actions"], "bucket_name": "Sample bucket name", "bucket_type": "Sample bucket type", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "milvus service for running sql queries", "endpoint": "Sample bucket type", "grpc_host": "example.grpc.host", "grpc_port": 9, "host_name": "sampleMilvus", "https_host": "example.https.host", "https_port": 10, "origin": "native", "root_path": "Sample path", "secret_key": "Sample bucket secret access key", "service_display_name": "sampleService", "service_id": "sampleService123", "status": "running", "status_code": 11, "tags": ["tags"], "tshirt_size": "small", "type": "milvus"}]}'
+        mock_response = '{"milvus_services": [{"access_key": "Sample bucket access key", "actions": ["actions"], "bucket_name": "Sample bucket name", "bucket_type": "Sample bucket type", "created_by": "<username>@<domain>.com", "created_on": 1, "description": "milvus service for running sql queries", "endpoint": "Sample bucket type", "grpc_host": "example.grpc.host", "grpc_port": 1, "host_name": "sampleMilvus", "https_host": "example.https.host", "https_port": 1, "origin": "native", "root_path": "Sample path", "secret_key": "Sample bucket secret access key", "service_display_name": "sampleService", "service_id": "sampleService123", "status": "running", "status_code": 11, "tags": ["tags"], "tshirt_size": "small", "type": "milvus"}]}'
         responses.add(
             responses.GET,
             url,
@@ -16440,7 +17481,7 @@ class TestListMilvusServices:
         """
         # Set up mock
         url = preprocess_url('/milvus_services')
-        mock_response = '{"milvus_services": [{"access_key": "Sample bucket access key", "actions": ["actions"], "bucket_name": "Sample bucket name", "bucket_type": "Sample bucket type", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "milvus service for running sql queries", "endpoint": "Sample bucket type", "grpc_host": "example.grpc.host", "grpc_port": 9, "host_name": "sampleMilvus", "https_host": "example.https.host", "https_port": 10, "origin": "native", "root_path": "Sample path", "secret_key": "Sample bucket secret access key", "service_display_name": "sampleService", "service_id": "sampleService123", "status": "running", "status_code": 11, "tags": ["tags"], "tshirt_size": "small", "type": "milvus"}]}'
+        mock_response = '{"milvus_services": [{"access_key": "Sample bucket access key", "actions": ["actions"], "bucket_name": "Sample bucket name", "bucket_type": "Sample bucket type", "created_by": "<username>@<domain>.com", "created_on": 1, "description": "milvus service for running sql queries", "endpoint": "Sample bucket type", "grpc_host": "example.grpc.host", "grpc_port": 1, "host_name": "sampleMilvus", "https_host": "example.https.host", "https_port": 1, "origin": "native", "root_path": "Sample path", "secret_key": "Sample bucket secret access key", "service_display_name": "sampleService", "service_id": "sampleService123", "status": "running", "status_code": 11, "tags": ["tags"], "tshirt_size": "small", "type": "milvus"}]}'
         responses.add(
             responses.GET,
             url,
@@ -16478,7 +17519,7 @@ class TestCreateMilvusService:
         """
         # Set up mock
         url = preprocess_url('/milvus_services')
-        mock_response = '{"access_key": "Sample bucket access key", "actions": ["actions"], "bucket_name": "Sample bucket name", "bucket_type": "Sample bucket type", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "milvus service for running sql queries", "endpoint": "Sample bucket type", "grpc_host": "example.grpc.host", "grpc_port": 9, "host_name": "sampleMilvus", "https_host": "example.https.host", "https_port": 10, "origin": "native", "root_path": "Sample path", "secret_key": "Sample bucket secret access key", "service_display_name": "sampleService", "service_id": "sampleService123", "status": "running", "status_code": 11, "tags": ["tags"], "tshirt_size": "small", "type": "milvus"}'
+        mock_response = '{"access_key": "Sample bucket access key", "actions": ["actions"], "bucket_name": "Sample bucket name", "bucket_type": "Sample bucket type", "created_by": "<username>@<domain>.com", "created_on": 1, "description": "milvus service for running sql queries", "endpoint": "Sample bucket type", "grpc_host": "example.grpc.host", "grpc_port": 1, "host_name": "sampleMilvus", "https_host": "example.https.host", "https_port": 1, "origin": "native", "root_path": "Sample path", "secret_key": "Sample bucket secret access key", "service_display_name": "sampleService", "service_id": "sampleService123", "status": "running", "status_code": 11, "tags": ["tags"], "tshirt_size": "small", "type": "milvus"}'
         responses.add(
             responses.POST,
             url,
@@ -16494,8 +17535,17 @@ class TestCreateMilvusService:
         service_display_name = 'sampleService'
         bucket_type = 'Sample bucket type'
         description = 'milvus service for running sql queries'
+        index_type = 'FLAT'
+        iw_cpu = 1
+        iw_memory = 1
+        iw_replicas = 1
+        managed_by = 'customer'
+        qw_cpu = 1
+        qw_memory = 1
+        qw_replicas = 1
         tags = ['tag1', 'tag2']
         tshirt_size = 'small'
+        vector_dimension = 384
         auth_instance_id = 'testString'
 
         # Invoke method
@@ -16506,8 +17556,17 @@ class TestCreateMilvusService:
             service_display_name,
             bucket_type=bucket_type,
             description=description,
+            index_type=index_type,
+            iw_cpu=iw_cpu,
+            iw_memory=iw_memory,
+            iw_replicas=iw_replicas,
+            managed_by=managed_by,
+            qw_cpu=qw_cpu,
+            qw_memory=qw_memory,
+            qw_replicas=qw_replicas,
             tags=tags,
             tshirt_size=tshirt_size,
+            vector_dimension=vector_dimension,
             auth_instance_id=auth_instance_id,
             headers={},
         )
@@ -16523,8 +17582,17 @@ class TestCreateMilvusService:
         assert req_body['service_display_name'] == 'sampleService'
         assert req_body['bucket_type'] == 'Sample bucket type'
         assert req_body['description'] == 'milvus service for running sql queries'
+        assert req_body['index_type'] == 'FLAT'
+        assert req_body['iw_cpu'] == 1
+        assert req_body['iw_memory'] == 1
+        assert req_body['iw_replicas'] == 1
+        assert req_body['managed_by'] == 'customer'
+        assert req_body['qw_cpu'] == 1
+        assert req_body['qw_memory'] == 1
+        assert req_body['qw_replicas'] == 1
         assert req_body['tags'] == ['tag1', 'tag2']
         assert req_body['tshirt_size'] == 'small'
+        assert req_body['vector_dimension'] == 384
 
     def test_create_milvus_service_all_params_with_retries(self):
         # Enable retries and run test_create_milvus_service_all_params.
@@ -16542,7 +17610,7 @@ class TestCreateMilvusService:
         """
         # Set up mock
         url = preprocess_url('/milvus_services')
-        mock_response = '{"access_key": "Sample bucket access key", "actions": ["actions"], "bucket_name": "Sample bucket name", "bucket_type": "Sample bucket type", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "milvus service for running sql queries", "endpoint": "Sample bucket type", "grpc_host": "example.grpc.host", "grpc_port": 9, "host_name": "sampleMilvus", "https_host": "example.https.host", "https_port": 10, "origin": "native", "root_path": "Sample path", "secret_key": "Sample bucket secret access key", "service_display_name": "sampleService", "service_id": "sampleService123", "status": "running", "status_code": 11, "tags": ["tags"], "tshirt_size": "small", "type": "milvus"}'
+        mock_response = '{"access_key": "Sample bucket access key", "actions": ["actions"], "bucket_name": "Sample bucket name", "bucket_type": "Sample bucket type", "created_by": "<username>@<domain>.com", "created_on": 1, "description": "milvus service for running sql queries", "endpoint": "Sample bucket type", "grpc_host": "example.grpc.host", "grpc_port": 1, "host_name": "sampleMilvus", "https_host": "example.https.host", "https_port": 1, "origin": "native", "root_path": "Sample path", "secret_key": "Sample bucket secret access key", "service_display_name": "sampleService", "service_id": "sampleService123", "status": "running", "status_code": 11, "tags": ["tags"], "tshirt_size": "small", "type": "milvus"}'
         responses.add(
             responses.POST,
             url,
@@ -16558,8 +17626,17 @@ class TestCreateMilvusService:
         service_display_name = 'sampleService'
         bucket_type = 'Sample bucket type'
         description = 'milvus service for running sql queries'
+        index_type = 'FLAT'
+        iw_cpu = 1
+        iw_memory = 1
+        iw_replicas = 1
+        managed_by = 'customer'
+        qw_cpu = 1
+        qw_memory = 1
+        qw_replicas = 1
         tags = ['tag1', 'tag2']
         tshirt_size = 'small'
+        vector_dimension = 384
 
         # Invoke method
         response = _service.create_milvus_service(
@@ -16569,8 +17646,17 @@ class TestCreateMilvusService:
             service_display_name,
             bucket_type=bucket_type,
             description=description,
+            index_type=index_type,
+            iw_cpu=iw_cpu,
+            iw_memory=iw_memory,
+            iw_replicas=iw_replicas,
+            managed_by=managed_by,
+            qw_cpu=qw_cpu,
+            qw_memory=qw_memory,
+            qw_replicas=qw_replicas,
             tags=tags,
             tshirt_size=tshirt_size,
+            vector_dimension=vector_dimension,
             headers={},
         )
 
@@ -16585,8 +17671,17 @@ class TestCreateMilvusService:
         assert req_body['service_display_name'] == 'sampleService'
         assert req_body['bucket_type'] == 'Sample bucket type'
         assert req_body['description'] == 'milvus service for running sql queries'
+        assert req_body['index_type'] == 'FLAT'
+        assert req_body['iw_cpu'] == 1
+        assert req_body['iw_memory'] == 1
+        assert req_body['iw_replicas'] == 1
+        assert req_body['managed_by'] == 'customer'
+        assert req_body['qw_cpu'] == 1
+        assert req_body['qw_memory'] == 1
+        assert req_body['qw_replicas'] == 1
         assert req_body['tags'] == ['tag1', 'tag2']
         assert req_body['tshirt_size'] == 'small'
+        assert req_body['vector_dimension'] == 384
 
     def test_create_milvus_service_required_params_with_retries(self):
         # Enable retries and run test_create_milvus_service_required_params.
@@ -16604,7 +17699,7 @@ class TestCreateMilvusService:
         """
         # Set up mock
         url = preprocess_url('/milvus_services')
-        mock_response = '{"access_key": "Sample bucket access key", "actions": ["actions"], "bucket_name": "Sample bucket name", "bucket_type": "Sample bucket type", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "milvus service for running sql queries", "endpoint": "Sample bucket type", "grpc_host": "example.grpc.host", "grpc_port": 9, "host_name": "sampleMilvus", "https_host": "example.https.host", "https_port": 10, "origin": "native", "root_path": "Sample path", "secret_key": "Sample bucket secret access key", "service_display_name": "sampleService", "service_id": "sampleService123", "status": "running", "status_code": 11, "tags": ["tags"], "tshirt_size": "small", "type": "milvus"}'
+        mock_response = '{"access_key": "Sample bucket access key", "actions": ["actions"], "bucket_name": "Sample bucket name", "bucket_type": "Sample bucket type", "created_by": "<username>@<domain>.com", "created_on": 1, "description": "milvus service for running sql queries", "endpoint": "Sample bucket type", "grpc_host": "example.grpc.host", "grpc_port": 1, "host_name": "sampleMilvus", "https_host": "example.https.host", "https_port": 1, "origin": "native", "root_path": "Sample path", "secret_key": "Sample bucket secret access key", "service_display_name": "sampleService", "service_id": "sampleService123", "status": "running", "status_code": 11, "tags": ["tags"], "tshirt_size": "small", "type": "milvus"}'
         responses.add(
             responses.POST,
             url,
@@ -16620,8 +17715,17 @@ class TestCreateMilvusService:
         service_display_name = 'sampleService'
         bucket_type = 'Sample bucket type'
         description = 'milvus service for running sql queries'
+        index_type = 'FLAT'
+        iw_cpu = 1
+        iw_memory = 1
+        iw_replicas = 1
+        managed_by = 'customer'
+        qw_cpu = 1
+        qw_memory = 1
+        qw_replicas = 1
         tags = ['tag1', 'tag2']
         tshirt_size = 'small'
+        vector_dimension = 384
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
@@ -16657,7 +17761,7 @@ class TestGetMilvusService:
         """
         # Set up mock
         url = preprocess_url('/milvus_services/testString')
-        mock_response = '{"access_key": "Sample bucket access key", "actions": ["actions"], "bucket_name": "Sample bucket name", "bucket_type": "Sample bucket type", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "milvus service for running sql queries", "endpoint": "Sample bucket type", "grpc_host": "example.grpc.host", "grpc_port": 9, "host_name": "sampleMilvus", "https_host": "example.https.host", "https_port": 10, "origin": "native", "root_path": "Sample path", "secret_key": "Sample bucket secret access key", "service_display_name": "sampleService", "service_id": "sampleService123", "status": "running", "status_code": 11, "tags": ["tags"], "tshirt_size": "small", "type": "milvus"}'
+        mock_response = '{"access_key": "Sample bucket access key", "actions": ["actions"], "bucket_name": "Sample bucket name", "bucket_type": "Sample bucket type", "created_by": "<username>@<domain>.com", "created_on": 1, "description": "milvus service for running sql queries", "endpoint": "Sample bucket type", "grpc_host": "example.grpc.host", "grpc_port": 1, "host_name": "sampleMilvus", "https_host": "example.https.host", "https_port": 1, "origin": "native", "root_path": "Sample path", "secret_key": "Sample bucket secret access key", "service_display_name": "sampleService", "service_id": "sampleService123", "status": "running", "status_code": 11, "tags": ["tags"], "tshirt_size": "small", "type": "milvus"}'
         responses.add(
             responses.GET,
             url,
@@ -16697,7 +17801,7 @@ class TestGetMilvusService:
         """
         # Set up mock
         url = preprocess_url('/milvus_services/testString')
-        mock_response = '{"access_key": "Sample bucket access key", "actions": ["actions"], "bucket_name": "Sample bucket name", "bucket_type": "Sample bucket type", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "milvus service for running sql queries", "endpoint": "Sample bucket type", "grpc_host": "example.grpc.host", "grpc_port": 9, "host_name": "sampleMilvus", "https_host": "example.https.host", "https_port": 10, "origin": "native", "root_path": "Sample path", "secret_key": "Sample bucket secret access key", "service_display_name": "sampleService", "service_id": "sampleService123", "status": "running", "status_code": 11, "tags": ["tags"], "tshirt_size": "small", "type": "milvus"}'
+        mock_response = '{"access_key": "Sample bucket access key", "actions": ["actions"], "bucket_name": "Sample bucket name", "bucket_type": "Sample bucket type", "created_by": "<username>@<domain>.com", "created_on": 1, "description": "milvus service for running sql queries", "endpoint": "Sample bucket type", "grpc_host": "example.grpc.host", "grpc_port": 1, "host_name": "sampleMilvus", "https_host": "example.https.host", "https_port": 1, "origin": "native", "root_path": "Sample path", "secret_key": "Sample bucket secret access key", "service_display_name": "sampleService", "service_id": "sampleService123", "status": "running", "status_code": 11, "tags": ["tags"], "tshirt_size": "small", "type": "milvus"}'
         responses.add(
             responses.GET,
             url,
@@ -16735,7 +17839,7 @@ class TestGetMilvusService:
         """
         # Set up mock
         url = preprocess_url('/milvus_services/testString')
-        mock_response = '{"access_key": "Sample bucket access key", "actions": ["actions"], "bucket_name": "Sample bucket name", "bucket_type": "Sample bucket type", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "milvus service for running sql queries", "endpoint": "Sample bucket type", "grpc_host": "example.grpc.host", "grpc_port": 9, "host_name": "sampleMilvus", "https_host": "example.https.host", "https_port": 10, "origin": "native", "root_path": "Sample path", "secret_key": "Sample bucket secret access key", "service_display_name": "sampleService", "service_id": "sampleService123", "status": "running", "status_code": 11, "tags": ["tags"], "tshirt_size": "small", "type": "milvus"}'
+        mock_response = '{"access_key": "Sample bucket access key", "actions": ["actions"], "bucket_name": "Sample bucket name", "bucket_type": "Sample bucket type", "created_by": "<username>@<domain>.com", "created_on": 1, "description": "milvus service for running sql queries", "endpoint": "Sample bucket type", "grpc_host": "example.grpc.host", "grpc_port": 1, "host_name": "sampleMilvus", "https_host": "example.https.host", "https_port": 1, "origin": "native", "root_path": "Sample path", "secret_key": "Sample bucket secret access key", "service_display_name": "sampleService", "service_id": "sampleService123", "status": "running", "status_code": 11, "tags": ["tags"], "tshirt_size": "small", "type": "milvus"}'
         responses.add(
             responses.GET,
             url,
@@ -16890,7 +17994,7 @@ class TestUpdateMilvusService:
         """
         # Set up mock
         url = preprocess_url('/milvus_services/testString')
-        mock_response = '{"access_key": "Sample bucket access key", "actions": ["actions"], "bucket_name": "Sample bucket name", "bucket_type": "Sample bucket type", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "milvus service for running sql queries", "endpoint": "Sample bucket type", "grpc_host": "example.grpc.host", "grpc_port": 9, "host_name": "sampleMilvus", "https_host": "example.https.host", "https_port": 10, "origin": "native", "root_path": "Sample path", "secret_key": "Sample bucket secret access key", "service_display_name": "sampleService", "service_id": "sampleService123", "status": "running", "status_code": 11, "tags": ["tags"], "tshirt_size": "small", "type": "milvus"}'
+        mock_response = '{"access_key": "Sample bucket access key", "actions": ["actions"], "bucket_name": "Sample bucket name", "bucket_type": "Sample bucket type", "created_by": "<username>@<domain>.com", "created_on": 1, "description": "milvus service for running sql queries", "endpoint": "Sample bucket type", "grpc_host": "example.grpc.host", "grpc_port": 1, "host_name": "sampleMilvus", "https_host": "example.https.host", "https_port": 1, "origin": "native", "root_path": "Sample path", "secret_key": "Sample bucket secret access key", "service_display_name": "sampleService", "service_id": "sampleService123", "status": "running", "status_code": 11, "tags": ["tags"], "tshirt_size": "small", "type": "milvus"}'
         responses.add(
             responses.PATCH,
             url,
@@ -16941,7 +18045,7 @@ class TestUpdateMilvusService:
         """
         # Set up mock
         url = preprocess_url('/milvus_services/testString')
-        mock_response = '{"access_key": "Sample bucket access key", "actions": ["actions"], "bucket_name": "Sample bucket name", "bucket_type": "Sample bucket type", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "milvus service for running sql queries", "endpoint": "Sample bucket type", "grpc_host": "example.grpc.host", "grpc_port": 9, "host_name": "sampleMilvus", "https_host": "example.https.host", "https_port": 10, "origin": "native", "root_path": "Sample path", "secret_key": "Sample bucket secret access key", "service_display_name": "sampleService", "service_id": "sampleService123", "status": "running", "status_code": 11, "tags": ["tags"], "tshirt_size": "small", "type": "milvus"}'
+        mock_response = '{"access_key": "Sample bucket access key", "actions": ["actions"], "bucket_name": "Sample bucket name", "bucket_type": "Sample bucket type", "created_by": "<username>@<domain>.com", "created_on": 1, "description": "milvus service for running sql queries", "endpoint": "Sample bucket type", "grpc_host": "example.grpc.host", "grpc_port": 1, "host_name": "sampleMilvus", "https_host": "example.https.host", "https_port": 1, "origin": "native", "root_path": "Sample path", "secret_key": "Sample bucket secret access key", "service_display_name": "sampleService", "service_id": "sampleService123", "status": "running", "status_code": 11, "tags": ["tags"], "tshirt_size": "small", "type": "milvus"}'
         responses.add(
             responses.PATCH,
             url,
@@ -16990,7 +18094,7 @@ class TestUpdateMilvusService:
         """
         # Set up mock
         url = preprocess_url('/milvus_services/testString')
-        mock_response = '{"access_key": "Sample bucket access key", "actions": ["actions"], "bucket_name": "Sample bucket name", "bucket_type": "Sample bucket type", "created_by": "<username>@<domain>.com", "created_on": 10, "description": "milvus service for running sql queries", "endpoint": "Sample bucket type", "grpc_host": "example.grpc.host", "grpc_port": 9, "host_name": "sampleMilvus", "https_host": "example.https.host", "https_port": 10, "origin": "native", "root_path": "Sample path", "secret_key": "Sample bucket secret access key", "service_display_name": "sampleService", "service_id": "sampleService123", "status": "running", "status_code": 11, "tags": ["tags"], "tshirt_size": "small", "type": "milvus"}'
+        mock_response = '{"access_key": "Sample bucket access key", "actions": ["actions"], "bucket_name": "Sample bucket name", "bucket_type": "Sample bucket type", "created_by": "<username>@<domain>.com", "created_on": 1, "description": "milvus service for running sql queries", "endpoint": "Sample bucket type", "grpc_host": "example.grpc.host", "grpc_port": 1, "host_name": "sampleMilvus", "https_host": "example.https.host", "https_port": 1, "origin": "native", "root_path": "Sample path", "secret_key": "Sample bucket secret access key", "service_display_name": "sampleService", "service_id": "sampleService123", "status": "running", "status_code": 11, "tags": ["tags"], "tshirt_size": "small", "type": "milvus"}'
         responses.add(
             responses.PATCH,
             url,
@@ -17029,6 +18133,160 @@ class TestUpdateMilvusService:
         self.test_update_milvus_service_value_error()
 
 
+class TestUpdateMilvusServiceBucket:
+    """
+    Test Class for update_milvus_service_bucket
+    """
+
+    @responses.activate
+    def test_update_milvus_service_bucket_all_params(self):
+        """
+        update_milvus_service_bucket()
+        """
+        # Set up mock
+        url = preprocess_url('/milvus_services/testString/bucket')
+        mock_response = '{"access_key": "Sample bucket access key", "actions": ["actions"], "bucket_name": "Sample bucket name", "bucket_type": "Sample bucket type", "created_by": "<username>@<domain>.com", "created_on": 1, "description": "milvus service for running sql queries", "endpoint": "Sample bucket type", "grpc_host": "example.grpc.host", "grpc_port": 1, "host_name": "sampleMilvus", "https_host": "example.https.host", "https_port": 1, "origin": "native", "root_path": "Sample path", "secret_key": "Sample bucket secret access key", "service_display_name": "sampleService", "service_id": "sampleService123", "status": "running", "status_code": 11, "tags": ["tags"], "tshirt_size": "small", "type": "milvus"}'
+        responses.add(
+            responses.PATCH,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
+
+        # Construct a dict representation of a MilvusServiceBucketPatch model
+        milvus_service_bucket_patch_model = {}
+        milvus_service_bucket_patch_model['bucket_name'] = 'Sample bucket name'
+        milvus_service_bucket_patch_model['managed_by'] = 'customer'
+        milvus_service_bucket_patch_model['root_path'] = 'Sample path'
+        milvus_service_bucket_patch_model['tshirt_size'] = 'small'
+
+        # Set up parameter values
+        service_id = 'testString'
+        body = milvus_service_bucket_patch_model
+        auth_instance_id = 'testString'
+
+        # Invoke method
+        response = _service.update_milvus_service_bucket(
+            service_id,
+            body,
+            auth_instance_id=auth_instance_id,
+            headers={},
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+        # Validate body params
+        req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
+        assert req_body == body
+
+    def test_update_milvus_service_bucket_all_params_with_retries(self):
+        # Enable retries and run test_update_milvus_service_bucket_all_params.
+        _service.enable_retries()
+        self.test_update_milvus_service_bucket_all_params()
+
+        # Disable retries and run test_update_milvus_service_bucket_all_params.
+        _service.disable_retries()
+        self.test_update_milvus_service_bucket_all_params()
+
+    @responses.activate
+    def test_update_milvus_service_bucket_required_params(self):
+        """
+        test_update_milvus_service_bucket_required_params()
+        """
+        # Set up mock
+        url = preprocess_url('/milvus_services/testString/bucket')
+        mock_response = '{"access_key": "Sample bucket access key", "actions": ["actions"], "bucket_name": "Sample bucket name", "bucket_type": "Sample bucket type", "created_by": "<username>@<domain>.com", "created_on": 1, "description": "milvus service for running sql queries", "endpoint": "Sample bucket type", "grpc_host": "example.grpc.host", "grpc_port": 1, "host_name": "sampleMilvus", "https_host": "example.https.host", "https_port": 1, "origin": "native", "root_path": "Sample path", "secret_key": "Sample bucket secret access key", "service_display_name": "sampleService", "service_id": "sampleService123", "status": "running", "status_code": 11, "tags": ["tags"], "tshirt_size": "small", "type": "milvus"}'
+        responses.add(
+            responses.PATCH,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
+
+        # Construct a dict representation of a MilvusServiceBucketPatch model
+        milvus_service_bucket_patch_model = {}
+        milvus_service_bucket_patch_model['bucket_name'] = 'Sample bucket name'
+        milvus_service_bucket_patch_model['managed_by'] = 'customer'
+        milvus_service_bucket_patch_model['root_path'] = 'Sample path'
+        milvus_service_bucket_patch_model['tshirt_size'] = 'small'
+
+        # Set up parameter values
+        service_id = 'testString'
+        body = milvus_service_bucket_patch_model
+
+        # Invoke method
+        response = _service.update_milvus_service_bucket(
+            service_id,
+            body,
+            headers={},
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+        # Validate body params
+        req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
+        assert req_body == body
+
+    def test_update_milvus_service_bucket_required_params_with_retries(self):
+        # Enable retries and run test_update_milvus_service_bucket_required_params.
+        _service.enable_retries()
+        self.test_update_milvus_service_bucket_required_params()
+
+        # Disable retries and run test_update_milvus_service_bucket_required_params.
+        _service.disable_retries()
+        self.test_update_milvus_service_bucket_required_params()
+
+    @responses.activate
+    def test_update_milvus_service_bucket_value_error(self):
+        """
+        test_update_milvus_service_bucket_value_error()
+        """
+        # Set up mock
+        url = preprocess_url('/milvus_services/testString/bucket')
+        mock_response = '{"access_key": "Sample bucket access key", "actions": ["actions"], "bucket_name": "Sample bucket name", "bucket_type": "Sample bucket type", "created_by": "<username>@<domain>.com", "created_on": 1, "description": "milvus service for running sql queries", "endpoint": "Sample bucket type", "grpc_host": "example.grpc.host", "grpc_port": 1, "host_name": "sampleMilvus", "https_host": "example.https.host", "https_port": 1, "origin": "native", "root_path": "Sample path", "secret_key": "Sample bucket secret access key", "service_display_name": "sampleService", "service_id": "sampleService123", "status": "running", "status_code": 11, "tags": ["tags"], "tshirt_size": "small", "type": "milvus"}'
+        responses.add(
+            responses.PATCH,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
+
+        # Construct a dict representation of a MilvusServiceBucketPatch model
+        milvus_service_bucket_patch_model = {}
+        milvus_service_bucket_patch_model['bucket_name'] = 'Sample bucket name'
+        milvus_service_bucket_patch_model['managed_by'] = 'customer'
+        milvus_service_bucket_patch_model['root_path'] = 'Sample path'
+        milvus_service_bucket_patch_model['tshirt_size'] = 'small'
+
+        # Set up parameter values
+        service_id = 'testString'
+        body = milvus_service_bucket_patch_model
+
+        # Pass in all but one required param and check for a ValueError
+        req_param_dict = {
+            "service_id": service_id,
+            "body": body,
+        }
+        for param in req_param_dict.keys():
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            with pytest.raises(ValueError):
+                _service.update_milvus_service_bucket(**req_copy)
+
+    def test_update_milvus_service_bucket_value_error_with_retries(self):
+        # Enable retries and run test_update_milvus_service_bucket_value_error.
+        _service.enable_retries()
+        self.test_update_milvus_service_bucket_value_error()
+
+        # Disable retries and run test_update_milvus_service_bucket_value_error.
+        _service.disable_retries()
+        self.test_update_milvus_service_bucket_value_error()
+
+
 class TestListMilvusServiceDatabases:
     """
     Test Class for list_milvus_service_databases
@@ -17041,7 +18299,7 @@ class TestListMilvusServiceDatabases:
         """
         # Set up mock
         url = preprocess_url('/milvus_services/testString/databases')
-        mock_response = '{"databases": ["default"]}'
+        mock_response = '{"milvus_databases": ["[\\"default\\",\\"new\\"]"]}'
         responses.add(
             responses.GET,
             url,
@@ -17081,7 +18339,7 @@ class TestListMilvusServiceDatabases:
         """
         # Set up mock
         url = preprocess_url('/milvus_services/testString/databases')
-        mock_response = '{"databases": ["default"]}'
+        mock_response = '{"milvus_databases": ["[\\"default\\",\\"new\\"]"]}'
         responses.add(
             responses.GET,
             url,
@@ -17119,7 +18377,7 @@ class TestListMilvusServiceDatabases:
         """
         # Set up mock
         url = preprocess_url('/milvus_services/testString/databases')
-        mock_response = '{"databases": ["default"]}'
+        mock_response = '{"milvus_databases": ["[\\"default\\",\\"new\\"]"]}'
         responses.add(
             responses.GET,
             url,
@@ -17162,7 +18420,7 @@ class TestListMilvusDatabaseCollections:
         """
         # Set up mock
         url = preprocess_url('/milvus_services/testString/databases/testString/collections')
-        mock_response = '{"collections": [{"collection_id": 13, "collection_name": "col1", "physical_channels": ["physical_channels"], "virtual_channels": ["virtual_channels"]}]}'
+        mock_response = '{"collections": [{"collection_id": 1, "collection_name": "col1", "physical_channels": ["physical_channels"], "virtual_channels": ["virtual_channels"]}]}'
         responses.add(
             responses.GET,
             url,
@@ -17204,7 +18462,7 @@ class TestListMilvusDatabaseCollections:
         """
         # Set up mock
         url = preprocess_url('/milvus_services/testString/databases/testString/collections')
-        mock_response = '{"collections": [{"collection_id": 13, "collection_name": "col1", "physical_channels": ["physical_channels"], "virtual_channels": ["virtual_channels"]}]}'
+        mock_response = '{"collections": [{"collection_id": 1, "collection_name": "col1", "physical_channels": ["physical_channels"], "virtual_channels": ["virtual_channels"]}]}'
         responses.add(
             responses.GET,
             url,
@@ -17244,7 +18502,7 @@ class TestListMilvusDatabaseCollections:
         """
         # Set up mock
         url = preprocess_url('/milvus_services/testString/databases/testString/collections')
-        mock_response = '{"collections": [{"collection_id": 13, "collection_name": "col1", "physical_channels": ["physical_channels"], "virtual_channels": ["virtual_channels"]}]}'
+        mock_response = '{"collections": [{"collection_id": 1, "collection_name": "col1", "physical_channels": ["physical_channels"], "virtual_channels": ["virtual_channels"]}]}'
         responses.add(
             responses.GET,
             url,
@@ -17542,13 +18800,31 @@ class TestCreateMilvusServiceScale:
 
         # Set up parameter values
         service_id = 'testString'
-        tshirt_size = 'small'
+        tshirt_size = 'testString'
+        index_type = 'FLAT'
+        iw_cpu = 1
+        iw_memory = 1
+        iw_replicas = 1
+        milvus_name = 'milvus123'
+        qw_cpu = 1
+        qw_memory = 1
+        qw_replicas = 1
+        vector_dimension = 384
         auth_instance_id = 'testString'
 
         # Invoke method
         response = _service.create_milvus_service_scale(
             service_id,
-            tshirt_size=tshirt_size,
+            tshirt_size,
+            index_type=index_type,
+            iw_cpu=iw_cpu,
+            iw_memory=iw_memory,
+            iw_replicas=iw_replicas,
+            milvus_name=milvus_name,
+            qw_cpu=qw_cpu,
+            qw_memory=qw_memory,
+            qw_replicas=qw_replicas,
+            vector_dimension=vector_dimension,
             auth_instance_id=auth_instance_id,
             headers={},
         )
@@ -17558,7 +18834,16 @@ class TestCreateMilvusServiceScale:
         assert response.status_code == 201
         # Validate body params
         req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
-        assert req_body['tshirt_size'] == 'small'
+        assert req_body['tshirt_size'] == 'testString'
+        assert req_body['index_type'] == 'FLAT'
+        assert req_body['iw_cpu'] == 1
+        assert req_body['iw_memory'] == 1
+        assert req_body['iw_replicas'] == 1
+        assert req_body['milvus_name'] == 'milvus123'
+        assert req_body['qw_cpu'] == 1
+        assert req_body['qw_memory'] == 1
+        assert req_body['qw_replicas'] == 1
+        assert req_body['vector_dimension'] == 384
 
     def test_create_milvus_service_scale_all_params_with_retries(self):
         # Enable retries and run test_create_milvus_service_scale_all_params.
@@ -17587,12 +18872,30 @@ class TestCreateMilvusServiceScale:
 
         # Set up parameter values
         service_id = 'testString'
-        tshirt_size = 'small'
+        tshirt_size = 'testString'
+        index_type = 'FLAT'
+        iw_cpu = 1
+        iw_memory = 1
+        iw_replicas = 1
+        milvus_name = 'milvus123'
+        qw_cpu = 1
+        qw_memory = 1
+        qw_replicas = 1
+        vector_dimension = 384
 
         # Invoke method
         response = _service.create_milvus_service_scale(
             service_id,
-            tshirt_size=tshirt_size,
+            tshirt_size,
+            index_type=index_type,
+            iw_cpu=iw_cpu,
+            iw_memory=iw_memory,
+            iw_replicas=iw_replicas,
+            milvus_name=milvus_name,
+            qw_cpu=qw_cpu,
+            qw_memory=qw_memory,
+            qw_replicas=qw_replicas,
+            vector_dimension=vector_dimension,
             headers={},
         )
 
@@ -17601,7 +18904,16 @@ class TestCreateMilvusServiceScale:
         assert response.status_code == 201
         # Validate body params
         req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
-        assert req_body['tshirt_size'] == 'small'
+        assert req_body['tshirt_size'] == 'testString'
+        assert req_body['index_type'] == 'FLAT'
+        assert req_body['iw_cpu'] == 1
+        assert req_body['iw_memory'] == 1
+        assert req_body['iw_replicas'] == 1
+        assert req_body['milvus_name'] == 'milvus123'
+        assert req_body['qw_cpu'] == 1
+        assert req_body['qw_memory'] == 1
+        assert req_body['qw_replicas'] == 1
+        assert req_body['vector_dimension'] == 384
 
     def test_create_milvus_service_scale_required_params_with_retries(self):
         # Enable retries and run test_create_milvus_service_scale_required_params.
@@ -17630,11 +18942,21 @@ class TestCreateMilvusServiceScale:
 
         # Set up parameter values
         service_id = 'testString'
-        tshirt_size = 'small'
+        tshirt_size = 'testString'
+        index_type = 'FLAT'
+        iw_cpu = 1
+        iw_memory = 1
+        iw_replicas = 1
+        milvus_name = 'milvus123'
+        qw_cpu = 1
+        qw_memory = 1
+        qw_replicas = 1
+        vector_dimension = 384
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
             "service_id": service_id,
+            "tshirt_size": tshirt_size,
         }
         for param in req_param_dict.keys():
             req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
@@ -18643,6 +19965,286 @@ class TestNewInstance:
             )
 
 
+class TestRegisterTable:
+    """
+    Test Class for register_table
+    """
+
+    @responses.activate
+    def test_register_table_all_params(self):
+        """
+        register_table()
+        """
+        # Set up mock
+        url = preprocess_url('/catalogs/testString/schemas/testString/register')
+        mock_response = '{"response": {"message": "message", "message_code": "message_code"}}'
+        responses.add(
+            responses.POST,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=201,
+        )
+
+        # Set up parameter values
+        catalog_id = 'testString'
+        schema_id = 'testString'
+        metadata_location = 's3a://bucketname/path/to/table/metadata_location/_delta_log'
+        table_name = 'table1'
+        auth_instance_id = 'testString'
+
+        # Invoke method
+        response = _service.register_table(
+            catalog_id,
+            schema_id,
+            metadata_location,
+            table_name,
+            auth_instance_id=auth_instance_id,
+            headers={},
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 201
+        # Validate body params
+        req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
+        assert req_body['metadata_location'] == 's3a://bucketname/path/to/table/metadata_location/_delta_log'
+        assert req_body['table_name'] == 'table1'
+
+    def test_register_table_all_params_with_retries(self):
+        # Enable retries and run test_register_table_all_params.
+        _service.enable_retries()
+        self.test_register_table_all_params()
+
+        # Disable retries and run test_register_table_all_params.
+        _service.disable_retries()
+        self.test_register_table_all_params()
+
+    @responses.activate
+    def test_register_table_required_params(self):
+        """
+        test_register_table_required_params()
+        """
+        # Set up mock
+        url = preprocess_url('/catalogs/testString/schemas/testString/register')
+        mock_response = '{"response": {"message": "message", "message_code": "message_code"}}'
+        responses.add(
+            responses.POST,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=201,
+        )
+
+        # Set up parameter values
+        catalog_id = 'testString'
+        schema_id = 'testString'
+        metadata_location = 's3a://bucketname/path/to/table/metadata_location/_delta_log'
+        table_name = 'table1'
+
+        # Invoke method
+        response = _service.register_table(
+            catalog_id,
+            schema_id,
+            metadata_location,
+            table_name,
+            headers={},
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 201
+        # Validate body params
+        req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
+        assert req_body['metadata_location'] == 's3a://bucketname/path/to/table/metadata_location/_delta_log'
+        assert req_body['table_name'] == 'table1'
+
+    def test_register_table_required_params_with_retries(self):
+        # Enable retries and run test_register_table_required_params.
+        _service.enable_retries()
+        self.test_register_table_required_params()
+
+        # Disable retries and run test_register_table_required_params.
+        _service.disable_retries()
+        self.test_register_table_required_params()
+
+    @responses.activate
+    def test_register_table_value_error(self):
+        """
+        test_register_table_value_error()
+        """
+        # Set up mock
+        url = preprocess_url('/catalogs/testString/schemas/testString/register')
+        mock_response = '{"response": {"message": "message", "message_code": "message_code"}}'
+        responses.add(
+            responses.POST,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=201,
+        )
+
+        # Set up parameter values
+        catalog_id = 'testString'
+        schema_id = 'testString'
+        metadata_location = 's3a://bucketname/path/to/table/metadata_location/_delta_log'
+        table_name = 'table1'
+
+        # Pass in all but one required param and check for a ValueError
+        req_param_dict = {
+            "catalog_id": catalog_id,
+            "schema_id": schema_id,
+            "metadata_location": metadata_location,
+            "table_name": table_name,
+        }
+        for param in req_param_dict.keys():
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            with pytest.raises(ValueError):
+                _service.register_table(**req_copy)
+
+    def test_register_table_value_error_with_retries(self):
+        # Enable retries and run test_register_table_value_error.
+        _service.enable_retries()
+        self.test_register_table_value_error()
+
+        # Disable retries and run test_register_table_value_error.
+        _service.disable_retries()
+        self.test_register_table_value_error()
+
+
+class TestLoadTable:
+    """
+    Test Class for load_table
+    """
+
+    @responses.activate
+    def test_load_table_all_params(self):
+        """
+        load_table()
+        """
+        # Set up mock
+        url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString/metadata')
+        mock_response = '{"metadata_location": "s3a://bucketname/path/to/table/metadata_location/_delta_log", "table_path": "s3a://bucketname/path/to/table"}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
+
+        # Set up parameter values
+        catalog_id = 'testString'
+        schema_id = 'testString'
+        table_id = 'testString'
+        auth_instance_id = 'testString'
+
+        # Invoke method
+        response = _service.load_table(
+            catalog_id,
+            schema_id,
+            table_id,
+            auth_instance_id=auth_instance_id,
+            headers={},
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+
+    def test_load_table_all_params_with_retries(self):
+        # Enable retries and run test_load_table_all_params.
+        _service.enable_retries()
+        self.test_load_table_all_params()
+
+        # Disable retries and run test_load_table_all_params.
+        _service.disable_retries()
+        self.test_load_table_all_params()
+
+    @responses.activate
+    def test_load_table_required_params(self):
+        """
+        test_load_table_required_params()
+        """
+        # Set up mock
+        url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString/metadata')
+        mock_response = '{"metadata_location": "s3a://bucketname/path/to/table/metadata_location/_delta_log", "table_path": "s3a://bucketname/path/to/table"}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
+
+        # Set up parameter values
+        catalog_id = 'testString'
+        schema_id = 'testString'
+        table_id = 'testString'
+
+        # Invoke method
+        response = _service.load_table(
+            catalog_id,
+            schema_id,
+            table_id,
+            headers={},
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+
+    def test_load_table_required_params_with_retries(self):
+        # Enable retries and run test_load_table_required_params.
+        _service.enable_retries()
+        self.test_load_table_required_params()
+
+        # Disable retries and run test_load_table_required_params.
+        _service.disable_retries()
+        self.test_load_table_required_params()
+
+    @responses.activate
+    def test_load_table_value_error(self):
+        """
+        test_load_table_value_error()
+        """
+        # Set up mock
+        url = preprocess_url('/catalogs/testString/schemas/testString/tables/testString/metadata')
+        mock_response = '{"metadata_location": "s3a://bucketname/path/to/table/metadata_location/_delta_log", "table_path": "s3a://bucketname/path/to/table"}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
+
+        # Set up parameter values
+        catalog_id = 'testString'
+        schema_id = 'testString'
+        table_id = 'testString'
+
+        # Pass in all but one required param and check for a ValueError
+        req_param_dict = {
+            "catalog_id": catalog_id,
+            "schema_id": schema_id,
+            "table_id": table_id,
+        }
+        for param in req_param_dict.keys():
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            with pytest.raises(ValueError):
+                _service.load_table(**req_copy)
+
+    def test_load_table_value_error_with_retries(self):
+        # Enable retries and run test_load_table_value_error.
+        _service.enable_retries()
+        self.test_load_table_value_error()
+
+        # Disable retries and run test_load_table_value_error.
+        _service.disable_retries()
+        self.test_load_table_value_error()
+
+
 class TestGetAllColumns:
     """
     Test Class for get_all_columns
@@ -19167,6 +20769,143 @@ class TestGetTableDetails:
 # region
 
 
+class TestModel_Bandwidth:
+    """
+    Test Class for Bandwidth
+    """
+
+    def test_bandwidth_serialization(self):
+        """
+        Test serialization/deserialization for Bandwidth
+        """
+
+        # Construct a json representation of a Bandwidth model
+        bandwidth_model_json = {}
+        bandwidth_model_json['download_bandwidth_mbps'] = 'testString'
+        bandwidth_model_json['upload_bandwidth_mbps'] = 'testString'
+
+        # Construct a model instance of Bandwidth by calling from_dict on the json representation
+        bandwidth_model = Bandwidth.from_dict(bandwidth_model_json)
+        assert bandwidth_model != False
+
+        # Construct a model instance of Bandwidth by calling from_dict on the json representation
+        bandwidth_model_dict = Bandwidth.from_dict(bandwidth_model_json).__dict__
+        bandwidth_model2 = Bandwidth(**bandwidth_model_dict)
+
+        # Verify the model instances are equivalent
+        assert bandwidth_model == bandwidth_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        bandwidth_model_json2 = bandwidth_model.to_dict()
+        assert bandwidth_model_json2 == bandwidth_model_json
+
+
+class TestModel_BenchmarkData:
+    """
+    Test Class for BenchmarkData
+    """
+
+    def test_benchmark_data_serialization(self):
+        """
+        Test serialization/deserialization for BenchmarkData
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        bandwidth_model = {}  # Bandwidth
+        bandwidth_model['download_bandwidth_mbps'] = 'testString'
+        bandwidth_model['upload_bandwidth_mbps'] = 'testString'
+
+        results_model = {}  # Results
+        results_model['create_bucket_time_sec'] = 'testString'
+        results_model['download_files_time_sec'] = 'testString'
+        results_model['erase_bucket_time_sec'] = 'testString'
+        results_model['erase_objects_time_sec'] = 'testString'
+        results_model['list_files_time_sec'] = 'testString'
+        results_model['total_operations_time_sec'] = 'testString'
+        results_model['upload_files_time_sec'] = 'testString'
+
+        # Construct a json representation of a BenchmarkData model
+        benchmark_data_model_json = {}
+        benchmark_data_model_json['bandwidth'] = bandwidth_model
+        benchmark_data_model_json['date'] = '2019-01-01'
+        benchmark_data_model_json['num_files'] = 0
+        benchmark_data_model_json['results'] = results_model
+        benchmark_data_model_json['size_files'] = 0
+        benchmark_data_model_json['time'] = 'testString'
+
+        # Construct a model instance of BenchmarkData by calling from_dict on the json representation
+        benchmark_data_model = BenchmarkData.from_dict(benchmark_data_model_json)
+        assert benchmark_data_model != False
+
+        # Construct a model instance of BenchmarkData by calling from_dict on the json representation
+        benchmark_data_model_dict = BenchmarkData.from_dict(benchmark_data_model_json).__dict__
+        benchmark_data_model2 = BenchmarkData(**benchmark_data_model_dict)
+
+        # Verify the model instances are equivalent
+        assert benchmark_data_model == benchmark_data_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        benchmark_data_model_json2 = benchmark_data_model.to_dict()
+        assert benchmark_data_model_json2 == benchmark_data_model_json
+
+
+class TestModel_BenchmarkStatusResponse:
+    """
+    Test Class for BenchmarkStatusResponse
+    """
+
+    def test_benchmark_status_response_serialization(self):
+        """
+        Test serialization/deserialization for BenchmarkStatusResponse
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        bandwidth_model = {}  # Bandwidth
+        bandwidth_model['download_bandwidth_mbps'] = 'testString'
+        bandwidth_model['upload_bandwidth_mbps'] = 'testString'
+
+        results_model = {}  # Results
+        results_model['create_bucket_time_sec'] = 'testString'
+        results_model['download_files_time_sec'] = 'testString'
+        results_model['erase_bucket_time_sec'] = 'testString'
+        results_model['erase_objects_time_sec'] = 'testString'
+        results_model['list_files_time_sec'] = 'testString'
+        results_model['total_operations_time_sec'] = 'testString'
+        results_model['upload_files_time_sec'] = 'testString'
+
+        benchmark_data_model = {}  # BenchmarkData
+        benchmark_data_model['bandwidth'] = bandwidth_model
+        benchmark_data_model['date'] = '2019-01-01'
+        benchmark_data_model['num_files'] = 0
+        benchmark_data_model['results'] = results_model
+        benchmark_data_model['size_files'] = 0
+        benchmark_data_model['time'] = 'testString'
+
+        # Construct a json representation of a BenchmarkStatusResponse model
+        benchmark_status_response_model_json = {}
+        benchmark_status_response_model_json['data'] = benchmark_data_model
+        benchmark_status_response_model_json['error'] = 'testString'
+        benchmark_status_response_model_json['message'] = 'testString'
+        benchmark_status_response_model_json['status'] = 'testString'
+
+        # Construct a model instance of BenchmarkStatusResponse by calling from_dict on the json representation
+        benchmark_status_response_model = BenchmarkStatusResponse.from_dict(benchmark_status_response_model_json)
+        assert benchmark_status_response_model != False
+
+        # Construct a model instance of BenchmarkStatusResponse by calling from_dict on the json representation
+        benchmark_status_response_model_dict = BenchmarkStatusResponse.from_dict(benchmark_status_response_model_json).__dict__
+        benchmark_status_response_model2 = BenchmarkStatusResponse(**benchmark_status_response_model_dict)
+
+        # Verify the model instances are equivalent
+        assert benchmark_status_response_model == benchmark_status_response_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        benchmark_status_response_model_json2 = benchmark_status_response_model.to_dict()
+        assert benchmark_status_response_model_json2 == benchmark_status_response_model_json
+
+
 class TestModel_BucketCatalog:
     """
     Test Class for BucketCatalog
@@ -19211,13 +20950,13 @@ class TestModel_BucketDetails:
 
         # Construct a json representation of a BucketDetails model
         bucket_details_model_json = {}
-        bucket_details_model_json['access_key'] = 'b9cbf248ea5c4c96947e64407108559j'
+        bucket_details_model_json['access_key'] = '<access_key>'
         bucket_details_model_json['bucket_name'] = 'sample-bucket'
-        bucket_details_model_json['endpoint'] = 'https://s3.<region>.cloud-object-storage.appdomain.cloud/'
+        bucket_details_model_json['endpoint'] = 'https://s3.us-south.cloud-object-storage.appdomain.cloud/'
         bucket_details_model_json['key_file'] = 'key_file'
-        bucket_details_model_json['provider'] = 'ibm_cos'
+        bucket_details_model_json['provider'] = 'ibm-cos'
         bucket_details_model_json['region'] = 'us-south'
-        bucket_details_model_json['secret_key'] = '13b4045cac1a0be54c9fjbe53cb22df5fn397cd2c45b66c87'
+        bucket_details_model_json['secret_key'] = 'secret_key'
 
         # Construct a model instance of BucketDetails by calling from_dict on the json representation
         bucket_details_model = BucketDetails.from_dict(bucket_details_model_json)
@@ -19248,11 +20987,11 @@ class TestModel_BucketObjectProperties:
         # Construct dict forms of any model objects needed in order to build this model.
 
         bucket_registration_object_size_collection_model = {}  # BucketRegistrationObjectSizeCollection
-        bucket_registration_object_size_collection_model['content_type'] = 'string'
-        bucket_registration_object_size_collection_model['file_type'] = 'string'
+        bucket_registration_object_size_collection_model['content_type'] = 'application/json'
+        bucket_registration_object_size_collection_model['file_type'] = 'json'
         bucket_registration_object_size_collection_model['last_modified'] = 'utc-2014-07'
         bucket_registration_object_size_collection_model['metadata'] = {'key1': 'testString'}
-        bucket_registration_object_size_collection_model['path'] = 'abc/abc/data'
+        bucket_registration_object_size_collection_model['path'] = 'iceberg/test/data'
         bucket_registration_object_size_collection_model['size'] = '1024'
 
         # Construct a json representation of a BucketObjectProperties model
@@ -19275,6 +21014,36 @@ class TestModel_BucketObjectProperties:
         assert bucket_object_properties_model_json2 == bucket_object_properties_model_json
 
 
+class TestModel_BucketObjectSizePathsItems:
+    """
+    Test Class for BucketObjectSizePathsItems
+    """
+
+    def test_bucket_object_size_paths_items_serialization(self):
+        """
+        Test serialization/deserialization for BucketObjectSizePathsItems
+        """
+
+        # Construct a json representation of a BucketObjectSizePathsItems model
+        bucket_object_size_paths_items_model_json = {}
+        bucket_object_size_paths_items_model_json['path'] = 'testString'
+
+        # Construct a model instance of BucketObjectSizePathsItems by calling from_dict on the json representation
+        bucket_object_size_paths_items_model = BucketObjectSizePathsItems.from_dict(bucket_object_size_paths_items_model_json)
+        assert bucket_object_size_paths_items_model != False
+
+        # Construct a model instance of BucketObjectSizePathsItems by calling from_dict on the json representation
+        bucket_object_size_paths_items_model_dict = BucketObjectSizePathsItems.from_dict(bucket_object_size_paths_items_model_json).__dict__
+        bucket_object_size_paths_items_model2 = BucketObjectSizePathsItems(**bucket_object_size_paths_items_model_dict)
+
+        # Verify the model instances are equivalent
+        assert bucket_object_size_paths_items_model == bucket_object_size_paths_items_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        bucket_object_size_paths_items_model_json2 = bucket_object_size_paths_items_model.to_dict()
+        assert bucket_object_size_paths_items_model_json2 == bucket_object_size_paths_items_model_json
+
+
 class TestModel_BucketRegistration:
     """
     Test Class for BucketRegistration
@@ -19293,13 +21062,13 @@ class TestModel_BucketRegistration:
         bucket_catalog_model['catalog_type'] = 'hive'
 
         bucket_details_model = {}  # BucketDetails
-        bucket_details_model['access_key'] = 'b9cbf248ea5c4c96947e64407108559j'
+        bucket_details_model['access_key'] = '<access_key>'
         bucket_details_model['bucket_name'] = 'sample-bucket'
-        bucket_details_model['endpoint'] = 'https://s3.<region>.cloud-object-storage.appdomain.cloud/'
+        bucket_details_model['endpoint'] = 'https://s3.us-south.cloud-object-storage.appdomain.cloud/'
         bucket_details_model['key_file'] = 'key_file'
-        bucket_details_model['provider'] = 'ibm_cos'
+        bucket_details_model['provider'] = 'ibm-cos'
         bucket_details_model['region'] = 'us-south'
-        bucket_details_model['secret_key'] = '13b4045cac1a0be54c9fjbe53cb22df5fn397cd2c45b66c87'
+        bucket_details_model['secret_key'] = 'secret_key'
 
         storage_details_model = {}  # StorageDetails
         storage_details_model['access_key'] = '<access_key>'
@@ -19327,6 +21096,7 @@ class TestModel_BucketRegistration:
         bucket_registration_model_json['region'] = 'us-south'
         bucket_registration_model_json['state'] = 'active'
         bucket_registration_model_json['storage_details'] = storage_details_model
+        bucket_registration_model_json['system_bucket_update_credentials'] = True
         bucket_registration_model_json['tags'] = ['testbucket', 'write customer data\'']
 
         # Construct a model instance of BucketRegistration by calling from_dict on the json representation
@@ -19363,24 +21133,24 @@ class TestModel_BucketRegistrationCollection:
         bucket_catalog_model['catalog_type'] = 'iceberg'
 
         bucket_details_model = {}  # BucketDetails
-        bucket_details_model['access_key'] = 'b9cbf248ea5c4c96947e64407108559j'
+        bucket_details_model['access_key'] = '<access_key>'
         bucket_details_model['bucket_name'] = 'iceberg-bucket'
         bucket_details_model['endpoint'] = 'http://xyz-minio-svc:9000'
         bucket_details_model['key_file'] = 'key_file'
-        bucket_details_model['provider'] = 'ibm_cos'
+        bucket_details_model['provider'] = 'ibm-cos'
         bucket_details_model['region'] = 'us-south'
-        bucket_details_model['secret_key'] = '13b4045cac1a0be54c9fjbe53cb22df5fn397cd2c45b66c87'
+        bucket_details_model['secret_key'] = 'secret_key'
 
         storage_details_model = {}  # StorageDetails
         storage_details_model['access_key'] = '<access_key>'
         storage_details_model['application_id'] = '<application_id>'
-        storage_details_model['auth_mode'] = '<auth_mode>'
-        storage_details_model['container_name'] = '<container_name>'
+        storage_details_model['auth_mode'] = 'account_key'
+        storage_details_model['container_name'] = 'conatiner_name'
         storage_details_model['directory_id'] = '<directory_id>'
-        storage_details_model['endpoint'] = 'abfss://<container_name>@<storage_account_name>.dfs.core.windows.net/'
+        storage_details_model['endpoint'] = 'https://s3.us-south.cloud-object-storage.appdomain.cloud/'
         storage_details_model['sas_token'] = '<sas_token>'
         storage_details_model['secret_key'] = 'secret_key'
-        storage_details_model['storage_account_name'] = '<storage_account_name>'
+        storage_details_model['storage_account_name'] = 'storage_account_name'
 
         bucket_registration_model = {}  # BucketRegistration
         bucket_registration_model['actions'] = ['browse', 'view', 'modify', 'create', 'grant', 'revoke', 'update', 'remove', 'activate', 'register']
@@ -19396,6 +21166,7 @@ class TestModel_BucketRegistrationCollection:
         bucket_registration_model['region'] = 'us-south'
         bucket_registration_model['state'] = 'active'
         bucket_registration_model['storage_details'] = storage_details_model
+        bucket_registration_model['system_bucket_update_credentials'] = True
         bucket_registration_model['tags'] = ['tag1', 'tag2']
 
         # Construct a json representation of a BucketRegistrationCollection model
@@ -19498,9 +21269,9 @@ class TestModel_BucketRegistrationPatch:
         bucket_details_model = {}  # BucketDetails
         bucket_details_model['access_key'] = '<access_key>'
         bucket_details_model['bucket_name'] = 'sample-bucket'
-        bucket_details_model['endpoint'] = 'https://s3.<region>.cloud-object-storage.appdomain.cloud/'
+        bucket_details_model['endpoint'] = 'https://s3.us-south.cloud-object-storage.appdomain.cloud/'
         bucket_details_model['key_file'] = 'key_file'
-        bucket_details_model['provider'] = 'ibm_cos'
+        bucket_details_model['provider'] = 'ibm-cos'
         bucket_details_model['region'] = 'us-south'
         bucket_details_model['secret_key'] = 'secret_key'
 
@@ -19509,6 +21280,7 @@ class TestModel_BucketRegistrationPatch:
         bucket_registration_patch_model_json['bucket_details'] = bucket_details_model
         bucket_registration_patch_model_json['bucket_display_name'] = 'sample-bucket-displayname'
         bucket_registration_patch_model_json['description'] = 'COS bucket for customer data'
+        bucket_registration_patch_model_json['system_bucket_update_credentials'] = True
         bucket_registration_patch_model_json['tags'] = ['testbucket', 'userbucket']
 
         # Construct a model instance of BucketRegistrationPatch by calling from_dict on the json representation
@@ -19544,18 +21316,20 @@ class TestModel_Catalog:
         catalog_model_json['associated_databases'] = ['database_1', 'database_2']
         catalog_model_json['associated_engines'] = ['engine_1', 'engine_2']
         catalog_model_json['catalog_name'] = 'sampleCatalog'
-        catalog_model_json['catalog_names'] = 'testString'
+        catalog_model_json['catalog_type'] = 'iceberg'
         catalog_model_json['created_by'] = '<username>@<domain>.com'
         catalog_model_json['created_on'] = '1602839833'
+        catalog_model_json['days_left'] = '30'
         catalog_model_json['description'] = 'Iceberg catalog description'
         catalog_model_json['hostname'] = 's3a://samplehost.com'
         catalog_model_json['last_sync_at'] = '1602839833'
         catalog_model_json['managed_by'] = 'ibm'
         catalog_model_json['metastore'] = 'glue'
         catalog_model_json['port'] = '3232'
+        catalog_model_json['rest_uri'] = 'https://samplehost-catalog:4352'
         catalog_model_json['status'] = 'running'
         catalog_model_json['sync_description'] = 'Table registration was successful'
-        catalog_model_json['sync_exception'] = ['table is corrupted', 'table metadata not there']
+        catalog_model_json['sync_exception'] = ['Table is corrupted', 'Table metadata not available']
         catalog_model_json['sync_status'] = 'SUCCESS'
         catalog_model_json['tags'] = ['tag1', 'tag2']
         catalog_model_json['thrift_uri'] = 'thrift://samplehost-catalog:4354'
@@ -19594,18 +21368,20 @@ class TestModel_CatalogCollection:
         catalog_model['associated_databases'] = ['database_1', 'database_2']
         catalog_model['associated_engines'] = ['engine_1', 'engine_2']
         catalog_model['catalog_name'] = 'sampleCatalog'
-        catalog_model['catalog_names'] = 'testString'
+        catalog_model['catalog_type'] = 'iceberg'
         catalog_model['created_by'] = '<username>@<domain>.com'
         catalog_model['created_on'] = '1602839833'
+        catalog_model['days_left'] = '30'
         catalog_model['description'] = 'Iceberg catalog description'
         catalog_model['hostname'] = 's3a://samplehost.com'
         catalog_model['last_sync_at'] = '1602839833'
         catalog_model['managed_by'] = 'ibm'
         catalog_model['metastore'] = 'glue'
         catalog_model['port'] = '3232'
+        catalog_model['rest_uri'] = 'https://samplehost-catalog:4352'
         catalog_model['status'] = 'running'
         catalog_model['sync_description'] = 'Table registration was successful'
-        catalog_model['sync_exception'] = ['table is corrupted', 'table metadata not there']
+        catalog_model['sync_exception'] = ['Table is corrupted', 'Table metadata not available']
         catalog_model['sync_status'] = 'SUCCESS'
         catalog_model['tags'] = ['tag1', 'tag2']
         catalog_model['thrift_uri'] = 'thrift://samplehost-catalog:4354'
@@ -19646,8 +21422,8 @@ class TestModel_Column:
         column_model_json['comment'] = 'expenses column'
         column_model_json['extra'] = 'varchar'
         column_model_json['length'] = '30'
-        column_model_json['scale'] = '2'
         column_model_json['precision'] = '10'
+        column_model_json['scale'] = '2'
         column_model_json['type'] = 'varchar'
 
         # Construct a model instance of Column by calling from_dict on the json representation
@@ -19679,12 +21455,12 @@ class TestModel_ColumnCollection:
         # Construct dict forms of any model objects needed in order to build this model.
 
         column_model = {}  # Column
-        column_model['column_name'] = 'expenses'
-        column_model['comment'] = 'expenses'
-        column_model['extra'] = 'testString'
+        column_model['column_name'] = 'customer_data'
+        column_model['comment'] = 'customer_data column'
+        column_model['extra'] = 'varchar'
         column_model['length'] = '30'
+        column_model['precision'] = '10'
         column_model['scale'] = '2'
-        column_model['precision'] = '1234567890'
         column_model['type'] = 'varchar'
 
         # Construct a json representation of a ColumnCollection model
@@ -19782,6 +21558,148 @@ class TestModel_ColumnsResponse:
         # Convert model instance back to dict and verify no loss of data
         columns_response_model_json2 = columns_response_model.to_dict()
         assert columns_response_model_json2 == columns_response_model_json
+
+
+class TestModel_ConnectionPropertiesDetails:
+    """
+    Test Class for ConnectionPropertiesDetails
+    """
+
+    def test_connection_properties_details_serialization(self):
+        """
+        Test serialization/deserialization for ConnectionPropertiesDetails
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        external_details_model = {}  # ExternalDetails
+        external_details_model['port'] = 4553
+        external_details_model['hostname'] = 'external hostname'
+
+        internal_details_model = {}  # InternalDetails
+        internal_details_model['port'] = 4553
+        internal_details_model['hostname'] = 'internal hostname'
+
+        jdbc_thrift_urls_model = {}  # JdbcThriftUrls
+        jdbc_thrift_urls_model['external'] = 'thrift://username:password@metastore1-internal-hostname:9083'
+        jdbc_thrift_urls_model['internal'] = 'thrift://username:password@metastore1-internal-hostname:9083'
+
+        details_model = {}  # Details
+        details_model['ca_certificate'] = 'sample ca certificate'
+        details_model['default_configs'] = {'key1': 'testString'}
+        details_model['external'] = external_details_model
+        details_model['grpc_api_endpoint'] = internal_details_model
+        details_model['hostname'] = 'sample hostname'
+        details_model['id'] = 'sample ID'
+        details_model['instance_crn'] = 'sample instance CRN'
+        details_model['instance_id'] = 'sample instance ID'
+        details_model['internal'] = internal_details_model
+        details_model['jdbc_class'] = 'com.facebook.presto.jdbc.PrestoDriver'
+        details_model['jdbc_urls'] = jdbc_thrift_urls_model
+        details_model['name'] = 'sample name'
+        details_model['port'] = 4553
+        details_model['rest_api_endpoint'] = internal_details_model
+        details_model['spark_engine_endpoint'] = 'Spark Engine endpoint'
+        details_model['ssl_certificate'] = 'sample ssl certificate'
+        details_model['thrift_urls'] = jdbc_thrift_urls_model
+        details_model['version'] = 'java'
+        details_model['watsonx_data_application_endpoint'] = 'sample application end point'
+
+        connection_properties_details_properties_connection_items_model = {}  # ConnectionPropertiesDetailsPropertiesConnectionItems
+        connection_properties_details_properties_connection_items_model['name'] = 'host'
+        connection_properties_details_properties_connection_items_model['value'] = 'sample_value'
+
+        connection_properties_details_properties_model = {}  # ConnectionPropertiesDetailsProperties
+        connection_properties_details_properties_model['connection'] = [connection_properties_details_properties_connection_items_model]
+
+        # Construct a json representation of a ConnectionPropertiesDetails model
+        connection_properties_details_model_json = {}
+        connection_properties_details_model_json['connection_name'] = 'presto-01'
+        connection_properties_details_model_json['details'] = details_model
+        connection_properties_details_model_json['properties'] = connection_properties_details_properties_model
+        connection_properties_details_model_json['type'] = 'presto'
+
+        # Construct a model instance of ConnectionPropertiesDetails by calling from_dict on the json representation
+        connection_properties_details_model = ConnectionPropertiesDetails.from_dict(connection_properties_details_model_json)
+        assert connection_properties_details_model != False
+
+        # Construct a model instance of ConnectionPropertiesDetails by calling from_dict on the json representation
+        connection_properties_details_model_dict = ConnectionPropertiesDetails.from_dict(connection_properties_details_model_json).__dict__
+        connection_properties_details_model2 = ConnectionPropertiesDetails(**connection_properties_details_model_dict)
+
+        # Verify the model instances are equivalent
+        assert connection_properties_details_model == connection_properties_details_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        connection_properties_details_model_json2 = connection_properties_details_model.to_dict()
+        assert connection_properties_details_model_json2 == connection_properties_details_model_json
+
+
+class TestModel_ConnectionPropertiesDetailsProperties:
+    """
+    Test Class for ConnectionPropertiesDetailsProperties
+    """
+
+    def test_connection_properties_details_properties_serialization(self):
+        """
+        Test serialization/deserialization for ConnectionPropertiesDetailsProperties
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        connection_properties_details_properties_connection_items_model = {}  # ConnectionPropertiesDetailsPropertiesConnectionItems
+        connection_properties_details_properties_connection_items_model['name'] = 'host'
+        connection_properties_details_properties_connection_items_model['value'] = 'sample_value'
+
+        # Construct a json representation of a ConnectionPropertiesDetailsProperties model
+        connection_properties_details_properties_model_json = {}
+        connection_properties_details_properties_model_json['connection'] = [connection_properties_details_properties_connection_items_model]
+
+        # Construct a model instance of ConnectionPropertiesDetailsProperties by calling from_dict on the json representation
+        connection_properties_details_properties_model = ConnectionPropertiesDetailsProperties.from_dict(connection_properties_details_properties_model_json)
+        assert connection_properties_details_properties_model != False
+
+        # Construct a model instance of ConnectionPropertiesDetailsProperties by calling from_dict on the json representation
+        connection_properties_details_properties_model_dict = ConnectionPropertiesDetailsProperties.from_dict(connection_properties_details_properties_model_json).__dict__
+        connection_properties_details_properties_model2 = ConnectionPropertiesDetailsProperties(**connection_properties_details_properties_model_dict)
+
+        # Verify the model instances are equivalent
+        assert connection_properties_details_properties_model == connection_properties_details_properties_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        connection_properties_details_properties_model_json2 = connection_properties_details_properties_model.to_dict()
+        assert connection_properties_details_properties_model_json2 == connection_properties_details_properties_model_json
+
+
+class TestModel_ConnectionPropertiesDetailsPropertiesConnectionItems:
+    """
+    Test Class for ConnectionPropertiesDetailsPropertiesConnectionItems
+    """
+
+    def test_connection_properties_details_properties_connection_items_serialization(self):
+        """
+        Test serialization/deserialization for ConnectionPropertiesDetailsPropertiesConnectionItems
+        """
+
+        # Construct a json representation of a ConnectionPropertiesDetailsPropertiesConnectionItems model
+        connection_properties_details_properties_connection_items_model_json = {}
+        connection_properties_details_properties_connection_items_model_json['name'] = 'host'
+        connection_properties_details_properties_connection_items_model_json['value'] = 'sample_value'
+
+        # Construct a model instance of ConnectionPropertiesDetailsPropertiesConnectionItems by calling from_dict on the json representation
+        connection_properties_details_properties_connection_items_model = ConnectionPropertiesDetailsPropertiesConnectionItems.from_dict(connection_properties_details_properties_connection_items_model_json)
+        assert connection_properties_details_properties_connection_items_model != False
+
+        # Construct a model instance of ConnectionPropertiesDetailsPropertiesConnectionItems by calling from_dict on the json representation
+        connection_properties_details_properties_connection_items_model_dict = ConnectionPropertiesDetailsPropertiesConnectionItems.from_dict(connection_properties_details_properties_connection_items_model_json).__dict__
+        connection_properties_details_properties_connection_items_model2 = ConnectionPropertiesDetailsPropertiesConnectionItems(**connection_properties_details_properties_connection_items_model_dict)
+
+        # Verify the model instances are equivalent
+        assert connection_properties_details_properties_connection_items_model == connection_properties_details_properties_connection_items_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        connection_properties_details_properties_connection_items_model_json2 = connection_properties_details_properties_connection_items_model.to_dict()
+        assert connection_properties_details_properties_connection_items_model_json2 == connection_properties_details_properties_connection_items_model_json
 
 
 class TestModel_CreateActivateBucketCreatedBody:
@@ -20032,6 +21950,37 @@ class TestModel_DatabaseCatalog:
         assert database_catalog_model_json2 == database_catalog_model_json
 
 
+class TestModel_DatabaseCatalogPrototype:
+    """
+    Test Class for DatabaseCatalogPrototype
+    """
+
+    def test_database_catalog_prototype_serialization(self):
+        """
+        Test serialization/deserialization for DatabaseCatalogPrototype
+        """
+
+        # Construct a json representation of a DatabaseCatalogPrototype model
+        database_catalog_prototype_model_json = {}
+        database_catalog_prototype_model_json['catalog_name'] = 'sampleCatalog'
+        database_catalog_prototype_model_json['catalog_type'] = 'iceberg'
+
+        # Construct a model instance of DatabaseCatalogPrototype by calling from_dict on the json representation
+        database_catalog_prototype_model = DatabaseCatalogPrototype.from_dict(database_catalog_prototype_model_json)
+        assert database_catalog_prototype_model != False
+
+        # Construct a model instance of DatabaseCatalogPrototype by calling from_dict on the json representation
+        database_catalog_prototype_model_dict = DatabaseCatalogPrototype.from_dict(database_catalog_prototype_model_json).__dict__
+        database_catalog_prototype_model2 = DatabaseCatalogPrototype(**database_catalog_prototype_model_dict)
+
+        # Verify the model instances are equivalent
+        assert database_catalog_prototype_model == database_catalog_prototype_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        database_catalog_prototype_model_json2 = database_catalog_prototype_model.to_dict()
+        assert database_catalog_prototype_model_json2 == database_catalog_prototype_model_json
+
+
 class TestModel_DatabaseDetails:
     """
     Test Class for DatabaseDetails
@@ -20042,13 +21991,6 @@ class TestModel_DatabaseDetails:
         Test serialization/deserialization for DatabaseDetails
         """
 
-        # Construct dict forms of any model objects needed in order to build this model.
-
-        database_registration_patch_database_details_database_properties_items_model = {}  # DatabaseRegistrationPatchDatabaseDetailsDatabasePropertiesItems
-        database_registration_patch_database_details_database_properties_items_model['encrypt'] = True
-        database_registration_patch_database_details_database_properties_items_model['key'] = 'abc'
-        database_registration_patch_database_details_database_properties_items_model['value'] = 'xyz'
-
         # Construct a json representation of a DatabaseDetails model
         database_details_model_json = {}
         database_details_model_json['authentication_type'] = 'LDAP'
@@ -20058,8 +22000,8 @@ class TestModel_DatabaseDetails:
         database_details_model_json['broker_authentication_user'] = 'sampleuser'
         database_details_model_json['broker_host'] = 'samplehost'
         database_details_model_json['broker_port'] = 4553
-        database_details_model_json['certificate'] = 'contents of a pem/crt file'
-        database_details_model_json['certificate_extension'] = 'pem/crt'
+        database_details_model_json['certificate'] = 'exampleCertificate'
+        database_details_model_json['certificate_extension'] = 'pem'
         database_details_model_json['connection_method'] = 'basic, apikey'
         database_details_model_json['connection_mode'] = 'service_name'
         database_details_model_json['connection_mode_value'] = 'orclpdb'
@@ -20072,8 +22014,7 @@ class TestModel_DatabaseDetails:
         database_details_model_json['cpd_hostname'] = 'samplecpdhostname'
         database_details_model_json['credentials_key'] = 'eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......'
         database_details_model_json['database_name'] = 'new_database'
-        database_details_model_json['database_properties'] = [database_registration_patch_database_details_database_properties_items_model]
-        database_details_model_json['hostname'] = 'db2@<hostname>.com'
+        database_details_model_json['hostname'] = 'http://db2@localhost:9900.com'
         database_details_model_json['hostname_in_certificate'] = 'samplehostname'
         database_details_model_json['hosts'] = 'abc.com:1234,xyz.com:4321'
         database_details_model_json['informix_server'] = 'ol_informix1410'
@@ -20128,13 +22069,8 @@ class TestModel_DatabaseRegistration:
 
         database_catalog_model = {}  # DatabaseCatalog
         database_catalog_model['catalog_name'] = 'iceberg_data'
-        database_catalog_model['catalog_tags'] = ['catalog_tag_1', 'catalog_tag_2']
+        database_catalog_model['catalog_tags'] = ['tag1', 'tag2']
         database_catalog_model['catalog_type'] = 'iceberg'
-
-        database_registration_patch_database_details_database_properties_items_model = {}  # DatabaseRegistrationPatchDatabaseDetailsDatabasePropertiesItems
-        database_registration_patch_database_details_database_properties_items_model['encrypt'] = True
-        database_registration_patch_database_details_database_properties_items_model['key'] = 'abc'
-        database_registration_patch_database_details_database_properties_items_model['value'] = 'xyz'
 
         database_details_model = {}  # DatabaseDetails
         database_details_model['authentication_type'] = 'LDAP'
@@ -20144,8 +22080,8 @@ class TestModel_DatabaseRegistration:
         database_details_model['broker_authentication_user'] = 'sampleuser'
         database_details_model['broker_host'] = 'samplehost'
         database_details_model['broker_port'] = 4553
-        database_details_model['certificate'] = 'contents of a pem/crt file'
-        database_details_model['certificate_extension'] = 'pem/crt'
+        database_details_model['certificate'] = 'exampleCertificate'
+        database_details_model['certificate_extension'] = 'pem'
         database_details_model['connection_method'] = 'basic, apikey'
         database_details_model['connection_mode'] = 'service_name'
         database_details_model['connection_mode_value'] = 'orclpdb'
@@ -20158,7 +22094,6 @@ class TestModel_DatabaseRegistration:
         database_details_model['cpd_hostname'] = 'samplecpdhostname'
         database_details_model['credentials_key'] = 'eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......'
         database_details_model['database_name'] = 'new_database'
-        database_details_model['database_properties'] = [database_registration_patch_database_details_database_properties_items_model]
         database_details_model['hostname'] = 'netezza://abc.efg.com'
         database_details_model['hostname_in_certificate'] = 'samplehostname'
         database_details_model['hosts'] = 'abc.com:1234,xyz.com:4321'
@@ -20189,17 +22124,17 @@ class TestModel_DatabaseRegistration:
         database_registration_database_properties_items_model['key'] = 'abc'
         database_registration_database_properties_items_model['value'] = 'xyz'
 
-        database_registration_patch_tables_items_model = {}  # DatabaseRegistrationPatchTablesItems
-        database_registration_patch_tables_items_model['created_on'] = '1686792721'
-        database_registration_patch_tables_items_model['file_contents'] = 'sample file content'
-        database_registration_patch_tables_items_model['file_name'] = 'sample file name'
-        database_registration_patch_tables_items_model['schema_name'] = 'customer'
-        database_registration_patch_tables_items_model['table_name'] = 'customer'
+        database_registration_tables_items_model = {}  # DatabaseRegistrationTablesItems
+        database_registration_tables_items_model['created_on'] = '1686792721'
+        database_registration_tables_items_model['file_contents'] = 'qweerty'
+        database_registration_tables_items_model['file_name'] = 'test.json'
+        database_registration_tables_items_model['schema_name'] = 'testschema123'
+        database_registration_tables_items_model['table_name'] = 'customer'
 
         database_registration_topics_items_model = {}  # DatabaseRegistrationTopicsItems
         database_registration_topics_items_model['created_on'] = '1686792721'
-        database_registration_topics_items_model['file_contents'] = 'sample file content'
-        database_registration_topics_items_model['file_name'] = 'sample file name'
+        database_registration_topics_items_model['file_contents'] = 'qweerty'
+        database_registration_topics_items_model['file_name'] = 'test.json'
         database_registration_topics_items_model['topic_name'] = 'customer'
 
         # Construct a json representation of a DatabaseRegistration model
@@ -20207,15 +22142,15 @@ class TestModel_DatabaseRegistration:
         database_registration_model_json['actions'] = ['update', 'delete']
         database_registration_model_json['associated_catalog'] = database_catalog_model
         database_registration_model_json['catalog_name'] = 'sampleCatalog'
-        database_registration_model_json['created_by'] = 'user1@bim.com'
+        database_registration_model_json['created_by'] = 'user1@ibm.com'
         database_registration_model_json['created_on'] = '1686792721'
         database_registration_model_json['database_details'] = database_details_model
         database_registration_model_json['database_display_name'] = 'new_database'
-        database_registration_model_json['database_id'] = 'new_database_id'
+        database_registration_model_json['database_id'] = 'mysql123'
         database_registration_model_json['database_properties'] = [database_registration_database_properties_items_model]
         database_registration_model_json['database_type'] = 'netezza'
-        database_registration_model_json['tables'] = [database_registration_patch_tables_items_model]
         database_registration_model_json['description'] = 'Description of the external database'
+        database_registration_model_json['tables'] = [database_registration_tables_items_model]
         database_registration_model_json['tags'] = ['testdatabase', 'userdatabase']
         database_registration_model_json['topics'] = [database_registration_topics_items_model]
 
@@ -20252,11 +22187,6 @@ class TestModel_DatabaseRegistrationCollection:
         database_catalog_model['catalog_tags'] = ['catalog_tag_1', 'catalog_tag_2']
         database_catalog_model['catalog_type'] = 'hive'
 
-        database_registration_patch_database_details_database_properties_items_model = {}  # DatabaseRegistrationPatchDatabaseDetailsDatabasePropertiesItems
-        database_registration_patch_database_details_database_properties_items_model['encrypt'] = True
-        database_registration_patch_database_details_database_properties_items_model['key'] = 'abc'
-        database_registration_patch_database_details_database_properties_items_model['value'] = 'xyz'
-
         database_details_model = {}  # DatabaseDetails
         database_details_model['authentication_type'] = 'LDAP'
         database_details_model['authentication_value'] = 'LDAP'
@@ -20265,8 +22195,8 @@ class TestModel_DatabaseRegistrationCollection:
         database_details_model['broker_authentication_user'] = 'sampleuser'
         database_details_model['broker_host'] = 'samplehost'
         database_details_model['broker_port'] = 4553
-        database_details_model['certificate'] = 'contents of a pem/crt file'
-        database_details_model['certificate_extension'] = 'pem/crt'
+        database_details_model['certificate'] = 'exampleCertificate'
+        database_details_model['certificate_extension'] = 'pem'
         database_details_model['connection_method'] = 'basic, apikey'
         database_details_model['connection_mode'] = 'service_name'
         database_details_model['connection_mode_value'] = 'orclpdb'
@@ -20279,7 +22209,6 @@ class TestModel_DatabaseRegistrationCollection:
         database_details_model['cpd_hostname'] = 'samplecpdhostname'
         database_details_model['credentials_key'] = 'eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......'
         database_details_model['database_name'] = 'new_database'
-        database_details_model['database_properties'] = [database_registration_patch_database_details_database_properties_items_model]
         database_details_model['hostname'] = 'netezza://ps.fyre.com'
         database_details_model['hostname_in_certificate'] = 'samplehostname'
         database_details_model['hosts'] = 'abc.com:1234,xyz.com:4321'
@@ -20310,17 +22239,17 @@ class TestModel_DatabaseRegistrationCollection:
         database_registration_database_properties_items_model['key'] = 'abc'
         database_registration_database_properties_items_model['value'] = 'xyz'
 
-        database_registration_patch_tables_items_model = {}  # DatabaseRegistrationPatchTablesItems
-        database_registration_patch_tables_items_model['created_on'] = '1686792721'
-        database_registration_patch_tables_items_model['file_contents'] = 'sample file content'
-        database_registration_patch_tables_items_model['file_name'] = 'sample file name'
-        database_registration_patch_tables_items_model['schema_name'] = 'customer'
-        database_registration_patch_tables_items_model['table_name'] = 'customer'
+        database_registration_tables_items_model = {}  # DatabaseRegistrationTablesItems
+        database_registration_tables_items_model['created_on'] = '1686792721'
+        database_registration_tables_items_model['file_contents'] = 'qweerty'
+        database_registration_tables_items_model['file_name'] = 'test.txt'
+        database_registration_tables_items_model['schema_name'] = 'testschema123'
+        database_registration_tables_items_model['table_name'] = 'customer'
 
         database_registration_topics_items_model = {}  # DatabaseRegistrationTopicsItems
         database_registration_topics_items_model['created_on'] = '1686792721'
-        database_registration_topics_items_model['file_contents'] = 'sample file content'
-        database_registration_topics_items_model['file_name'] = 'sample file name'
+        database_registration_topics_items_model['file_contents'] = 'qweerty'
+        database_registration_topics_items_model['file_name'] = 'test.txt'
         database_registration_topics_items_model['topic_name'] = 'customer'
 
         database_registration_model = {}  # DatabaseRegistration
@@ -20331,11 +22260,11 @@ class TestModel_DatabaseRegistrationCollection:
         database_registration_model['created_on'] = '1686792721'
         database_registration_model['database_details'] = database_details_model
         database_registration_model['database_display_name'] = 'new_database'
-        database_registration_model['database_id'] = 'new_database_id'
+        database_registration_model['database_id'] = 'netezza23'
         database_registration_model['database_properties'] = [database_registration_database_properties_items_model]
         database_registration_model['database_type'] = 'netezza'
-        database_registration_model['tables'] = [database_registration_patch_tables_items_model]
         database_registration_model['description'] = 'Description of the external database'
+        database_registration_model['tables'] = [database_registration_tables_items_model]
         database_registration_model['tags'] = ['testdatabase', 'userdatabase']
         database_registration_model['topics'] = [database_registration_topics_items_model]
 
@@ -20424,14 +22353,14 @@ class TestModel_DatabaseRegistrationPatch:
         database_registration_patch_tables_items_model = {}  # DatabaseRegistrationPatchTablesItems
         database_registration_patch_tables_items_model['created_on'] = '1686792721'
         database_registration_patch_tables_items_model['file_contents'] = 'sample file content'
-        database_registration_patch_tables_items_model['file_name'] = 'sample file name'
+        database_registration_patch_tables_items_model['file_name'] = 'test.json'
         database_registration_patch_tables_items_model['schema_name'] = 'customer'
         database_registration_patch_tables_items_model['table_name'] = 'customer'
 
         database_registration_patch_topics_items_model = {}  # DatabaseRegistrationPatchTopicsItems
         database_registration_patch_topics_items_model['created_on'] = '1686792721'
         database_registration_patch_topics_items_model['file_contents'] = 'sample file contents'
-        database_registration_patch_topics_items_model['file_name'] = 'sample file name'
+        database_registration_patch_topics_items_model['file_name'] = 'test.json'
         database_registration_patch_topics_items_model['topic_name'] = 'customer'
 
         # Construct a json representation of a DatabaseRegistrationPatch model
@@ -20441,7 +22370,6 @@ class TestModel_DatabaseRegistrationPatch:
         database_registration_patch_model_json['description'] = 'External database description'
         database_registration_patch_model_json['tables'] = [database_registration_patch_tables_items_model]
         database_registration_patch_model_json['tags'] = ['testdatabase', 'userdatabase']
-        database_registration_patch_model_json['database_properties'] = [database_registration_patch_database_details_database_properties_items_model]
         database_registration_patch_model_json['topics'] = [database_registration_patch_topics_items_model]
 
         # Construct a model instance of DatabaseRegistrationPatch by calling from_dict on the json representation
@@ -20553,7 +22481,7 @@ class TestModel_DatabaseRegistrationPatchTablesItems:
         database_registration_patch_tables_items_model_json = {}
         database_registration_patch_tables_items_model_json['created_on'] = '1686792721'
         database_registration_patch_tables_items_model_json['file_contents'] = 'sample file content'
-        database_registration_patch_tables_items_model_json['file_name'] = 'sample file name'
+        database_registration_patch_tables_items_model_json['file_name'] = 'test.json'
         database_registration_patch_tables_items_model_json['schema_name'] = 'customer'
         database_registration_patch_tables_items_model_json['table_name'] = 'customer'
 
@@ -20587,7 +22515,7 @@ class TestModel_DatabaseRegistrationPatchTopicsItems:
         database_registration_patch_topics_items_model_json = {}
         database_registration_patch_topics_items_model_json['created_on'] = '1686792721'
         database_registration_patch_topics_items_model_json['file_contents'] = 'sample file contents'
-        database_registration_patch_topics_items_model_json['file_name'] = 'sample file name'
+        database_registration_patch_topics_items_model_json['file_name'] = 'test.json'
         database_registration_patch_topics_items_model_json['topic_name'] = 'customer'
 
         # Construct a model instance of DatabaseRegistrationPatchTopicsItems by calling from_dict on the json representation
@@ -20638,6 +22566,40 @@ class TestModel_DatabaseRegistrationPrototypeDatabasePropertiesItems:
         assert database_registration_prototype_database_properties_items_model_json2 == database_registration_prototype_database_properties_items_model_json
 
 
+class TestModel_DatabaseRegistrationTablesItems:
+    """
+    Test Class for DatabaseRegistrationTablesItems
+    """
+
+    def test_database_registration_tables_items_serialization(self):
+        """
+        Test serialization/deserialization for DatabaseRegistrationTablesItems
+        """
+
+        # Construct a json representation of a DatabaseRegistrationTablesItems model
+        database_registration_tables_items_model_json = {}
+        database_registration_tables_items_model_json['created_on'] = '1686792721'
+        database_registration_tables_items_model_json['file_contents'] = 'sample file content'
+        database_registration_tables_items_model_json['file_name'] = 'test.json'
+        database_registration_tables_items_model_json['schema_name'] = 'customer'
+        database_registration_tables_items_model_json['table_name'] = 'customer'
+
+        # Construct a model instance of DatabaseRegistrationTablesItems by calling from_dict on the json representation
+        database_registration_tables_items_model = DatabaseRegistrationTablesItems.from_dict(database_registration_tables_items_model_json)
+        assert database_registration_tables_items_model != False
+
+        # Construct a model instance of DatabaseRegistrationTablesItems by calling from_dict on the json representation
+        database_registration_tables_items_model_dict = DatabaseRegistrationTablesItems.from_dict(database_registration_tables_items_model_json).__dict__
+        database_registration_tables_items_model2 = DatabaseRegistrationTablesItems(**database_registration_tables_items_model_dict)
+
+        # Verify the model instances are equivalent
+        assert database_registration_tables_items_model == database_registration_tables_items_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        database_registration_tables_items_model_json2 = database_registration_tables_items_model.to_dict()
+        assert database_registration_tables_items_model_json2 == database_registration_tables_items_model_json
+
+
 class TestModel_DatabaseRegistrationTopicsItems:
     """
     Test Class for DatabaseRegistrationTopicsItems
@@ -20652,7 +22614,7 @@ class TestModel_DatabaseRegistrationTopicsItems:
         database_registration_topics_items_model_json = {}
         database_registration_topics_items_model_json['created_on'] = '1686792721'
         database_registration_topics_items_model_json['file_contents'] = 'sample file content'
-        database_registration_topics_items_model_json['file_name'] = 'sample file name'
+        database_registration_topics_items_model_json['file_name'] = 'employee.json'
         database_registration_topics_items_model_json['topic_name'] = 'customer'
 
         # Construct a model instance of DatabaseRegistrationTopicsItems by calling from_dict on the json representation
@@ -20692,14 +22654,14 @@ class TestModel_Db2Engine:
         db2_engine_model_json['actions'] = ['update', 'delete']
         db2_engine_model_json['build_version'] = '1.0.3.0.0'
         db2_engine_model_json['created_by'] = '<username>@<domain>.com'
-        db2_engine_model_json['created_on'] = 38
-        db2_engine_model_json['description'] = 'db2 engine for running sql queries'
+        db2_engine_model_json['created_on'] = 0
+        db2_engine_model_json['description'] = 'db2 engine to run sql queries'
         db2_engine_model_json['engine_details'] = db2_engine_details_model
-        db2_engine_model_json['engine_display_name'] = 'sampleEngine'
+        db2_engine_model_json['engine_display_name'] = 'sample-engine'
         db2_engine_model_json['engine_id'] = 'sampleEngine123'
         db2_engine_model_json['host_name'] = 'xyz-db2-01-db2-svc'
         db2_engine_model_json['origin'] = 'ibm'
-        db2_engine_model_json['port'] = 38
+        db2_engine_model_json['port'] = 0
         db2_engine_model_json['status'] = 'REGISTERED'
         db2_engine_model_json['tags'] = ['tag1', 'tag2']
         db2_engine_model_json['type'] = 'db2'
@@ -20733,21 +22695,21 @@ class TestModel_Db2EngineCollection:
         # Construct dict forms of any model objects needed in order to build this model.
 
         db2_engine_details_model = {}  # Db2EngineDetails
-        db2_engine_details_model['connection_string'] = 'jdbc:db2://<hostname>:<port>/<database>'
+        db2_engine_details_model['connection_string'] = 'jdbc:db2://localhost:5480/database'
         db2_engine_details_model['metastore_host'] = 'thrift://mh-connection-string-sample.com'
 
         db2_engine_model = {}  # Db2Engine
-        db2_engine_model['actions'] = ['update', 'delete']
+        db2_engine_model['actions'] = ['create']
         db2_engine_model['build_version'] = '1.0.3.0.0'
         db2_engine_model['created_by'] = 'user@test.com'
         db2_engine_model['created_on'] = 1700322436
-        db2_engine_model['description'] = 'db2 engine for running sql queries'
+        db2_engine_model['description'] = 'db2 engine to run sql queries'
         db2_engine_model['engine_details'] = db2_engine_details_model
         db2_engine_model['engine_display_name'] = 'db2'
         db2_engine_model['engine_id'] = 'db2505'
         db2_engine_model['host_name'] = 'xyz-db2-01-db2-svc'
         db2_engine_model['origin'] = 'external'
-        db2_engine_model['port'] = 38
+        db2_engine_model['port'] = 0
         db2_engine_model['status'] = 'REGISTERED'
         db2_engine_model['tags'] = ['tag1', 'tag2']
         db2_engine_model['type'] = 'db2'
@@ -20865,34 +22827,66 @@ class TestModel_Db2EnginePatch:
         assert db2_engine_patch_model_json2 == db2_engine_patch_model_json
 
 
-class TestModel_DisplayNameInfoResponse:
+class TestModel_Details:
     """
-    Test Class for DisplayNameInfoResponse
+    Test Class for Details
     """
 
-    def test_display_name_info_response_serialization(self):
+    def test_details_serialization(self):
         """
-        Test serialization/deserialization for DisplayNameInfoResponse
+        Test serialization/deserialization for Details
         """
 
-        # Construct a json representation of a DisplayNameInfoResponse model
-        display_name_info_response_model_json = {}
-        display_name_info_response_model_json['display_name'] = 'Instance Name'
+        # Construct dict forms of any model objects needed in order to build this model.
 
-        # Construct a model instance of DisplayNameInfoResponse by calling from_dict on the json representation
-        display_name_info_response_model = DisplayNameInfoResponse.from_dict(display_name_info_response_model_json)
-        assert display_name_info_response_model != False
+        external_details_model = {}  # ExternalDetails
+        external_details_model['port'] = 4553
+        external_details_model['hostname'] = 'external hostname'
 
-        # Construct a model instance of DisplayNameInfoResponse by calling from_dict on the json representation
-        display_name_info_response_model_dict = DisplayNameInfoResponse.from_dict(display_name_info_response_model_json).__dict__
-        display_name_info_response_model2 = DisplayNameInfoResponse(**display_name_info_response_model_dict)
+        internal_details_model = {}  # InternalDetails
+        internal_details_model['port'] = 4553
+        internal_details_model['hostname'] = 'internal hostname'
+
+        jdbc_thrift_urls_model = {}  # JdbcThriftUrls
+        jdbc_thrift_urls_model['external'] = 'thrift://username:password@metastore1-internal-hostname:9083'
+        jdbc_thrift_urls_model['internal'] = 'thrift://username:password@metastore1-internal-hostname:9083'
+
+        # Construct a json representation of a Details model
+        details_model_json = {}
+        details_model_json['ca_certificate'] = 'sample ca certificate'
+        details_model_json['default_configs'] = {'key1': 'testString'}
+        details_model_json['external'] = external_details_model
+        details_model_json['grpc_api_endpoint'] = internal_details_model
+        details_model_json['hostname'] = 'sample hostname'
+        details_model_json['id'] = 'sample ID'
+        details_model_json['instance_crn'] = 'sample instance CRN'
+        details_model_json['instance_id'] = 'sample instance ID'
+        details_model_json['internal'] = internal_details_model
+        details_model_json['jdbc_class'] = 'com.facebook.presto.jdbc.PrestoDriver'
+        details_model_json['jdbc_urls'] = jdbc_thrift_urls_model
+        details_model_json['name'] = 'sample name'
+        details_model_json['port'] = 4553
+        details_model_json['rest_api_endpoint'] = internal_details_model
+        details_model_json['spark_engine_endpoint'] = 'Spark Engine endpoint'
+        details_model_json['ssl_certificate'] = 'sample ssl certificate'
+        details_model_json['thrift_urls'] = jdbc_thrift_urls_model
+        details_model_json['version'] = 'java'
+        details_model_json['watsonx_data_application_endpoint'] = 'sample application end point'
+
+        # Construct a model instance of Details by calling from_dict on the json representation
+        details_model = Details.from_dict(details_model_json)
+        assert details_model != False
+
+        # Construct a model instance of Details by calling from_dict on the json representation
+        details_model_dict = Details.from_dict(details_model_json).__dict__
+        details_model2 = Details(**details_model_dict)
 
         # Verify the model instances are equivalent
-        assert display_name_info_response_model == display_name_info_response_model2
+        assert details_model == details_model2
 
         # Convert model instance back to dict and verify no loss of data
-        display_name_info_response_model_json2 = display_name_info_response_model.to_dict()
-        assert display_name_info_response_model_json2 == display_name_info_response_model_json
+        details_model_json2 = details_model.to_dict()
+        assert details_model_json2 == details_model_json
 
 
 class TestModel_Driver:
@@ -21185,6 +23179,150 @@ class TestModel_EnginePropertiesOaiGenConfiguration:
         assert engine_properties_oai_gen_configuration_model_json2 == engine_properties_oai_gen_configuration_model_json
 
 
+class TestModel_EngineServiceDetailsCollection:
+    """
+    Test Class for EngineServiceDetailsCollection
+    """
+
+    def test_engine_service_details_collection_serialization(self):
+        """
+        Test serialization/deserialization for EngineServiceDetailsCollection
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        external_details_model = {}  # ExternalDetails
+        external_details_model['port'] = 4553
+        external_details_model['hostname'] = 'external hostname'
+
+        internal_details_model = {}  # InternalDetails
+        internal_details_model['port'] = 4553
+        internal_details_model['hostname'] = 'internal hostname'
+
+        jdbc_thrift_urls_model = {}  # JdbcThriftUrls
+        jdbc_thrift_urls_model['external'] = 'thrift://username:password@metastore1-internal-hostname:9083'
+        jdbc_thrift_urls_model['internal'] = 'thrift://username:password@metastore1-internal-hostname:9083'
+
+        details_model = {}  # Details
+        details_model['ca_certificate'] = 'sample ca certificate'
+        details_model['default_configs'] = {'key1': 'testString'}
+        details_model['external'] = external_details_model
+        details_model['grpc_api_endpoint'] = internal_details_model
+        details_model['hostname'] = 'sample hostname'
+        details_model['id'] = 'sample ID'
+        details_model['instance_crn'] = 'sample instance CRN'
+        details_model['instance_id'] = 'sample instance ID'
+        details_model['internal'] = internal_details_model
+        details_model['jdbc_class'] = 'com.facebook.presto.jdbc.PrestoDriver'
+        details_model['jdbc_urls'] = jdbc_thrift_urls_model
+        details_model['name'] = 'sample name'
+        details_model['port'] = 4553
+        details_model['rest_api_endpoint'] = internal_details_model
+        details_model['spark_engine_endpoint'] = 'Spark Engine endpoint'
+        details_model['ssl_certificate'] = 'sample ssl certificate'
+        details_model['thrift_urls'] = jdbc_thrift_urls_model
+        details_model['version'] = 'java'
+        details_model['watsonx_data_application_endpoint'] = 'sample application end point'
+
+        # Construct a json representation of a EngineServiceDetailsCollection model
+        engine_service_details_collection_model_json = {}
+        engine_service_details_collection_model_json['details'] = [details_model]
+        engine_service_details_collection_model_json['type'] = 'presto'
+
+        # Construct a model instance of EngineServiceDetailsCollection by calling from_dict on the json representation
+        engine_service_details_collection_model = EngineServiceDetailsCollection.from_dict(engine_service_details_collection_model_json)
+        assert engine_service_details_collection_model != False
+
+        # Construct a model instance of EngineServiceDetailsCollection by calling from_dict on the json representation
+        engine_service_details_collection_model_dict = EngineServiceDetailsCollection.from_dict(engine_service_details_collection_model_json).__dict__
+        engine_service_details_collection_model2 = EngineServiceDetailsCollection(**engine_service_details_collection_model_dict)
+
+        # Verify the model instances are equivalent
+        assert engine_service_details_collection_model == engine_service_details_collection_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        engine_service_details_collection_model_json2 = engine_service_details_collection_model.to_dict()
+        assert engine_service_details_collection_model_json2 == engine_service_details_collection_model_json
+
+
+class TestModel_EnginesServicesDetails:
+    """
+    Test Class for EnginesServicesDetails
+    """
+
+    def test_engines_services_details_serialization(self):
+        """
+        Test serialization/deserialization for EnginesServicesDetails
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        external_details_model = {}  # ExternalDetails
+        external_details_model['port'] = 4553
+        external_details_model['hostname'] = 'external hostname'
+
+        internal_details_model = {}  # InternalDetails
+        internal_details_model['port'] = 4553
+        internal_details_model['hostname'] = 'internal hostname'
+
+        jdbc_thrift_urls_model = {}  # JdbcThriftUrls
+        jdbc_thrift_urls_model['external'] = 'thrift://username:password@metastore1-internal-hostname:9083'
+        jdbc_thrift_urls_model['internal'] = 'thrift://username:password@metastore1-internal-hostname:9083'
+
+        details_model = {}  # Details
+        details_model['ca_certificate'] = 'sample ca certificate'
+        details_model['default_configs'] = {'key1': 'testString'}
+        details_model['external'] = external_details_model
+        details_model['grpc_api_endpoint'] = internal_details_model
+        details_model['hostname'] = 'sample hostname'
+        details_model['id'] = 'sample ID'
+        details_model['instance_crn'] = 'sample instance CRN'
+        details_model['instance_id'] = 'sample instance ID'
+        details_model['internal'] = internal_details_model
+        details_model['jdbc_class'] = 'com.facebook.presto.jdbc.PrestoDriver'
+        details_model['jdbc_urls'] = jdbc_thrift_urls_model
+        details_model['name'] = 'sample name'
+        details_model['port'] = 4553
+        details_model['rest_api_endpoint'] = internal_details_model
+        details_model['spark_engine_endpoint'] = 'Spark Engine endpoint'
+        details_model['ssl_certificate'] = 'sample ssl certificate'
+        details_model['thrift_urls'] = jdbc_thrift_urls_model
+        details_model['version'] = 'java'
+        details_model['watsonx_data_application_endpoint'] = 'sample application end point'
+
+        connection_properties_details_properties_connection_items_model = {}  # ConnectionPropertiesDetailsPropertiesConnectionItems
+        connection_properties_details_properties_connection_items_model['name'] = 'host'
+        connection_properties_details_properties_connection_items_model['value'] = 'sample_value'
+
+        connection_properties_details_properties_model = {}  # ConnectionPropertiesDetailsProperties
+        connection_properties_details_properties_model['connection'] = [connection_properties_details_properties_connection_items_model]
+
+        connection_properties_details_model = {}  # ConnectionPropertiesDetails
+        connection_properties_details_model['connection_name'] = 'presto-01'
+        connection_properties_details_model['details'] = details_model
+        connection_properties_details_model['properties'] = connection_properties_details_properties_model
+        connection_properties_details_model['type'] = 'presto'
+
+        # Construct a json representation of a EnginesServicesDetails model
+        engines_services_details_model_json = {}
+        engines_services_details_model_json['engines_services'] = [connection_properties_details_model]
+
+        # Construct a model instance of EnginesServicesDetails by calling from_dict on the json representation
+        engines_services_details_model = EnginesServicesDetails.from_dict(engines_services_details_model_json)
+        assert engines_services_details_model != False
+
+        # Construct a model instance of EnginesServicesDetails by calling from_dict on the json representation
+        engines_services_details_model_dict = EnginesServicesDetails.from_dict(engines_services_details_model_json).__dict__
+        engines_services_details_model2 = EnginesServicesDetails(**engines_services_details_model_dict)
+
+        # Verify the model instances are equivalent
+        assert engines_services_details_model == engines_services_details_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        engines_services_details_model_json2 = engines_services_details_model.to_dict()
+        assert engines_services_details_model_json2 == engines_services_details_model_json
+
+
 class TestModel_EnrichmentAsset:
     """
     Test Class for EnrichmentAsset
@@ -21316,6 +23454,173 @@ class TestModel_ExecuteQueryCreatedBody:
         # Convert model instance back to dict and verify no loss of data
         execute_query_created_body_model_json2 = execute_query_created_body_model.to_dict()
         assert execute_query_created_body_model_json2 == execute_query_created_body_model_json
+
+
+class TestModel_ExternalDetails:
+    """
+    Test Class for ExternalDetails
+    """
+
+    def test_external_details_serialization(self):
+        """
+        Test serialization/deserialization for ExternalDetails
+        """
+
+        # Construct a json representation of a ExternalDetails model
+        external_details_model_json = {}
+        external_details_model_json['port'] = 4553
+        external_details_model_json['hostname'] = 'external hostname'
+
+        # Construct a model instance of ExternalDetails by calling from_dict on the json representation
+        external_details_model = ExternalDetails.from_dict(external_details_model_json)
+        assert external_details_model != False
+
+        # Construct a model instance of ExternalDetails by calling from_dict on the json representation
+        external_details_model_dict = ExternalDetails.from_dict(external_details_model_json).__dict__
+        external_details_model2 = ExternalDetails(**external_details_model_dict)
+
+        # Verify the model instances are equivalent
+        assert external_details_model == external_details_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        external_details_model_json2 = external_details_model.to_dict()
+        assert external_details_model_json2 == external_details_model_json
+
+
+class TestModel_GenerateBenchmarkReportOKBody:
+    """
+    Test Class for GenerateBenchmarkReportOKBody
+    """
+
+    def test_generate_benchmark_report_ok_body_serialization(self):
+        """
+        Test serialization/deserialization for GenerateBenchmarkReportOKBody
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        generate_benchmark_report_ok_body_response_model = {}  # GenerateBenchmarkReportOKBodyResponse
+        generate_benchmark_report_ok_body_response_model['message'] = 'bucket benchmarking is in progress.Trigger /generate_benchmark_report/status?req_id=<xx> for the status'
+        generate_benchmark_report_ok_body_response_model['req_id'] = 'c3a3dbd4-98f8-4268-9128-12339ca8566b'
+        generate_benchmark_report_ok_body_response_model['status'] = 'success'
+
+        # Construct a json representation of a GenerateBenchmarkReportOKBody model
+        generate_benchmark_report_ok_body_model_json = {}
+        generate_benchmark_report_ok_body_model_json['response'] = generate_benchmark_report_ok_body_response_model
+
+        # Construct a model instance of GenerateBenchmarkReportOKBody by calling from_dict on the json representation
+        generate_benchmark_report_ok_body_model = GenerateBenchmarkReportOKBody.from_dict(generate_benchmark_report_ok_body_model_json)
+        assert generate_benchmark_report_ok_body_model != False
+
+        # Construct a model instance of GenerateBenchmarkReportOKBody by calling from_dict on the json representation
+        generate_benchmark_report_ok_body_model_dict = GenerateBenchmarkReportOKBody.from_dict(generate_benchmark_report_ok_body_model_json).__dict__
+        generate_benchmark_report_ok_body_model2 = GenerateBenchmarkReportOKBody(**generate_benchmark_report_ok_body_model_dict)
+
+        # Verify the model instances are equivalent
+        assert generate_benchmark_report_ok_body_model == generate_benchmark_report_ok_body_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        generate_benchmark_report_ok_body_model_json2 = generate_benchmark_report_ok_body_model.to_dict()
+        assert generate_benchmark_report_ok_body_model_json2 == generate_benchmark_report_ok_body_model_json
+
+
+class TestModel_GenerateBenchmarkReportOKBodyResponse:
+    """
+    Test Class for GenerateBenchmarkReportOKBodyResponse
+    """
+
+    def test_generate_benchmark_report_ok_body_response_serialization(self):
+        """
+        Test serialization/deserialization for GenerateBenchmarkReportOKBodyResponse
+        """
+
+        # Construct a json representation of a GenerateBenchmarkReportOKBodyResponse model
+        generate_benchmark_report_ok_body_response_model_json = {}
+        generate_benchmark_report_ok_body_response_model_json['message'] = 'testString'
+        generate_benchmark_report_ok_body_response_model_json['req_id'] = 'testString'
+        generate_benchmark_report_ok_body_response_model_json['status'] = 'testString'
+
+        # Construct a model instance of GenerateBenchmarkReportOKBodyResponse by calling from_dict on the json representation
+        generate_benchmark_report_ok_body_response_model = GenerateBenchmarkReportOKBodyResponse.from_dict(generate_benchmark_report_ok_body_response_model_json)
+        assert generate_benchmark_report_ok_body_response_model != False
+
+        # Construct a model instance of GenerateBenchmarkReportOKBodyResponse by calling from_dict on the json representation
+        generate_benchmark_report_ok_body_response_model_dict = GenerateBenchmarkReportOKBodyResponse.from_dict(generate_benchmark_report_ok_body_response_model_json).__dict__
+        generate_benchmark_report_ok_body_response_model2 = GenerateBenchmarkReportOKBodyResponse(**generate_benchmark_report_ok_body_response_model_dict)
+
+        # Verify the model instances are equivalent
+        assert generate_benchmark_report_ok_body_response_model == generate_benchmark_report_ok_body_response_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        generate_benchmark_report_ok_body_response_model_json2 = generate_benchmark_report_ok_body_response_model.to_dict()
+        assert generate_benchmark_report_ok_body_response_model_json2 == generate_benchmark_report_ok_body_response_model_json
+
+
+class TestModel_GenerateEngineDumpOKBody:
+    """
+    Test Class for GenerateEngineDumpOKBody
+    """
+
+    def test_generate_engine_dump_ok_body_serialization(self):
+        """
+        Test serialization/deserialization for GenerateEngineDumpOKBody
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        generate_engine_dump_ok_body_response_model = {}  # GenerateEngineDumpOKBodyResponse
+        generate_engine_dump_ok_body_response_model['message'] = 'Dump creation trigerred for the pod <pod name>'
+        generate_engine_dump_ok_body_response_model['status'] = 'success'
+
+        # Construct a json representation of a GenerateEngineDumpOKBody model
+        generate_engine_dump_ok_body_model_json = {}
+        generate_engine_dump_ok_body_model_json['response'] = generate_engine_dump_ok_body_response_model
+
+        # Construct a model instance of GenerateEngineDumpOKBody by calling from_dict on the json representation
+        generate_engine_dump_ok_body_model = GenerateEngineDumpOKBody.from_dict(generate_engine_dump_ok_body_model_json)
+        assert generate_engine_dump_ok_body_model != False
+
+        # Construct a model instance of GenerateEngineDumpOKBody by calling from_dict on the json representation
+        generate_engine_dump_ok_body_model_dict = GenerateEngineDumpOKBody.from_dict(generate_engine_dump_ok_body_model_json).__dict__
+        generate_engine_dump_ok_body_model2 = GenerateEngineDumpOKBody(**generate_engine_dump_ok_body_model_dict)
+
+        # Verify the model instances are equivalent
+        assert generate_engine_dump_ok_body_model == generate_engine_dump_ok_body_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        generate_engine_dump_ok_body_model_json2 = generate_engine_dump_ok_body_model.to_dict()
+        assert generate_engine_dump_ok_body_model_json2 == generate_engine_dump_ok_body_model_json
+
+
+class TestModel_GenerateEngineDumpOKBodyResponse:
+    """
+    Test Class for GenerateEngineDumpOKBodyResponse
+    """
+
+    def test_generate_engine_dump_ok_body_response_serialization(self):
+        """
+        Test serialization/deserialization for GenerateEngineDumpOKBodyResponse
+        """
+
+        # Construct a json representation of a GenerateEngineDumpOKBodyResponse model
+        generate_engine_dump_ok_body_response_model_json = {}
+        generate_engine_dump_ok_body_response_model_json['message'] = 'testString'
+        generate_engine_dump_ok_body_response_model_json['status'] = 'testString'
+
+        # Construct a model instance of GenerateEngineDumpOKBodyResponse by calling from_dict on the json representation
+        generate_engine_dump_ok_body_response_model = GenerateEngineDumpOKBodyResponse.from_dict(generate_engine_dump_ok_body_response_model_json)
+        assert generate_engine_dump_ok_body_response_model != False
+
+        # Construct a model instance of GenerateEngineDumpOKBodyResponse by calling from_dict on the json representation
+        generate_engine_dump_ok_body_response_model_dict = GenerateEngineDumpOKBodyResponse.from_dict(generate_engine_dump_ok_body_response_model_json).__dict__
+        generate_engine_dump_ok_body_response_model2 = GenerateEngineDumpOKBodyResponse(**generate_engine_dump_ok_body_response_model_dict)
+
+        # Verify the model instances are equivalent
+        assert generate_engine_dump_ok_body_response_model == generate_engine_dump_ok_body_response_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        generate_engine_dump_ok_body_response_model_json2 = generate_engine_dump_ok_body_response_model.to_dict()
+        assert generate_engine_dump_ok_body_response_model_json2 == generate_engine_dump_ok_body_response_model_json
 
 
 class TestModel_GlossaryObject:
@@ -21706,19 +24011,24 @@ class TestModel_Integration:
 
         # Construct a json representation of a Integration model
         integration_model_json = {}
+        integration_model_json['access_token'] = 'accessToken'
         integration_model_json['apikey'] = 'apikey'
-        integration_model_json['config_properties'] = 'ikc-env.password=ibmlhenc__0001__uMkFATDDZNnxJ7z6BA/QqA==\\nikc-env.url=ikc\\nikc-enabled-catalogs=\\nikc-username=\\nlh-unique-identifier=1711796957622126\\nlh-crn=1711796957622126'
+        integration_model_json['auth_url'] = 'https://abc.ibm.com'
+        integration_model_json['config_properties'] = 'ikc-env.password=ibm-abcefghijklmno==\\nikc-env.url=ikc\\nikc-enabled-catalogs=\\nikc-username=\\nlh-unique-identifier=1711796957622126\\nlh-crn=1711796957622126'
+        integration_model_json['cross_account_integration'] = True
         integration_model_json['enable_data_policy_within_wxd'] = False
         integration_model_json['governance_properties'] = 'query-governance.name=external'
-        integration_model_json['integration_id'] = 'presto01'
-        integration_model_json['modified_at'] = 38
-        integration_model_json['modified_by'] = '<username>@<domain>.com'
+        integration_model_json['ikc_user_account_id'] = 'abcdefghijklmnopqrstuvwxyz'
+        integration_model_json['integration_id'] = 'ikc001'
+        integration_model_json['manta_url'] = 'https://abcd.com/gov_lineage/v2/lineage_events/openlineage'
+        integration_model_json['modified_at'] = 123456789
+        integration_model_json['modified_by'] = 'username@email.com'
         integration_model_json['password'] = 'password'
         integration_model_json['resource'] = 'presto01'
         integration_model_json['service_type'] = 'ikc'
         integration_model_json['state'] = 'active'
         integration_model_json['storage_catalogs'] = ['iceberg_data', 'hive_data']
-        integration_model_json['url'] = 'ikc.url'
+        integration_model_json['url'] = 'http://abcd.efgh.com:9876/'
         integration_model_json['username'] = 'username@email.com'
 
         # Construct a model instance of Integration by calling from_dict on the json representation
@@ -21750,11 +24060,16 @@ class TestModel_IntegrationCollection:
         # Construct dict forms of any model objects needed in order to build this model.
 
         integration_model = {}  # Integration
+        integration_model['access_token'] = 'accessToken'
         integration_model['apikey'] = 'apikey'
+        integration_model['auth_url'] = 'https://abc.ibm.com'
         integration_model['config_properties'] = 'ikc-env.password=ibmlhenc__0001__uMkFATDDZNnxJ7z6BA/QqA==\\\\nikc-env.url=ikc\\\\nikc-username=\\\\nikc-enabled-catalogs=\\\\nlh-unique-identifier=1711796957622126\\\\nlh-crn=1711796957622126'
+        integration_model['cross_account_integration'] = True
         integration_model['enable_data_policy_within_wxd'] = False
         integration_model['governance_properties'] = 'query-governance.name=external'
+        integration_model['ikc_user_account_id'] = 'abcdefghijklmnopqrstuvwxyz'
         integration_model['integration_id'] = 'ikc543'
+        integration_model['manta_url'] = 'https://abcd.com/gov_lineage/v2/lineage_events/openlineage'
         integration_model['modified_at'] = 1716878292
         integration_model['modified_by'] = 'admin'
         integration_model['password'] = 'password'
@@ -21762,7 +24077,7 @@ class TestModel_IntegrationCollection:
         integration_model['service_type'] = 'ikc'
         integration_model['state'] = 'active'
         integration_model['storage_catalogs'] = ['iceberg_data', 'hive_data']
-        integration_model['url'] = 'ikc.url'
+        integration_model['url'] = 'http://abcd.efgh.com:9876/'
         integration_model['username'] = 'admin'
 
         # Construct a json representation of a IntegrationCollection model
@@ -21797,12 +24112,16 @@ class TestModel_IntegrationPatch:
 
         # Construct a json representation of a IntegrationPatch model
         integration_patch_model_json = {}
+        integration_patch_model_json['access_token'] = 'uiOO90kklop'
         integration_patch_model_json['apikey'] = 'apikey'
+        integration_patch_model_json['cross_account_integration'] = False
         integration_patch_model_json['enable_data_policy_within_wxd'] = False
+        integration_patch_model_json['ikc_user_account_id'] = 'abcdefghijklmnopqrstuvwxyz'
         integration_patch_model_json['password'] = 'password'
         integration_patch_model_json['resource'] = 'presto01'
+        integration_patch_model_json['state'] = 'active'
         integration_patch_model_json['storage_catalogs'] = ['iceberg_data', 'hive_data']
-        integration_patch_model_json['url'] = 'ikc.url'
+        integration_patch_model_json['url'] = 'http://abcd.efgh.com:9876/'
         integration_patch_model_json['username'] = 'username@email.com'
 
         # Construct a model instance of IntegrationPatch by calling from_dict on the json representation
@@ -21819,6 +24138,68 @@ class TestModel_IntegrationPatch:
         # Convert model instance back to dict and verify no loss of data
         integration_patch_model_json2 = integration_patch_model.to_dict()
         assert integration_patch_model_json2 == integration_patch_model_json
+
+
+class TestModel_InternalDetails:
+    """
+    Test Class for InternalDetails
+    """
+
+    def test_internal_details_serialization(self):
+        """
+        Test serialization/deserialization for InternalDetails
+        """
+
+        # Construct a json representation of a InternalDetails model
+        internal_details_model_json = {}
+        internal_details_model_json['port'] = 4553
+        internal_details_model_json['hostname'] = 'internal hostname'
+
+        # Construct a model instance of InternalDetails by calling from_dict on the json representation
+        internal_details_model = InternalDetails.from_dict(internal_details_model_json)
+        assert internal_details_model != False
+
+        # Construct a model instance of InternalDetails by calling from_dict on the json representation
+        internal_details_model_dict = InternalDetails.from_dict(internal_details_model_json).__dict__
+        internal_details_model2 = InternalDetails(**internal_details_model_dict)
+
+        # Verify the model instances are equivalent
+        assert internal_details_model == internal_details_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        internal_details_model_json2 = internal_details_model.to_dict()
+        assert internal_details_model_json2 == internal_details_model_json
+
+
+class TestModel_JdbcThriftUrls:
+    """
+    Test Class for JdbcThriftUrls
+    """
+
+    def test_jdbc_thrift_urls_serialization(self):
+        """
+        Test serialization/deserialization for JdbcThriftUrls
+        """
+
+        # Construct a json representation of a JdbcThriftUrls model
+        jdbc_thrift_urls_model_json = {}
+        jdbc_thrift_urls_model_json['external'] = 'thrift://username:password@metastore1-internal-hostname:9083'
+        jdbc_thrift_urls_model_json['internal'] = 'thrift://username:password@metastore1-internal-hostname:9083'
+
+        # Construct a model instance of JdbcThriftUrls by calling from_dict on the json representation
+        jdbc_thrift_urls_model = JdbcThriftUrls.from_dict(jdbc_thrift_urls_model_json)
+        assert jdbc_thrift_urls_model != False
+
+        # Construct a model instance of JdbcThriftUrls by calling from_dict on the json representation
+        jdbc_thrift_urls_model_dict = JdbcThriftUrls.from_dict(jdbc_thrift_urls_model_json).__dict__
+        jdbc_thrift_urls_model2 = JdbcThriftUrls(**jdbc_thrift_urls_model_dict)
+
+        # Verify the model instances are equivalent
+        assert jdbc_thrift_urls_model == jdbc_thrift_urls_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        jdbc_thrift_urls_model_json2 = jdbc_thrift_urls_model.to_dict()
+        assert jdbc_thrift_urls_model_json2 == jdbc_thrift_urls_model_json
 
 
 class TestModel_ListSchemasOKBody:
@@ -21874,13 +24255,18 @@ class TestModel_ListSparkVersionsOKBody:
         success_response_model['message'] = 'List spark versions'
         success_response_model['message_code'] = 'success'
 
-        display_name_info_response_model = {}  # DisplayNameInfoResponse
-        display_name_info_response_model['display_name'] = '3.3'
+        spark_versions_info_response_model = {}  # SparkVersionsInfoResponse
+        spark_versions_info_response_model['display_name'] = 'Instance Name'
+        spark_versions_info_response_model['value'] = 'Instance Name'
+
+        spark_versions_model = {}  # SparkVersions
+        spark_versions_model['cpp'] = [spark_versions_info_response_model]
+        spark_versions_model['java'] = [spark_versions_info_response_model]
 
         # Construct a json representation of a ListSparkVersionsOKBody model
         list_spark_versions_ok_body_model_json = {}
         list_spark_versions_ok_body_model_json['response'] = success_response_model
-        list_spark_versions_ok_body_model_json['spark_versions'] = [display_name_info_response_model]
+        list_spark_versions_ok_body_model_json['spark_versions'] = [spark_versions_model]
 
         # Construct a model instance of ListSparkVersionsOKBody by calling from_dict on the json representation
         list_spark_versions_ok_body_model = ListSparkVersionsOKBody.from_dict(list_spark_versions_ok_body_model_json)
@@ -21896,6 +24282,37 @@ class TestModel_ListSparkVersionsOKBody:
         # Convert model instance back to dict and verify no loss of data
         list_spark_versions_ok_body_model_json2 = list_spark_versions_ok_body_model.to_dict()
         assert list_spark_versions_ok_body_model_json2 == list_spark_versions_ok_body_model_json
+
+
+class TestModel_LoadTableResponse:
+    """
+    Test Class for LoadTableResponse
+    """
+
+    def test_load_table_response_serialization(self):
+        """
+        Test serialization/deserialization for LoadTableResponse
+        """
+
+        # Construct a json representation of a LoadTableResponse model
+        load_table_response_model_json = {}
+        load_table_response_model_json['metadata_location'] = 's3a://bucketname/path/to/table/metadata_location/_delta_log'
+        load_table_response_model_json['table_path'] = 's3a://bucketname/path/to/table'
+
+        # Construct a model instance of LoadTableResponse by calling from_dict on the json representation
+        load_table_response_model = LoadTableResponse.from_dict(load_table_response_model_json)
+        assert load_table_response_model != False
+
+        # Construct a model instance of LoadTableResponse by calling from_dict on the json representation
+        load_table_response_model_dict = LoadTableResponse.from_dict(load_table_response_model_json).__dict__
+        load_table_response_model2 = LoadTableResponse(**load_table_response_model_dict)
+
+        # Verify the model instances are equivalent
+        assert load_table_response_model == load_table_response_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        load_table_response_model_json2 = load_table_response_model.to_dict()
+        assert load_table_response_model_json2 == load_table_response_model_json
 
 
 class TestModel_MilvusDatabaseCollections:
@@ -21953,14 +24370,14 @@ class TestModel_MilvusService:
         milvus_service_model_json['bucket_name'] = 'Sample bucket name'
         milvus_service_model_json['bucket_type'] = 'Sample bucket type'
         milvus_service_model_json['created_by'] = '<username>@<domain>.com'
-        milvus_service_model_json['created_on'] = 38
+        milvus_service_model_json['created_on'] = 1
         milvus_service_model_json['description'] = 'milvus service for running sql queries'
         milvus_service_model_json['endpoint'] = 'Sample bucket type'
         milvus_service_model_json['grpc_host'] = 'example.grpc.host'
-        milvus_service_model_json['grpc_port'] = 26
+        milvus_service_model_json['grpc_port'] = 1
         milvus_service_model_json['host_name'] = 'sampleMilvus'
         milvus_service_model_json['https_host'] = 'example.https.host'
-        milvus_service_model_json['https_port'] = 26
+        milvus_service_model_json['https_port'] = 1
         milvus_service_model_json['origin'] = 'native'
         milvus_service_model_json['root_path'] = 'Sample path'
         milvus_service_model_json['secret_key'] = 'Sample bucket secret access key'
@@ -21986,6 +24403,39 @@ class TestModel_MilvusService:
         # Convert model instance back to dict and verify no loss of data
         milvus_service_model_json2 = milvus_service_model.to_dict()
         assert milvus_service_model_json2 == milvus_service_model_json
+
+
+class TestModel_MilvusServiceBucketPatch:
+    """
+    Test Class for MilvusServiceBucketPatch
+    """
+
+    def test_milvus_service_bucket_patch_serialization(self):
+        """
+        Test serialization/deserialization for MilvusServiceBucketPatch
+        """
+
+        # Construct a json representation of a MilvusServiceBucketPatch model
+        milvus_service_bucket_patch_model_json = {}
+        milvus_service_bucket_patch_model_json['bucket_name'] = 'Sample bucket name'
+        milvus_service_bucket_patch_model_json['managed_by'] = 'customer'
+        milvus_service_bucket_patch_model_json['root_path'] = 'Sample path'
+        milvus_service_bucket_patch_model_json['tshirt_size'] = 'small'
+
+        # Construct a model instance of MilvusServiceBucketPatch by calling from_dict on the json representation
+        milvus_service_bucket_patch_model = MilvusServiceBucketPatch.from_dict(milvus_service_bucket_patch_model_json)
+        assert milvus_service_bucket_patch_model != False
+
+        # Construct a model instance of MilvusServiceBucketPatch by calling from_dict on the json representation
+        milvus_service_bucket_patch_model_dict = MilvusServiceBucketPatch.from_dict(milvus_service_bucket_patch_model_json).__dict__
+        milvus_service_bucket_patch_model2 = MilvusServiceBucketPatch(**milvus_service_bucket_patch_model_dict)
+
+        # Verify the model instances are equivalent
+        assert milvus_service_bucket_patch_model == milvus_service_bucket_patch_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        milvus_service_bucket_patch_model_json2 = milvus_service_bucket_patch_model.to_dict()
+        assert milvus_service_bucket_patch_model_json2 == milvus_service_bucket_patch_model_json
 
 
 class TestModel_MilvusServiceCollection:
@@ -22057,7 +24507,7 @@ class TestModel_MilvusServiceDatabases:
 
         # Construct a json representation of a MilvusServiceDatabases model
         milvus_service_databases_model_json = {}
-        milvus_service_databases_model_json['databases'] = ['default']
+        milvus_service_databases_model_json['milvus_databases'] = ['["default","new"]']
 
         # Construct a model instance of MilvusServiceDatabases by calling from_dict on the json representation
         milvus_service_databases_model = MilvusServiceDatabases.from_dict(milvus_service_databases_model_json)
@@ -22119,7 +24569,7 @@ class TestModel_Milvusdbcollection:
 
         # Construct a json representation of a Milvusdbcollection model
         milvusdbcollection_model_json = {}
-        milvusdbcollection_model_json['collection_id'] = 26
+        milvusdbcollection_model_json['collection_id'] = 1
         milvusdbcollection_model_json['collection_name'] = 'col1'
         milvusdbcollection_model_json['physical_channels'] = ['testString']
         milvusdbcollection_model_json['virtual_channels'] = ['testString']
@@ -22161,14 +24611,14 @@ class TestModel_NetezzaEngine:
         netezza_engine_model_json['actions'] = ['update', 'delete']
         netezza_engine_model_json['build_version'] = '1.0.3.0.0'
         netezza_engine_model_json['created_by'] = '<username>@<domain>.com'
-        netezza_engine_model_json['created_on'] = 38
+        netezza_engine_model_json['created_on'] = 0
         netezza_engine_model_json['description'] = 'netezza engine for running sql queries'
         netezza_engine_model_json['engine_details'] = netezza_engine_details_model
         netezza_engine_model_json['engine_display_name'] = 'sampleEngine'
         netezza_engine_model_json['engine_id'] = 'sampleEngine123'
         netezza_engine_model_json['host_name'] = 'xyz-netezza-01-netezza-svc'
         netezza_engine_model_json['origin'] = 'ibm'
-        netezza_engine_model_json['port'] = 38
+        netezza_engine_model_json['port'] = 0
         netezza_engine_model_json['status'] = 'REGISTERED'
         netezza_engine_model_json['tags'] = ['tag1', 'tag2']
         netezza_engine_model_json['type'] = 'netezza'
@@ -22206,7 +24656,7 @@ class TestModel_NetezzaEngineCollection:
         netezza_engine_details_model['metastore_host'] = 'thrift://mh-connection-string-sample.com'
 
         netezza_engine_model = {}  # NetezzaEngine
-        netezza_engine_model['actions'] = ['update', 'delete']
+        netezza_engine_model['actions'] = ['create']
         netezza_engine_model['build_version'] = '1.0.3.0.0'
         netezza_engine_model['created_by'] = 'user@test.com'
         netezza_engine_model['created_on'] = 1700322469
@@ -22216,7 +24666,7 @@ class TestModel_NetezzaEngineCollection:
         netezza_engine_model['engine_id'] = 'netezza170'
         netezza_engine_model['host_name'] = 'xyz-netezza-01-netezza-svc'
         netezza_engine_model['origin'] = 'external'
-        netezza_engine_model['port'] = 38
+        netezza_engine_model['port'] = 0
         netezza_engine_model['status'] = 'REGISTERED'
         netezza_engine_model['tags'] = ['tag1', 'tag2']
         netezza_engine_model['type'] = 'netezza'
@@ -22560,36 +25010,6 @@ class TestModel_OtherEngineDetailsBody:
         assert other_engine_details_body_model_json2 == other_engine_details_body_model_json
 
 
-class TestModel_Path:
-    """
-    Test Class for Path
-    """
-
-    def test_path_serialization(self):
-        """
-        Test serialization/deserialization for Path
-        """
-
-        # Construct a json representation of a Path model
-        path_model_json = {}
-        path_model_json['path'] = 'string'
-
-        # Construct a model instance of Path by calling from_dict on the json representation
-        path_model = Path.from_dict(path_model_json)
-        assert path_model != False
-
-        # Construct a model instance of Path by calling from_dict on the json representation
-        path_model_dict = Path.from_dict(path_model_json).__dict__
-        path_model2 = Path(**path_model_dict)
-
-        # Verify the model instances are equivalent
-        assert path_model == path_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        path_model_json2 = path_model.to_dict()
-        assert path_model_json2 == path_model_json
-
-
 class TestModel_PrestissimoEndpoints:
     """
     Test Class for PrestissimoEndpoints
@@ -22672,9 +25092,6 @@ class TestModel_PrestissimoEngine:
         prestissimo_engine_properties_velox_model = {}  # PrestissimoEnginePropertiesVelox
         prestissimo_engine_properties_velox_model['velox_property'] = ['testString']
 
-        prestissimo_engine_properties_global_model = {}  # PrestissimoEnginePropertiesGlobal
-        prestissimo_engine_properties_global_model['global_property'] = 'enable-mixed-case-support:true'
-
         node_description_body_model = {}  # NodeDescriptionBody
         node_description_body_model['node_type'] = 'worker'
         node_description_body_model['quantity'] = 38
@@ -22686,7 +25103,6 @@ class TestModel_PrestissimoEngine:
         prestissimo_engine_engine_properties_model['catalog'] = prestissimo_engine_properties_catalog_model
         prestissimo_engine_engine_properties_model['configuration'] = engine_properties_oai_gen_configuration_model
         prestissimo_engine_engine_properties_model['velox'] = prestissimo_engine_properties_velox_model
-        prestissimo_engine_engine_properties_model['global'] = prestissimo_engine_properties_global_model
         prestissimo_engine_engine_properties_model['jvm'] = prestissimo_engine_properties_oai_gen1_jvm_model
 
         remove_engine_properties_configuration_model = {}  # RemoveEnginePropertiesConfiguration
@@ -22793,9 +25209,6 @@ class TestModel_PrestissimoEngineCollection:
         prestissimo_engine_properties_velox_model = {}  # PrestissimoEnginePropertiesVelox
         prestissimo_engine_properties_velox_model['velox_property'] = ['testString']
 
-        prestissimo_engine_properties_global_model = {}  # PrestissimoEnginePropertiesGlobal
-        prestissimo_engine_properties_global_model['global_property'] = 'enable-mixed-case-support:true'
-
         node_description_body_model = {}  # NodeDescriptionBody
         node_description_body_model['node_type'] = 'worker'
         node_description_body_model['quantity'] = 38
@@ -22807,7 +25220,6 @@ class TestModel_PrestissimoEngineCollection:
         prestissimo_engine_engine_properties_model['catalog'] = prestissimo_engine_properties_catalog_model
         prestissimo_engine_engine_properties_model['configuration'] = engine_properties_oai_gen_configuration_model
         prestissimo_engine_engine_properties_model['velox'] = prestissimo_engine_properties_velox_model
-        prestissimo_engine_engine_properties_model['global'] = prestissimo_engine_properties_global_model
         prestissimo_engine_engine_properties_model['jvm'] = prestissimo_engine_properties_oai_gen1_jvm_model
 
         remove_engine_properties_configuration_model = {}  # RemoveEnginePropertiesConfiguration
@@ -22950,9 +25362,6 @@ class TestModel_PrestissimoEngineEngineProperties:
         prestissimo_engine_properties_velox_model = {}  # PrestissimoEnginePropertiesVelox
         prestissimo_engine_properties_velox_model['velox_property'] = ['testString']
 
-        prestissimo_engine_properties_global_model = {}  # PrestissimoEnginePropertiesGlobal
-        prestissimo_engine_properties_global_model['global_property'] = 'enable-mixed-case-support:true'
-
         node_description_body_model = {}  # NodeDescriptionBody
         node_description_body_model['node_type'] = 'worker'
         node_description_body_model['quantity'] = 38
@@ -22965,7 +25374,6 @@ class TestModel_PrestissimoEngineEngineProperties:
         prestissimo_engine_engine_properties_model_json['catalog'] = prestissimo_engine_properties_catalog_model
         prestissimo_engine_engine_properties_model_json['configuration'] = engine_properties_oai_gen_configuration_model
         prestissimo_engine_engine_properties_model_json['velox'] = prestissimo_engine_properties_velox_model
-        prestissimo_engine_engine_properties_model_json['global'] = prestissimo_engine_properties_global_model
         prestissimo_engine_engine_properties_model_json['jvm'] = prestissimo_engine_properties_oai_gen1_jvm_model
 
         # Construct a model instance of PrestissimoEngineEngineProperties by calling from_dict on the json representation
@@ -23010,9 +25418,6 @@ class TestModel_PrestissimoEnginePatch:
         prestissimo_engine_properties_velox_model = {}  # PrestissimoEnginePropertiesVelox
         prestissimo_engine_properties_velox_model['velox_property'] = ['testString']
 
-        prestissimo_engine_properties_global_model = {}  # PrestissimoEnginePropertiesGlobal
-        prestissimo_engine_properties_global_model['global_property'] = 'enable-mixed-case-support:true'
-
         node_description_body_model = {}  # NodeDescriptionBody
         node_description_body_model['node_type'] = 'worker'
         node_description_body_model['quantity'] = 38
@@ -23024,7 +25429,6 @@ class TestModel_PrestissimoEnginePatch:
         prestissimo_engine_engine_properties_model['catalog'] = prestissimo_engine_properties_catalog_model
         prestissimo_engine_engine_properties_model['configuration'] = engine_properties_oai_gen_configuration_model
         prestissimo_engine_engine_properties_model['velox'] = prestissimo_engine_properties_velox_model
-        prestissimo_engine_engine_properties_model['global'] = prestissimo_engine_properties_global_model
         prestissimo_engine_engine_properties_model['jvm'] = prestissimo_engine_properties_oai_gen1_jvm_model
 
         remove_engine_properties_configuration_model = {}  # RemoveEnginePropertiesConfiguration
@@ -23093,36 +25497,6 @@ class TestModel_PrestissimoEnginePropertiesCatalog:
         # Convert model instance back to dict and verify no loss of data
         prestissimo_engine_properties_catalog_model_json2 = prestissimo_engine_properties_catalog_model.to_dict()
         assert prestissimo_engine_properties_catalog_model_json2 == prestissimo_engine_properties_catalog_model_json
-
-
-class TestModel_PrestissimoEnginePropertiesGlobal:
-    """
-    Test Class for PrestissimoEnginePropertiesGlobal
-    """
-
-    def test_prestissimo_engine_properties_global_serialization(self):
-        """
-        Test serialization/deserialization for PrestissimoEnginePropertiesGlobal
-        """
-
-        # Construct a json representation of a PrestissimoEnginePropertiesGlobal model
-        prestissimo_engine_properties_global_model_json = {}
-        prestissimo_engine_properties_global_model_json['global_property'] = 'enable-mixed-case-support:true'
-
-        # Construct a model instance of PrestissimoEnginePropertiesGlobal by calling from_dict on the json representation
-        prestissimo_engine_properties_global_model = PrestissimoEnginePropertiesGlobal.from_dict(prestissimo_engine_properties_global_model_json)
-        assert prestissimo_engine_properties_global_model != False
-
-        # Construct a model instance of PrestissimoEnginePropertiesGlobal by calling from_dict on the json representation
-        prestissimo_engine_properties_global_model_dict = PrestissimoEnginePropertiesGlobal.from_dict(prestissimo_engine_properties_global_model_json).__dict__
-        prestissimo_engine_properties_global_model2 = PrestissimoEnginePropertiesGlobal(**prestissimo_engine_properties_global_model_dict)
-
-        # Verify the model instances are equivalent
-        assert prestissimo_engine_properties_global_model == prestissimo_engine_properties_global_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        prestissimo_engine_properties_global_model_json2 = prestissimo_engine_properties_global_model.to_dict()
-        assert prestissimo_engine_properties_global_model_json2 == prestissimo_engine_properties_global_model_json
 
 
 class TestModel_PrestissimoEnginePropertiesOaiGen1Jvm:
@@ -23274,6 +25648,9 @@ class TestModel_PrestoEngine:
         engine_properties_oai_gen1_jvm_model['coordinator'] = node_description_body_model
         engine_properties_oai_gen1_jvm_model['worker'] = node_description_body_model
 
+        presto_engine_properties_jmx_model = {}  # PrestoEnginePropertiesJMX
+        presto_engine_properties_jmx_model['global_property'] = 'watsonx_data_presto_cluster_memory_manager_cluster_memory_bytes:presto.memory<name=ClusterMemoryManager><>ClusterMemoryBytes'
+
         engine_properties_log_configuration_model = {}  # EnginePropertiesLogConfiguration
         engine_properties_log_configuration_model['coordinator'] = node_description_body_model
         engine_properties_log_configuration_model['worker'] = node_description_body_model
@@ -23284,6 +25661,7 @@ class TestModel_PrestoEngine:
         presto_engine_engine_properties_model['event_listener'] = presto_engine_properties_event_listener_model
         presto_engine_engine_properties_model['global'] = presto_engine_properties_global_model
         presto_engine_engine_properties_model['jvm'] = engine_properties_oai_gen1_jvm_model
+        presto_engine_engine_properties_model['jmx_exporter_config'] = presto_engine_properties_jmx_model
         presto_engine_engine_properties_model['log_config'] = engine_properties_log_configuration_model
 
         remove_engine_properties_oai_gen_configuration_model = {}  # RemoveEnginePropertiesOaiGenConfiguration
@@ -23294,11 +25672,18 @@ class TestModel_PrestoEngine:
         remove_engine_properties_oai_gen_jvm_model['coordinator'] = ['testString']
         remove_engine_properties_oai_gen_jvm_model['worker'] = ['testString']
 
+        remove_engine_properties_log_config_model = {}  # RemoveEnginePropertiesLogConfig
+        remove_engine_properties_log_config_model['coordinator'] = ['testString']
+        remove_engine_properties_log_config_model['worker'] = ['testString']
+
         presto_engine_patch_remove_engine_properties_model = {}  # PrestoEnginePatchRemoveEngineProperties
         presto_engine_patch_remove_engine_properties_model['catalog'] = presto_engine_properties_catalog_model
         presto_engine_patch_remove_engine_properties_model['configuration'] = remove_engine_properties_oai_gen_configuration_model
         presto_engine_patch_remove_engine_properties_model['jvm'] = remove_engine_properties_oai_gen_jvm_model
-        presto_engine_patch_remove_engine_properties_model['event_listener'] = []
+        presto_engine_patch_remove_engine_properties_model['event_listener'] = ['testString']
+        presto_engine_patch_remove_engine_properties_model['global'] = ['testString']
+        presto_engine_patch_remove_engine_properties_model['jmx_exporter_config'] = ['testString']
+        presto_engine_patch_remove_engine_properties_model['log_config'] = remove_engine_properties_log_config_model
 
         # Construct a json representation of a PrestoEngine model
         presto_engine_model_json = {}
@@ -23398,6 +25783,9 @@ class TestModel_PrestoEngineCollection:
         engine_properties_oai_gen1_jvm_model['coordinator'] = node_description_body_model
         engine_properties_oai_gen1_jvm_model['worker'] = node_description_body_model
 
+        presto_engine_properties_jmx_model = {}  # PrestoEnginePropertiesJMX
+        presto_engine_properties_jmx_model['global_property'] = 'watsonx_data_presto_cluster_memory_manager_cluster_memory_bytes:presto.memory<name=ClusterMemoryManager><>ClusterMemoryBytes'
+
         engine_properties_log_configuration_model = {}  # EnginePropertiesLogConfiguration
         engine_properties_log_configuration_model['coordinator'] = node_description_body_model
         engine_properties_log_configuration_model['worker'] = node_description_body_model
@@ -23408,6 +25796,7 @@ class TestModel_PrestoEngineCollection:
         presto_engine_engine_properties_model['event_listener'] = presto_engine_properties_event_listener_model
         presto_engine_engine_properties_model['global'] = presto_engine_properties_global_model
         presto_engine_engine_properties_model['jvm'] = engine_properties_oai_gen1_jvm_model
+        presto_engine_engine_properties_model['jmx_exporter_config'] = presto_engine_properties_jmx_model
         presto_engine_engine_properties_model['log_config'] = engine_properties_log_configuration_model
 
         remove_engine_properties_oai_gen_configuration_model = {}  # RemoveEnginePropertiesOaiGenConfiguration
@@ -23418,11 +25807,18 @@ class TestModel_PrestoEngineCollection:
         remove_engine_properties_oai_gen_jvm_model['coordinator'] = ['testString']
         remove_engine_properties_oai_gen_jvm_model['worker'] = ['testString']
 
+        remove_engine_properties_log_config_model = {}  # RemoveEnginePropertiesLogConfig
+        remove_engine_properties_log_config_model['coordinator'] = ['testString']
+        remove_engine_properties_log_config_model['worker'] = ['testString']
+
         presto_engine_patch_remove_engine_properties_model = {}  # PrestoEnginePatchRemoveEngineProperties
         presto_engine_patch_remove_engine_properties_model['catalog'] = presto_engine_properties_catalog_model
         presto_engine_patch_remove_engine_properties_model['configuration'] = remove_engine_properties_oai_gen_configuration_model
         presto_engine_patch_remove_engine_properties_model['jvm'] = remove_engine_properties_oai_gen_jvm_model
-        presto_engine_patch_remove_engine_properties_model['event_listener'] = []
+        presto_engine_patch_remove_engine_properties_model['event_listener'] = ['testString']
+        presto_engine_patch_remove_engine_properties_model['global'] = ['testString']
+        presto_engine_patch_remove_engine_properties_model['jmx_exporter_config'] = ['testString']
+        presto_engine_patch_remove_engine_properties_model['log_config'] = remove_engine_properties_log_config_model
 
         presto_engine_model = {}  # PrestoEngine
         presto_engine_model['actions'] = ['view', 'use', 'update', 'select', 'access_ui', 'associate', 'disassociate', 'restart', 'pause', 'resume', 'grant', 'revoke', 'delete', 'create', 'scale']
@@ -23506,6 +25902,9 @@ class TestModel_PrestoEngineEngineProperties:
         engine_properties_oai_gen1_jvm_model['coordinator'] = node_description_body_model
         engine_properties_oai_gen1_jvm_model['worker'] = node_description_body_model
 
+        presto_engine_properties_jmx_model = {}  # PrestoEnginePropertiesJMX
+        presto_engine_properties_jmx_model['global_property'] = 'watsonx_data_presto_cluster_memory_manager_cluster_memory_bytes:presto.memory<name=ClusterMemoryManager><>ClusterMemoryBytes'
+
         engine_properties_log_configuration_model = {}  # EnginePropertiesLogConfiguration
         engine_properties_log_configuration_model['coordinator'] = node_description_body_model
         engine_properties_log_configuration_model['worker'] = node_description_body_model
@@ -23517,6 +25916,7 @@ class TestModel_PrestoEngineEngineProperties:
         presto_engine_engine_properties_model_json['event_listener'] = presto_engine_properties_event_listener_model
         presto_engine_engine_properties_model_json['global'] = presto_engine_properties_global_model
         presto_engine_engine_properties_model_json['jvm'] = engine_properties_oai_gen1_jvm_model
+        presto_engine_engine_properties_model_json['jmx_exporter_config'] = presto_engine_properties_jmx_model
         presto_engine_engine_properties_model_json['log_config'] = engine_properties_log_configuration_model
 
         # Construct a model instance of PrestoEngineEngineProperties by calling from_dict on the json representation
@@ -23568,6 +25968,9 @@ class TestModel_PrestoEnginePatch:
         engine_properties_oai_gen1_jvm_model['coordinator'] = node_description_body_model
         engine_properties_oai_gen1_jvm_model['worker'] = node_description_body_model
 
+        presto_engine_properties_jmx_model = {}  # PrestoEnginePropertiesJMX
+        presto_engine_properties_jmx_model['global_property'] = 'watsonx_data_presto_cluster_memory_manager_cluster_memory_bytes:presto.memory<name=ClusterMemoryManager><>ClusterMemoryBytes'
+
         engine_properties_log_configuration_model = {}  # EnginePropertiesLogConfiguration
         engine_properties_log_configuration_model['coordinator'] = node_description_body_model
         engine_properties_log_configuration_model['worker'] = node_description_body_model
@@ -23578,6 +25981,7 @@ class TestModel_PrestoEnginePatch:
         presto_engine_engine_properties_model['event_listener'] = presto_engine_properties_event_listener_model
         presto_engine_engine_properties_model['global'] = presto_engine_properties_global_model
         presto_engine_engine_properties_model['jvm'] = engine_properties_oai_gen1_jvm_model
+        presto_engine_engine_properties_model['jmx_exporter_config'] = presto_engine_properties_jmx_model
         presto_engine_engine_properties_model['log_config'] = engine_properties_log_configuration_model
 
         remove_engine_properties_oai_gen_configuration_model = {}  # RemoveEnginePropertiesOaiGenConfiguration
@@ -23588,11 +25992,18 @@ class TestModel_PrestoEnginePatch:
         remove_engine_properties_oai_gen_jvm_model['coordinator'] = ['testString']
         remove_engine_properties_oai_gen_jvm_model['worker'] = ['testString']
 
+        remove_engine_properties_log_config_model = {}  # RemoveEnginePropertiesLogConfig
+        remove_engine_properties_log_config_model['coordinator'] = ['testString']
+        remove_engine_properties_log_config_model['worker'] = ['testString']
+
         presto_engine_patch_remove_engine_properties_model = {}  # PrestoEnginePatchRemoveEngineProperties
         presto_engine_patch_remove_engine_properties_model['catalog'] = presto_engine_properties_catalog_model
         presto_engine_patch_remove_engine_properties_model['configuration'] = remove_engine_properties_oai_gen_configuration_model
         presto_engine_patch_remove_engine_properties_model['jvm'] = remove_engine_properties_oai_gen_jvm_model
-        presto_engine_patch_remove_engine_properties_model['event_listener'] = []
+        presto_engine_patch_remove_engine_properties_model['event_listener'] = ['testString']
+        presto_engine_patch_remove_engine_properties_model['global'] = ['testString']
+        presto_engine_patch_remove_engine_properties_model['jmx_exporter_config'] = ['testString']
+        presto_engine_patch_remove_engine_properties_model['log_config'] = remove_engine_properties_log_config_model
 
         # Construct a json representation of a PrestoEnginePatch model
         presto_engine_patch_model_json = {}
@@ -23642,12 +26053,19 @@ class TestModel_PrestoEnginePatchRemoveEngineProperties:
         remove_engine_properties_oai_gen_jvm_model['coordinator'] = ['testString']
         remove_engine_properties_oai_gen_jvm_model['worker'] = ['testString']
 
+        remove_engine_properties_log_config_model = {}  # RemoveEnginePropertiesLogConfig
+        remove_engine_properties_log_config_model['coordinator'] = ['testString']
+        remove_engine_properties_log_config_model['worker'] = ['testString']
+
         # Construct a json representation of a PrestoEnginePatchRemoveEngineProperties model
         presto_engine_patch_remove_engine_properties_model_json = {}
         presto_engine_patch_remove_engine_properties_model_json['catalog'] = presto_engine_properties_catalog_model
         presto_engine_patch_remove_engine_properties_model_json['configuration'] = remove_engine_properties_oai_gen_configuration_model
         presto_engine_patch_remove_engine_properties_model_json['jvm'] = remove_engine_properties_oai_gen_jvm_model
-        presto_engine_patch_remove_engine_properties_model_json['event_listener'] = []
+        presto_engine_patch_remove_engine_properties_model_json['event_listener'] = ['testString']
+        presto_engine_patch_remove_engine_properties_model_json['global'] = ['testString']
+        presto_engine_patch_remove_engine_properties_model_json['jmx_exporter_config'] = ['testString']
+        presto_engine_patch_remove_engine_properties_model_json['log_config'] = remove_engine_properties_log_config_model
 
         # Construct a model instance of PrestoEnginePatchRemoveEngineProperties by calling from_dict on the json representation
         presto_engine_patch_remove_engine_properties_model = PrestoEnginePatchRemoveEngineProperties.from_dict(presto_engine_patch_remove_engine_properties_model_json)
@@ -23753,6 +26171,36 @@ class TestModel_PrestoEnginePropertiesGlobal:
         # Convert model instance back to dict and verify no loss of data
         presto_engine_properties_global_model_json2 = presto_engine_properties_global_model.to_dict()
         assert presto_engine_properties_global_model_json2 == presto_engine_properties_global_model_json
+
+
+class TestModel_PrestoEnginePropertiesJMX:
+    """
+    Test Class for PrestoEnginePropertiesJMX
+    """
+
+    def test_presto_engine_properties_jmx_serialization(self):
+        """
+        Test serialization/deserialization for PrestoEnginePropertiesJMX
+        """
+
+        # Construct a json representation of a PrestoEnginePropertiesJMX model
+        presto_engine_properties_jmx_model_json = {}
+        presto_engine_properties_jmx_model_json['global_property'] = 'watsonx_data_presto_cluster_memory_manager_cluster_memory_bytes:presto.memory<name=ClusterMemoryManager><>ClusterMemoryBytes'
+
+        # Construct a model instance of PrestoEnginePropertiesJMX by calling from_dict on the json representation
+        presto_engine_properties_jmx_model = PrestoEnginePropertiesJMX.from_dict(presto_engine_properties_jmx_model_json)
+        assert presto_engine_properties_jmx_model != False
+
+        # Construct a model instance of PrestoEnginePropertiesJMX by calling from_dict on the json representation
+        presto_engine_properties_jmx_model_dict = PrestoEnginePropertiesJMX.from_dict(presto_engine_properties_jmx_model_json).__dict__
+        presto_engine_properties_jmx_model2 = PrestoEnginePropertiesJMX(**presto_engine_properties_jmx_model_dict)
+
+        # Verify the model instances are equivalent
+        assert presto_engine_properties_jmx_model == presto_engine_properties_jmx_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        presto_engine_properties_jmx_model_json2 = presto_engine_properties_jmx_model.to_dict()
+        assert presto_engine_properties_jmx_model_json2 == presto_engine_properties_jmx_model_json
 
 
 class TestModel_PreviewIngestionFile:
@@ -23875,6 +26323,42 @@ class TestModel_PreviewIngestionFileRows:
         assert preview_ingestion_file_rows_model_json2 == preview_ingestion_file_rows_model_json
 
 
+class TestModel_RegisterTableCreatedBody:
+    """
+    Test Class for RegisterTableCreatedBody
+    """
+
+    def test_register_table_created_body_serialization(self):
+        """
+        Test serialization/deserialization for RegisterTableCreatedBody
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        success_response_model = {}  # SuccessResponse
+        success_response_model['message'] = 'Register table success'
+        success_response_model['message_code'] = 'success'
+
+        # Construct a json representation of a RegisterTableCreatedBody model
+        register_table_created_body_model_json = {}
+        register_table_created_body_model_json['response'] = success_response_model
+
+        # Construct a model instance of RegisterTableCreatedBody by calling from_dict on the json representation
+        register_table_created_body_model = RegisterTableCreatedBody.from_dict(register_table_created_body_model_json)
+        assert register_table_created_body_model != False
+
+        # Construct a model instance of RegisterTableCreatedBody by calling from_dict on the json representation
+        register_table_created_body_model_dict = RegisterTableCreatedBody.from_dict(register_table_created_body_model_json).__dict__
+        register_table_created_body_model2 = RegisterTableCreatedBody(**register_table_created_body_model_dict)
+
+        # Verify the model instances are equivalent
+        assert register_table_created_body_model == register_table_created_body_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        register_table_created_body_model_json2 = register_table_created_body_model.to_dict()
+        assert register_table_created_body_model_json2 == register_table_created_body_model_json
+
+
 class TestModel_RemoveEngineProperties:
     """
     Test Class for RemoveEngineProperties
@@ -23949,6 +26433,37 @@ class TestModel_RemoveEnginePropertiesConfiguration:
         # Convert model instance back to dict and verify no loss of data
         remove_engine_properties_configuration_model_json2 = remove_engine_properties_configuration_model.to_dict()
         assert remove_engine_properties_configuration_model_json2 == remove_engine_properties_configuration_model_json
+
+
+class TestModel_RemoveEnginePropertiesLogConfig:
+    """
+    Test Class for RemoveEnginePropertiesLogConfig
+    """
+
+    def test_remove_engine_properties_log_config_serialization(self):
+        """
+        Test serialization/deserialization for RemoveEnginePropertiesLogConfig
+        """
+
+        # Construct a json representation of a RemoveEnginePropertiesLogConfig model
+        remove_engine_properties_log_config_model_json = {}
+        remove_engine_properties_log_config_model_json['coordinator'] = ['testString']
+        remove_engine_properties_log_config_model_json['worker'] = ['testString']
+
+        # Construct a model instance of RemoveEnginePropertiesLogConfig by calling from_dict on the json representation
+        remove_engine_properties_log_config_model = RemoveEnginePropertiesLogConfig.from_dict(remove_engine_properties_log_config_model_json)
+        assert remove_engine_properties_log_config_model != False
+
+        # Construct a model instance of RemoveEnginePropertiesLogConfig by calling from_dict on the json representation
+        remove_engine_properties_log_config_model_dict = RemoveEnginePropertiesLogConfig.from_dict(remove_engine_properties_log_config_model_json).__dict__
+        remove_engine_properties_log_config_model2 = RemoveEnginePropertiesLogConfig(**remove_engine_properties_log_config_model_dict)
+
+        # Verify the model instances are equivalent
+        assert remove_engine_properties_log_config_model == remove_engine_properties_log_config_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        remove_engine_properties_log_config_model_json2 = remove_engine_properties_log_config_model.to_dict()
+        assert remove_engine_properties_log_config_model_json2 == remove_engine_properties_log_config_model_json
 
 
 class TestModel_RemoveEnginePropertiesOaiGenConfiguration:
@@ -24167,6 +26682,42 @@ class TestModel_ResultRunPrestissimoExplainAnalyzeStatement:
         # Convert model instance back to dict and verify no loss of data
         result_run_prestissimo_explain_analyze_statement_model_json2 = result_run_prestissimo_explain_analyze_statement_model.to_dict()
         assert result_run_prestissimo_explain_analyze_statement_model_json2 == result_run_prestissimo_explain_analyze_statement_model_json
+
+
+class TestModel_Results:
+    """
+    Test Class for Results
+    """
+
+    def test_results_serialization(self):
+        """
+        Test serialization/deserialization for Results
+        """
+
+        # Construct a json representation of a Results model
+        results_model_json = {}
+        results_model_json['create_bucket_time_sec'] = 'testString'
+        results_model_json['download_files_time_sec'] = 'testString'
+        results_model_json['erase_bucket_time_sec'] = 'testString'
+        results_model_json['erase_objects_time_sec'] = 'testString'
+        results_model_json['list_files_time_sec'] = 'testString'
+        results_model_json['total_operations_time_sec'] = 'testString'
+        results_model_json['upload_files_time_sec'] = 'testString'
+
+        # Construct a model instance of Results by calling from_dict on the json representation
+        results_model = Results.from_dict(results_model_json)
+        assert results_model != False
+
+        # Construct a model instance of Results by calling from_dict on the json representation
+        results_model_dict = Results.from_dict(results_model_json).__dict__
+        results_model2 = Results(**results_model_dict)
+
+        # Verify the model instances are equivalent
+        assert results_model == results_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        results_model_json2 = results_model.to_dict()
+        assert results_model_json2 == results_model_json
 
 
 class TestModel_RunExplainAnalyzeStatementOKBody:
@@ -25359,6 +27910,84 @@ class TestModel_SchemaResponseSummary:
         assert schema_response_summary_model_json2 == schema_response_summary_model_json
 
 
+class TestModel_ServicesDetails:
+    """
+    Test Class for ServicesDetails
+    """
+
+    def test_services_details_serialization(self):
+        """
+        Test serialization/deserialization for ServicesDetails
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        external_details_model = {}  # ExternalDetails
+        external_details_model['port'] = 4553
+        external_details_model['hostname'] = 'external hostname'
+
+        internal_details_model = {}  # InternalDetails
+        internal_details_model['port'] = 4553
+        internal_details_model['hostname'] = 'internal hostname'
+
+        jdbc_thrift_urls_model = {}  # JdbcThriftUrls
+        jdbc_thrift_urls_model['external'] = 'thrift://username:password@metastore1-internal-hostname:9083'
+        jdbc_thrift_urls_model['internal'] = 'thrift://username:password@metastore1-internal-hostname:9083'
+
+        details_model = {}  # Details
+        details_model['ca_certificate'] = 'sample ca certificate'
+        details_model['default_configs'] = {'key1': 'testString'}
+        details_model['external'] = external_details_model
+        details_model['grpc_api_endpoint'] = internal_details_model
+        details_model['hostname'] = 'sample hostname'
+        details_model['id'] = 'sample ID'
+        details_model['instance_crn'] = 'sample instance CRN'
+        details_model['instance_id'] = 'sample instance ID'
+        details_model['internal'] = internal_details_model
+        details_model['jdbc_class'] = 'com.facebook.presto.jdbc.PrestoDriver'
+        details_model['jdbc_urls'] = jdbc_thrift_urls_model
+        details_model['name'] = 'sample name'
+        details_model['port'] = 4553
+        details_model['rest_api_endpoint'] = internal_details_model
+        details_model['spark_engine_endpoint'] = 'Spark Engine endpoint'
+        details_model['ssl_certificate'] = 'sample ssl certificate'
+        details_model['thrift_urls'] = jdbc_thrift_urls_model
+        details_model['version'] = 'java'
+        details_model['watsonx_data_application_endpoint'] = 'sample application end point'
+
+        connection_properties_details_properties_connection_items_model = {}  # ConnectionPropertiesDetailsPropertiesConnectionItems
+        connection_properties_details_properties_connection_items_model['name'] = 'host'
+        connection_properties_details_properties_connection_items_model['value'] = 'sample_value'
+
+        connection_properties_details_properties_model = {}  # ConnectionPropertiesDetailsProperties
+        connection_properties_details_properties_model['connection'] = [connection_properties_details_properties_connection_items_model]
+
+        connection_properties_details_model = {}  # ConnectionPropertiesDetails
+        connection_properties_details_model['connection_name'] = 'presto-01'
+        connection_properties_details_model['details'] = details_model
+        connection_properties_details_model['properties'] = connection_properties_details_properties_model
+        connection_properties_details_model['type'] = 'presto'
+
+        # Construct a json representation of a ServicesDetails model
+        services_details_model_json = {}
+        services_details_model_json['engines_services'] = [connection_properties_details_model]
+
+        # Construct a model instance of ServicesDetails by calling from_dict on the json representation
+        services_details_model = ServicesDetails.from_dict(services_details_model_json)
+        assert services_details_model != False
+
+        # Construct a model instance of ServicesDetails by calling from_dict on the json representation
+        services_details_model_dict = ServicesDetails.from_dict(services_details_model_json).__dict__
+        services_details_model2 = ServicesDetails(**services_details_model_dict)
+
+        # Verify the model instances are equivalent
+        assert services_details_model == services_details_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        services_details_model_json2 = services_details_model.to_dict()
+        assert services_details_model_json2 == services_details_model_json
+
+
 class TestModel_SparkApplicationConfig:
     """
     Test Class for SparkApplicationConfig
@@ -25407,9 +28036,6 @@ class TestModel_SparkApplicationDetails:
         spark_application_env_model = {}  # SparkApplicationEnv
         spark_application_env_model['sample_env_key'] = 'testString'
 
-        spark_application_details_runtime_model = {}  # SparkApplicationDetailsRuntime
-        spark_application_details_runtime_model['spark_version'] = '3.4'
-
         # Construct a json representation of a SparkApplicationDetails model
         spark_application_details_model_json = {}
         spark_application_details_model_json['application'] = 's3://mybucket/wordcount.py'
@@ -25423,7 +28049,6 @@ class TestModel_SparkApplicationDetails:
         spark_application_details_model_json['packages'] = 'org.apache.spark:example_1.2.3'
         spark_application_details_model_json['repositories'] = 'https://repo1.maven.org/maven2/'
         spark_application_details_model_json['spark_version'] = '3.3'
-        spark_application_details_model_json['runtime'] = spark_application_details_runtime_model
 
         # Construct a model instance of SparkApplicationDetails by calling from_dict on the json representation
         spark_application_details_model = SparkApplicationDetails.from_dict(spark_application_details_model_json)
@@ -25439,36 +28064,6 @@ class TestModel_SparkApplicationDetails:
         # Convert model instance back to dict and verify no loss of data
         spark_application_details_model_json2 = spark_application_details_model.to_dict()
         assert spark_application_details_model_json2 == spark_application_details_model_json
-
-
-class TestModel_SparkApplicationDetailsRuntime:
-    """
-    Test Class for SparkApplicationDetailsRuntime
-    """
-
-    def test_spark_application_details_runtime_serialization(self):
-        """
-        Test serialization/deserialization for SparkApplicationDetailsRuntime
-        """
-
-        # Construct a json representation of a SparkApplicationDetailsRuntime model
-        spark_application_details_runtime_model_json = {}
-        spark_application_details_runtime_model_json['spark_version'] = '3.4'
-
-        # Construct a model instance of SparkApplicationDetailsRuntime by calling from_dict on the json representation
-        spark_application_details_runtime_model = SparkApplicationDetailsRuntime.from_dict(spark_application_details_runtime_model_json)
-        assert spark_application_details_runtime_model != False
-
-        # Construct a model instance of SparkApplicationDetailsRuntime by calling from_dict on the json representation
-        spark_application_details_runtime_model_dict = SparkApplicationDetailsRuntime.from_dict(spark_application_details_runtime_model_json).__dict__
-        spark_application_details_runtime_model2 = SparkApplicationDetailsRuntime(**spark_application_details_runtime_model_dict)
-
-        # Verify the model instances are equivalent
-        assert spark_application_details_runtime_model == spark_application_details_runtime_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        spark_application_details_runtime_model_json2 = spark_application_details_runtime_model.to_dict()
-        assert spark_application_details_runtime_model_json2 == spark_application_details_runtime_model_json
 
 
 class TestModel_SparkApplicationEnv:
@@ -25609,7 +28204,7 @@ class TestModel_SparkEngine:
 
         spark_engine_details_model = {}  # SparkEngineDetails
         spark_engine_details_model['api_key'] = 'apikey'
-        spark_engine_details_model['connection_string'] = 'https://xyz.<region>.ae.cloud.123.com/v3/analytics_engines/<spark_iae_id>'
+        spark_engine_details_model['connection_string'] = 'https://xyz.<region>.ae.cloud.123.com/v3/analytics-engines/<spark-iae-id>'
         spark_engine_details_model['default_config'] = spark_default_config_model
         spark_engine_details_model['default_version'] = '3.3'
         spark_engine_details_model['endpoints'] = spark_endpoints_model
@@ -25621,8 +28216,8 @@ class TestModel_SparkEngine:
         spark_engine_details_model['engine_home_volume_name'] = 'my-volume'
         spark_engine_details_model['engine_home_volume_storage_class'] = 'nfs-client'
         spark_engine_details_model['engine_home_volume_storage_size'] = '5Gi'
-        spark_engine_details_model['engine_sub_type'] = 'java/cpp'
         spark_engine_details_model['instance_id'] = 'spark-id'
+        spark_engine_details_model['engine_sub_type'] = 'java/cpp'
         spark_engine_details_model['managed_by'] = 'fully/self'
         spark_engine_details_model['scale_config'] = spark_scale_config_model
 
@@ -25676,9 +28271,6 @@ class TestModel_SparkEngineApplicationStatus:
         spark_application_env_model = {}  # SparkApplicationEnv
         spark_application_env_model['sample_env_key'] = 'testString'
 
-        spark_application_details_runtime_model = {}  # SparkApplicationDetailsRuntime
-        spark_application_details_runtime_model['spark_version'] = '3.4'
-
         spark_application_details_model = {}  # SparkApplicationDetails
         spark_application_details_model['application'] = 's3://mybucket/wordcount.py'
         spark_application_details_model['arguments'] = ['people.txt']
@@ -25691,7 +28283,6 @@ class TestModel_SparkEngineApplicationStatus:
         spark_application_details_model['packages'] = 'org.apache.spark:example_1.2.3'
         spark_application_details_model['repositories'] = 'https://repo1.maven.org/maven2/'
         spark_application_details_model['spark_version'] = '3.3'
-        spark_application_details_model['runtime'] = spark_application_details_runtime_model
 
         spark_engine_application_status_runtime_model = {}  # SparkEngineApplicationStatusRuntime
         spark_engine_application_status_runtime_model['spark_version'] = '3.3'
@@ -25768,9 +28359,6 @@ class TestModel_SparkEngineApplicationStatusCollection:
         spark_application_env_model = {}  # SparkApplicationEnv
         spark_application_env_model['sample_env_key'] = 'testString'
 
-        spark_application_details_runtime_model = {}  # SparkApplicationDetailsRuntime
-        spark_application_details_runtime_model['spark_version'] = '3.4'
-
         spark_application_details_model = {}  # SparkApplicationDetails
         spark_application_details_model['application'] = 's3://mybucket/wordcount.py'
         spark_application_details_model['arguments'] = ['people.txt']
@@ -25783,7 +28371,6 @@ class TestModel_SparkEngineApplicationStatusCollection:
         spark_application_details_model['packages'] = 'org.apache.spark:example_1.2.3'
         spark_application_details_model['repositories'] = 'https://repo1.maven.org/maven2/'
         spark_application_details_model['spark_version'] = '3.3'
-        spark_application_details_model['runtime'] = spark_application_details_runtime_model
 
         spark_engine_application_status_runtime_model = {}  # SparkEngineApplicationStatusRuntime
         spark_engine_application_status_runtime_model['spark_version'] = '3.3'
@@ -25945,7 +28532,7 @@ class TestModel_SparkEngineCollection:
 
         spark_engine_details_model = {}  # SparkEngineDetails
         spark_engine_details_model['api_key'] = 'apikey'
-        spark_engine_details_model['connection_string'] = 'https://xyz.<region>.ae.cloud.123.com/v3/analytics_engines/<spark_iae_id>'
+        spark_engine_details_model['connection_string'] = 'https://xyz.<region>.ae.cloud.123.com/v3/analytics-engines/<spark-iae-id>'
         spark_engine_details_model['default_config'] = spark_default_config_model
         spark_engine_details_model['default_version'] = '4.8.3'
         spark_engine_details_model['endpoints'] = spark_endpoints_model
@@ -25957,8 +28544,8 @@ class TestModel_SparkEngineCollection:
         spark_engine_details_model['engine_home_volume_name'] = 'my-volume'
         spark_engine_details_model['engine_home_volume_storage_class'] = 'nfs-client'
         spark_engine_details_model['engine_home_volume_storage_size'] = '5Gi'
-        spark_engine_details_model['engine_sub_type'] = 'java/cpp'
         spark_engine_details_model['instance_id'] = 'spark-id'
+        spark_engine_details_model['engine_sub_type'] = 'java/cpp'
         spark_engine_details_model['managed_by'] = 'fully/self'
         spark_engine_details_model['scale_config'] = spark_scale_config_model
 
@@ -26036,7 +28623,7 @@ class TestModel_SparkEngineDetails:
         # Construct a json representation of a SparkEngineDetails model
         spark_engine_details_model_json = {}
         spark_engine_details_model_json['api_key'] = 'apikey'
-        spark_engine_details_model_json['connection_string'] = 'https://xyz.<region>.ae.cloud.123.com/v3/analytics_engines/<spark_iae_id>'
+        spark_engine_details_model_json['connection_string'] = 'https://xyz.<region>.ae.cloud.123.com/v3/analytics-engines/<spark-iae-id>'
         spark_engine_details_model_json['default_config'] = spark_default_config_model
         spark_engine_details_model_json['default_version'] = '4.8.3'
         spark_engine_details_model_json['endpoints'] = spark_endpoints_model
@@ -26048,8 +28635,8 @@ class TestModel_SparkEngineDetails:
         spark_engine_details_model_json['engine_home_volume_name'] = 'my-volume'
         spark_engine_details_model_json['engine_home_volume_storage_class'] = 'nfs-client'
         spark_engine_details_model_json['engine_home_volume_storage_size'] = '5Gi'
-        spark_engine_details_model_json['engine_sub_type'] = 'java/cpp'
         spark_engine_details_model_json['instance_id'] = 'spark-id'
+        spark_engine_details_model_json['engine_sub_type'] = 'java/cpp'
         spark_engine_details_model_json['managed_by'] = 'fully/self'
         spark_engine_details_model_json['scale_config'] = spark_scale_config_model
 
@@ -26106,8 +28693,8 @@ class TestModel_SparkEngineDetailsPrototype:
         spark_engine_details_prototype_model_json['engine_home_volume_name'] = 'my-volume'
         spark_engine_details_prototype_model_json['engine_home_volume_storage_class'] = 'nfs-client'
         spark_engine_details_prototype_model_json['engine_home_volume_storage_size'] = '5Gi'
-        spark_engine_details_prototype_model_json['instance_id'] = 'spark-id'
         spark_engine_details_prototype_model_json['engine_sub_type'] = 'java/cpp'
+        spark_engine_details_prototype_model_json['instance_id'] = 'spark-id'
         spark_engine_details_prototype_model_json['managed_by'] = 'fully/self'
         spark_engine_details_prototype_model_json['scale_config'] = spark_scale_config_model
 
@@ -26225,6 +28812,74 @@ class TestModel_SparkScaleConfig:
         # Convert model instance back to dict and verify no loss of data
         spark_scale_config_model_json2 = spark_scale_config_model.to_dict()
         assert spark_scale_config_model_json2 == spark_scale_config_model_json
+
+
+class TestModel_SparkVersions:
+    """
+    Test Class for SparkVersions
+    """
+
+    def test_spark_versions_serialization(self):
+        """
+        Test serialization/deserialization for SparkVersions
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        spark_versions_info_response_model = {}  # SparkVersionsInfoResponse
+        spark_versions_info_response_model['display_name'] = 'Instance Name'
+        spark_versions_info_response_model['value'] = 'Instance Name'
+
+        # Construct a json representation of a SparkVersions model
+        spark_versions_model_json = {}
+        spark_versions_model_json['cpp'] = [spark_versions_info_response_model]
+        spark_versions_model_json['java'] = [spark_versions_info_response_model]
+
+        # Construct a model instance of SparkVersions by calling from_dict on the json representation
+        spark_versions_model = SparkVersions.from_dict(spark_versions_model_json)
+        assert spark_versions_model != False
+
+        # Construct a model instance of SparkVersions by calling from_dict on the json representation
+        spark_versions_model_dict = SparkVersions.from_dict(spark_versions_model_json).__dict__
+        spark_versions_model2 = SparkVersions(**spark_versions_model_dict)
+
+        # Verify the model instances are equivalent
+        assert spark_versions_model == spark_versions_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        spark_versions_model_json2 = spark_versions_model.to_dict()
+        assert spark_versions_model_json2 == spark_versions_model_json
+
+
+class TestModel_SparkVersionsInfoResponse:
+    """
+    Test Class for SparkVersionsInfoResponse
+    """
+
+    def test_spark_versions_info_response_serialization(self):
+        """
+        Test serialization/deserialization for SparkVersionsInfoResponse
+        """
+
+        # Construct a json representation of a SparkVersionsInfoResponse model
+        spark_versions_info_response_model_json = {}
+        spark_versions_info_response_model_json['display_name'] = 'Instance Name'
+        spark_versions_info_response_model_json['value'] = 'Instance Name'
+
+        # Construct a model instance of SparkVersionsInfoResponse by calling from_dict on the json representation
+        spark_versions_info_response_model = SparkVersionsInfoResponse.from_dict(spark_versions_info_response_model_json)
+        assert spark_versions_info_response_model != False
+
+        # Construct a model instance of SparkVersionsInfoResponse by calling from_dict on the json representation
+        spark_versions_info_response_model_dict = SparkVersionsInfoResponse.from_dict(spark_versions_info_response_model_json).__dict__
+        spark_versions_info_response_model2 = SparkVersionsInfoResponse(**spark_versions_info_response_model_dict)
+
+        # Verify the model instances are equivalent
+        assert spark_versions_info_response_model == spark_versions_info_response_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        spark_versions_info_response_model_json2 = spark_versions_info_response_model.to_dict()
+        assert spark_versions_info_response_model_json2 == spark_versions_info_response_model_json
 
 
 class TestModel_SparkVolumeDetails:
@@ -26377,8 +29032,8 @@ class TestModel_Table:
         column_model['comment'] = 'testString'
         column_model['extra'] = 'testString'
         column_model['length'] = '30'
-        column_model['scale'] = '2'
         column_model['precision'] = '1234567890'
+        column_model['scale'] = '2'
         column_model['type'] = 'varchar'
 
         # Construct a json representation of a Table model
@@ -26842,6 +29497,76 @@ class TestModel_UpdateSyncCatalogOKBody:
         # Convert model instance back to dict and verify no loss of data
         update_sync_catalog_ok_body_model_json2 = update_sync_catalog_ok_body_model.to_dict()
         assert update_sync_catalog_ok_body_model_json2 == update_sync_catalog_ok_body_model_json
+
+
+class TestModel_WatsonxInstanceDetailsCollection:
+    """
+    Test Class for WatsonxInstanceDetailsCollection
+    """
+
+    def test_watsonx_instance_details_collection_serialization(self):
+        """
+        Test serialization/deserialization for WatsonxInstanceDetailsCollection
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        external_details_model = {}  # ExternalDetails
+        external_details_model['port'] = 443
+        external_details_model['hostname'] = 'presto-java1-external-hostname'
+
+        internal_details_model = {}  # InternalDetails
+        internal_details_model['port'] = 4553
+        internal_details_model['hostname'] = 'internal hostname'
+
+        jdbc_thrift_urls_model = {}  # JdbcThriftUrls
+        jdbc_thrift_urls_model['external'] = 'thrift://username:password@metastore1-internal-hostname:9083'
+        jdbc_thrift_urls_model['internal'] = 'thrift://username:password@metastore1-internal-hostname:9083'
+
+        details_model = {}  # Details
+        details_model['ca_certificate'] = 'sample ca certificate'
+        details_model['default_configs'] = {'key1': 'testString'}
+        details_model['external'] = external_details_model
+        details_model['grpc_api_endpoint'] = internal_details_model
+        details_model['hostname'] = 'sample hostname'
+        details_model['id'] = 'presto-java1-id'
+        details_model['instance_crn'] = 'sample instance CRN'
+        details_model['instance_id'] = 'sample instance ID'
+        details_model['internal'] = internal_details_model
+        details_model['jdbc_class'] = 'com.facebook.presto.jdbc.PrestoDriver'
+        details_model['jdbc_urls'] = jdbc_thrift_urls_model
+        details_model['name'] = 'PrestoJava1'
+        details_model['port'] = 4553
+        details_model['rest_api_endpoint'] = internal_details_model
+        details_model['spark_engine_endpoint'] = 'Spark Engine endpoint'
+        details_model['ssl_certificate'] = 'sample ssl certificate'
+        details_model['thrift_urls'] = jdbc_thrift_urls_model
+        details_model['version'] = 'Java'
+        details_model['watsonx_data_application_endpoint'] = 'sample application end point'
+
+        engine_service_details_collection_model = {}  # EngineServiceDetailsCollection
+        engine_service_details_collection_model['details'] = [details_model]
+        engine_service_details_collection_model['type'] = 'Presto'
+
+        # Construct a json representation of a WatsonxInstanceDetailsCollection model
+        watsonx_instance_details_collection_model_json = {}
+        watsonx_instance_details_collection_model_json['engines_services'] = [engine_service_details_collection_model]
+        watsonx_instance_details_collection_model_json['watsonx_data_instance'] = details_model
+
+        # Construct a model instance of WatsonxInstanceDetailsCollection by calling from_dict on the json representation
+        watsonx_instance_details_collection_model = WatsonxInstanceDetailsCollection.from_dict(watsonx_instance_details_collection_model_json)
+        assert watsonx_instance_details_collection_model != False
+
+        # Construct a model instance of WatsonxInstanceDetailsCollection by calling from_dict on the json representation
+        watsonx_instance_details_collection_model_dict = WatsonxInstanceDetailsCollection.from_dict(watsonx_instance_details_collection_model_json).__dict__
+        watsonx_instance_details_collection_model2 = WatsonxInstanceDetailsCollection(**watsonx_instance_details_collection_model_dict)
+
+        # Verify the model instances are equivalent
+        assert watsonx_instance_details_collection_model == watsonx_instance_details_collection_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        watsonx_instance_details_collection_model_json2 = watsonx_instance_details_collection_model.to_dict()
+        assert watsonx_instance_details_collection_model_json2 == watsonx_instance_details_collection_model_json
 
 
 # endregion
