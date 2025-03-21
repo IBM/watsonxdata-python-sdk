@@ -72,13 +72,13 @@ class TestWatsonxDataV2:
         }
         # Construct a dict representation of a BucketDetails model
         bucket_details_model = {
-            'access_key': '<access_key>',
+            'access_key': 'b9cbf248ea5c4c96947e64407108559j',
             'bucket_name': 'sample-bucket',
-            'endpoint': 'https://s3.us-south.cloud-object-storage.appdomain.cloud/',
+            'endpoint': 'https://s3.<region>.cloud-object-storage.appdomain.cloud/',
             'key_file': 'key_file',
-            'provider': 'ibm-cos',
+            'provider': 'ibm_cos',
             'region': 'us-south',
-            'secret_key': 'secret_key',
+            'secret_key': '13b4045cac1a0be54c9fjbe53cb22df5fn397cd2c45b66c87',
         }
         # Construct a dict representation of a StorageDetails model
         storage_details_model = {
@@ -94,12 +94,12 @@ class TestWatsonxDataV2:
         }
 
         response = self.watsonx_data_service.create_bucket_registration(
-            bucket_display_name='sample-bucket-displayname',
             bucket_type='ibm_cos',
             description='COS bucket for customer data',
             managed_by='ibm',
             associated_catalog=bucket_catalog_model,
             bucket_details=bucket_details_model,
+            bucket_display_name='sample-bucket-displayname',
             region='us-south',
             storage_details=storage_details_model,
             tags=['bucket-tag1', 'bucket-tag2'],
@@ -125,20 +125,19 @@ class TestWatsonxDataV2:
     def test_update_bucket_registration(self):
         # Construct a dict representation of a BucketDetails model
         bucket_details_model = {
-            'access_key': '<access_key>',
+            'access_key': 'b9cbf248ea5c4c96947e64407108559j',
             'bucket_name': 'sample-bucket',
-            'endpoint': 'https://s3.us-south.cloud-object-storage.appdomain.cloud/',
+            'endpoint': 'https://s3.<region>.cloud-object-storage.appdomain.cloud/',
             'key_file': 'key_file',
-            'provider': 'ibm-cos',
+            'provider': 'ibm_cos',
             'region': 'us-south',
-            'secret_key': 'secret_key',
+            'secret_key': '13b4045cac1a0be54c9fjbe53cb22df5fn397cd2c45b66c87',
         }
         # Construct a dict representation of a BucketRegistrationPatch model
         bucket_registration_patch_model = {
             'bucket_details': bucket_details_model,
             'bucket_display_name': 'sample-bucket-displayname',
             'description': 'COS bucket for customer data',
-            'system_bucket_update_credentials': True,
             'tags': ['testbucket', 'userbucket'],
         }
 
@@ -177,49 +176,20 @@ class TestWatsonxDataV2:
 
     @needscredentials
     def test_get_bucket_object_properties(self):
-        # Construct a dict representation of a BucketObjectSizePathsItems model
-        bucket_object_size_paths_items_model = {
-            'path': 'testString',
+        # Construct a dict representation of a Path model
+        path_model = {
+            'path': 'string',
         }
 
         response = self.watsonx_data_service.get_bucket_object_properties(
             bucket_id='testString',
-            paths=[bucket_object_size_paths_items_model],
+            paths=[path_model],
             auth_instance_id='testString',
         )
 
         assert response.get_status_code() == 201
         bucket_object_properties = response.get_result()
         assert bucket_object_properties is not None
-
-    @needscredentials
-    def test_generate_benchmark_report(self):
-        response = self.watsonx_data_service.generate_benchmark_report(
-            bucket_name='testString',
-            engine_id='testString',
-            pod_name='testString',
-            file_count='testString',
-            file_size='testString',
-            auth_instance_id='testString',
-        )
-
-        assert response.get_status_code() == 200
-        generate_benchmark_report_ok_body = response.get_result()
-        assert generate_benchmark_report_ok_body is not None
-
-    @needscredentials
-    def test_generate_benchmark_report_status(self):
-        response = self.watsonx_data_service.generate_benchmark_report_status(
-            req_id='testString',
-            engine_id='testString',
-            bucket_name='testString',
-            pod_name='testString',
-            auth_instance_id='testString',
-        )
-
-        assert response.get_status_code() == 200
-        benchmark_status_response = response.get_result()
-        assert benchmark_status_response is not None
 
     @needscredentials
     def test_create_hdfs_storage(self):
@@ -262,22 +232,20 @@ class TestWatsonxDataV2:
 
     @needscredentials
     def test_create_database_registration(self):
-        # Construct a dict representation of a DatabaseCatalogPrototype model
-        database_catalog_prototype_model = {
+        # Construct a dict representation of a DatabaseCatalog model
+        database_catalog_model = {
             'catalog_name': 'sampleCatalog',
+            'catalog_tags': ['catalog_tag_1', 'catalog_tag_2'],
             'catalog_type': 'iceberg',
         }
         # Construct a dict representation of a DatabaseDetails model
         database_details_model = {
             'authentication_type': 'LDAP',
-            'authentication_value': 'LDAP',
             'broker_authentication_password': 'samplepassword',
             'broker_authentication_type': 'PASSWORD',
             'broker_authentication_user': 'sampleuser',
-            'broker_host': 'samplehost',
-            'broker_port': 4553,
-            'certificate': 'exampleCertificate',
-            'certificate_extension': 'pem',
+            'certificate': 'contents of a pem/crt file',
+            'certificate_extension': 'pem/crt',
             'connection_method': 'basic, apikey',
             'connection_mode': 'service_name',
             'connection_mode_value': 'orclpdb',
@@ -285,12 +253,10 @@ class TestWatsonxDataV2:
             'controller_authentication_password': 'samplepassword',
             'controller_authentication_type': 'PASSWORD',
             'controller_authentication_user': 'sampleuser',
-            'coordinator_host': 'samplehost',
-            'coordinator_port': 4553,
             'cpd_hostname': 'samplecpdhostname',
             'credentials_key': 'eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......',
             'database_name': 'new_database',
-            'hostname': 'http://db2@localhost:9900.com',
+            'hostname': 'db2@<hostname>.com',
             'hostname_in_certificate': 'samplehostname',
             'hosts': 'abc.com:1234,xyz.com:4321',
             'informix_server': 'ol_informix1410',
@@ -298,9 +264,6 @@ class TestWatsonxDataV2:
             'port': 4553,
             'project_id': 'conops-bigquery',
             'sasl': True,
-            'sasl_mechanism': 'plain',
-            'schema_name': 'sampleSchema',
-            'schemas': 'redis__name',
             'service_api_key': 'sampleapikey',
             'service_hostname': 'api.dataplatform.dev.cloud.ibm.com',
             'service_password': 'samplepassword',
@@ -309,11 +272,10 @@ class TestWatsonxDataV2:
             'service_token_url': 'sampletoakenurl',
             'service_username': 'sampleusername',
             'ssl': True,
-            'tables': 'kafka_table_name, redis_table_name',
+            'tables': 'kafka_table_name',
             'username': 'sampleuser',
             'validate_server_certificate': True,
             'verify_host_name': True,
-            'warehouse_name': 'samplewrehouse',
         }
         # Construct a dict representation of a DatabaseRegistrationPrototypeDatabasePropertiesItems model
         database_registration_prototype_database_properties_items_model = {
@@ -325,7 +287,7 @@ class TestWatsonxDataV2:
         response = self.watsonx_data_service.create_database_registration(
             database_display_name='new_database',
             database_type='db2',
-            associated_catalog=database_catalog_prototype_model,
+            associated_catalog=database_catalog_model,
             created_on='1686792721',
             database_details=database_details_model,
             database_properties=[database_registration_prototype_database_properties_items_model],
@@ -351,39 +313,16 @@ class TestWatsonxDataV2:
 
     @needscredentials
     def test_update_database(self):
-        # Construct a dict representation of a DatabaseRegistrationPatchDatabaseDetailsDatabasePropertiesItems model
-        database_registration_patch_database_details_database_properties_items_model = {
-            'encrypt': True,
-            'key': 'abc',
-            'value': 'xyz',
-        }
         # Construct a dict representation of a DatabaseRegistrationPatchDatabaseDetails model
         database_registration_patch_database_details_model = {
-            'authentication_value': 'LDAP',
-            'broker_authentication_password': 'samplepassword',
-            'broker_authentication_type': 'PASSWORD',
-            'broker_authentication_user': 'sampleuser',
-            'controller_authentication_password': 'samplepassword',
-            'controller_authentication_type': 'PASSWORD',
-            'controller_authentication_user': 'sampleuser',
-            'credentials_key': 'eyJ0eXBlIjoic2VydmljZV9hY2NvdW50IiwicHJvamVjdF9pZCI6ImNvbm9wcy1iaWdxdWVyeSIsInByaXZhdGVfa2V5X2lkIjoiMGY3......',
-            'database_properties': [database_registration_patch_database_details_database_properties_items_model],
             'password': 'samplepassword',
             'username': 'sampleuser',
-        }
-        # Construct a dict representation of a DatabaseRegistrationPatchTablesItems model
-        database_registration_patch_tables_items_model = {
-            'created_on': '1686792721',
-            'file_contents': 'sample file content',
-            'file_name': 'test.json',
-            'schema_name': 'customer',
-            'table_name': 'customer',
         }
         # Construct a dict representation of a DatabaseRegistrationPatchTopicsItems model
         database_registration_patch_topics_items_model = {
             'created_on': '1686792721',
             'file_contents': 'sample file contents',
-            'file_name': 'test.json',
+            'file_name': 'sample file name',
             'topic_name': 'customer',
         }
         # Construct a dict representation of a DatabaseRegistrationPatch model
@@ -391,7 +330,6 @@ class TestWatsonxDataV2:
             'database_details': database_registration_patch_database_details_model,
             'database_display_name': 'new_database',
             'description': 'External database description',
-            'tables': [database_registration_patch_tables_items_model],
             'tags': ['testdatabase', 'userdatabase'],
             'topics': [database_registration_patch_topics_items_model],
         }
@@ -407,18 +345,46 @@ class TestWatsonxDataV2:
         assert database_registration is not None
 
     @needscredentials
-    def test_generate_engine_dump(self):
-        response = self.watsonx_data_service.generate_engine_dump(
-            dump_file_name='prestodump',
-            dump_type='heat',
-            engine_id='presto-123',
-            pod_name='presto',
+    def test_list_driver_registration(self):
+        response = self.watsonx_data_service.list_driver_registration(
             auth_instance_id='testString',
         )
 
         assert response.get_status_code() == 200
-        generate_engine_dump_ok_body = response.get_result()
-        assert generate_engine_dump_ok_body is not None
+        driver_registration_collection = response.get_result()
+        assert driver_registration_collection is not None
+
+    @needscredentials
+    def test_create_driver_registration(self):
+        response = self.watsonx_data_service.create_driver_registration(
+            driver=io.BytesIO(b'This is a mock file.').getvalue(),
+            driver_name='testString',
+            connection_type='testString',
+            driver_content_type='testString',
+            version='testString',
+            auth_instance_id='testString',
+        )
+
+        assert response.get_status_code() == 201
+        driver_registration = response.get_result()
+        assert driver_registration is not None
+
+    @needscredentials
+    def test_update_driver_engines(self):
+        # Construct a dict representation of a DriverRegistrationEnginePrototype model
+        driver_registration_engine_prototype_model = {
+            'engines': ['testString'],
+        }
+
+        response = self.watsonx_data_service.update_driver_engines(
+            driver_id='testString',
+            body=driver_registration_engine_prototype_model,
+            auth_instance_id='testString',
+        )
+
+        assert response.get_status_code() == 200
+        driver_registration_engine = response.get_result()
+        assert driver_registration_engine is not None
 
     @needscredentials
     def test_list_other_engines(self):
@@ -840,7 +806,7 @@ class TestWatsonxDataV2:
     def test_create_prestissimo_engine_catalogs(self):
         response = self.watsonx_data_service.create_prestissimo_engine_catalogs(
             engine_id='testString',
-            catalog_names='testString',
+            catalog_name='testString',
             auth_instance_id='testString',
         )
 
@@ -1102,7 +1068,7 @@ class TestWatsonxDataV2:
     def test_create_presto_engine_catalogs(self):
         response = self.watsonx_data_service.create_presto_engine_catalogs(
             engine_id='testString',
-            catalog_names='testString',
+            catalog_name='testString',
             auth_instance_id='testString',
         )
 
@@ -1186,7 +1152,7 @@ class TestWatsonxDataV2:
     def test_scale_presto_engine(self):
         # Construct a dict representation of a NodeDescription model
         node_description_model = {
-            'node_type': 'worker',
+            'node_type': 'starter',
             'quantity': 38,
         }
 
@@ -1658,7 +1624,7 @@ class TestWatsonxDataV2:
     def test_create_spark_engine_catalogs(self):
         response = self.watsonx_data_service.create_spark_engine_catalogs(
             engine_id='testString',
-            catalog_names='testString',
+            catalog_name='testString',
             auth_instance_id='testString',
         )
 
@@ -1868,8 +1834,8 @@ class TestWatsonxDataV2:
             'comment': 'expenses column',
             'extra': 'varchar',
             'length': '30',
-            'precision': '10',
             'scale': '2',
+            'precision': '10',
             'type': 'varchar',
         }
 
@@ -1973,17 +1939,8 @@ class TestWatsonxDataV2:
             service_display_name='sampleService',
             bucket_type='Sample bucket type',
             description='milvus service for running sql queries',
-            index_type='FLAT',
-            iw_cpu=1,
-            iw_memory=1,
-            iw_replicas=1,
-            managed_by='customer',
-            qw_cpu=1,
-            qw_memory=1,
-            qw_replicas=1,
             tags=['tag1', 'tag2'],
             tshirt_size='small',
-            vector_dimension=384,
             auth_instance_id='testString',
         )
 
@@ -2090,16 +2047,7 @@ class TestWatsonxDataV2:
     def test_create_milvus_service_scale(self):
         response = self.watsonx_data_service.create_milvus_service_scale(
             service_id='testString',
-            tshirt_size='testString',
-            index_type='FLAT',
-            iw_cpu=1,
-            iw_memory=1,
-            iw_replicas=1,
-            milvus_name='milvus123',
-            qw_cpu=1,
-            qw_memory=1,
-            qw_replicas=1,
-            vector_dimension=384,
+            tshirt_size='small',
             auth_instance_id='testString',
         )
 
@@ -2250,33 +2198,6 @@ class TestWatsonxDataV2:
         assert endpoint_collection is not None
 
     @needscredentials
-    def test_register_table(self):
-        response = self.watsonx_data_service.register_table(
-            catalog_id='testString',
-            schema_id='testString',
-            metadata_location='s3a://bucketname/path/to/table/metadata_location/_delta_log',
-            table_name='table1',
-            auth_instance_id='testString',
-        )
-
-        assert response.get_status_code() == 201
-        register_table_created_body = response.get_result()
-        assert register_table_created_body is not None
-
-    @needscredentials
-    def test_load_table(self):
-        response = self.watsonx_data_service.load_table(
-            catalog_id='testString',
-            schema_id='testString',
-            table_id='testString',
-            auth_instance_id='testString',
-        )
-
-        assert response.get_status_code() == 200
-        load_table_response = response.get_result()
-        assert load_table_response is not None
-
-    @needscredentials
     def test_get_all_columns(self):
         response = self.watsonx_data_service.get_all_columns(
             table_name='testString',
@@ -2359,6 +2280,25 @@ class TestWatsonxDataV2:
     def test_delete_database_catalog(self):
         response = self.watsonx_data_service.delete_database_catalog(
             database_id='testString',
+            auth_instance_id='testString',
+        )
+
+        assert response.get_status_code() == 204
+
+    @needscredentials
+    def test_delete_driver_registration(self):
+        response = self.watsonx_data_service.delete_driver_registration(
+            driver_id='testString',
+            auth_instance_id='testString',
+        )
+
+        assert response.get_status_code() == 204
+
+    @needscredentials
+    def test_delete_driver_engines(self):
+        response = self.watsonx_data_service.delete_driver_engines(
+            driver_id='testString',
+            engine_ids='testString',
             auth_instance_id='testString',
         )
 
