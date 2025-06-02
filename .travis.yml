@@ -35,10 +35,12 @@ deploy:
     python: '3.8'
     branch: main
 - provider: pypi
-  user: __token__
+  username: __token__
   password: $PYPI_TOKEN
-  repository: https://upload.pypi.org/legacy
+  distributions: "sdist bdist_wheel"
+  skip_existing: true
   skip_cleanup: true
   on:
     python: '3.8'
     tags: true
+    branch: main
