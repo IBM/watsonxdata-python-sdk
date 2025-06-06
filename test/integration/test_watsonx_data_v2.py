@@ -66,6 +66,7 @@ class TestWatsonxDataV2:
     def test_create_bucket_registration(self):
         # Construct a dict representation of a BucketCatalog model
         bucket_catalog_model = {
+            'base_path': '/abc/def',
             'catalog_name': 'sampleCatalog',
             'catalog_tags': ['catalog_tag_1', 'catalog_tag_2'],
             'catalog_type': 'iceberg',
@@ -161,6 +162,21 @@ class TestWatsonxDataV2:
         assert response.get_status_code() == 201
         create_activate_bucket_created_body = response.get_result()
         assert create_activate_bucket_created_body is not None
+
+    @needscredentials
+    def test_add_bucket_catalog(self):
+        response = self.watsonx_data_service.add_bucket_catalog(
+            bucket_id='testString',
+            base_path='/abc/def',
+            catalog_name='sampleCatalog',
+            catalog_tags=['catalog_tag_1', 'catalog_tag_2'],
+            catalog_type='iceberg',
+            auth_instance_id='testString',
+        )
+
+        assert response.get_status_code() == 201
+        success_response = response.get_result()
+        assert success_response is not None
 
     @needscredentials
     def test_list_bucket_objects(self):
@@ -721,9 +737,14 @@ class TestWatsonxDataV2:
 
     @needscredentials
     def test_update_prestissimo_engine(self):
-        # Construct a dict representation of a PrestissimoEnginePropertiesCatalog model
-        prestissimo_engine_properties_catalog_model = {
-            'catalog_name': ['testString'],
+        # Construct a dict representation of a EnginePropertiesCatalog model
+        engine_properties_catalog_model = {
+            'coordinator': {'key1': 'testString'},
+            'worker': {'key1': 'testString'},
+        }
+        # Construct a dict representation of a PrestissimoPropertiesCatalog model
+        prestissimo_properties_catalog_model = {
+            'catalog_name': engine_properties_catalog_model,
         }
         # Construct a dict representation of a PrestissimoNodeDescriptionBody model
         prestissimo_node_description_body_model = {
@@ -739,21 +760,20 @@ class TestWatsonxDataV2:
         prestissimo_engine_properties_velox_model = {
             'velox_property': ['testString'],
         }
-        # Construct a dict representation of a NodeDescriptionBody model
-        node_description_body_model = {
-            'node_type': 'worker',
-            'quantity': 38,
-        }
         # Construct a dict representation of a PrestissimoEnginePropertiesOaiGen1Jvm model
         prestissimo_engine_properties_oai_gen1_jvm_model = {
-            'coordinator': node_description_body_model,
+            'coordinator': {'key1': 'testString'},
         }
         # Construct a dict representation of a PrestissimoEngineEngineProperties model
         prestissimo_engine_engine_properties_model = {
-            'catalog': prestissimo_engine_properties_catalog_model,
+            'catalog': prestissimo_properties_catalog_model,
             'configuration': engine_properties_oai_gen_configuration_model,
             'velox': prestissimo_engine_properties_velox_model,
             'jvm': prestissimo_engine_properties_oai_gen1_jvm_model,
+        }
+        # Construct a dict representation of a PrestissimoEnginePropertiesCatalog model
+        prestissimo_engine_properties_catalog_model = {
+            'catalog_name': ['testString'],
         }
         # Construct a dict representation of a RemoveEnginePropertiesConfiguration model
         remove_engine_properties_configuration_model = {
@@ -962,19 +982,19 @@ class TestWatsonxDataV2:
 
     @needscredentials
     def test_update_presto_engine(self):
+        # Construct a dict representation of a EnginePropertiesCatalog model
+        engine_properties_catalog_model = {
+            'coordinator': {'key1': 'testString'},
+            'worker': {'key1': 'testString'},
+        }
         # Construct a dict representation of a PrestoEnginePropertiesCatalog model
         presto_engine_properties_catalog_model = {
-            'catalog_name': 'testString',
-        }
-        # Construct a dict representation of a NodeDescriptionBody model
-        node_description_body_model = {
-            'node_type': 'worker',
-            'quantity': 38,
+            'catalog_name': engine_properties_catalog_model,
         }
         # Construct a dict representation of a EnginePropertiesOaiGen1Configuration model
         engine_properties_oai_gen1_configuration_model = {
-            'coordinator': node_description_body_model,
-            'worker': node_description_body_model,
+            'coordinator': {'key1': 'testString'},
+            'worker': {'key1': 'testString'},
         }
         # Construct a dict representation of a PrestoEnginePropertiesEventListener model
         presto_engine_properties_event_listener_model = {
@@ -986,8 +1006,8 @@ class TestWatsonxDataV2:
         }
         # Construct a dict representation of a EnginePropertiesOaiGen1Jvm model
         engine_properties_oai_gen1_jvm_model = {
-            'coordinator': node_description_body_model,
-            'worker': node_description_body_model,
+            'coordinator': {'key1': 'testString'},
+            'worker': {'key1': 'testString'},
         }
         # Construct a dict representation of a PrestoEnginePropertiesJMX model
         presto_engine_properties_jmx_model = {
@@ -995,8 +1015,8 @@ class TestWatsonxDataV2:
         }
         # Construct a dict representation of a EnginePropertiesLogConfiguration model
         engine_properties_log_configuration_model = {
-            'coordinator': node_description_body_model,
-            'worker': node_description_body_model,
+            'coordinator': {'key1': 'testString'},
+            'worker': {'key1': 'testString'},
         }
         # Construct a dict representation of a PrestoEngineEngineProperties model
         presto_engine_engine_properties_model = {
@@ -1487,6 +1507,7 @@ class TestWatsonxDataV2:
             engine_display_name='test-native',
             status='testString',
             tags=['testString'],
+            type='spark',
             auth_instance_id='testString',
         )
 
@@ -2196,6 +2217,33 @@ class TestWatsonxDataV2:
         assert response.get_status_code() == 200
         endpoint_collection = response.get_result()
         assert endpoint_collection is not None
+
+    @needscredentials
+    def test_register_table(self):
+        response = self.watsonx_data_service.register_table(
+            catalog_id='testString',
+            schema_id='testString',
+            metadata_location='s3a://bucketname/path/to/table/metadata_location/_delta_log',
+            table_name='table1',
+            auth_instance_id='testString',
+        )
+
+        assert response.get_status_code() == 201
+        register_table_created_body = response.get_result()
+        assert register_table_created_body is not None
+
+    @needscredentials
+    def test_load_table(self):
+        response = self.watsonx_data_service.load_table(
+            catalog_id='testString',
+            schema_id='testString',
+            table_id='testString',
+            auth_instance_id='testString',
+        )
+
+        assert response.get_status_code() == 200
+        load_table_response = response.get_result()
+        assert load_table_response is not None
 
     @needscredentials
     def test_get_all_columns(self):
