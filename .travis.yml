@@ -32,7 +32,7 @@ deploy:
   script: npm run semantic-release
   skip_cleanup: true
   on:
-    python: '3.8'
+    python: '3.12'
     branch: main
 - provider: pypi
   username: __token__
@@ -41,6 +41,6 @@ deploy:
   skip_existing: true
   skip_cleanup: true
   on:
-    python: '3.8'
+    python: '3.12'
     tags: true
     branch: main
