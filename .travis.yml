@@ -33,7 +33,7 @@ deploy:
   skip_cleanup: true
   on:
     python: '3.12'
-    branch: main
+    branch: release
 - provider: pypi
   username: __token__
   password: $PYPI_TOKEN
@@ -42,5 +42,5 @@ deploy:
   skip_cleanup: true
   on:
     python: '3.12'
-    tags: true
-    branch: main
+    tags: false
+    branch: release
