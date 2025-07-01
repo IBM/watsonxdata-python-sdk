@@ -1,3 +1,11 @@
+# [0.8.0](https://github.com/IBM/watsonxdata-python-sdk/compare/v0.7.0...v0.8.0) (2025-07-01)
+
+
+### Features
+
+* **sdk:** update Build/CI related changes ([85ea5c1](https://github.com/IBM/watsonxdata-python-sdk/commit/85ea5c1094452caf5caf9b7931d9e26661f87bad))
+* **sdk:** update SDK to include 2.2 SaaS changes ([f08a766](https://github.com/IBM/watsonxdata-python-sdk/commit/f08a766fc4961f9c25c0e47f0378341465a1224f))
+
 # [0.7.0](https://github.com/IBM/watsonxdata-python-sdk/compare/v0.6.0...v0.7.0) (2025-06-02)
 
 
